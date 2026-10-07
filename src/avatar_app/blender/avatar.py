@@ -50,6 +50,9 @@ def import_avatar(path: str) -> AvatarHandle:
         if missing:
             raise ValueError('Unsupported rig; missing: ' + ', '.join(missing))
         bones = {name: names[name.lower()] for name in REQUIRED}
+        for name in ('Spine1', 'Spine2', 'Neck'):
+            if name.lower() in names:
+                bones[name] = names[name.lower()]
         for obj in objects:
             obj.animation_data_clear()
         for bone in rig.pose.bones:

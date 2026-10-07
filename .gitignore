@@ -1,11 +1,50 @@
+# Python caches, environments, and packaging output
 __pycache__/
-*.pyc
-*.blend1
-*.blend2
-*.log
-*.md
-!README.md
-artifacts/
+*.py[cod]
 *.egg-info/
+.venv/
+venv/
+/build/
+/dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local AI binaries, downloaded models, and generated results
+/.runtime/
+/artifacts/
+*.gguf
+*.log
+
+# Blender projects and numbered backups
+*.blend
+*.blend[0-9]*
+
+# Local source media and downloaded archives
 *.png
 *.fbx
+*.jpg
+*.jpeg
+*.tga
+*.wav
+*.mp3
+*.ogg
+*.zip
+
+# Existing documentation and excluded work-folder policy
+*.md
+!README.md
+/problems/
+
+# Machine-specific settings and OS metadata
+.claude/settings.local.json
+.env
+.env.*
+!.env.example
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store

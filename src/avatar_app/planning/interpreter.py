@@ -4,6 +4,10 @@ from ..models import MotionPlan, PlanPatch, PlanError
 from .validation import apply_patch, validate_plan
 
 
+class UnknownPrompt(PlanError):
+    """The exact vocabulary did not match; AI may interpret this wording."""
+
+
 def interpret(text: str, current: MotionPlan | None = None) -> MotionPlan:
     text = text.strip().lower().rstrip('.!')
     # Full matching deliberately rejects extra actions and negated instructions.
@@ -17,7 +21,7 @@ def interpret(text: str, current: MotionPlan | None = None) -> MotionPlan:
         validate_plan(result)
         return result
     if current is None:
-        raise PlanError('Start with “T-rex pose” or “T-rex pose in 3 seconds”. '
+        raise UnknownPrompt('Start with “T-rex pose” or “T-rex pose in 3 seconds”. '
                         'Walking, dancing, and arbitrary motions are not implemented yet.')
     edits = {
         'crouch lower': ('crouch', current.crouch + 0.03),
@@ -31,7 +35,7 @@ def interpret(text: str, current: MotionPlan | None = None) -> MotionPlan:
         'faster': ('duration', current.duration - 0.5),
     }
     if text not in edits:
-        raise PlanError('Available corrections: crouch lower, crouch less, stand taller, '
+        raise UnknownPrompt('Available corrections: crouch lower, crouch less, stand taller, '
                         'raise arms, lower arms, slower, faster. '
                         'An experimental arbitrary-motion engine is not available yet.')
     return apply_patch(current, PlanPatch(current.revision, (edits[text],)))

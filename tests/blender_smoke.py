@@ -80,9 +80,9 @@ assert set(original_scene.objects) == original_objects
 from avatar_app import main as app
 app.main()
 assert app._state['avatar'] is not None and app._state['plan'] is not None
-bpy.context.scene.avatar_prompt = 'raise arms'
+bpy.context.scene.avatar_prompt = 'neutral pose'
 assert bpy.ops.avatar.prompt() == {'FINISHED'}
-assert app._state['plan'].arm_lift == 0.1
+assert app._state['plan'].values == ()
 good_plan = app._state['plan']
 good_handle = app._state['avatar']
 bpy.context.scene.avatar_path = str(ROOT / 'does-not-exist.fbx')
