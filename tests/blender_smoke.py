@@ -1,5 +1,7 @@
 """End-to-end checks using actual FBX imports and Blender's dependency graph."""
 from pathlib import Path
+from contextlib import redirect_stdout
+import io
 import sys
 import time
 import json
@@ -23,7 +25,10 @@ original_scene = bpy.context.scene
 original_objects = set(original_scene.objects)
 for filename in ('Hip Hop Andrejs.fbx', 'Hip Hop Mixamo.fbx'):
     started = time.perf_counter()
-    handle = import_avatar(str(ROOT / filename))
+    import_output = io.StringIO()
+    with redirect_stdout(import_output):
+        handle = import_avatar(str(ROOT / filename))
+    assert "User property type 'Short' is not supported" not in import_output.getvalue(), import_output.getvalue()
     material_ids = {obj.name: tuple(slot.material for slot in obj.material_slots)
                     for obj in handle.objects if obj.type == 'MESH'}
     prepare_preview(handle)

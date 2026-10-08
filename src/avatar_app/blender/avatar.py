@@ -32,8 +32,11 @@ def import_avatar(path: str) -> AvatarHandle:
     bpy.context.window.scene = scene
     before = set(bpy.data.objects)
     try:
+        # Posing uses the skeleton and mesh, not FBX user metadata. Some supplied
+        # files contain Short properties that Blender's importer cannot read.
         bpy.ops.import_scene.fbx(filepath=str(path), use_anim=False,
-                                 use_image_search=True, automatic_bone_orientation=False)
+                                 use_image_search=True, use_custom_props=False,
+                                 automatic_bone_orientation=False)
         objects = list(set(bpy.data.objects) - before)
         rigs = [obj for obj in objects if obj.type == 'ARMATURE']
         if len(rigs) != 1:

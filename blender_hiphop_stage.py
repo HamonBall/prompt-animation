@@ -296,6 +296,8 @@ def import_fbx(path, label, scale=1.0):
                 use_anim=True,
                 global_scale=scale,
                 use_image_search=True,
+                # Unused FBX metadata can contain unsupported Short properties.
+                use_custom_props=False,
                 automatic_bone_orientation=True,
             )
         print(f"  Operator result: {result}")
