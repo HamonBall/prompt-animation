@@ -17,7 +17,7 @@ def reply(kind, stages=None, changes=None, factor=None):
 class MotionTests(unittest.TestCase):
     def test_reference_route_has_support_transfers_and_reuses_crouch(self):
         plan = lying_down_plan()
-        self.assertEqual(plan.stages[0], crouch())
+        self.assertEqual(plan.stages[0], crouch(duration=2))
         self.assertEqual(sitting_plan().stages[0].action, crouch().action)
         self.assertEqual(len(plan.stages), 4)
         self.assertEqual(plan.final_pose.get('root_pitch'), -90)

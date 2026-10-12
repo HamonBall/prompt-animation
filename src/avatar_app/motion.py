@@ -15,6 +15,8 @@ CONTACT_PARTS = ('left_foot', 'right_foot', 'left_hand', 'right_hand', 'pelvis',
 class Surface:
     name: str = 'floor'
     height: float = 0.0  # metres in the preview scene
+    center: tuple[float, float] | None = None  # world XY; a resolved seat
+    size: tuple[float, float] | None = None
 
 
 @dataclass(frozen=True)
@@ -25,6 +27,8 @@ class ContactConstraint:
     end: float = 1.0
     position: tuple[float, float] | None = None  # side/forward, avatar-height units
     clearance: float = 0.0  # bone anchor above surface, avatar-height units
+    acquire: float = .4  # seconds to acquire support
+    release: float = .4  # seconds to release wrist support
 
 
 @dataclass(frozen=True)
@@ -46,6 +50,7 @@ class ActionPlan:
     surfaces: tuple[Surface, ...] = (Surface(),)
     revision: int = 0
     description: str = 'Requested motion'
+    resolved_final: PosePlan | None = None
 
     @property
     def fps(self):
@@ -57,6 +62,8 @@ class ActionPlan:
 
     @property
     def final_pose(self):
+        if self.resolved_final is not None:
+            return self.resolved_final
         values = sample_controls(self, self.duration)
         feet = {c.part for s, start, _ in schedule(self) for c in s.contacts
                 if start + c.start * s.duration <= self.duration <= start + c.end * s.duration}
@@ -90,6 +97,8 @@ def validate_action(plan):
     if not isinstance(plan, ActionPlan) or not 1 <= len(plan.stages) <= 12:
         raise PlanError('An action needs 1–12 motion stages.')
     validate_pose(plan.initial)
+    if plan.resolved_final is not None:
+        validate_pose(plan.resolved_final)
     if type(plan.revision) is not int or plan.revision < 0:
         raise PlanError('Invalid action revision.')
     if not isinstance(plan.description, str) or not 1 <= len(plan.description) <= 180:
@@ -102,6 +111,12 @@ def validate_action(plan):
     for surface in plan.surfaces:
         if not isinstance(surface.name, str) or not surface.name or not finite(surface.height) or not 0 <= surface.height <= 2:
             raise PlanError('Invalid resolved surface.')
+        if (surface.center is None) != (surface.size is None):
+            raise PlanError('A bounded surface needs its center and size.')
+        if surface.center is not None and (len(surface.center) != 2 or len(surface.size) != 2 or
+                any(not finite(v) or abs(v) > 20 for v in surface.center) or
+                any(not finite(v) or not .1 <= v <= 10 for v in surface.size)):
+            raise PlanError('Invalid surface bounds.')
     ids = set()
     current = plan.initial
     for stage in plan.stages:
@@ -133,6 +148,8 @@ def validate_action(plan):
                 raise PlanError('Invalid contact activation interval.')
             if not finite(contact.clearance) or not 0 <= contact.clearance <= .2:
                 raise PlanError('Invalid contact clearance.')
+            if any(not finite(v) or not .05 <= v <= 8 for v in (contact.acquire, contact.release)):
+                raise PlanError('Invalid contact acquisition/release timing.')
             if contact.position is not None and (len(contact.position) != 2 or any(
                     not finite(v) or abs(v) > 1 for v in contact.position)):
                 raise PlanError('Invalid contact position.')
@@ -181,14 +198,38 @@ def sample_controls(plan, time):
                 values[key] = 0 if target == 0 else (target if time >= end else source)
                 continue
             # Complete wrist targets are interpolated by the executor in bone space.
-            values[key] = source + (target - source) * weight
+            values[key] = blend_control(plan, stage, key, source, time)
     return values
+
+
+def blend_control(plan, stage, key, source, time):
+    """Monotone cubic Hermite curves carry velocity through adjacent targets."""
+    rows = [(s, start, end, dict(s.targets)[key]) for s, start, end in schedule(plan)
+            if key in dict(s.targets) and dict(s.targets)[key] is not None]
+    rows.sort(key=lambda row: row[1])
+    index = next(i for i, row in enumerate(rows) if row[0].id == stage.id)
+    _, start, end, target = rows[index]
+    t = min(1.0, max(0.0, (time - start) / stage.duration))
+    slope = (target - source) / stage.duration
+    def tangent(a, b):
+        # Harmonic mean prevents overshoot and stops at direction reversals.
+        return 2 * a * b / (a + b) if a * b > 0 else 0.0
+    begin_speed, end_speed = 0.0, 0.0
+    if index and abs(rows[index - 1][2] - start) < 1e-6:
+        previous, _, _, previous_target = rows[index - 1]
+        earlier = rows[index - 2][3] if index > 1 else plan.initial.get(key, control_default(dict(plan.initial.values), key))
+        begin_speed = tangent((previous_target - earlier) / previous.duration, slope)
+    if index + 1 < len(rows) and abs(rows[index + 1][1] - end) < 1e-6:
+        following, _, _, following_target = rows[index + 1]
+        end_speed = tangent(slope, (following_target - target) / following.duration)
+    return ((2*t**3 - 3*t*t + 1) * source + (t**3 - 2*t*t + t) * stage.duration * begin_speed
+            + (-2*t**3 + 3*t*t) * target + (t**3 - t*t) * stage.duration * end_speed)
 
 
 def scale_timing(plan, factor):
     if not finite(factor) or not .1 <= factor <= 10:
         raise PlanError('Invalid timing multiplier.')
-    return validate_action(replace(plan, revision=plan.revision + 1, stages=tuple(
+    return validate_action(replace(plan, revision=plan.revision + 1, resolved_final=None, stages=tuple(
         replace(s, duration=s.duration * factor,
                 start=None if s.start is None else s.start * factor) for s in plan.stages)))
 
@@ -215,7 +256,7 @@ def patch_stages(plan, patches):
             changes['body_parts'] = tuple(sorted(set(stage.body_parts) | {
                 affected_part(k) for k in targets if affected_part(k)}))
         stages[key] = replace(stage, **changes)
-    return validate_action(replace(plan, revision=plan.revision + 1,
+    return validate_action(replace(plan, revision=plan.revision + 1, resolved_final=None,
                                    stages=tuple(stages[s.id] for s in plan.stages)))
 
 

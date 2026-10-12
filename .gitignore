@@ -34,9 +34,7 @@ htmlcov/
 *.ogg
 *.zip
 
-# Existing documentation and excluded work-folder policy
-*.md
-!README.md
+# Excluded investigation folder (project Markdown is tracked)
 /problems/
 
 # Machine-specific settings and OS metadata

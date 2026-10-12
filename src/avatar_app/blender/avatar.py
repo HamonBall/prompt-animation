@@ -1,8 +1,9 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 import re
 import bpy
 from mathutils import Vector
+from .geometry import mesh_points
 
 
 REQUIRED = ('Hips', 'Spine', 'Head', 'LeftArm', 'LeftForeArm', 'LeftHand',
@@ -21,6 +22,8 @@ class AvatarHandle:
     right: Vector
     objects: list
     source_actions: tuple = ()
+    environment: list = field(default_factory=list)
+    surfaces: tuple = ()
 
 
 def import_avatar(path: str, import_motion=False) -> AvatarHandle:
@@ -77,12 +80,12 @@ def import_avatar(path: str, import_motion=False) -> AvatarHandle:
         root.rotation_mode = 'QUATERNION'
         root.rotation_quaternion = anatomical_up.rotation_difference(Vector((0, 0, 1)))
         bpy.context.view_layer.update()
-        mesh_points = [obj.matrix_world @ Vector(corner) for obj in objects
-                       if obj.type == 'MESH' for corner in obj.bound_box]
-        if not mesh_points:
+        graph = bpy.context.evaluated_depsgraph_get()
+        skin = [mesh_points(obj, graph) for obj in objects if obj.type == 'MESH']
+        if not skin:
             raise ValueError('No avatar mesh was found.')
-        low = min(p.z for p in mesh_points)
-        high = max(p.z for p in mesh_points)
+        low = min(float(p[:, 2].min()) for p in skin)
+        high = max(float(p[:, 2].max()) for p in skin)
         if high - low < 1e-6:
             raise ValueError('The avatar has no measurable height.')
         factor = 1.8 / (high - low)
@@ -105,7 +108,7 @@ def import_avatar(path: str, import_motion=False) -> AvatarHandle:
 
 
 def discard_avatar(handle):
-    for obj in handle.objects:
+    for obj in handle.objects + handle.environment:
         bpy.data.objects.remove(obj, do_unlink=True)
     bpy.data.scenes.remove(handle.scene)
     for action in handle.source_actions:

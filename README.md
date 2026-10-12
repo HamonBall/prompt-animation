@@ -14,12 +14,18 @@ With Blender 5.1 installed, run from PowerShell:
 & 'C:\Program Files\Blender Foundation\Blender 5.1\blender.exe' --python C:\work11\launch_avatar.py
 ```
 
-The local Andrejs FBX loads as the try-out avatar in a neutral standing pose.
+The local Andrejs FBX loads when available. A fresh checkout instead generates an
+original stylized rigged avatar from code, so no personal FBX is required to try it.
+Clear the FBX field and load again to use this built-in character.
 In the 3D View press **N**, select the **Avatar** sidebar tab, describe a pose,
 and click **Generate / refine**, then **Play once**. Choose another Mixamo FBX
 with the file field and **Load avatar**.
 Switching avatars starts a fresh session. Existing Blender scenes are preserved.
 The supplied personal assets are used locally, not bundled for distribution.
+The preview includes a visible floor and an optional seat. Enable **Preview seat**
+and set its height before requesting chair interaction.
+A successful floor-only support route clears the preview seat for space behind
+the avatar; enable it again for the next chair request.
 
 Describe a whole-body pose or an individual adjustment. For example:
 
@@ -42,18 +48,26 @@ The AI can generate arbitrary sequences, patch existing stages by ID, or scale
 timing while retaining body targets. Static posing remains available.
 Targets carry forward; stages controlling different joints can overlap using
 absolute start times. Contradictory ownership and unresolved objects are rejected.
+Adjacent targets share monotone Hermite tangents, carrying velocity through a
+continuing movement rather than easing every stage to a stop. Direction reversals
+still decelerate. Contact acquisition/release uses smooth ramps and elbow continuity.
 
 The executor starts each movement from the actual preceding solved state,
 including joint changes made by contact IK. Feet attach at their current
 positions. Wrist supports acquire and release gradually; pelvis/back supports
-coordinate body placement. Free stages settle onto the floor. Floor pelvis/back
-clearance is a minimum bone height, allowing mesh thickness to determine support;
+coordinate body placement. Free stages settle onto the floor. Pelvis/back
+anchor height adapts to the evaluated skin as the body turns;
 this is approximate contact placement, not a physical balance simulation.
-Surfaces currently represent horizontal planes, not arbitrary collision meshes.
+Surfaces represent a floor and bounded horizontal seats, not arbitrary collision meshes.
+The body, supporting hand regions and seat are checked using evaluated skin vertices;
+rotated bounding-box corners are not used as skin measurements.
 
 Before committing a staged candidate, every sampled frame is checked for finite
-transforms, abrupt joint changes, root jumps, planted-contact drift, and floor
-penetration. Stage completion checks cover targets and acquired contacts. One
+transforms, angular speed (360°/s maximum), angular acceleration (3000°/s²),
+root jumps, planted-contact drift, and floor/seat penetration. Completion compares
+the measured joint orientation and wrist/pelvis coordinates with requested targets;
+it does not compare planned numbers with copies of themselves. Skin contact gaps
+are measured separately from bone anchor positions. One
 bounded floor-repair rebuild is allowed, with before/after measurements. Other
 failures keep the previous action, pose, frame range, and camera. Reports identify
 the affected frames, joints, and stages. Loop-boundary checks remain pending because
@@ -61,9 +75,12 @@ looping motions are not implemented.
 
 `planning/movements.py` supplies a parameterized coordinated crouch reused by
 reference sitting and lying-down routes. These references test the general executor;
-they are not a prompt whitelist. The UI uses the general AI planner. A resolved
-seat can be supplied through the plan API; the UI does not create or select chairs
-yet, so object-dependent requests should ask for clarification.
+they are not a prompt whitelist. Simple `Lie down on the floor` and `Sit on a chair`
+requests use these checked routes without model inference. Creative requests still
+use the general AI planner; recognized lying destinations are checked for endpoint
+orientation and explicit support. The visible seat's actual center, footprint and
+height are passed to planning. Successful motion records its measured ending pose
+for the next request, including adjustments made by contacts and grounding.
 
 Run the hand-authored route, rollback checks, and two seat-height checks:
 
@@ -137,7 +154,8 @@ recreate this setup from PowerShell:
 The script downloads approximately 2.5 GB of model weights plus the runtime
 into the ignored `.runtime` directory, checking the published SHA-256 hashes.
 It installs no global service. After setup, prompts run entirely locally with
-no API key, external request, or service charge. The application starts a hidden
+no API key or service charge. Without an optional web reference, generation makes
+no external request. The application starts a hidden
 model process on demand, bound to loopback with a random port and per-process
 access token, and stops its owned process on normal exit.
 
@@ -148,7 +166,21 @@ AI interpretation runs in a worker while Blender stays responsive. **Cancel
 request** or **Esc** discards that request's result; inference already running
 may finish in the background. There is no invented percentage during inference.
 Motion construction still runs on Blender's main thread and tracks sampled
-frames. Switching scenes or changing the current revision rejects stale results.
+frames, yielding between them so the UI can redraw and cancel. Canceling during
+construction rolls back the partial action. Inference reports real phases and
+elapsed time with a cyclic activity indicator, never an invented completion percentage.
+Switching scenes or changing the current revision rejects stale results.
+
+After a rejected request, **Try anyway (experimental)** asks for an approximation.
+An explicitly requested experimental preview can fail quality checks; the interface
+labels it and offers **Restore reviewed result**. Unknown controls, nonfinite data,
+out-of-range values and unreachable IK targets still cannot be applied.
+
+**Use web reference** is off by default. Supply a public HTTPS HTML/plain-text URL
+to add readable page text and its source URL to the local planner. Only that URL
+is fetched; the prompt and avatar are not sent to the website. Redirects, private
+addresses, credential-bearing URLs and large/non-text responses are rejected.
+Page text is quoted data, never executable code or instructions overriding validation.
 
 ## Current limits
 
@@ -158,7 +190,7 @@ This is an approximate procedural pose system: broad pose representation does
 not establish that almost every prompt already works well. Interpretation,
 joint realism, skin deformation, self-contact, and balance need further work.
 Precise fingers, facial expression, general object interaction, physics, internet
-context, walking/dancing loops, export, and undo controls are not implemented.
+search, walking/dancing loops, general export, and undo controls are not implemented.
 Staged procedural actions are supported; repeating motion cycles are still pending.
 Rig mapping currently requires the main Mixamo bone names and an upright
 humanoid rest pose, which is oriented upright from the skeleton on import.
@@ -193,6 +225,12 @@ anything in `problems/`. `tests/blender_ai_live.py` checks an actual local model
 request through to a new Blender action using the root-level demo avatar.
 Full-body plans can take longer than simple edits on this CPU. These tests are
 small feasibility samples, not proof of unrestricted pose generation.
+
+`tests/blender_motionfix.py` checks the source-free avatar, visible surfaces,
+measured target failures, stricter speed checks, experimental preview, generator
+cancellation and the real preview seat. Its renders are in `artifacts/motionfix/`.
+Project Markdown files (briefs, decisions, ideas and task notes) are now trackable;
+personal media, model downloads, generated output and `problems/` remain ignored.
 
 Runtime API: [llama.cpp server documentation](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md).
 Model: [official Qwen3 4B GGUF](https://huggingface.co/Qwen/Qwen3-4B-GGUF).

@@ -8,9 +8,10 @@ from mathutils import Vector
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 from avatar_app.blender.avatar import import_avatar
-from avatar_app.blender.scene import prepare_preview
+from avatar_app.blender.scene import prepare_preview, resolve_seat
 from avatar_app.blender.pose import build_pose_transition
 from avatar_app.blender.motion import build_action, review_existing, review_samples
+from avatar_app.blender.geometry import support_skin_height
 from avatar_app.pose import update_pose
 from avatar_app.planning.movements import lying_down_plan, movement, sitting_plan
 from avatar_app.motion import ActionPlan, ContactConstraint
@@ -63,29 +64,25 @@ print('MOTION_ROLLBACK_PASSED', flush=True)
 
 # A resolved seat surface can be provided by the application; the AI cannot invent one.
 for height in (.38, .52):
-    seat_result = build_action(handle, sitting_plan(height))
+    surface = resolve_seat(handle, height)[1]
+    seat_result = build_action(handle, sitting_plan(height, surface))
     clearances = []
     for frame in range(handle.scene.frame_start, handle.scene.frame_end + 1):
         handle.scene.frame_set(frame)
         clearances.append((handle.rig.matrix_world @ handle.bones['Hips'].head).z - height)
     handle.scene.frame_set(handle.scene.frame_end)
     pelvis = handle.rig.matrix_world @ handle.bones['Hips'].head
-    world_height = (handle.rig.matrix_world.to_3x3() @ (handle.up * handle.height)).length
-    assert abs(pelvis.z - (height + .06 * world_height)) < .025, (height, pelvis.z)
+    gap = abs(support_skin_height(handle, 'pelvis', surface) - height)
+    assert gap < .025, (height, pelvis.z, gap)
     assert min(clearances) >= 0, 'Pelvis anchor penetrated the seat plane'
     seat_result['seat_metrics'] = {'minimum_pelvis_clearance_m': min(clearances),
-                                   'final_pelvis_to_seat_distance_m': pelvis.z - height}
+                                   'final_pelvis_to_seat_distance_m': pelvis.z - height,
+                                   'final_skin_to_seat_distance_m': gap}
     report[f'seat_{height}'] = seat_result
     print('SEAT_CONTACT_PASSED', height, pelvis.z, flush=True)
     if '--render' in sys.argv:
-        center = handle.rig.matrix_world @ handle.bones['Hips'].head
-        bpy.ops.mesh.primitive_cube_add(size=1, location=(center.x, center.y, height - .04))
-        seat = bpy.context.object
-        seat.name = 'Seat verification surface'
-        seat.scale = (.5, .4, .08)
         handle.scene.render.filepath = str(output / f'seat-{height:g}.png')
         bpy.ops.render.render(write_still=True)
-        bpy.data.objects.remove(seat, do_unlink=True)
 
 (output / ('review-mixamo.json' if '--mixamo' in sys.argv else 'review.json')).write_text(
     json.dumps(report, indent=2), encoding='utf-8')

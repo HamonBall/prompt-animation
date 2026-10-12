@@ -5,6 +5,7 @@ from mathutils import Matrix, Quaternion, Vector
 from ..pose import validate_pose
 from ..models import PlanError
 from .animation import aim, solve_leg
+from .geometry import skin_bounds
 
 
 def axes(handle, rotation=None):
@@ -39,7 +40,7 @@ def direction(plan, prefix, side, frame_axes, inherit=None):
     return vector, (elevation, azimuth)
 
 
-def position_hand(handle, side, target, frame_axes):
+def position_hand(handle, side, target, frame_axes, pole=None):
     upper = handle.bones[side + 'Arm']
     lower = handle.bones[side + 'ForeArm']
     hand = handle.bones[side + 'Hand']
@@ -47,11 +48,11 @@ def position_hand(handle, side, target, frame_axes):
     a, b = (lower.head - origin).length, (hand.head - lower.head).length
     delta = target - origin
     distance = delta.length
-    if distance >= a + b or distance <= abs(a - b) + 1e-5:
+    if distance > a + b + 1e-5 or distance <= abs(a - b) + 1e-5:
         raise PlanError(f'The {side.lower()} hand target is beyond this avatar’s reach. Try a closer target.')
     axis = delta.normalized()
     right, forward, up = frame_axes
-    pole = right * (-1 if side == 'Left' else 1) - up * .65 + forward * .2
+    pole = (pole - origin) if pole is not None else right * (-1 if side == 'Left' else 1) - up * .65 + forward * .2
     bend = pole - axis * pole.dot(axis)
     if bend.length < 1e-6:
         bend = forward - axis * forward.dot(axis)
@@ -128,10 +129,7 @@ def contacts(plan):
 
 
 def ground_pose(handle, settle=True):
-    graph = bpy.context.evaluated_depsgraph_get()
-    points = [obj.matrix_world @ Vector(corner) for obj in handle.objects if obj.type == 'MESH'
-              for corner in obj.evaluated_get(graph).bound_box]
-    minimum = min(point.z for point in points)
+    minimum = skin_bounds(handle)[0].z
     if minimum < -1e-4 or (settle and abs(minimum) > 1e-4):
         offset = handle.rig.matrix_world.inverted().to_3x3() @ Vector((0, 0, -minimum))
         hips = handle.bones['Hips']
@@ -147,9 +145,7 @@ def frame_transition(handle, plan, frames=None):
     points = []
     for frame in frames or (handle.scene.frame_start, handle.scene.frame_end):
         handle.scene.frame_set(frame)
-        graph = bpy.context.evaluated_depsgraph_get()
-        points.extend(obj.matrix_world @ Vector(corner) for obj in handle.objects if obj.type == 'MESH'
-                      for corner in obj.evaluated_get(graph).bound_box)
+        points.extend(skin_bounds(handle))
     low = Vector(tuple(min(point[i] for point in points) for i in range(3)))
     high = Vector(tuple(max(point[i] for point in points) for i in range(3)))
     center = (low + high) * 0.5

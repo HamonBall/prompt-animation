@@ -54,7 +54,9 @@ class LocalModel:
         except (OSError, ValueError):
             return False
 
-    def start(self):
+    def start(self, progress=None):
+        if progress:
+            progress('Loading local model')
         if self._ready():
             return
         executable = RUNTIME / 'llama' / 'llama-server.exe'
@@ -85,12 +87,14 @@ class LocalModel:
             time.sleep(0.2)
         raise PlanError('Local AI is still loading. Try again shortly; your animation is unchanged.')
 
-    def complete(self, messages, schema):
+    def complete(self, messages, schema, progress=None):
         with self.lock:
             try:
                 if sum(len(message.get('content', '')) for message in messages) > 22000:
                     raise PlanError('This plan is too large for local interpretation. Edit fewer stages at a time.')
-                self.start()
+                self.start() if progress is None else self.start(progress)
+                if progress:
+                    progress('Planning body targets locally')
                 data = self._request('/v1/chat/completions', {
                     'model': 'avatar-qwen', 'messages': messages,
                     'temperature': 0, 'seed': 42,
