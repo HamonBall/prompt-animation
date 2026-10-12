@@ -193,6 +193,11 @@ def interpret_pose(text, current=None, model=None):
         {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False)},
     ], SCHEMA)
     plan, message = decode_pose_response(raw, current)
+    return constrain_pose(plan, text, current, message)
+
+
+def constrain_pose(plan, text, current=None, message='Requested pose'):
+    """Shared checks for static posing, regardless of the planner entry point."""
     # Canonical anatomical constraints can be checked independently of AI prose.
     # This is an arm-direction constraint, not a catalog of named poses.
     relaxed = []

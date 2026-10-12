@@ -20,9 +20,10 @@ class AvatarHandle:
     forward: Vector
     right: Vector
     objects: list
+    source_actions: tuple = ()
 
 
-def import_avatar(path: str) -> AvatarHandle:
+def import_avatar(path: str, import_motion=False) -> AvatarHandle:
     path = Path(path).expanduser().resolve()
     if not path.is_file() or path.suffix.lower() != '.fbx':
         raise ValueError('Choose an existing Mixamo-rigged .fbx file.')
@@ -34,7 +35,8 @@ def import_avatar(path: str) -> AvatarHandle:
     try:
         # Posing uses the skeleton and mesh, not FBX user metadata. Some supplied
         # files contain Short properties that Blender's importer cannot read.
-        bpy.ops.import_scene.fbx(filepath=str(path), use_anim=False,
+        actions_before = set(bpy.data.actions)
+        bpy.ops.import_scene.fbx(filepath=str(path), use_anim=import_motion,
                                  use_image_search=True, use_custom_props=False,
                                  automatic_bone_orientation=False)
         objects = list(set(bpy.data.objects) - before)
@@ -53,6 +55,7 @@ def import_avatar(path: str) -> AvatarHandle:
         if missing:
             raise ValueError('Unsupported rig; missing: ' + ', '.join(missing))
         bones = {name: names[name.lower()] for name in REQUIRED}
+        source_actions = tuple(action for action in bpy.data.actions if action not in actions_before)
         for name in ('Spine1', 'Spine2', 'Neck'):
             if name.lower() in names:
                 bones[name] = names[name.lower()]
@@ -92,7 +95,7 @@ def import_avatar(path: str) -> AvatarHandle:
         height = (bones['Head'].tail - bones['LeftFoot'].head).dot(up)
         if height <= 0:
             raise ValueError('Cannot determine a humanoid standing height.')
-        return AvatarHandle(scene, rig, bones, height, up, forward, right, objects + [root])
+        return AvatarHandle(scene, rig, bones, height, up, forward, right, objects + [root], source_actions)
     except Exception:
         bpy.context.window.scene = previous
         for obj in list(set(bpy.data.objects) - before):
@@ -105,3 +108,6 @@ def discard_avatar(handle):
     for obj in handle.objects:
         bpy.data.objects.remove(obj, do_unlink=True)
     bpy.data.scenes.remove(handle.scene)
+    for action in handle.source_actions:
+        if action.users == 0:
+            bpy.data.actions.remove(action)

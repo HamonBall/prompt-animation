@@ -5,10 +5,12 @@ import threading
 import time
 import bpy
 from bpy.props import StringProperty
-from .planning.pose_interpreter import interpret_pose as interpret_request
+from .planning.action_interpreter import interpret_action as interpret_request
+from .motion import ActionPlan
 from .models import PlanError
 from .blender.avatar import import_avatar, discard_avatar
 from .blender.pose import build_pose_transition as build_transition
+from .blender.motion import build_action
 from .blender.scene import prepare_preview
 
 
@@ -26,7 +28,8 @@ def apply_candidate(context, candidate, explanation, started, expected_avatar, e
     context.scene.avatar_status = 'Building motion from the checked plan…'
     context.window_manager.progress_begin(0, 100)
     try:
-        result = build_transition(_state['avatar'], candidate,
+        builder = build_action if isinstance(candidate, ActionPlan) else build_transition
+        result = builder(_state['avatar'], candidate,
                                   lambda fraction: context.window_manager.progress_update(fraction * 100))
     finally:
         context.window_manager.progress_end()
@@ -221,7 +224,7 @@ class AVATAR_PT_panel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
-        layout.label(text='Prompt-to-pose prototype')
+        layout.label(text='Prompt-to-motion prototype')
         layout.prop(context.scene, 'avatar_path', text='FBX')
         layout.operator('avatar.load')
         layout.separator()
@@ -233,13 +236,18 @@ class AVATAR_PT_panel(bpy.types.Panel):
         plan = _state['plan']
         if plan:
             layout.label(text=f'Revision {plan.revision} · {plan.duration:g} seconds')
-            layout.label(text=f'{len(plan.values)} body controls · contact: {plan.contact}')
+            if isinstance(plan, ActionPlan):
+                layout.label(text=f'{len(plan.stages)} stages · reviewed before preview')
+                for stage in plan.stages:
+                    layout.label(text=f'{stage.id}: {stage.duration:g}s · {stage.action}')
+            else:
+                layout.label(text=f'{len(plan.values)} body controls · contact: {plan.contact}')
         box = layout.box()
-        for text in ('Describe any body pose in your own words.',
+        for text in ('Describe a pose or a sequence of movement.',
                      'Examples: reach overhead, salute,',
                      'sit, bow, balance, lie on your back.',
-                     'Follow up to adjust individual body parts.',
-                     'Local Qwen AI interprets the whole pose.',
+                     'Follow up to adjust stages or timing.',
+                     'Local Qwen AI plans the body targets.',
                      'Motion loops and precise fingers are pending.'):
             box.label(text=text)
         # Wrap status so an unsupported request remains readable in a narrow sidebar.

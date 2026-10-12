@@ -1,10 +1,10 @@
 # Avatar Animation prototype
 
-A local application for turning natural-language descriptions into body poses
+A local application for turning natural-language descriptions into body poses and staged motion
 on a Mixamo-rigged FBX avatar. The goal is broad, creative pose coverage, rather
 than a single demonstration or a preset library. The interpreter decomposes
 requests into independent anatomical controls; Blender builds a transition
-from the avatar's rest stance to the resulting pose.
+from the avatar's rest stance to the resulting pose or through an ordered action plan.
 
 ## Run
 
@@ -30,6 +30,83 @@ Describe a whole-body pose or an individual adjustment. For example:
 - `Stand on your left leg and bring the right knee to hip height.`
 - `Lie flat on your back with arms out to the sides.`
 - `Turn only your head to the left; keep everything else unchanged.`
+- `Lie down on the ground, crouching and sitting before lowering your torso.`
+- `Make the lowering stage slower; keep the earlier stages unchanged.`
+- `Do the entire motion more slowly.`
+
+## Staged motion
+
+The first implementation of `docs/ideas/motion-planning-approaches.md` adds
+`ActionPlan`, `MotionStage`, resolved surfaces, and timed contact constraints.
+The AI can generate arbitrary sequences, patch existing stages by ID, or scale
+timing while retaining body targets. Static posing remains available.
+Targets carry forward; stages controlling different joints can overlap using
+absolute start times. Contradictory ownership and unresolved objects are rejected.
+
+The executor starts each movement from the actual preceding solved state,
+including joint changes made by contact IK. Feet attach at their current
+positions. Wrist supports acquire and release gradually; pelvis/back supports
+coordinate body placement. Free stages settle onto the floor. Floor pelvis/back
+clearance is a minimum bone height, allowing mesh thickness to determine support;
+this is approximate contact placement, not a physical balance simulation.
+Surfaces currently represent horizontal planes, not arbitrary collision meshes.
+
+Before committing a staged candidate, every sampled frame is checked for finite
+transforms, abrupt joint changes, root jumps, planted-contact drift, and floor
+penetration. Stage completion checks cover targets and acquired contacts. One
+bounded floor-repair rebuild is allowed, with before/after measurements. Other
+failures keep the previous action, pose, frame range, and camera. Reports identify
+the affected frames, joints, and stages. Loop-boundary checks remain pending because
+looping motions are not implemented.
+
+`planning/movements.py` supplies a parameterized coordinated crouch reused by
+reference sitting and lying-down routes. These references test the general executor;
+they are not a prompt whitelist. The UI uses the general AI planner. A resolved
+seat can be supplied through the plan API; the UI does not create or select chairs
+yet, so object-dependent requests should ask for clarification.
+
+Run the hand-authored route, rollback checks, and two seat-height checks:
+
+```powershell
+& 'C:\Program Files\Blender Foundation\Blender 5.1\blender.exe' --background --factory-startup --python C:\work11\tests\blender_motion.py -- --render
+```
+
+Stage renders and the direct-versus-staged timeline comparison are written to
+`artifacts/motion/`. Add `--mixamo` to test the second avatar. Run
+`tools/benchmark_actions.py` with Blender's Python to compare actual local AI
+planning with the reference. Larger plans can be slow and may fail validation;
+the procedural reference and model interpretation are tested separately.
+`tests/blender_generated_action.py` applies that recorded real-model reply to
+the rig and checks its destination, without repeating inference.
+`tests/blender_initial_motion.py` checks that a crouched starting posture is retained.
+
+## Local animation clips
+
+`clips.py` adds an explicit JSON catalog with action tags, starting/ending posture,
+source rig, provenance, trim interval, and planted-foot metadata. The experimental
+Blender adapter maps Mixamo joints between different avatars, trims and retimes
+clips, adjusts a pelvis destination, and reviews the resulting segment before
+commit. It is currently a separate CLI path; automatic AI clip selection, partial
+contact intervals, and mixing recorded clips into procedural stages are pending.
+No sitting clip has been supplied, so the sitting-clip example is not claimed as
+verified. The existing personal dance assets are not relabeled as sitting motion.
+
+A catalog entry looks like:
+
+```json
+[
+  {"id":"owned-sit", "path":"sit.fbx", "tags":["sit"],
+   "starting_state":"standing", "ending_state":"seated",
+   "source_rig":"Mixamo", "provenance":"Your asset provenance",
+   "start_frame":1, "end_frame":80, "planted_feet":["left","right"]}
+]
+```
+
+Use `tools/retarget_clip.py` in Blender with `-- --catalog PATH --clip owned-sit`
+and optional `--duration SECONDS --pelvis-height METRES`. The source FBX must
+contain one animation take. Adapted output and its report go to `artifacts/clips/`.
+`tests/blender_clips.py` checks trim, retiming and retargeting on the supplied
+local dance clip, preserving the avatar's materials.
 
 New whole-body poses reset previous controls; follow-up edits preserve controls
 that the patch does not touch. There is no whitelist of pose names. The plan
@@ -80,9 +157,9 @@ Controls, numeric limits, complete wrist targets, and foot reach are checked.
 This is an approximate procedural pose system: broad pose representation does
 not establish that almost every prompt already works well. Interpretation,
 joint realism, skin deformation, self-contact, and balance need further work.
-Precise fingers, facial expression, object interaction, physics, internet
+Precise fingers, facial expression, general object interaction, physics, internet
 context, walking/dancing loops, export, and undo controls are not implemented.
-Static poses can suggest an action, but a pose transition is not a motion cycle.
+Staged procedural actions are supported; repeating motion cycles are still pending.
 Rig mapping currently requires the main Mixamo bone names and an upright
 humanoid rest pose, which is oriented upright from the skeleton on import.
 A different naming convention needs a mapping adapter.
@@ -121,6 +198,7 @@ Runtime API: [llama.cpp server documentation](https://github.com/ggml-org/llama.
 Model: [official Qwen3 4B GGUF](https://huggingface.co/Qwen/Qwen3-4B-GGUF).
 
 The earlier limited interpreter and tests remain as historical feasibility
-code; the application now uses `pose.py`, `planning/pose_interpreter.py`, and
-`blender/pose.py`. Original personal assets and the `problems/` folder are not
+code; the application now uses `planning/action_interpreter.py`, `motion.py`,
+and `blender/motion.py`, with `pose.py` and `blender/pose.py` for static poses.
+Original personal assets and the `problems/` folder are not
 modified by this work.

@@ -89,7 +89,9 @@ def target_pose(handle, plan):
     specified = dict(plan.values)
     for side, sign in (('Left', -1), ('Right', 1)):
         key = side.lower()
-        upper, inherited = direction(plan, key + '_arm', sign, root_axes)
+        # A small outward angle keeps relaxed arms clear of the torso and hips.
+        # Explicit elevations (including straight down) still take precedence.
+        upper, inherited = direction(plan, key + '_arm', sign, root_axes, (8, 0))
         aim(bones[side + 'Arm'], upper)
         lower, _ = direction(plan, key + '_forearm', sign, root_axes, inherited)
         aim(bones[side + 'ForeArm'], lower)
@@ -100,6 +102,10 @@ def target_pose(handle, plan):
                 + forward * plan.get(key + '_hand_target_forward')
                 + up * plan.get(key + '_hand_target_height'))
             position_hand(handle, side, target, root_axes)
+        # Imported bind poses can have asymmetric wrist bends. Align the hand
+        # with the solved forearm before applying the requested wrist rotation.
+        forearm = bones[side + 'ForeArm']
+        aim(bones[side + 'Hand'], forearm.tail - forearm.head)
         rotate_bone(bones[side + 'Hand'], rotation(plan, key + '_hand', root_axes))
         # Preserve the original stance unless the legs have explicit directions.
         if any(name.startswith((key + '_thigh_', key + '_shin_')) for name in specified):
@@ -135,11 +141,11 @@ def ground_pose(handle, settle=True):
         bpy.context.view_layer.update()
 
 
-def frame_transition(handle, plan):
+def frame_transition(handle, plan, frames=None):
     if not handle.scene.camera:
         return
     points = []
-    for frame in (handle.scene.frame_start, handle.scene.frame_end):
+    for frame in frames or (handle.scene.frame_start, handle.scene.frame_end):
         handle.scene.frame_set(frame)
         graph = bpy.context.evaluated_depsgraph_get()
         points.extend(obj.matrix_world @ Vector(corner) for obj in handle.objects if obj.type == 'MESH'

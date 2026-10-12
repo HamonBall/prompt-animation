@@ -71,7 +71,7 @@ class LocalModel:
             self.log = (RUNTIME / 'server.log').open('ab')
             self.process = subprocess.Popen([
                 str(executable), '--model', str(MODEL), '--alias', 'avatar-qwen',
-                '--host', '127.0.0.1', '--port', str(port), '--ctx-size', '4096',
+                '--host', '127.0.0.1', '--port', str(port), '--ctx-size', '8192',
                 '--threads', '3', '--parallel', '1', '--n-gpu-layers', '0',
                 '--api-key', self.api_key,
             ], stdout=self.log, stderr=self.log, stdin=subprocess.DEVNULL,
@@ -88,14 +88,17 @@ class LocalModel:
     def complete(self, messages, schema):
         with self.lock:
             try:
+                if sum(len(message.get('content', '')) for message in messages) > 22000:
+                    raise PlanError('This plan is too large for local interpretation. Edit fewer stages at a time.')
                 self.start()
                 data = self._request('/v1/chat/completions', {
                     'model': 'avatar-qwen', 'messages': messages,
-                    'temperature': 0, 'seed': 42, 'max_tokens': 600,
+                    'temperature': 0, 'seed': 42,
+                    'max_tokens': 1800 if 'stages' in schema.get('properties', {}) else 600,
                     'chat_template_kwargs': {'enable_thinking': False},
                     'response_format': {'type': 'json_object', 'schema': schema},
                     'stream': False,
-                }, timeout=180)
+                }, timeout=300)
                 choice = data['choices'][0]
                 if choice.get('finish_reason') != 'stop':
                     raise PlanError('Local AI did not finish its plan. Try a shorter request.')

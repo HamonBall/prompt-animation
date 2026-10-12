@@ -11,6 +11,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
 from avatar_app import main as app
 from avatar_app.models import PlanError
 from avatar_app.pose import update_pose
+from avatar_app.planning.movements import lying_down_plan
 
 app.main()
 avatar = SimpleNamespace(scene=bpy.context.scene)
@@ -35,6 +36,12 @@ with patch.object(app, 'build_transition', side_effect=RuntimeError('Injected ba
     except RuntimeError:
         assert app._state['plan'] is candidate
         assert app._state['history'] == before_history
+
+motion = lying_down_plan()
+with patch.object(app, 'build_action', return_value={'frames': 172}) as build:
+    app.apply_candidate(bpy.context, motion, 'Staged motion', time.perf_counter(), avatar, candidate)
+    assert app._state['plan'] is motion
+    assert build.call_count == 1
 
 bpy.context.scene.avatar_prompt = 'neutral pose'
 with patch.object(app, 'build_transition', return_value={'frames': 61}):
