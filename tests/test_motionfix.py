@@ -42,6 +42,19 @@ class MotionFixTests(unittest.TestCase):
         with self.assertRaises(PlanError):
             check_route_destination(bad, 'Lie down through a crouch.')
 
+    def test_ground_sitting_has_floor_support_and_needs_no_model(self):
+        with patch('avatar_app.planning.action_interpreter.get_model', side_effect=AssertionError('Slow inference')):
+            for prompt in ('sit on the ground', 'Please sit down on the floor.', 'sit on ground slowly'):
+                plan, _ = interpret_action(prompt)
+                self.assertEqual(len(plan.stages), 2)
+                self.assertTrue(any(c.part == 'pelvis' and c.surface == 'floor' for c in plan.stages[-1].contacts))
+                self.assertFalse(any(c.surface == 'seat' for s in plan.stages for c in s.contacts))
+                self.assertEqual(plan.final_pose.get('root_pitch'), 0)
+
+    def test_floor_sitting_modifiers_still_reach_general_model(self):
+        from avatar_app.planning.routes import common_route
+        self.assertIsNone(common_route('sit on the ground and turn your head left'))
+
     def test_try_anyway_can_approximate_an_unresolved_prop(self):
         class FakeModel:
             def complete(self, messages, schema):

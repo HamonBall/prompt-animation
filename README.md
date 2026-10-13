@@ -80,7 +80,7 @@ looping motions are not implemented.
 
 `planning/movements.py` supplies a parameterized coordinated crouch reused by
 reference sitting and lying-down routes. These references test the general executor;
-they are not a prompt whitelist. Simple `Lie down on the floor` and `Sit on a chair`
+they are not a prompt whitelist. Simple `Lie down on the floor`, `Sit on the ground`, and `Sit on a chair`
 requests use these checked routes without model inference. Creative requests still
 use the general AI planner; recognized lying destinations are checked for endpoint
 orientation and explicit support. The visible seat's actual center, footprint and
@@ -170,6 +170,10 @@ remains available without the model.
 AI interpretation runs in a worker while Blender stays responsive. **Cancel
 request** or **Esc** discards that request's result; inference already running
 may finish in the background. There is no invented percentage during inference.
+Model replies stream as they are generated, so a slow CPU request can continue
+past five minutes while the server responds. Stalled connections and server
+errors report their cause. The planner omits the full lying example from general
+requests to reduce input processing; checked floor routes remain available.
 Motion construction still runs on Blender's main thread and tracks sampled
 frames, yielding between them so the UI can redraw and cancel. Canceling during
 construction rolls back the partial action. Inference reports real phases and

@@ -1,4 +1,5 @@
 import json
+import io
 import unittest
 from dataclasses import asdict
 from unittest.mock import patch
@@ -119,7 +120,9 @@ class AITests(unittest.TestCase):
     def test_truncated_or_unavailable_inference(self):
         for result in ({'choices': [{'finish_reason': 'length'}]}, {}):
             client = LocalModel()
-            with patch.object(client, 'start'), patch.object(client, '_request', return_value=result):
+            stream = io.BytesIO(b'data: ' + json.dumps(result).encode() + b'\n\ndata: [DONE]\n\n')
+            client.endpoint = 'http://127.0.0.1:12345'
+            with patch.object(client, 'start'), patch.object(client.http, 'open', return_value=stream):
                 with self.assertRaises(PlanError):
                     client.complete([], {})
             client.close()

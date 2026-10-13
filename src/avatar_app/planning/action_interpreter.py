@@ -228,9 +228,7 @@ def interpret_action(text, current=None, model=None, surfaces=None, approximate=
              'targets': {'pelvis_drop': 0, 'torso': 'forward:0', 'left_arm': 'up', 'right_arm': 'up'},
              'duration': 1.5, 'contacts': [{'part': 'left_foot'}, {'part': 'right_foot'}]}],
             'changes': {}, 'contact': None, 'factor': None, 'message': 'Crouch then stand and reach.'})},
-        {'role': 'user', 'content': 'Lower yourself onto the floor and lie on your back.'},
-        {'role': 'assistant', 'content': lying_example()},
-        {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False)}]
+        {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False, separators=(',', ':'))}]
     engine = model or get_model()
     raw = engine.complete(messages, SCHEMA) if model is not None or progress is None else engine.complete(messages, SCHEMA, progress=progress)
     plan, explanation = decode_action(raw, current, surfaces or None)

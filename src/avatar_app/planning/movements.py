@@ -87,3 +87,10 @@ def sitting_plan(height=.45, surface=None):
                  [ContactConstraint('left_foot'), ContactConstraint('right_foot'),
                   ContactConstraint('pelvis', surface='seat', clearance=.06, acquire=2.5)])),
         surfaces=(Surface(), surface or Surface('seat', height)), description='Sit onto resolved seat surface'))
+
+
+def floor_sitting_plan():
+    """Acquire floor support through the same checked route used before lying."""
+    route = lying_down_plan()
+    return validate_action(replace(route, stages=route.stages[:2],
+                                   description='Sit on the floor through a supported crouch'))
