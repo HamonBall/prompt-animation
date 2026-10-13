@@ -99,10 +99,14 @@ def support_floor(handle):
 
 def support_skin_height(handle, part, surface=None, offset_xy=(0, 0)):
     hand = part in ('left_hand', 'right_hand')
-    names = ((part.split('_')[0].title()+'Hand',) if hand else
+    foot = part in ('left_foot', 'right_foot')
+    names = ((part.split('_')[0].title()+('Hand' if hand else 'Foot'),) if hand or foot else
              ('Hips', 'LeftUpLeg', 'RightUpLeg') if part == 'pelvis' else ('Spine', 'Spine1', 'Spine2', 'Hips'))
     accepted = {handle.bones[n].name for n in names if n in handle.bones}
-    anchor_name = names[0] if hand else 'Hips' if part == 'pelvis' else 'Spine'
+    if foot:
+        accepted.update(b.name for b in handle.rig.pose.bones
+                        if b.name.endswith(part.split('_')[0].title()+'ToeBase'))
+    anchor_name = names[0] if hand or foot else 'Hips' if part == 'pelvis' else 'Spine'
     anchor = np.asarray(handle.rig.matrix_world @ handle.bones[anchor_name].head)
     height = (handle.rig.matrix_world.to_3x3() @ (handle.up * handle.height)).length
     cache = getattr(handle, '_part_masks', {})

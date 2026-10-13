@@ -116,7 +116,21 @@ def target_pose(handle, plan):
             aim(bones[side + 'UpLeg'], upper)
             lower, _ = direction(plan, key + '_shin', sign, root_axes, inherited)
             aim(bones[side + 'Leg'], lower)
-        rotate_bone(bones[side + 'Foot'], rotation(plan, key + '_foot', root_axes))
+        if key + '_foot_target_side' in specified:
+            right, forward, up = original_axes
+            # Foot paths use offsets from that foot's neutral floor anchor,
+            # keeping the support frame independent of pelvis translation.
+            target = bones[side+'Foot'].bone.head_local + handle.height * (
+                right * plan.get(key+'_foot_target_side')
+                + forward * plan.get(key+'_foot_target_forward')
+                + up * plan.get(key+'_foot_target_height'))
+            solve_leg(handle, side, target)
+            foot = bones[side+'Foot']
+            q = rotation(plan, key+'_foot', original_axes) @ foot.bone.matrix_local.to_quaternion()
+            foot.matrix = Matrix.Translation(foot.head) @ q.to_matrix().to_4x4()
+            bpy.context.view_layer.update()
+        else:
+            rotate_bone(bones[side + 'Foot'], rotation(plan, key + '_foot', root_axes))
     return {bone.name: bone.matrix_basis.copy() for bone in rig.pose.bones}
 
 
@@ -127,7 +141,8 @@ def contacts(plan):
         return ()
     specified = dict(plan.values)
     return tuple(side for side in ('Left', 'Right') if not any(
-        name.startswith((side.lower() + '_thigh_', side.lower() + '_shin_')) for name in specified))
+        name.startswith((side.lower() + '_thigh_', side.lower() + '_shin_',
+                         side.lower() + '_foot_target_')) for name in specified))
 
 
 def ground_pose(handle, settle=True):

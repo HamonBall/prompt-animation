@@ -281,6 +281,9 @@ def measured_controls(handle, values, origin):
         wrist = handle.bones[side+'Hand'].head - handle.bones['Hips'].head
         for axis, vector in zip(('side', 'forward', 'height'), frame_axes):
             result[side.lower()+'_hand_target_'+axis] = wrist.dot(vector) / handle.height
+        foot = handle.bones[side+'Foot'].head - handle.bones[side+'Foot'].bone.head_local
+        for axis, vector in zip(('side', 'forward', 'height'), axes(handle)):
+            result[side.lower()+'_foot_target_'+axis] = foot.dot(vector) / handle.height
     delta = handle.bones['Hips'].head - origin
     right, forward, up = axes(handle)
     result.update(pelvis_side=delta.dot(right) / handle.height,
@@ -315,7 +318,7 @@ def compose_frame(plan, time, starting, baselines, measured):
         for key, target in stage.targets:
             before = source.get(key, control_default(source, key))
             if target is None:
-                if '_hand_target_' in key or time >= end:
+                if '_target_' in key or time >= end:
                     values.pop(key, None)
             elif key == 'grounding':
                 values[key] = 0 if target == 0 else (target if time >= end else before)
@@ -379,8 +382,12 @@ def bake_candidate_frames(handle, plan, repair_floor, progress):
         control_origin = handle.bones['Hips'].head.copy()
         target_pose(handle, plan.initial)
         initial_support = contacts(plan.initial)
+        initial_values = dict(plan.initial.values)
+        starting_feet = {side: (handle.bones[side+'Foot'].head.copy()
+                               if side.lower()+'_foot_target_side' in initial_values else neutral_feet[side])
+                         for side in ('Left', 'Right')}
         for side in initial_support:
-            solve_leg(handle, side, neutral_feet[side])
+            solve_leg(handle, side, starting_feet[side])
             foot = handle.bones[side + 'Foot']
             foot.matrix = Matrix.Translation(foot.head) @ neutral_rotation[side].to_matrix().to_4x4()
             bpy.context.view_layer.update()
@@ -398,7 +405,7 @@ def bake_candidate_frames(handle, plan, repair_floor, progress):
         foot_padding = {}
         elbow_poles = {side: handle.bones[side+'ForeArm'].head.copy() for side in ('Left', 'Right')}
         last_anchor = {side.lower() + '_foot': (0.0, ContactConstraint(side.lower() + '_foot'),
-                                               neutral_feet[side], neutral_rotation[side])
+                                               starting_feet[side], neutral_rotation[side])
                        for side in initial_support}
         samples = []
         # New wrist movement starts from measured coordinates at activation.
@@ -419,7 +426,7 @@ def bake_candidate_frames(handle, plan, repair_floor, progress):
             if not i:
                 values = dict(measured)
                 for key in list(values):
-                    if '_hand_target_' in key and key not in dict(plan.initial.values):
+                    if '_target_' in key and key not in dict(plan.initial.values):
                         values.pop(key)
             target_pose(handle, PosePlan(tuple(sorted(values.items())), 'none'))
             desired_rotations = observed_rotations(handle)
@@ -445,11 +452,11 @@ def bake_candidate_frames(handle, plan, repair_floor, progress):
                             # hip joint lets descending thighs pass through a
                             # high seat before the knee clears its front edge.
                             world += facing * extent * .55
-                    if c.part.endswith('_foot') and c.position is None and c.surface == 'floor':
-                        # Foot bone origin is above the sole; retain measured rest clearance.
-                        if old is None:
-                            rest = handle.bones[c.part.split('_')[0].title() + 'Foot'].bone.head_local
-                            world.z = (rig.matrix_world @ rest).z
+                    if c.part.endswith('_foot'):
+                        # Preserve the neutral ankle-to-sole offset on every
+                        # surface; an elevated incoming foot is not floor support.
+                        rest = handle.bones[c.part.split('_')[0].title() + 'Foot'].bone.head_local
+                        world.z = floor[c.surface] + (rig.matrix_world @ rest).z
                     else:
                         world.z = floor[c.surface] + (palm_padding.get(c.part, c.clearance*world_height)
                                                      if c.part.endswith('_hand') else c.clearance*world_height)
@@ -516,7 +523,12 @@ def bake_candidate_frames(handle, plan, repair_floor, progress):
                     orientation = held_rotation.slerp(foot.matrix.to_quaternion(), weight)
                     foot.matrix = Matrix.Translation(foot.head) @ orientation.to_matrix().to_4x4()
                     bpy.context.view_layer.update()
-            if not active:
+            partial_floor_support = (active and all(c.surface == 'floor' for _, c, _, _ in active)
+                                     and not any(strength >= .999 for strength in strengths.values()))
+            if not active or partial_floor_support:
+                # A support being approached has not attached yet. Grounded
+                # moves retain real skin contact through that handoff; explicit
+                # airborne stages still preserve their clearance.
                 ground_pose(handle, settle=bool(values.get('grounding', 1)))
             surface_errors = {}
             for surface in plan.surfaces:
@@ -562,7 +574,9 @@ def bake_candidate_frames(handle, plan, repair_floor, progress):
                     skin_gap = abs(support_skin_height(handle, c.part, surface) - floor[c.surface])
                     errors[c.part] = max(delta.length, skin_gap)
                 else:
-                    errors[c.part] = delta.length
+                    surface = next(s for s in plan.surfaces if s.name == c.surface)
+                    gap = abs(support_skin_height(handle, c.part, surface)-floor[c.surface])
+                    errors[c.part] = max(delta.length, gap)
             stage_id = next((s.id for s, start, end in reversed(schedule(plan))
                              if start <= time <= end), '')
             samples.append(capture_sample(handle, frame, stage_id, errors))
@@ -639,7 +653,7 @@ def build_action_frames(handle, plan, progress=lambda fraction: None, allow_expe
                          for part in (('arm', 'forearm') if c.part.endswith('_hand') else
                                       ('thigh', 'shin') if c.part.endswith('_foot') else ())}
         endpoint = {k: v for k, v in endpoint.items() if k in LIMITS
-                    and ('_hand_target_' not in k or k in explicit)
+                    and ('_target_' not in k or k in explicit)
                     and (not any('_'+p+'_' in k for p in ('arm','forearm','thigh','shin'))
                          or k in explicit or any(k.startswith(chain+'_') for chain in solved_chains))}
         for key, value in endpoint.items():

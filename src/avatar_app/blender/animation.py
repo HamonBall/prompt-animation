@@ -27,7 +27,7 @@ def solve_leg(handle, side, target):
     delta = target - origin
     distance = delta.length
     if distance > a + b + 1e-4 or distance < abs(a - b) + 1e-5:
-        raise ValueError('The requested crouch exceeds this rig’s leg reach.')
+        raise ValueError('The foot target is beyond this avatar’s leg reach.')
     axis = delta.normalized()
     bend = handle.forward - axis * handle.forward.dot(axis)
     bend.normalize()

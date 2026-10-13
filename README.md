@@ -1,8 +1,8 @@
 # Avatar Animation prototype
 
 A local application for turning natural-language descriptions into body poses and staged motion
-on a Mixamo-rigged FBX avatar. The goal is broad, creative pose coverage, rather
-than a single demonstration or a preset library. The interpreter decomposes
+on a Mixamo-rigged FBX avatar. General AI planning and internal movement foundations
+share the same anatomical controls and animation review. The interpreter decomposes
 requests into independent anatomical controls; Blender builds a transition
 from the avatar's rest stance to the resulting pose or through an ordered action plan.
 
@@ -16,10 +16,12 @@ With Blender 5.1 installed, run from PowerShell:
 
 The local Andrejs FBX loads when available. A fresh checkout instead generates an
 original stylized rigged avatar from code, so no personal FBX is required to try it.
-Clear the FBX field and load again to use this built-in character.
+Open **Avatar settings**, clear the FBX field and load again to use this built-in character.
 In the 3D View press **N**, select the **Avatar** sidebar tab, describe a pose,
 and click **Generate / refine**, then **Play once**. Choose another Mixamo FBX
-with the file field and **Load avatar**.
+under the collapsed **Avatar settings** panel with the file field and **Load avatar**.
+The main interface shows the prompt, generation/playback controls, and result status.
+Movement foundations and their stage mechanics stay internal.
 Switching avatars starts a fresh session. Existing Blender scenes are preserved.
 The supplied personal assets are used locally, not bundled for distribution.
 
@@ -27,10 +29,54 @@ The preview floor is 5 × 5 metres. Editing and playback use Solid shading with
 avatar textures and studio lighting to keep the viewport responsive. Switch to
 Material Preview when checking scene lighting; final renders still use Eevee.
 The viewport grid is hidden so the visible ground stops at the floor edges.
-The preview includes a visible floor and an optional seat. Enable **Preview seat**
+The preview includes a visible floor and an optional seat. In **Avatar settings**, enable **Preview seat**
 and set its height before requesting chair interaction.
 A successful floor-only support route clears the preview seat for space behind
 the avatar; enable it again for the next chair request.
+
+## Internal movement foundations
+
+Enter a request in the prompt. Ready animations help the planner construct the
+result automatically; there is no preset selector or separate preset command.
+The internal library contains these finite, standing-start mechanics:
+
+| Foundation | Movement |
+| --- | --- |
+| Jumping | Crouch, take off with both feet airborne, land and recover. |
+| Walking | Four forward steps with alternating planted feet, then stop. |
+| Lying down | Crouch, sit on the floor and lower onto the back. |
+| Running | Four forward strides with flight phases, then stop. |
+| Waving | Raise the right hand, wave three times and lower it. |
+
+The same routes recognize simple prompts such as `jump`, `walking`, `lie down`,
+`run forward`, and `wave`. `walk 2 steps` and `run 2 steps` choose shorter routes;
+`wave with your left hand` mirrors the gesture. Add `slowly` to slow a route.
+For descriptive requests, the local AI can select a foundation and add body
+adjustments, parameters or timing while preserving unrelated mechanics and contacts.
+Follow-up corrections edit the existing result. Unfamiliar actions and combinations
+continue through the general planner; the library does not define the supported vocabulary.
+These are finite procedural moves; continuous locomotion loops are still pending.
+
+Foot paths use three coordinates (`left/right_foot_target_side/forward/height`)
+relative to each foot's neutral floor anchor, normalized by avatar height.
+Side/forward offsets range from -.8 to .8; height ranges from 0 to .35. Leg IK
+reaches these targets while stance contacts hold the supporting foot in place.
+Airborne stages preserve clearance with `grounding=0`. The measured ending foot
+anchors are retained for follow-up edits after walking or running.
+
+`tests/blender_presets.py` verifies actual flight, floor support, forward travel,
+follow-up anchor preservation and motion review. For example:
+
+```powershell
+& 'C:\Program Files\Blender Foundation\Blender 5.1\blender.exe' --background --factory-startup --python-exit-code 1 --python C:\work11\tests\blender_presets.py -- demo jump walk run wave lie --render
+```
+
+Use `andrejs` or `mixamo` instead of `demo` for the local imported avatars. Reports
+and renders go to `artifacts/presets/`. `tests/blender_preset_ui.py` checks the prompt-only
+panel, automatic foundation reuse/adaptation and cancellation during takeoff.
+`tests/blender_foundation_live.py` checks a descriptive request with the actual
+local model, then builds and reviews its adapted animation. It records interpretation
+and construction times separately in `artifacts/foundation-live.json`.
 
 Describe a whole-body pose or an individual adjustment. For example:
 
@@ -70,7 +116,7 @@ rotated bounding-box corners are not used as skin measurements.
 Before committing a staged candidate, every sampled frame is checked for finite
 transforms, angular speed (360°/s maximum), angular acceleration (3000°/s²),
 root jumps, planted-contact drift, and floor/seat penetration. Completion compares
-the measured joint orientation and wrist/pelvis coordinates with requested targets;
+the measured joint orientation and wrist/foot/pelvis coordinates with requested targets;
 it does not compare planned numbers with copies of themselves. Skin contact gaps
 are measured separately from bone anchor positions. One
 bounded floor-repair rebuild is allowed, with before/after measurements. Other
@@ -133,7 +179,7 @@ local dance clip, preserving the avatar's materials.
 New whole-body poses reset previous controls; follow-up edits preserve controls
 that the patch does not touch. There is no whitelist of pose names. The plan
 supports independent upper/lower arms, thighs/shins, pelvis offsets, torso and
-head angles, whole-body orientation, hand/foot orientation, and explicit wrist
+head angles, whole-body orientation, hand/foot orientation, and explicit wrist/foot
 positions. Wrist targets use a two-segment arm solver for hand-on-body poses.
 The AI can use anatomical directions such as `forward`, `up`, and `left`;
 the application translates those into the rig's coordinate conventions.
@@ -185,7 +231,7 @@ An explicitly requested experimental preview can fail quality checks; the interf
 labels it and offers **Restore reviewed result**. Unknown controls, nonfinite data,
 out-of-range values and unreachable IK targets still cannot be applied.
 
-**Use web reference** is off by default. Supply a public HTTPS HTML/plain-text URL
+**Use web reference**, under **Avatar settings**, is off by default. Supply a public HTTPS HTML/plain-text URL
 to add readable page text and its source URL to the local planner. Only that URL
 is fetched; the prompt and avatar are not sent to the website. Redirects, private
 addresses, credential-bearing URLs and large/non-text responses are rejected.
@@ -194,7 +240,7 @@ Page text is quoted data, never executable code or instructions overriding valid
 ## Current limits
 
 The model returns structured pose data, never executable Blender/Python code.
-Controls, numeric limits, complete wrist targets, and foot reach are checked.
+Controls, numeric limits, complete wrist/foot targets, and foot reach are checked.
 This is an approximate procedural pose system: broad pose representation does
 not establish that almost every prompt already works well. Interpretation,
 joint realism, skin deformation, self-contact, and balance need further work.

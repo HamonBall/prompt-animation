@@ -191,13 +191,13 @@ def sample_controls(plan, time):
         for key, target in stage.targets:
             source = values.get(key, control_default(values, key))
             if target is None:
-                if '_hand_target_' in key or time >= end:
+                if '_target_' in key or time >= end:
                     values.pop(key, None)
                 continue
             if key == 'grounding':
                 values[key] = 0 if target == 0 else (target if time >= end else source)
                 continue
-            # Complete wrist targets are interpolated by the executor in bone space.
+            # Coordinate targets are interpolated in their declared support frame.
             values[key] = blend_control(plan, stage, key, source, time)
     return values
 
@@ -231,7 +231,10 @@ def scale_timing(plan, factor):
         raise PlanError('Invalid timing multiplier.')
     return validate_action(replace(plan, revision=plan.revision + 1, resolved_final=None, stages=tuple(
         replace(s, duration=s.duration * factor,
-                start=None if s.start is None else s.start * factor) for s in plan.stages)))
+                start=None if s.start is None else s.start * factor,
+                contacts=tuple(replace(c, acquire=max(.05, c.acquire*factor),
+                                       release=max(.05, c.release*factor)) for c in s.contacts))
+        for s in plan.stages)))
 
 
 def patch_stages(plan, patches):
@@ -272,7 +275,8 @@ def action_from_pose(pose):
     sides = feet.get(pose.contact)
     if sides is None:
         sides = () if any(pose.get('root_' + a) for a in ('pitch', 'yaw', 'roll')) else tuple(
-            side for side in ('left', 'right') if not any(k.startswith((side + '_thigh_', side + '_shin_'))
+            side for side in ('left', 'right') if not any(k.startswith((side + '_thigh_', side + '_shin_',
+                                                                      side + '_foot_target_'))
                                                        for k, _ in targets))
     return validate_action(ActionPlan((MotionStage('pose', 'Reach requested posture', parts, targets,
                                                    pose.duration, contacts=tuple(

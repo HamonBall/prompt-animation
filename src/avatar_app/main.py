@@ -34,7 +34,7 @@ def apply_candidate(context, candidate, explanation, started, expected_avatar, e
         raise PlanError('The avatar or result changed while interpreting. Submit the request again.')
     if context.screen.is_animation_playing:
         bpy.ops.screen.animation_cancel(restore_frame=False)
-    context.scene.avatar_status = 'Building motion from the checked plan…'
+    context.scene.avatar_status = 'Creating animation…'
     context.window_manager.progress_begin(0, 100)
     try:
         builder = build_action if isinstance(candidate, ActionPlan) else build_transition
@@ -70,8 +70,6 @@ def commit_result(context, candidate, result, explanation, started):
     if not _state['experimental']:
         _state['reviewed_plan'] = candidate
     context.scene.avatar_status = (
-        f'Revision {candidate.revision}: {result["frames"]} frames, '
-        f'{time.perf_counter() - started:.1f}s. '
         f'{"Experimental approximation; inspect before use." if _state["experimental"] else "Ready to play."} {explanation}')
 
 
@@ -104,7 +102,8 @@ class AVATAR_OT_load(bpy.types.Operator):
             handle = import_avatar(bpy.path.abspath(source_path)) if source_path.strip() else create_demo_avatar()
             prepare_preview(handle)
             old = _state['avatar']
-            _state.update(avatar=handle, plan=None, history=[], reviewed_plan=None, last_error=None, experimental=False)
+            _state.update(avatar=handle, plan=None, history=[], reviewed_plan=None, last_error=None,
+                          experimental=False)
             context.window.scene = handle.scene
             handle.scene.avatar_path = str(Path(source_path)) if source_path.strip() else ''
             resolve_seat(handle, handle.scene.avatar_seat_height, handle.scene.avatar_show_seat)
@@ -171,7 +170,7 @@ class AVATAR_OT_prompt(bpy.types.Operator):
         def interpret_in_background():
             # This worker receives plain data only and never accesses bpy.
             try:
-                phases.put('Loading reference page' if reference_url else 'Selecting movement route')
+                phases.put('Loading reference page' if reference_url else 'Understanding your request')
                 references = [load_reference(reference_url)] if reference_url else []
                 candidate, explanation = interpret_request(text, current, surfaces=surfaces,
                     approximate=approximate, references=references, progress=phases.put)
@@ -247,7 +246,7 @@ class AVATAR_OT_prompt(bpy.types.Operator):
                 raise PlanError('The result changed during interpretation. Submit again.')
             self._candidate, self._explanation = candidate, explanation
             context.window_manager.progress_begin(0, 100)
-            _state['phase'] = 'Building and reviewing motion'
+            _state['phase'] = 'Creating animation'
             plan = candidate if isinstance(candidate, ActionPlan) else action_from_pose(candidate)
             self._builder = build_action_frames(self._avatar, plan,
                 lambda fraction: context.window_manager.progress_update(fraction*100),
@@ -355,21 +354,9 @@ class AVATAR_PT_panel(bpy.types.Panel):
 
     def draw(self, context):
         layout = self.layout
-        layout.label(text='Prompt-to-motion prototype')
-        layout.prop(context.scene, 'avatar_path', text='FBX')
-        if not context.scene.avatar_path:
-            layout.label(text='Built-in try-out avatar · optional FBX')
-        layout.operator('avatar.load')
-        surfaces = layout.column()
-        surfaces.enabled = not _state['busy']
-        surfaces.prop(context.scene, 'avatar_show_seat', text='Preview seat')
-        if context.scene.avatar_show_seat:
-            surfaces.prop(context.scene, 'avatar_seat_height', text='Seat height')
-        layout.separator()
-        layout.prop(context.scene, 'avatar_prompt', text='Prompt')
-        layout.prop(context.scene, 'avatar_use_reference', text='Use web reference (optional)')
-        if context.scene.avatar_use_reference:
-            layout.prop(context.scene, 'avatar_reference_url', text='HTTPS URL')
+        prompt = layout.column()
+        prompt.enabled = not _state['busy']
+        prompt.prop(context.scene, 'avatar_prompt', text='Prompt')
         layout.operator('avatar.prompt')
         if _state['busy']:
             if hasattr(layout, 'progress'):
@@ -377,7 +364,7 @@ class AVATAR_PT_panel(bpy.types.Panel):
                 activity = .5 + .5 * math.sin((time.perf_counter()-_state['started']) * 3)
                 layout.progress(type='RING', factor=activity, text='Activity')
             layout.label(text=f'{_state["phase"]}…', icon='TIME')
-            layout.label(text=f'{time.perf_counter()-_state["started"]:.0f}s elapsed · no percentage estimate')
+            layout.label(text=f'{time.perf_counter()-_state["started"]:.0f}s elapsed')
             layout.operator('avatar.cancel')
         elif _state['last_error']:
             layout.operator('avatar.try_anyway')
@@ -387,28 +374,38 @@ class AVATAR_PT_panel(bpy.types.Panel):
         layout.operator('avatar.play')
         plan = _state['plan']
         if plan:
-            layout.label(text=f'Revision {plan.revision} · {plan.duration:g} seconds')
-            if isinstance(plan, ActionPlan):
-                layout.label(text=f'{len(plan.stages)} stages · reviewed before preview')
-                for stage in plan.stages:
-                    layout.label(text=f'{stage.id}: {stage.duration:g}s · {stage.action}')
-            else:
-                layout.label(text=f'{len(plan.values)} body controls · contact: {plan.contact}')
-        box = layout.box()
-        for text in ('Describe a pose or a sequence of movement.',
-                     'Examples: reach overhead, salute,',
-                     'sit, bow, balance, lie on your back.',
-                     'Follow up to adjust stages or timing.',
-                     'Local Qwen AI plans the body targets.',
-                     'Motion loops and precise fingers are pending.'):
-            box.label(text=text)
+            layout.label(text=f'{plan.duration:g} seconds')
         # Wrap status so an unsupported request remains readable in a narrow sidebar.
         import textwrap
         for line in textwrap.wrap(context.scene.avatar_status, width=42):
             layout.label(text=line)
 
 
-CLASSES = (AVATAR_OT_load, AVATAR_OT_prompt, AVATAR_OT_cancel, AVATAR_OT_try, AVATAR_OT_restore, AVATAR_OT_play, AVATAR_PT_panel)
+class AVATAR_PT_settings(bpy.types.Panel):
+    bl_label = 'Avatar settings'
+    bl_idname = 'AVATAR_PT_settings'
+    bl_parent_id = 'AVATAR_PT_panel'
+    bl_space_type = 'VIEW_3D'
+    bl_region_type = 'UI'
+    bl_category = 'Avatar'
+    bl_options = {'DEFAULT_CLOSED'}
+
+    def draw(self, context):
+        layout = self.layout
+        layout.enabled = not _state['busy']
+        layout.prop(context.scene, 'avatar_path', text='FBX')
+        if not context.scene.avatar_path:
+            layout.label(text='Built-in try-out avatar · optional FBX')
+        layout.operator('avatar.load')
+        layout.prop(context.scene, 'avatar_show_seat', text='Preview seat')
+        if context.scene.avatar_show_seat:
+            layout.prop(context.scene, 'avatar_seat_height', text='Seat height')
+        layout.prop(context.scene, 'avatar_use_reference', text='Use web reference (optional)')
+        if context.scene.avatar_use_reference:
+            layout.prop(context.scene, 'avatar_reference_url', text='HTTPS URL')
+
+
+CLASSES = (AVATAR_OT_load, AVATAR_OT_prompt, AVATAR_OT_cancel, AVATAR_OT_try, AVATAR_OT_restore, AVATAR_OT_play, AVATAR_PT_panel, AVATAR_PT_settings)
 
 
 def update_seat(scene, context):

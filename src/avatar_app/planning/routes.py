@@ -4,6 +4,7 @@ import re
 from ..motion import ActionPlan, scale_timing
 from ..models import PlanError
 from .movements import lying_down_plan, sitting_plan, floor_sitting_plan
+from .presets import preset_plan
 
 
 def common_route(text, current=None, surfaces=()):
@@ -13,8 +14,19 @@ def common_route(text, current=None, surfaces=()):
     lying = re.fullmatch(r'(?:please )?(?:lie|lay) (?:down(?: on (?:the )?(?:ground|floor))?|(?:flat )?on (?:your |the )?back)(?: slowly)?', lowered)
     sitting = re.fullmatch(r'(?:please )?sit(?: down)?(?: on (?:the |a |your )?(?:chair|seat))?(?: slowly)?', lowered)
     floor_sitting = re.fullmatch(r'(?:please )?sit(?: down)? on (?:the )?(?:ground|floor)(?: slowly)?', lowered)
+    simple = lowered.removeprefix('please ').removesuffix(' slowly')
+    gait = re.fullmatch(r'(walk|walking|run|running)(?: forward)?(?: (2|4) steps)?', simple)
+    wave = re.fullmatch(r'(?:wave|waving)(?: hello|(?: with)? (?:your )?(left|right) (?:hand|arm))?', simple)
     if lying:
         plan = lying_down_plan()
+    elif simple in ('lie', 'lying', 'lying down'):
+        plan = preset_plan('lie')
+    elif simple in ('jump', 'jumping', 'jump once', 'jump up'):
+        plan = preset_plan('jump')
+    elif gait:
+        plan = preset_plan('run' if gait[1] in ('run', 'running') else 'walk', steps=int(gait[2] or 4))
+    elif wave:
+        plan = preset_plan('wave', side=wave[1] or 'right')
     elif floor_sitting:
         plan = floor_sitting_plan()
     elif sitting:

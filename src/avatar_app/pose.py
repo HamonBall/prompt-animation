@@ -22,6 +22,7 @@ for side in ('left', 'right'):
             LIMITS[f'{side}_{part}_{axis}'] = (-90, 90)
     for axis in ('side', 'forward', 'height'):
         LIMITS[f'{side}_hand_target_{axis}'] = (-0.8, 0.8)
+        LIMITS[f'{side}_foot_target_{axis}'] = (0, .35) if axis == 'height' else (-.8, .8)
 
 
 @dataclass(frozen=True)
@@ -58,9 +59,10 @@ def validate_pose(plan):
         if name == 'grounding' and value not in (0, 1):
             raise PlanError('grounding must be 0 or 1.')
     for side in ('left', 'right'):
-        targets = [side + '_hand_target_' + axis for axis in ('side', 'forward', 'height')]
-        if any(name in values for name in targets) and not all(name in values for name in targets):
-            raise PlanError(f'An explicit {side} hand target needs side, forward, and height.')
+        for part in ('hand', 'foot'):
+            targets = [side + '_' + part + '_target_' + axis for axis in ('side', 'forward', 'height')]
+            if any(name in values for name in targets) and not all(name in values for name in targets):
+                raise PlanError(f'An explicit {side} {part} target needs side, forward, and height.')
     return plan
 
 
