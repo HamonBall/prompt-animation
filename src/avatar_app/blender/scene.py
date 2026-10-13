@@ -5,6 +5,9 @@ from ..motion import Surface
 from .geometry import rest_foot_rear
 
 
+PREVIEW_FLOOR_SIZE = 5.0
+
+
 def surface_material(name, color):
     material = bpy.data.materials.new(name)
     material.diffuse_color = color
@@ -58,7 +61,7 @@ def prepare_preview(handle):
     scene.world.use_nodes = True
     scene.world.node_tree.nodes['Background'].inputs['Color'].default_value = (0.12, 0.12, 0.12, 1)
     scene.world.node_tree.nodes['Background'].inputs['Strength'].default_value = 0.6
-    bpy.ops.mesh.primitive_plane_add(size=200, location=(0, 0, -.002))
+    bpy.ops.mesh.primitive_plane_add(size=PREVIEW_FLOOR_SIZE, location=(0, 0, -.002))
     floor = bpy.context.object
     floor.name = 'Preview floor'
     floor.data.materials.append(surface_material('Floor', (.10, .13, .16, 1)))
@@ -95,8 +98,15 @@ def prepare_preview(handle):
         for area in screen.areas:
             if area.type == 'VIEW_3D':
                 space = area.spaces.active
-                space.shading.type = 'MATERIAL'
+                # Workbench displays the avatar textures without continuously
+                # running Eevee lighting and shadows while editing or playing.
+                space.shading.type = 'SOLID'
+                space.shading.color_type = 'TEXTURE'
+                space.shading.light = 'STUDIO'
                 space.shading.use_scene_world = True
                 space.shading.use_scene_lights = True
+                space.overlay.show_floor = False
+                space.overlay.show_axis_x = False
+                space.overlay.show_axis_y = False
                 space.region_3d.view_perspective = 'CAMERA'
                 space.show_region_ui = True

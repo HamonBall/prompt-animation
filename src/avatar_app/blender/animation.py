@@ -7,7 +7,10 @@ from ..planning.validation import validate_plan
 
 def aim(bone, direction):
     direction = direction.normalized()
-    rotation = (bone.tail - bone.head).normalized().rotation_difference(direction)
+    current = (bone.tail - bone.head).normalized()
+    if (current - direction).length_squared < 1e-14:
+        return
+    rotation = current.rotation_difference(direction)
     head = bone.head.copy()
     bone.matrix = (Matrix.Translation(head) @ rotation.to_matrix().to_4x4()
                    @ Matrix.Translation(-head) @ bone.matrix)

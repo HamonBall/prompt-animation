@@ -24,6 +24,8 @@ def rotation(plan, prefix, frame_axes):
 
 
 def rotate_bone(bone, quaternion):
+    if quaternion.x ** 2 + quaternion.y ** 2 + quaternion.z ** 2 < 1e-14:
+        return
     head = bone.head.copy()
     bone.matrix = (Matrix.Translation(head) @ quaternion.to_matrix().to_4x4()
                    @ Matrix.Translation(-head) @ bone.matrix)

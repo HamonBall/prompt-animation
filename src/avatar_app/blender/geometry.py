@@ -38,8 +38,15 @@ def pose_meshes(handle):
 
 
 def skin_bounds(handle):
-    bounds = [(p.min(axis=0), p.max(axis=0)) for obj, p in pose_meshes(handle) if len(p)]
-    return Vector(np.min([p[0] for p in bounds], axis=0)), Vector(np.max([p[1] for p in bounds], axis=0))
+    meshes = pose_meshes(handle)
+    # Floor correction and review often ask for the same bounds in one pose.
+    # pose_meshes replaces the list whenever its pose signature changes.
+    if getattr(handle, '_bounds_meshes', None) is not meshes:
+        bounds = [(p.min(axis=0), p.max(axis=0)) for obj, p in meshes if len(p)]
+        handle._skin_bounds = (Vector(np.min([p[0] for p in bounds], axis=0)),
+                               Vector(np.max([p[1] for p in bounds], axis=0)))
+        handle._bounds_meshes = meshes
+    return tuple(v.copy() for v in handle._skin_bounds)
 
 
 def rest_foot_rear(handle, origin, forward):

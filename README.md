@@ -22,6 +22,11 @@ and click **Generate / refine**, then **Play once**. Choose another Mixamo FBX
 with the file field and **Load avatar**.
 Switching avatars starts a fresh session. Existing Blender scenes are preserved.
 The supplied personal assets are used locally, not bundled for distribution.
+
+The preview floor is 5 × 5 metres. Editing and playback use Solid shading with
+avatar textures and studio lighting to keep the viewport responsive. Switch to
+Material Preview when checking scene lighting; final renders still use Eevee.
+The viewport grid is hidden so the visible ground stops at the floor edges.
 The preview includes a visible floor and an optional seat. Enable **Preview seat**
 and set its height before requesting chair interaction.
 A successful floor-only support route clears the preview seat for space behind
