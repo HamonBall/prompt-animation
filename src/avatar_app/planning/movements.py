@@ -53,11 +53,11 @@ def lying_down_plan():
              for side, sign in (('left', -1), ('right', 1))]
     return validate_action(ActionPlan((
         crouch(duration=2.0),
+        # The feet inherit the shin rotation; preserve their neutral ankle angle.
         movement('sit', 'Sit on the floor and extend legs',
                  {'torso': 'forward:0',
                   'left_thigh': 'forward:105', 'right_thigh': 'forward:105',
                   'left_shin': 'forward', 'right_shin': 'forward',
-                  'left_foot_pitch': 90, 'right_foot_pitch': 90,
                   'left_arm': 'forward:20', 'right_arm': 'forward:20',
                   'left_forearm': 'forward:70', 'right_forearm': 'forward:70'}, 3.0,
                  [replace(pelvis, acquire=3.0)]),

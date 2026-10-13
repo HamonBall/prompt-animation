@@ -69,6 +69,8 @@ Precise numeric angle controls may also be used: left/right_arm/forearm/thigh/
 shin_elevation 0..180 and _azimuth -180..180 (out=0, forward=90, across=150,
 backward=-90). head/torso/root_pitch/yaw/roll, hand/foot_pitch/yaw/roll exist.
 Prefer semantic directions to avoid confusing signs.
+Keep foot angles 0 for neutral ankles when sitting or lying; the feet already
+follow the legs. Add foot angles only for an explicitly requested ankle bend.
 
 contact: auto (usual standing), both/left/right (fix named feet at original
 positions), none (free legs or rotated body). Use none for sitting, kneeling,

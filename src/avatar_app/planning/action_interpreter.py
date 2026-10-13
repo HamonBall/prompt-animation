@@ -50,6 +50,8 @@ Wrist targets: left/right_hand_target_side/forward/height, all THREE numeric
 coordinates relative to pelvis in body axes (-.8.. .8). Null all three releases
 target. Numeric part_elevation/azimuth, root/torso/head_pitch/yaw/roll and
 left/right_hand/foot_pitch/yaw/roll are also supported. Angles in degrees.
+Foot angles 0 preserve neutral ankles. Do not add 90-degree foot pitch for
+sitting or lying: rotating the legs already carries the feet.
 """
 SYSTEM = """Plan human motion as safe structured data. Never output code.
 Return kind, stages, changes, contact, factor, message. Unused: stages=[],

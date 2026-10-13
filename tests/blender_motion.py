@@ -19,6 +19,9 @@ from avatar_app.models import PlanError
 
 handle = import_avatar(str(ROOT / ('Hip Hop Mixamo.fbx' if '--mixamo' in sys.argv else 'Hip Hop Andrejs.fbx')))
 prepare_preview(handle)
+ankle_rest = {side: (handle.bones[side + 'Leg'].matrix.to_quaternion().conjugated()
+                    @ handle.bones[side + 'Foot'].matrix.to_quaternion())
+              for side in ('Left', 'Right')}
 output = ROOT / 'artifacts' / 'motion'
 output.mkdir(parents=True, exist_ok=True)
 report = {}
@@ -36,6 +39,11 @@ assert result['stages'] == 4
 assert result['review']['metrics']['contact_error_m'] < .025
 assert result['review']['metrics']['floor_penetration_m'] < .003
 assert len(handle.rig.animation_data.action.layers) > 0
+handle.scene.frame_set(handle.scene.frame_end)
+for side in ankle_rest:
+    ankle = (handle.bones[side + 'Leg'].matrix.to_quaternion().conjugated()
+             @ handle.bones[side + 'Foot'].matrix.to_quaternion())
+    assert ankle.rotation_difference(ankle_rest[side]).angle < .01, 'Lying motion bent the ankle away from its neutral angle'
 print('STAGED_MOTION_PASSED', json.dumps(result), flush=True)
 if '--render' in sys.argv:
     # Review the route, not just its final posture.
