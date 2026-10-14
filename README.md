@@ -284,14 +284,29 @@ small feasibility samples, not proof of unrestricted pose generation.
 `tests/blender_motionfix.py` checks the source-free avatar, visible surfaces,
 measured target failures, stricter speed checks, experimental preview, generator
 cancellation and the real preview seat. Its renders are in `artifacts/motionfix/`.
-Project Markdown files (briefs, decisions, ideas and task notes) are now trackable;
-personal media, model downloads, generated output and `problems/` remain ignored.
+Personal media, model downloads, generated output and `problems/` remain ignored.
+The current local ignore rules exclude new Markdown files; existing tracked documents
+remain tracked. Stage receipts are still written at their prescribed paths.
 
 Runtime API: [llama.cpp server documentation](https://github.com/ggml-org/llama.cpp/blob/master/tools/server/README.md).
 Model: [official Qwen3 4B GGUF](https://huggingface.co/Qwen/Qwen3-4B-GGUF).
 
-The earlier limited interpreter and tests remain as historical feasibility
-code; the application now uses `planning/action_interpreter.py`, `motion.py`,
-and `blender/motion.py`, with `pose.py` and `blender/pose.py` for static poses.
+The initial single-pose feasibility milestone is historical. Its restricted planner
+and transition builder have been removed. The application uses
+`planning/action_interpreter.py`, `motion.py` and `blender/motion.py`, with `pose.py`
+and `blender/pose.py` for static poses. Shared IK is in `blender/kinematics.py`.
+The [cleanup map](docs/contracts/cleanup-map.md) records the active entry points,
+migrated tests and the handoff to the numbered library stages.
+`tests/blender_smoke.py` checks general pose/action generation, imported-avatar
+preservation and rollback. `tests/blender_prompt_workflow.py` exercises the actual
+foreground Blender event loop for prompt generation, play once and cancellation:
+
+```powershell
+& 'C:\Program Files\Blender Foundation\Blender 5.1\blender.exe' --factory-startup --python-exit-code 1 --python C:\work11\tests\blender_prompt_workflow.py -- after
+```
+
+The standalone `diagnose_fbx.py` and `blender_hiphop_stage.py` remain reference
+tools for a disposable scene/process; their scene-clearing behavior is outside
+the application startup path.
 Original personal assets and the `problems/` folder are not
 modified by this work.

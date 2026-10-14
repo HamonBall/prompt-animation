@@ -46,3 +46,6 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 .DS_Store
+
+*.md
+!README.md

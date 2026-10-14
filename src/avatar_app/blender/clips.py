@@ -5,7 +5,7 @@ from mathutils import Matrix, Quaternion, Vector
 from ..models import PlanError
 from .avatar import import_avatar, discard_avatar
 from .pose import axes, ground_pose, frame_transition
-from .animation import solve_leg
+from .kinematics import solve_leg
 from .motion import capture_sample, review_samples, linear_keys
 from ..pose import PosePlan
 

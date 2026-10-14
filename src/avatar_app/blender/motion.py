@@ -7,7 +7,7 @@ from ..models import PlanError
 from ..motion import ActionPlan, validate_action, sample_controls, schedule, blend_control
 from ..pose import LIMITS, PosePlan, validate_pose, serialize_pose
 from .pose import target_pose, axes, position_hand, ground_pose, frame_transition, rotate_bone, contacts
-from .animation import solve_leg
+from .kinematics import solve_leg
 from .geometry import skin_bounds, seat_penetration, support_floor, support_skin_height
 
 

@@ -1,25 +1,42 @@
-"""End-to-end checks using actual FBX imports and Blender's dependency graph."""
+"""General pose/action smoke checks with actual imported avatars and rollback."""
 from pathlib import Path
 from contextlib import redirect_stdout
 import io
 import sys
 import time
 import json
-import unittest
+import importlib
+import pkgutil
 import bpy
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
-sys.path.insert(0, str(ROOT / 'tests'))
+import avatar_app
 from avatar_app.blender.avatar import import_avatar, discard_avatar
-from avatar_app.blender.animation import build_transition
+from avatar_app.blender.pose import build_pose_transition
+from avatar_app.blender.motion import build_action
 from avatar_app.blender.scene import prepare_preview
-from avatar_app.planning.interpreter import interpret
-from avatar_app.models import MotionPlan
-import test_planning
+from avatar_app.pose import update_pose
+from avatar_app.planning.action_interpreter import interpret_action
+from avatar_app.planning.presets import preset_plan
+from avatar_app.models import PlanError
 
-suite = unittest.defaultTestLoader.loadTestsFromModule(test_planning)
-assert unittest.TextTestRunner(verbosity=2).run(suite).wasSuccessful()
+for module in pkgutil.walk_packages(avatar_app.__path__, avatar_app.__name__+'.'):
+    importlib.import_module(module.name)
+print('ALL_ACTIVE_MODULE_IMPORTS_PASSED', flush=True)
+output = ROOT/'artifacts'/'stages'/'01'
+output.mkdir(parents=True, exist_ok=True)
+reports = {}
+
+
+class CompoundModel:
+    def complete(self, messages, schema):
+        return json.dumps({'kind':'action', 'base':None, 'stages':[
+            {'id':'reach', 'targets':{'left_arm':'out:110', 'right_arm':'out:70'},
+             'duration':1.5, 'contacts':[{'part':'left_foot'},{'part':'right_foot'}]},
+            {'id':'look', 'targets':{'head':'left:25', 'torso':'forward:10'},
+             'duration':1.5, 'contacts':[{'part':'left_foot'},{'part':'right_foot'}]}],
+            'changes':{}, 'contact':None, 'factor':None, 'message':'Reach diagonally and look left.'})
 
 original_scene = bpy.context.scene
 original_objects = set(original_scene.objects)
@@ -35,14 +52,13 @@ for filename in ('Hip Hop Andrejs.fbx', 'Hip Hop Mixamo.fbx'):
     world_head = handle.rig.matrix_world @ handle.bones['Head'].head
     world_foot = handle.rig.matrix_world @ handle.bones['LeftFoot'].head
     assert world_head.z - world_foot.z > 1.0, 'Avatar was not oriented upright'
-    plan = interpret('T-rex pose')
-    initial = build_transition(handle, plan)
-    before_action = handle.rig.animation_data.action
+    plan = update_pose(None, {'pelvis_drop':.08, 'right_arm_elevation':45}, 'both')
+    initial = build_pose_transition(handle, plan)
     handle.scene.frame_set(handle.scene.frame_end)
     before_height = handle.bones['Hips'].head.dot(handle.up)
     feet_before = {side: handle.bones[side + 'Foot'].head.copy() for side in ('Left', 'Right')}
-    changed = interpret('crouch lower', plan)
-    correction = build_transition(handle, changed)
+    changed = update_pose(plan, {'pelvis_drop':.11})
+    correction = build_pose_transition(handle, changed)
     handle.scene.frame_set(handle.scene.frame_end)
     assert handle.bones['Hips'].head.dot(handle.up) < before_height
     for side in feet_before:
@@ -56,12 +72,12 @@ for filename in ('Hip Hop Andrejs.fbx', 'Hip Hop Mixamo.fbx'):
         if value > 0.4:
             raise RuntimeError('Injected build failure')
     try:
-        build_transition(handle, changed, interrupt_build)
+        build_pose_transition(handle, changed, interrupt_build)
         raise AssertionError('Expected injected failure')
     except RuntimeError:
         assert handle.rig.animation_data.action == good_action
     try:
-        build_transition(handle, MotionPlan(crouch=0.9))
+        build_pose_transition(handle, update_pose(None, {'pelvis_drop':2}))
         raise AssertionError('Invalid plan was accepted')
     except ValueError:
         assert handle.rig.animation_data.action == good_action
@@ -70,15 +86,25 @@ for filename in ('Hip Hop Andrejs.fbx', 'Hip Hop Mixamo.fbx'):
     for bone in handle.rig.pose.bones:
         assert all(math.isfinite(x) for row in bone.matrix for x in row)
         assert max(abs(v - 1) for v in bone.scale) < 0.001
-    print('VERIFIED ' + json.dumps({'avatar': filename, 'initial': initial,
-                                    'correction': correction,
-                                    'elapsed_seconds': time.perf_counter() - started}))
-    if filename == 'Hip Hop Andrejs.fbx' and '--no-render' not in sys.argv:
-        output = ROOT / 'artifacts'
-        output.mkdir(exist_ok=True)
-        handle.scene.render.filepath = str(output / 'trex-preview.png')
-        handle.scene.render.resolution_percentage = 60
-        bpy.ops.render.render(write_still=True)
+    foundation = build_action(handle, preset_plan('wave'))
+    creative, _ = interpret_action('Reach diagonally, then look over your left shoulder.', model=CompoundModel())
+    compound = build_action(handle, creative)
+    assert foundation['review']['passed'] and compound['review']['passed']
+    good_action = handle.rig.animation_data.action
+    old_frame = handle.scene.frame_current
+    try:
+        build_action(handle, creative, interrupt_build)
+        raise AssertionError('Expected interrupted action build')
+    except RuntimeError:
+        assert handle.rig.animation_data.action == good_action
+        assert handle.scene.frame_current == old_frame
+    for obj in handle.objects:
+        if obj.type == 'MESH':
+            assert tuple(slot.material for slot in obj.material_slots) == material_ids[obj.name]
+    reports[filename] = {'initial':initial, 'correction':correction,
+                         'foundation':foundation, 'compound':compound,
+                         'elapsed_seconds':time.perf_counter()-started}
+    print('GENERAL_SMOKE_VERIFIED', filename, json.dumps(reports[filename]), flush=True)
     bpy.context.window.scene = original_scene
     discard_avatar(handle)
 assert set(original_scene.objects) == original_objects
@@ -100,4 +126,5 @@ assert app._state['plan'] == good_plan
 assert bpy.context.scene == good_handle.scene
 assert set(original_scene.objects) == original_objects
 print('UI_STARTUP_AND_RECOVERY_PASSED')
+(output/'imported-smoke.json').write_text(json.dumps(reports, indent=2), encoding='utf-8')
 print('ALL_CHECKS_PASSED')

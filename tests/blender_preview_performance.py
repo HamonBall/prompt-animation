@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 from avatar_app.blender.demo import create_demo_avatar
 from avatar_app.blender.scene import prepare_preview, resolve_seat
-from avatar_app.blender import geometry, animation, pose
+from avatar_app.blender import geometry, kinematics, pose
 from avatar_app.pose import PosePlan, update_pose
 
 handle = create_demo_avatar()
@@ -51,9 +51,9 @@ bone = handle.bones['Head']
 before = bone.matrix.copy()
 update = Mock()
 stub = SimpleNamespace(context=SimpleNamespace(view_layer=SimpleNamespace(update=update)))
-with patch.object(pose, 'bpy', stub), patch.object(animation, 'bpy', stub):
+with patch.object(pose, 'bpy', stub), patch.object(kinematics, 'bpy', stub):
     pose.rotate_bone(bone, Quaternion())
-    animation.aim(bone, bone.tail - bone.head)
+    kinematics.aim(bone, bone.tail - bone.head)
     assert not update.called
 assert max(abs(v) for row in bone.matrix - before for v in row) < 1e-6
 pose.rotate_bone(bone, Quaternion(Vector((0, 0, 1)), .2))

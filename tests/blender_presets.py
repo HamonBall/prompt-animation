@@ -17,12 +17,16 @@ from avatar_app.motion import ActionPlan, ContactConstraint
 from avatar_app.pose import PosePlan
 
 args = sys.argv[sys.argv.index('--')+1:] if '--' in sys.argv else []
+out = ROOT/'artifacts'/'presets'
+if '--output-dir' in args:
+    index = args.index('--output-dir')
+    out = Path(args[index+1])
+    del args[index:index+2]
 avatar = args[0] if args else 'demo'
 names = [s for s in args[1:] if not s.startswith('--')] or ['jump', 'walk', 'run', 'wave', 'lie']
 handle = create_demo_avatar() if avatar == 'demo' else import_avatar(str(ROOT/(
     'Hip Hop Mixamo.fbx' if avatar == 'mixamo' else 'Hip Hop Andrejs.fbx')))
 prepare_preview(handle)
-out = ROOT/'artifacts'/'presets'
 out.mkdir(parents=True, exist_ok=True)
 reports = {}
 rest_hips = handle.rig.matrix_world @ handle.bones['Hips'].bone.head_local

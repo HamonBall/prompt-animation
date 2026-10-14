@@ -16,6 +16,14 @@ def stream(*events):
 
 
 class LocalModelTests(unittest.TestCase):
+    def test_missing_runtime_is_an_explained_failure(self):
+        client = LocalModel()
+        self.addCleanup(client.close)
+        with patch('avatar_app.planning.local_model.MODEL') as model:
+            model.is_file.return_value = False
+            with self.assertRaisesRegex(PlanError, 'not installed'):
+                client.start()
+
     def setUp(self):
         self.client = LocalModel()
         self.client.endpoint = 'http://127.0.0.1:12345'

@@ -31,7 +31,8 @@ for o in handle.objects:
     if o.type == 'MESH':
         assert tuple(slot.material for slot in o.material_slots) == materials[o.name]
 assert len(bpy.data.scenes) == 2  # factory scene and the target preview; source cleaned up
-out = ROOT / 'artifacts' / 'clips'
+out = (Path(sys.argv[sys.argv.index('--output-dir')+1]) if '--output-dir' in sys.argv
+       else ROOT / 'artifacts' / 'clips')
 out.mkdir(parents=True, exist_ok=True)
 (out / 'test-review.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
 print('CLIP_RETARGET_CHECKS_PASSED', json.dumps(result), flush=True)

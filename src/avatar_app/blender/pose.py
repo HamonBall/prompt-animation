@@ -4,7 +4,7 @@ import bpy
 from mathutils import Matrix, Quaternion, Vector
 from ..pose import validate_pose
 from ..models import PlanError
-from .animation import aim, solve_leg
+from .kinematics import aim, solve_leg
 from .geometry import skin_bounds
 
 
