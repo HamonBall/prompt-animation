@@ -425,7 +425,7 @@ def main():
                                                default=str(_default_avatar()) if _default_avatar().is_file() else '')
     bpy.types.Scene.avatar_prompt = StringProperty(name='Prompt', default='')
     bpy.types.Scene.avatar_status = StringProperty(default='Load an avatar to begin.')
-    bpy.types.Scene.avatar_show_seat = BoolProperty(default=True, update=update_seat)
+    bpy.types.Scene.avatar_show_seat = BoolProperty(default=False, update=update_seat)
     bpy.types.Scene.avatar_seat_height = FloatProperty(default=.45, min=.25, max=.70, subtype='DISTANCE', update=update_seat)
     bpy.types.Scene.avatar_use_reference = BoolProperty(default=False)
     bpy.types.Scene.avatar_reference_url = StringProperty(default='')

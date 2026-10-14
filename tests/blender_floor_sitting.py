@@ -12,6 +12,7 @@ from avatar_app.motion import ActionPlan, Surface
 
 app.main()
 handle = app._state['avatar']
+handle.scene.avatar_show_seat = True
 assert any(s.name == 'seat' for s in handle.surfaces)
 with patch('avatar_app.planning.action_interpreter.get_model', side_effect=AssertionError('Slow inference')):
     app.generate(bpy.context, 'sit on the ground')

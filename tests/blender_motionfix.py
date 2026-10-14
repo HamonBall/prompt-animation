@@ -21,6 +21,9 @@ with patch.object(app, '_default_avatar', return_value=ROOT / 'absent-demo.fbx')
 handle = app._state['avatar']
 assert handle and handle.rig.name == 'Built-in Avatar'
 assert any(o.name == 'Preview floor' for o in handle.environment)
+assert not handle.scene.avatar_show_seat
+assert not any(o.get('avatar_seat') for o in handle.environment)
+handle.scene.avatar_show_seat = True
 assert any(s.name == 'seat' and s.center for s in handle.surfaces)
 assert all(o not in handle.objects for o in handle.environment)
 assert abs(skin_bounds(handle)[0].z) < .003
