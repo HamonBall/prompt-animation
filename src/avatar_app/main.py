@@ -397,9 +397,6 @@ class AVATAR_PT_settings(bpy.types.Panel):
         if not context.scene.avatar_path:
             layout.label(text='Built-in try-out avatar · optional FBX')
         layout.operator('avatar.load')
-        layout.prop(context.scene, 'avatar_show_seat', text='Preview seat')
-        if context.scene.avatar_show_seat:
-            layout.prop(context.scene, 'avatar_seat_height', text='Seat height')
         layout.prop(context.scene, 'avatar_use_reference', text='Use web reference (optional)')
         if context.scene.avatar_use_reference:
             layout.prop(context.scene, 'avatar_reference_url', text='HTTPS URL')

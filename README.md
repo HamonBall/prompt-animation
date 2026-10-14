@@ -29,10 +29,7 @@ The preview floor is 5 × 5 metres. Editing and playback use Solid shading with
 avatar textures and studio lighting to keep the viewport responsive. Switch to
 Material Preview when checking scene lighting; final renders still use Eevee.
 The viewport grid is hidden so the visible ground stops at the floor edges.
-The preview starts with a visible floor and no chair. In **Avatar settings**, enable **Preview seat**
-and set its height before requesting chair interaction.
-A successful floor-only support route clears the preview seat for space behind
-the avatar; enable it again for the next chair request.
+The preview starts with a visible floor and no chair.
 
 ## Internal movement foundations
 
