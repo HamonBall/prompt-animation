@@ -1,0 +1,441 @@
+{
+  "$defs": {
+    "ControlValue": {
+      "additionalProperties": false,
+      "properties": {
+        "control_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "unit": {
+          "enum": [
+            "degree",
+            "metre",
+            "avatar_height",
+            "second",
+            "unitless",
+            "degree_per_second",
+            "metre_per_second",
+            "avatar_height_per_second"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "control_id",
+        "unit",
+        "frame",
+        "value"
+      ],
+      "type": "object"
+    },
+    "MovementDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "builder_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "contact_requirements": {
+          "items": {
+            "$ref": "#/$defs/SupportRequirement"
+          },
+          "maxItems": 64,
+          "type": "array"
+        },
+        "description": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "entry_conditions": {
+          "items": {
+            "$ref": "#/$defs/StateRequirement"
+          },
+          "maxItems": 64,
+          "type": "array"
+        },
+        "exit_expectations": {
+          "items": {
+            "$ref": "#/$defs/StateRequirement"
+          },
+          "maxItems": 64,
+          "type": "array"
+        },
+        "id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "joint",
+            "limb",
+            "body",
+            "pattern",
+            "operator",
+            "style",
+            "recipe",
+            "clip"
+          ]
+        },
+        "named_neutral": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "owned_chains": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "parameter_specs": {
+          "items": {
+            "$ref": "#/$defs/ParameterSpec"
+          },
+          "maxItems": 64,
+          "type": "array"
+        },
+        "phase_events": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "required_capabilities": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "return_policy": {
+          "enum": [
+            "preserve_end",
+            "return_to_entry",
+            "return_to_named_neutral"
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "semantic_tags": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "version": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "version",
+        "kind",
+        "description",
+        "parameter_specs",
+        "required_capabilities",
+        "entry_conditions",
+        "owned_chains",
+        "contact_requirements",
+        "exit_expectations",
+        "builder_id",
+        "semantic_tags",
+        "phase_events",
+        "return_policy",
+        "named_neutral"
+      ],
+      "type": "object"
+    },
+    "ParameterSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "capability": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "control_id": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "default": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dimensions": {
+          "anyOf": [
+            {
+              "maximum": 16,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "enum_values": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "frame": {
+          "anyOf": [
+            {
+              "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "has_default": {
+          "type": "boolean"
+        },
+        "maximum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "minimum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "nullable": {
+          "type": "boolean"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "type": {
+          "enum": [
+            "number",
+            "integer",
+            "boolean",
+            "string",
+            "enum",
+            "vector",
+            "quaternion"
+          ]
+        },
+        "unit": {
+          "enum": [
+            "degree",
+            "metre",
+            "avatar_height",
+            "second",
+            "unitless",
+            "degree_per_second",
+            "metre_per_second",
+            "avatar_height_per_second"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "name",
+        "type",
+        "unit",
+        "frame",
+        "required",
+        "has_default",
+        "default",
+        "minimum",
+        "maximum",
+        "enum_values",
+        "dimensions",
+        "capability",
+        "nullable",
+        "control_id"
+      ],
+      "type": "object"
+    },
+    "StateRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/ControlValue"
+        },
+        "tolerance": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "requirement_id",
+        "target",
+        "tolerance"
+      ],
+      "type": "object"
+    },
+    "SupportRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "anchor_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "available",
+            "active",
+            "inactive"
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "surface_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "anchor_id",
+        "surface_id",
+        "mode"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:MovementDefinition",
+  "$ref": "#/$defs/MovementDefinition",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

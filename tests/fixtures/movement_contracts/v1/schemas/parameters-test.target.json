@@ -1,0 +1,33 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "duration_s": {
+      "default": 1,
+      "maximum": 8,
+      "minimum": 0.2,
+      "type": "number",
+      "x-capability": null,
+      "x-control-id": null,
+      "x-frame": null,
+      "x-unit": "second"
+    },
+    "target": {
+      "items": {
+        "maximum": 20,
+        "minimum": -20,
+        "type": "number"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array",
+      "x-capability": null,
+      "x-control-id": "hand.left.target",
+      "x-frame": "world",
+      "x-unit": "metre"
+    }
+  },
+  "required": [
+    "target"
+  ],
+  "type": "object"
+}

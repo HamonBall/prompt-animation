@@ -1,0 +1,151 @@
+{
+  "$defs": {
+    "JointLimit": {
+      "additionalProperties": false,
+      "properties": {
+        "control_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "maximum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "measurement_method": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "minimum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "mirror_control_id": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "mirror_sign": {
+          "enum": [
+            -1,
+            1
+          ]
+        },
+        "positive_axis": {
+          "items": false,
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "preferred_maximum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "preferred_minimum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "zero": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "control_id",
+        "minimum",
+        "maximum",
+        "zero",
+        "positive_axis",
+        "mirror_control_id",
+        "mirror_sign",
+        "measurement_method",
+        "preferred_minimum",
+        "preferred_maximum"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:JointLimit",
+  "$ref": "#/$defs/JointLimit",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

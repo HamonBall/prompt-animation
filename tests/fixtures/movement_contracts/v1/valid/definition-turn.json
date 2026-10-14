@@ -1,0 +1,61 @@
+{
+  "builder_id": "test.builder",
+  "contact_requirements": [],
+  "description": "Test-only head turn contract",
+  "entry_conditions": [],
+  "exit_expectations": [],
+  "id": "test.turn",
+  "kind": "joint",
+  "named_neutral": null,
+  "owned_chains": [
+    "head"
+  ],
+  "parameter_specs": [
+    {
+      "capability": null,
+      "control_id": "head.yaw",
+      "default": 15,
+      "dimensions": null,
+      "enum_values": [],
+      "frame": "joint:head",
+      "has_default": true,
+      "maximum": 45,
+      "minimum": -45,
+      "name": "angle",
+      "nullable": false,
+      "required": false,
+      "schema_version": 1,
+      "type": "number",
+      "unit": "degree"
+    },
+    {
+      "capability": null,
+      "control_id": null,
+      "default": 1,
+      "dimensions": null,
+      "enum_values": [],
+      "frame": null,
+      "has_default": true,
+      "maximum": 8,
+      "minimum": 0.2,
+      "name": "duration_s",
+      "nullable": false,
+      "required": false,
+      "schema_version": 1,
+      "type": "number",
+      "unit": "second"
+    }
+  ],
+  "phase_events": [
+    "arrival"
+  ],
+  "required_capabilities": [
+    "head.turn"
+  ],
+  "return_policy": "preserve_end",
+  "schema_version": 1,
+  "semantic_tags": [
+    "test_only"
+  ],
+  "version": 1
+}

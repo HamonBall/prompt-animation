@@ -1,0 +1,32 @@
+{
+  "$defs": {
+    "PhaseLandmark": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "time_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "name",
+        "time_s"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:PhaseLandmark",
+  "$ref": "#/$defs/PhaseLandmark",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

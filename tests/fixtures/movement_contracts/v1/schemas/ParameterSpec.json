@@ -1,0 +1,182 @@
+{
+  "$defs": {
+    "ParameterSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "capability": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "control_id": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "default": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "dimensions": {
+          "anyOf": [
+            {
+              "maximum": 16,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "enum_values": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "frame": {
+          "anyOf": [
+            {
+              "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "has_default": {
+          "type": "boolean"
+        },
+        "maximum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "minimum": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "name": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "nullable": {
+          "type": "boolean"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "type": {
+          "enum": [
+            "number",
+            "integer",
+            "boolean",
+            "string",
+            "enum",
+            "vector",
+            "quaternion"
+          ]
+        },
+        "unit": {
+          "enum": [
+            "degree",
+            "metre",
+            "avatar_height",
+            "second",
+            "unitless",
+            "degree_per_second",
+            "metre_per_second",
+            "avatar_height_per_second"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "name",
+        "type",
+        "unit",
+        "frame",
+        "required",
+        "has_default",
+        "default",
+        "minimum",
+        "maximum",
+        "enum_values",
+        "dimensions",
+        "capability",
+        "nullable",
+        "control_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:ParameterSpec",
+  "$ref": "#/$defs/ParameterSpec",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

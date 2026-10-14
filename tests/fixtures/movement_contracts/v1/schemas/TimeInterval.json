@@ -1,0 +1,33 @@
+{
+  "$defs": {
+    "TimeInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "start_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "start_s",
+        "end_s"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:TimeInterval",
+  "$ref": "#/$defs/TimeInterval",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,85 @@
+{
+  "$defs": {
+    "ParameterBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "instance_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "parameter_name": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "predecessor_id": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source": {
+          "enum": [
+            "explicit",
+            "measured_exit"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "instance_id",
+        "parameter_name",
+        "source",
+        "value",
+        "predecessor_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:ParameterBinding",
+  "$ref": "#/$defs/ParameterBinding",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,73 @@
+{
+  "$defs": {
+    "ControlSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "capability": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "chain": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "dimensions": {
+          "maximum": 16,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "frames": {
+          "items": {
+            "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+            "type": "string"
+          },
+          "maxItems": 64,
+          "minItems": 1,
+          "type": "array"
+        },
+        "id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "unit": {
+          "enum": [
+            "degree",
+            "metre",
+            "avatar_height",
+            "second",
+            "unitless",
+            "degree_per_second",
+            "metre_per_second",
+            "avatar_height_per_second"
+          ]
+        },
+        "value_shape": {
+          "enum": [
+            "scalar",
+            "vector",
+            "quaternion"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "unit",
+        "value_shape",
+        "dimensions",
+        "frames",
+        "chain",
+        "capability"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:ControlSpec",
+  "$ref": "#/$defs/ControlSpec",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

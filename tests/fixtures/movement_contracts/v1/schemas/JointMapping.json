@@ -1,0 +1,166 @@
+{
+  "$defs": {
+    "JointMapping": {
+      "additionalProperties": false,
+      "properties": {
+        "parent_id": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "rest_to_semantic": {
+          "$ref": "#/$defs/Transform"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "semantic_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "source_bones": {
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "semantic_id",
+        "parent_id",
+        "source_bones",
+        "rest_to_semantic"
+      ],
+      "type": "object"
+    },
+    "Transform": {
+      "additionalProperties": false,
+      "properties": {
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "orientation": {
+          "items": false,
+          "maxItems": 4,
+          "minItems": 4,
+          "prefixItems": [
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "position": {
+          "items": false,
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "unit": {
+          "enum": [
+            "metre"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "position",
+        "orientation",
+        "frame",
+        "unit"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:JointMapping",
+  "$ref": "#/$defs/JointMapping",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

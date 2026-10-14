@@ -1,0 +1,162 @@
+{
+  "$defs": {
+    "LoopSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "angular_velocity_tolerance_deg_s": {
+          "maximum": 10,
+          "minimum": 0,
+          "type": "number"
+        },
+        "endpoint_tolerance_m": {
+          "maximum": 0.01,
+          "minimum": 0,
+          "type": "number"
+        },
+        "per_cycle_root_transform": {
+          "$ref": "#/$defs/Transform"
+        },
+        "pose_tolerance_deg": {
+          "maximum": 3,
+          "minimum": 0,
+          "type": "number"
+        },
+        "repetitions": {
+          "maximum": 128,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "repetitions",
+        "per_cycle_root_transform",
+        "pose_tolerance_deg",
+        "endpoint_tolerance_m",
+        "angular_velocity_tolerance_deg_s"
+      ],
+      "type": "object"
+    },
+    "Transform": {
+      "additionalProperties": false,
+      "properties": {
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "orientation": {
+          "items": false,
+          "maxItems": 4,
+          "minItems": 4,
+          "prefixItems": [
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "position": {
+          "items": false,
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "unit": {
+          "enum": [
+            "metre"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "position",
+        "orientation",
+        "frame",
+        "unit"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:LoopSpec",
+  "$ref": "#/$defs/LoopSpec",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

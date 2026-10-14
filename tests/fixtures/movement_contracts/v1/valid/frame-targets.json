@@ -1,0 +1,73 @@
+{
+  "active_contacts": [
+    {
+      "acquire_s": 0.1,
+      "anchor_id": "foot.left",
+      "clearance_m": 0.003,
+      "event_id": "contact.1",
+      "interval": {
+        "end_s": 1,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "release_s": 0.1,
+      "schema_version": 1,
+      "source_instance_ids": [
+        "turn.1"
+      ],
+      "surface_id": "floor"
+    }
+  ],
+  "controls": [
+    {
+      "control_id": "head.yaw",
+      "frame": "joint:head",
+      "schema_version": 1,
+      "unit": "degree",
+      "value": 0
+    }
+  ],
+  "expected_goals": [
+    {
+      "clause_id": "clause.1",
+      "goal_id": "goal.1",
+      "interval": {
+        "end_s": 1,
+        "schema_version": 1,
+        "start_s": 0.8
+      },
+      "locked": true,
+      "schema_version": 1,
+      "target": {
+        "control_id": "head.yaw",
+        "frame": "joint:head",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      "tolerance": 3
+    }
+  ],
+  "permitted_supporting_changes": [],
+  "root_target": {
+    "frame": "world",
+    "orientation": [
+      1,
+      0,
+      0,
+      0
+    ],
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "schema_version": 1,
+    "unit": "metre"
+  },
+  "schema_version": 1,
+  "source_instance_ids": [
+    "turn.1"
+  ],
+  "time_s": 0.9
+}

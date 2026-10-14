@@ -1,0 +1,82 @@
+{
+  "$defs": {
+    "Landmark": {
+      "additionalProperties": false,
+      "properties": {
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "joint_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "position": {
+          "items": false,
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "unit": {
+          "enum": [
+            "metre",
+            "avatar_height"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "joint_id",
+        "position",
+        "frame",
+        "unit"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:Landmark",
+  "$ref": "#/$defs/Landmark",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

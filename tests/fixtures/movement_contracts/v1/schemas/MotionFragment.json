@@ -1,0 +1,507 @@
+{
+  "$defs": {
+    "ContactEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "acquire_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "anchor_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "clearance_m": {
+          "maximum": 0.2,
+          "minimum": 0,
+          "type": "number"
+        },
+        "event_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "release_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        },
+        "surface_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "source_instance_ids",
+        "anchor_id",
+        "surface_id",
+        "interval",
+        "acquire_s",
+        "release_s",
+        "clearance_m"
+      ],
+      "type": "object"
+    },
+    "ControlValue": {
+      "additionalProperties": false,
+      "properties": {
+        "control_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "unit": {
+          "enum": [
+            "degree",
+            "metre",
+            "avatar_height",
+            "second",
+            "unitless",
+            "degree_per_second",
+            "metre_per_second",
+            "avatar_height_per_second"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "control_id",
+        "unit",
+        "frame",
+        "value"
+      ],
+      "type": "object"
+    },
+    "CurveSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "duration_s": {
+          "maximum": 60,
+          "minimum": 1e-09,
+          "type": "number"
+        },
+        "easing": {
+          "enum": [
+            "linear",
+            "smooth"
+          ]
+        },
+        "end_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "hold",
+            "transition"
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "start_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "start_value",
+        "end_value",
+        "duration_s",
+        "easing"
+      ],
+      "type": "object"
+    },
+    "GoalSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "clause_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "goal_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/ControlValue"
+        },
+        "tolerance": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "goal_id",
+        "clause_id",
+        "target",
+        "interval",
+        "tolerance",
+        "locked"
+      ],
+      "type": "object"
+    },
+    "MotionFragment": {
+      "additionalProperties": false,
+      "properties": {
+        "contact_events": {
+          "items": {
+            "$ref": "#/$defs/ContactEvent"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "duration_s": {
+          "maximum": 60,
+          "minimum": 1e-09,
+          "type": "number"
+        },
+        "entry_requirements": {
+          "items": {
+            "$ref": "#/$defs/StateRequirement"
+          },
+          "maxItems": 64,
+          "type": "array"
+        },
+        "exit_expectations": {
+          "items": {
+            "$ref": "#/$defs/StateRequirement"
+          },
+          "maxItems": 64,
+          "type": "array"
+        },
+        "fragment_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "goals": {
+          "items": {
+            "$ref": "#/$defs/GoalSpec"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "phase_landmarks": {
+          "items": {
+            "$ref": "#/$defs/PhaseLandmark"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        },
+        "tracks": {
+          "items": {
+            "$ref": "#/$defs/TrackSpec"
+          },
+          "maxItems": 256,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "fragment_id",
+        "source_instance_ids",
+        "entry_requirements",
+        "duration_s",
+        "tracks",
+        "contact_events",
+        "phase_landmarks",
+        "exit_expectations",
+        "goals"
+      ],
+      "type": "object"
+    },
+    "PhaseLandmark": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "time_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "name",
+        "time_s"
+      ],
+      "type": "object"
+    },
+    "StateRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/ControlValue"
+        },
+        "tolerance": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "requirement_id",
+        "target",
+        "tolerance"
+      ],
+      "type": "object"
+    },
+    "TimeInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "start_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "start_s",
+        "end_s"
+      ],
+      "type": "object"
+    },
+    "TrackSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "control_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "curve": {
+          "$ref": "#/$defs/CurveSpec"
+        },
+        "dimensions": {
+          "maximum": 16,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        },
+        "start_source": {
+          "enum": [
+            "explicit",
+            "measured_entry"
+          ]
+        },
+        "track_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "unit": {
+          "enum": [
+            "degree",
+            "metre",
+            "avatar_height",
+            "second",
+            "unitless",
+            "degree_per_second",
+            "metre_per_second",
+            "avatar_height_per_second"
+          ]
+        },
+        "value_shape": {
+          "enum": [
+            "scalar",
+            "vector",
+            "quaternion"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "track_id",
+        "source_instance_ids",
+        "control_id",
+        "unit",
+        "frame",
+        "value_shape",
+        "dimensions",
+        "curve",
+        "start_source",
+        "interval"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:MotionFragment",
+  "$ref": "#/$defs/MotionFragment",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,99 @@
+{
+  "$defs": {
+    "CurveSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "duration_s": {
+          "maximum": 60,
+          "minimum": 1e-09,
+          "type": "number"
+        },
+        "easing": {
+          "enum": [
+            "linear",
+            "smooth"
+          ]
+        },
+        "end_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "hold",
+            "transition"
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "start_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "start_value",
+        "end_value",
+        "duration_s",
+        "easing"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:CurveSpec",
+  "$ref": "#/$defs/CurveSpec",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

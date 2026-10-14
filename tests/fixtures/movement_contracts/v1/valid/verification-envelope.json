@@ -1,0 +1,37 @@
+{
+  "avatar_id": "test.avatar",
+  "definition_id": "test.turn",
+  "definition_version": 1,
+  "evidence": [
+    "Synthetic contract test; no rig-motion verification"
+  ],
+  "measured_maxima": [
+    {
+      "name": "residual_deg",
+      "schema_version": 1,
+      "value": 0
+    }
+  ],
+  "parameter_envelope": [
+    {
+      "capability": null,
+      "control_id": "head.yaw",
+      "default": 15,
+      "dimensions": null,
+      "enum_values": [],
+      "frame": "joint:head",
+      "has_default": true,
+      "maximum": 30,
+      "minimum": -30,
+      "name": "angle",
+      "nullable": false,
+      "required": false,
+      "schema_version": 1,
+      "type": "number",
+      "unit": "degree"
+    }
+  ],
+  "profile_version": 1,
+  "schema_version": 1,
+  "status": "experimental"
+}

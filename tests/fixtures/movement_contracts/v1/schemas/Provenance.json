@@ -1,0 +1,50 @@
+{
+  "$defs": {
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "evidence": {
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 64,
+          "minItems": 1,
+          "type": "array"
+        },
+        "method": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "recorded_at": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_revision": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "method",
+        "source_revision",
+        "evidence",
+        "recorded_at"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:Provenance",
+  "$ref": "#/$defs/Provenance",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

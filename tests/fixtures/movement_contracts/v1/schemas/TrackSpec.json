@@ -1,0 +1,206 @@
+{
+  "$defs": {
+    "CurveSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "duration_s": {
+          "maximum": 60,
+          "minimum": 1e-09,
+          "type": "number"
+        },
+        "easing": {
+          "enum": [
+            "linear",
+            "smooth"
+          ]
+        },
+        "end_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "hold",
+            "transition"
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "start_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "start_value",
+        "end_value",
+        "duration_s",
+        "easing"
+      ],
+      "type": "object"
+    },
+    "TimeInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "start_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "start_s",
+        "end_s"
+      ],
+      "type": "object"
+    },
+    "TrackSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "control_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "curve": {
+          "$ref": "#/$defs/CurveSpec"
+        },
+        "dimensions": {
+          "maximum": 16,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        },
+        "start_source": {
+          "enum": [
+            "explicit",
+            "measured_entry"
+          ]
+        },
+        "track_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "unit": {
+          "enum": [
+            "degree",
+            "metre",
+            "avatar_height",
+            "second",
+            "unitless",
+            "degree_per_second",
+            "metre_per_second",
+            "avatar_height_per_second"
+          ]
+        },
+        "value_shape": {
+          "enum": [
+            "scalar",
+            "vector",
+            "quaternion"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "track_id",
+        "source_instance_ids",
+        "control_id",
+        "unit",
+        "frame",
+        "value_shape",
+        "dimensions",
+        "curve",
+        "start_source",
+        "interval"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:TrackSpec",
+  "$ref": "#/$defs/TrackSpec",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

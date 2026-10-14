@@ -1,0 +1,167 @@
+{
+  "invalid": [
+    {
+      "error": "UNKNOWN_ID",
+      "path": "invalid/unknown-definition.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "VERSION_MISMATCH",
+      "path": "invalid/definition-version.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "INVALID_PARAMETER",
+      "path": "invalid/unknown-parameter.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "INVALID_PARAMETER",
+      "path": "invalid/boolean-as-number.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "INVALID_PARAMETER",
+      "path": "invalid/wrong-parameter-type.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "INVALID_PARAMETER",
+      "path": "invalid/parameter-range.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "VERSION_MISMATCH",
+      "path": "invalid/schema-version.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "VERSION_MISMATCH",
+      "path": "invalid/profile-version.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "INVALID_PARAMETER",
+      "path": "invalid/unknown-frame.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "INVALID_PARAMETER",
+      "path": "invalid/unavailable-frame.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "INVALID_PARAMETER",
+      "path": "invalid/incomplete-coordinates.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "CONSTRAINT_CONFLICT",
+      "path": "invalid/duplicate-instance.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "CONSTRAINT_CONFLICT",
+      "path": "invalid/duplicate-parameter.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "INVALID_SCHEMA",
+      "path": "invalid/unknown-serialized-field.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "UNKNOWN_ID",
+      "path": "invalid/unknown-relation-source.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "error": "STALE_REVISION",
+      "path": "invalid/stale-patch.json",
+      "record_type": "RecipePatch"
+    },
+    {
+      "error": "MISSING_CAPABILITY",
+      "path": "invalid/missing-capability.json",
+      "record_type": "AvatarProfile"
+    },
+    {
+      "error": "INVALID_PARAMETER",
+      "path": "invalid/bad-quaternion.json",
+      "record_type": "MotionStateSnapshot"
+    },
+    {
+      "error": "INVALID_SCHEMA",
+      "path": "invalid/incomplete-transform.json",
+      "record_type": "MotionStateSnapshot"
+    },
+    {
+      "error": "INVALID_SCHEMA",
+      "path": "invalid/nonfinite-number.json",
+      "record_type": "MotionRecipe"
+    }
+  ],
+  "schema_version": 1,
+  "valid": [
+    {
+      "path": "valid/avatar-profile.json",
+      "record_type": "AvatarProfile"
+    },
+    {
+      "path": "valid/definition-turn.json",
+      "record_type": "MovementDefinition"
+    },
+    {
+      "path": "valid/definition-target.json",
+      "record_type": "MovementDefinition"
+    },
+    {
+      "path": "valid/definition-style.json",
+      "record_type": "MovementDefinition"
+    },
+    {
+      "path": "valid/sequential-recipe.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "path": "valid/parallel-recipe.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "path": "valid/narrow-patch.json",
+      "record_type": "RecipePatch"
+    },
+    {
+      "path": "valid/entry-snapshot.json",
+      "record_type": "MotionStateSnapshot"
+    },
+    {
+      "path": "valid/single-fragment.json",
+      "record_type": "MotionFragment"
+    },
+    {
+      "path": "valid/resolved-recipe.json",
+      "record_type": "ResolvedRecipe"
+    },
+    {
+      "path": "valid/executable-motion.json",
+      "record_type": "ExecutableMotion"
+    },
+    {
+      "path": "valid/frame-targets.json",
+      "record_type": "FrameTargets"
+    },
+    {
+      "path": "valid/verification-envelope.json",
+      "record_type": "VerificationRecord"
+    },
+    {
+      "path": "valid/styled-loop-recipe.json",
+      "record_type": "MotionRecipe"
+    },
+    {
+      "path": "valid/support-requirement.json",
+      "record_type": "SupportRequirement"
+    }
+  ]
+}

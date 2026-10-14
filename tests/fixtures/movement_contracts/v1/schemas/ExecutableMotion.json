@@ -1,0 +1,852 @@
+{
+  "$defs": {
+    "ContactAnchor": {
+      "additionalProperties": false,
+      "properties": {
+        "anchor_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "position": {
+          "items": false,
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "surface_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "unit": {
+          "enum": [
+            "metre"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "anchor_id",
+        "surface_id",
+        "position",
+        "frame",
+        "unit"
+      ],
+      "type": "object"
+    },
+    "ContactEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "acquire_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "anchor_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "clearance_m": {
+          "maximum": 0.2,
+          "minimum": 0,
+          "type": "number"
+        },
+        "event_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "release_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        },
+        "surface_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "source_instance_ids",
+        "anchor_id",
+        "surface_id",
+        "interval",
+        "acquire_s",
+        "release_s",
+        "clearance_m"
+      ],
+      "type": "object"
+    },
+    "ControlValue": {
+      "additionalProperties": false,
+      "properties": {
+        "control_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "unit": {
+          "enum": [
+            "degree",
+            "metre",
+            "avatar_height",
+            "second",
+            "unitless",
+            "degree_per_second",
+            "metre_per_second",
+            "avatar_height_per_second"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "control_id",
+        "unit",
+        "frame",
+        "value"
+      ],
+      "type": "object"
+    },
+    "CurveSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "duration_s": {
+          "maximum": 60,
+          "minimum": 1e-09,
+          "type": "number"
+        },
+        "easing": {
+          "enum": [
+            "linear",
+            "smooth"
+          ]
+        },
+        "end_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "kind": {
+          "enum": [
+            "hold",
+            "transition"
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "start_value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "kind",
+        "start_value",
+        "end_value",
+        "duration_s",
+        "easing"
+      ],
+      "type": "object"
+    },
+    "ExecutableMotion": {
+      "additionalProperties": false,
+      "properties": {
+        "contact_events": {
+          "items": {
+            "$ref": "#/$defs/ContactEvent"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "duration_s": {
+          "maximum": 60,
+          "minimum": 1e-09,
+          "type": "number"
+        },
+        "entry_snapshot": {
+          "$ref": "#/$defs/MotionStateSnapshot"
+        },
+        "fps": {
+          "enum": [
+            30
+          ]
+        },
+        "goal_checks": {
+          "items": {
+            "$ref": "#/$defs/GoalSpec"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "loop": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LoopSpec"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "runtime_entry_bindings": {
+          "items": {
+            "$ref": "#/$defs/RuntimeEntryBinding"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_map": {
+          "items": {
+            "$ref": "#/$defs/SourceMapEntry"
+          },
+          "maxItems": 512,
+          "type": "array"
+        },
+        "tracks": {
+          "items": {
+            "$ref": "#/$defs/TrackSpec"
+          },
+          "maxItems": 256,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "entry_snapshot",
+        "duration_s",
+        "fps",
+        "tracks",
+        "contact_events",
+        "runtime_entry_bindings",
+        "source_map",
+        "loop",
+        "goal_checks"
+      ],
+      "type": "object"
+    },
+    "GoalSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "clause_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "goal_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/ControlValue"
+        },
+        "tolerance": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "goal_id",
+        "clause_id",
+        "target",
+        "interval",
+        "tolerance",
+        "locked"
+      ],
+      "type": "object"
+    },
+    "LoopSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "angular_velocity_tolerance_deg_s": {
+          "maximum": 10,
+          "minimum": 0,
+          "type": "number"
+        },
+        "endpoint_tolerance_m": {
+          "maximum": 0.01,
+          "minimum": 0,
+          "type": "number"
+        },
+        "per_cycle_root_transform": {
+          "$ref": "#/$defs/Transform"
+        },
+        "pose_tolerance_deg": {
+          "maximum": 3,
+          "minimum": 0,
+          "type": "number"
+        },
+        "repetitions": {
+          "maximum": 128,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "repetitions",
+        "per_cycle_root_transform",
+        "pose_tolerance_deg",
+        "endpoint_tolerance_m",
+        "angular_velocity_tolerance_deg_s"
+      ],
+      "type": "object"
+    },
+    "MotionStateSnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "active_contacts": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "avatar_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "captured_time_s": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "contact_anchors": {
+          "items": {
+            "$ref": "#/$defs/ContactAnchor"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "measured_controls": {
+          "items": {
+            "$ref": "#/$defs/ControlValue"
+          },
+          "maxItems": 1024,
+          "type": "array"
+        },
+        "phase": {
+          "anyOf": [
+            {
+              "maximum": 1,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "profile_version": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "root_transform": {
+          "$ref": "#/$defs/Transform"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "velocities": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/ControlValue"
+              },
+              "maxItems": 1024,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "avatar_id",
+        "profile_version",
+        "revision",
+        "captured_time_s",
+        "root_transform",
+        "measured_controls",
+        "contact_anchors",
+        "active_contacts",
+        "velocities",
+        "phase"
+      ],
+      "type": "object"
+    },
+    "RuntimeEntryBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "activation_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "predecessor_id": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "track_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "track_id",
+        "source_instance_id",
+        "activation_s",
+        "predecessor_id"
+      ],
+      "type": "object"
+    },
+    "SourceMapEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "clause_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "output_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "output_id",
+        "source_instance_ids",
+        "clause_ids"
+      ],
+      "type": "object"
+    },
+    "TimeInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "start_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "start_s",
+        "end_s"
+      ],
+      "type": "object"
+    },
+    "TrackSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "control_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "curve": {
+          "$ref": "#/$defs/CurveSpec"
+        },
+        "dimensions": {
+          "maximum": 16,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        },
+        "start_source": {
+          "enum": [
+            "explicit",
+            "measured_entry"
+          ]
+        },
+        "track_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "unit": {
+          "enum": [
+            "degree",
+            "metre",
+            "avatar_height",
+            "second",
+            "unitless",
+            "degree_per_second",
+            "metre_per_second",
+            "avatar_height_per_second"
+          ]
+        },
+        "value_shape": {
+          "enum": [
+            "scalar",
+            "vector",
+            "quaternion"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "track_id",
+        "source_instance_ids",
+        "control_id",
+        "unit",
+        "frame",
+        "value_shape",
+        "dimensions",
+        "curve",
+        "start_source",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "Transform": {
+      "additionalProperties": false,
+      "properties": {
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "orientation": {
+          "items": false,
+          "maxItems": 4,
+          "minItems": 4,
+          "prefixItems": [
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "position": {
+          "items": false,
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "unit": {
+          "enum": [
+            "metre"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "position",
+        "orientation",
+        "frame",
+        "unit"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:ExecutableMotion",
+  "$ref": "#/$defs/ExecutableMotion",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

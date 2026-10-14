@@ -1,0 +1,66 @@
+{
+  "$defs": {
+    "ChainOwnership": {
+      "additionalProperties": false,
+      "properties": {
+        "chain_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "chain_id",
+        "source_instance_ids",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "TimeInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "start_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "start_s",
+        "end_s"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:ChainOwnership",
+  "$ref": "#/$defs/ChainOwnership",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

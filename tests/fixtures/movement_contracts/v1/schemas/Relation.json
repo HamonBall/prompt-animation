@@ -1,0 +1,62 @@
+{
+  "$defs": {
+    "Relation": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "after",
+            "parallel",
+            "after_event"
+          ]
+        },
+        "offset_s": {
+          "maximum": 60,
+          "minimum": -60,
+          "type": "number"
+        },
+        "relation_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_event": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_instance_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "target_instance_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "relation_id",
+        "kind",
+        "source_instance_id",
+        "target_instance_id",
+        "offset_s",
+        "source_event"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:Relation",
+  "$ref": "#/$defs/Relation",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

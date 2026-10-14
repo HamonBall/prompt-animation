@@ -1,0 +1,21 @@
+{
+  "base_revision": 6,
+  "instance_changes": [
+    {
+      "instance_id": "turn.2",
+      "parameters": [
+        {
+          "name": "angle",
+          "schema_version": 1,
+          "value": 20
+        }
+      ],
+      "schema_version": 1
+    }
+  ],
+  "locked_goal_ids": [
+    "goal.1"
+  ],
+  "recipe_id": "recipe.sequence",
+  "schema_version": 1
+}

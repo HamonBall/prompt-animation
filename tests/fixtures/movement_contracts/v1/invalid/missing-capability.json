@@ -1,0 +1,152 @@
+{
+  "avatar_id": "test.avatar",
+  "calibration_provenance": {
+    "evidence": [
+      "tests/test_movement_contracts.py"
+    ],
+    "method": "Synthetic test profile only",
+    "recorded_at": "2026-10-14",
+    "schema_version": 1,
+    "source_revision": "test-source-v1"
+  },
+  "canonical_frames": [
+    "world",
+    "entry_body",
+    "current_root",
+    "current_torso",
+    "current_pelvis",
+    "joint:head"
+  ],
+  "capabilities": [],
+  "controls": [
+    {
+      "capability": "head.turn",
+      "chain": "head",
+      "dimensions": 1,
+      "frames": [
+        "joint:head"
+      ],
+      "id": "head.yaw",
+      "schema_version": 1,
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "capability": "endpoint.left",
+      "chain": "arm.left",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "id": "hand.left.target",
+      "schema_version": 1,
+      "unit": "metre",
+      "value_shape": "vector"
+    },
+    {
+      "capability": "root.orient",
+      "chain": "root",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "id": "root.orientation",
+      "schema_version": 1,
+      "unit": "unitless",
+      "value_shape": "quaternion"
+    }
+  ],
+  "height_m": 1.8,
+  "joint_limits": [
+    {
+      "control_id": "head.yaw",
+      "maximum": 70,
+      "measurement_method": "Synthetic test bounds; no anatomical calibration",
+      "minimum": -70,
+      "mirror_control_id": null,
+      "mirror_sign": 1,
+      "positive_axis": [
+        0,
+        0,
+        1
+      ],
+      "preferred_maximum": 45,
+      "preferred_minimum": -45,
+      "schema_version": 1,
+      "zero": 0
+    }
+  ],
+  "landmarks": [
+    {
+      "frame": "world",
+      "id": "foot.left",
+      "joint_id": "root",
+      "position": [
+        -0.1,
+        0,
+        0
+      ],
+      "schema_version": 1,
+      "unit": "metre"
+    }
+  ],
+  "lengths": [
+    {
+      "id": "arm.left",
+      "schema_version": 1,
+      "value_m": 0.65
+    }
+  ],
+  "rest_to_semantic_mappings": [
+    {
+      "parent_id": null,
+      "rest_to_semantic": {
+        "frame": "world",
+        "orientation": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "position": [
+          0,
+          0,
+          0
+        ],
+        "schema_version": 1,
+        "unit": "metre"
+      },
+      "schema_version": 1,
+      "semantic_id": "root",
+      "source_bones": [
+        "Synthetic Root"
+      ]
+    },
+    {
+      "parent_id": "root",
+      "rest_to_semantic": {
+        "frame": "world",
+        "orientation": [
+          1,
+          0,
+          0,
+          0
+        ],
+        "position": [
+          0,
+          0,
+          1.6
+        ],
+        "schema_version": 1,
+        "unit": "metre"
+      },
+      "schema_version": 1,
+      "semantic_id": "head",
+      "source_bones": [
+        "Synthetic Head"
+      ]
+    }
+  ],
+  "schema_version": 1,
+  "version": 1
+}

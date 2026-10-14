@@ -1,0 +1,62 @@
+{
+  "$defs": {
+    "ClauseCoverage": {
+      "additionalProperties": false,
+      "properties": {
+        "clause_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "explanation": {
+          "anyOf": [
+            {
+              "maxLength": 2000,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_clause": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "fulfilled",
+            "approximated",
+            "unsupported"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "clause_id",
+        "source_clause",
+        "status",
+        "source_instance_ids",
+        "explanation"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:ClauseCoverage",
+  "$ref": "#/$defs/ClauseCoverage",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

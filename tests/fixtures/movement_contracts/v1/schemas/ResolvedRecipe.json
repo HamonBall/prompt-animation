@@ -1,0 +1,979 @@
+{
+  "$defs": {
+    "ChainOwnership": {
+      "additionalProperties": false,
+      "properties": {
+        "chain_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "chain_id",
+        "source_instance_ids",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "ClauseCoverage": {
+      "additionalProperties": false,
+      "properties": {
+        "clause_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "explanation": {
+          "anyOf": [
+            {
+              "maxLength": 2000,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_clause": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "fulfilled",
+            "approximated",
+            "unsupported"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "clause_id",
+        "source_clause",
+        "status",
+        "source_instance_ids",
+        "explanation"
+      ],
+      "type": "object"
+    },
+    "ContactEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "acquire_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "anchor_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "clearance_m": {
+          "maximum": 0.2,
+          "minimum": 0,
+          "type": "number"
+        },
+        "event_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "release_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        },
+        "surface_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "source_instance_ids",
+        "anchor_id",
+        "surface_id",
+        "interval",
+        "acquire_s",
+        "release_s",
+        "clearance_m"
+      ],
+      "type": "object"
+    },
+    "ControlValue": {
+      "additionalProperties": false,
+      "properties": {
+        "control_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "unit": {
+          "enum": [
+            "degree",
+            "metre",
+            "avatar_height",
+            "second",
+            "unitless",
+            "degree_per_second",
+            "metre_per_second",
+            "avatar_height_per_second"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "control_id",
+        "unit",
+        "frame",
+        "value"
+      ],
+      "type": "object"
+    },
+    "GoalSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "clause_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "goal_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "locked": {
+          "type": "boolean"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/ControlValue"
+        },
+        "tolerance": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "goal_id",
+        "clause_id",
+        "target",
+        "interval",
+        "tolerance",
+        "locked"
+      ],
+      "type": "object"
+    },
+    "LoopSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "angular_velocity_tolerance_deg_s": {
+          "maximum": 10,
+          "minimum": 0,
+          "type": "number"
+        },
+        "endpoint_tolerance_m": {
+          "maximum": 0.01,
+          "minimum": 0,
+          "type": "number"
+        },
+        "per_cycle_root_transform": {
+          "$ref": "#/$defs/Transform"
+        },
+        "pose_tolerance_deg": {
+          "maximum": 3,
+          "minimum": 0,
+          "type": "number"
+        },
+        "repetitions": {
+          "maximum": 128,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "repetitions",
+        "per_cycle_root_transform",
+        "pose_tolerance_deg",
+        "endpoint_tolerance_m",
+        "angular_velocity_tolerance_deg_s"
+      ],
+      "type": "object"
+    },
+    "MotionRecipe": {
+      "additionalProperties": false,
+      "properties": {
+        "avatar_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "base_revision": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "clause_coverage": {
+          "items": {
+            "$ref": "#/$defs/ClauseCoverage"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        },
+        "hard_goals": {
+          "items": {
+            "$ref": "#/$defs/GoalSpec"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "instances": {
+          "items": {
+            "$ref": "#/$defs/MovementInstance"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        },
+        "loop": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LoopSpec"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "operation": {
+          "enum": [
+            "new",
+            "edit",
+            "append"
+          ]
+        },
+        "optional_styles": {
+          "items": {
+            "$ref": "#/$defs/StyleRequest"
+          },
+          "maxItems": 16,
+          "type": "array"
+        },
+        "profile_version": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "recipe_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "relations": {
+          "items": {
+            "$ref": "#/$defs/Relation"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "recipe_id",
+        "avatar_id",
+        "profile_version",
+        "base_revision",
+        "operation",
+        "instances",
+        "relations",
+        "hard_goals",
+        "optional_styles",
+        "loop",
+        "clause_coverage"
+      ],
+      "type": "object"
+    },
+    "MovementInstance": {
+      "additionalProperties": false,
+      "properties": {
+        "clause_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "definition_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "definition_version": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "explicit_parameters": {
+          "anyOf": [
+            {
+              "items": {
+                "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+                "type": "string"
+              },
+              "maxItems": 128,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "instance_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "parameters": {
+          "items": {
+            "$ref": "#/$defs/ParameterValue"
+          },
+          "maxItems": 64,
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "instance_id",
+        "definition_id",
+        "definition_version",
+        "parameters",
+        "clause_ids",
+        "explicit_parameters"
+      ],
+      "type": "object"
+    },
+    "ParameterBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "instance_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "parameter_name": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "predecessor_id": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source": {
+          "enum": [
+            "explicit",
+            "measured_exit"
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "instance_id",
+        "parameter_name",
+        "source",
+        "value",
+        "predecessor_id"
+      ],
+      "type": "object"
+    },
+    "ParameterValue": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "name",
+        "value"
+      ],
+      "type": "object"
+    },
+    "Relation": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "after",
+            "parallel",
+            "after_event"
+          ]
+        },
+        "offset_s": {
+          "maximum": 60,
+          "minimum": -60,
+          "type": "number"
+        },
+        "relation_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_event": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_instance_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "target_instance_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "relation_id",
+        "kind",
+        "source_instance_id",
+        "target_instance_id",
+        "offset_s",
+        "source_event"
+      ],
+      "type": "object"
+    },
+    "ResolvedRecipe": {
+      "additionalProperties": false,
+      "properties": {
+        "merged_contacts": {
+          "items": {
+            "$ref": "#/$defs/ContactEvent"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "ownership": {
+          "items": {
+            "$ref": "#/$defs/ChainOwnership"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "parameter_bindings": {
+          "items": {
+            "$ref": "#/$defs/ParameterBinding"
+          },
+          "maxItems": 8192,
+          "type": "array"
+        },
+        "recipe": {
+          "$ref": "#/$defs/MotionRecipe"
+        },
+        "scheduled_instances": {
+          "items": {
+            "$ref": "#/$defs/ScheduledInstance"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_map": {
+          "items": {
+            "$ref": "#/$defs/SourceMapEntry"
+          },
+          "maxItems": 512,
+          "type": "array"
+        },
+        "transitions": {
+          "items": {
+            "$ref": "#/$defs/MovementInstance"
+          },
+          "maxItems": 128,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "recipe",
+        "scheduled_instances",
+        "ownership",
+        "transitions",
+        "merged_contacts",
+        "parameter_bindings",
+        "source_map"
+      ],
+      "type": "object"
+    },
+    "ScheduledInstance": {
+      "additionalProperties": false,
+      "properties": {
+        "instance_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "interval": {
+          "$ref": "#/$defs/TimeInterval"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "instance_id",
+        "interval"
+      ],
+      "type": "object"
+    },
+    "SourceMapEntry": {
+      "additionalProperties": false,
+      "properties": {
+        "clause_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "output_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "output_id",
+        "source_instance_ids",
+        "clause_ids"
+      ],
+      "type": "object"
+    },
+    "StyleRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "clause_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "definition_version": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "explicit_parameters": {
+          "anyOf": [
+            {
+              "items": {
+                "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+                "type": "string"
+              },
+              "maxItems": 128,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "parameters": {
+          "items": {
+            "$ref": "#/$defs/ParameterValue"
+          },
+          "maxItems": 64,
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "style_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "target_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "style_id",
+        "definition_version",
+        "parameters",
+        "target_instance_ids",
+        "clause_ids",
+        "explicit_parameters"
+      ],
+      "type": "object"
+    },
+    "TimeInterval": {
+      "additionalProperties": false,
+      "properties": {
+        "end_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "start_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "start_s",
+        "end_s"
+      ],
+      "type": "object"
+    },
+    "Transform": {
+      "additionalProperties": false,
+      "properties": {
+        "frame": {
+          "pattern": "(world|entry_body|current_root|current_torso|current_pelvis|joint:[A-Za-z0-9][A-Za-z0-9_.-]{0,95}|surface:[A-Za-z0-9][A-Za-z0-9_.-]{0,95})",
+          "type": "string"
+        },
+        "orientation": {
+          "items": false,
+          "maxItems": 4,
+          "minItems": 4,
+          "prefixItems": [
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "position": {
+          "items": false,
+          "maxItems": 3,
+          "minItems": 3,
+          "prefixItems": [
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            }
+          ],
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "unit": {
+          "enum": [
+            "metre"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "position",
+        "orientation",
+        "frame",
+        "unit"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:ResolvedRecipe",
+  "$ref": "#/$defs/ResolvedRecipe",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

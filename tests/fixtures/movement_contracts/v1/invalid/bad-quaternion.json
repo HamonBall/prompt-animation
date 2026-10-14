@@ -1,0 +1,51 @@
+{
+  "active_contacts": [
+    "foot.left"
+  ],
+  "avatar_id": "test.avatar",
+  "captured_time_s": 0,
+  "contact_anchors": [
+    {
+      "anchor_id": "foot.left",
+      "frame": "world",
+      "position": [
+        -0.1,
+        0,
+        0
+      ],
+      "schema_version": 1,
+      "surface_id": "floor",
+      "unit": "metre"
+    }
+  ],
+  "measured_controls": [
+    {
+      "control_id": "head.yaw",
+      "frame": "joint:head",
+      "schema_version": 1,
+      "unit": "degree",
+      "value": -10
+    }
+  ],
+  "phase": null,
+  "profile_version": 1,
+  "revision": 7,
+  "root_transform": {
+    "frame": "world",
+    "orientation": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "position": [
+      0,
+      0,
+      0
+    ],
+    "schema_version": 1,
+    "unit": "metre"
+  },
+  "schema_version": 1,
+  "velocities": null
+}

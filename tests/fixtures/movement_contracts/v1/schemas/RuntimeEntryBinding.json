@@ -1,0 +1,49 @@
+{
+  "$defs": {
+    "RuntimeEntryBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "activation_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        },
+        "predecessor_id": {
+          "anyOf": [
+            {
+              "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "track_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "track_id",
+        "source_instance_id",
+        "activation_s",
+        "predecessor_id"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:RuntimeEntryBinding",
+  "$ref": "#/$defs/RuntimeEntryBinding",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

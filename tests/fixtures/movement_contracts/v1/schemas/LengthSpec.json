@@ -1,0 +1,32 @@
+{
+  "$defs": {
+    "LengthSpec": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "value_m": {
+          "maximum": 20,
+          "minimum": 1e-09,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "value_m"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:LengthSpec",
+  "$ref": "#/$defs/LengthSpec",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

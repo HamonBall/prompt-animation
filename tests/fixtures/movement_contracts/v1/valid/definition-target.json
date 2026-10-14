@@ -1,0 +1,59 @@
+{
+  "builder_id": "test.builder",
+  "contact_requirements": [],
+  "description": "Test-only endpoint contract",
+  "entry_conditions": [],
+  "exit_expectations": [],
+  "id": "test.target",
+  "kind": "limb",
+  "named_neutral": null,
+  "owned_chains": [
+    "arm.left"
+  ],
+  "parameter_specs": [
+    {
+      "capability": null,
+      "control_id": "hand.left.target",
+      "default": null,
+      "dimensions": 3,
+      "enum_values": [],
+      "frame": "world",
+      "has_default": false,
+      "maximum": 20,
+      "minimum": -20,
+      "name": "target",
+      "nullable": false,
+      "required": true,
+      "schema_version": 1,
+      "type": "vector",
+      "unit": "metre"
+    },
+    {
+      "capability": null,
+      "control_id": null,
+      "default": 1,
+      "dimensions": null,
+      "enum_values": [],
+      "frame": null,
+      "has_default": true,
+      "maximum": 8,
+      "minimum": 0.2,
+      "name": "duration_s",
+      "nullable": false,
+      "required": false,
+      "schema_version": 1,
+      "type": "number",
+      "unit": "second"
+    }
+  ],
+  "phase_events": [],
+  "required_capabilities": [
+    "endpoint.left"
+  ],
+  "return_policy": "preserve_end",
+  "schema_version": 1,
+  "semantic_tags": [
+    "test_only"
+  ],
+  "version": 1
+}

@@ -1,0 +1,38 @@
+{
+  "builder_id": "test.builder",
+  "contact_requirements": [],
+  "description": "Test-only style metadata",
+  "entry_conditions": [],
+  "exit_expectations": [],
+  "id": "test.style",
+  "kind": "style",
+  "named_neutral": null,
+  "owned_chains": [],
+  "parameter_specs": [
+    {
+      "capability": null,
+      "control_id": null,
+      "default": 0.5,
+      "dimensions": null,
+      "enum_values": [],
+      "frame": null,
+      "has_default": true,
+      "maximum": 1,
+      "minimum": 0,
+      "name": "amount",
+      "nullable": false,
+      "required": false,
+      "schema_version": 1,
+      "type": "number",
+      "unit": "unitless"
+    }
+  ],
+  "phase_events": [],
+  "required_capabilities": [],
+  "return_policy": "preserve_end",
+  "schema_version": 1,
+  "semantic_tags": [
+    "test_only"
+  ],
+  "version": 1
+}

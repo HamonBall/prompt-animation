@@ -1,0 +1,39 @@
+{
+  "$defs": {
+    "SupportRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "anchor_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "mode": {
+          "enum": [
+            "available",
+            "active",
+            "inactive"
+          ]
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "surface_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "anchor_id",
+        "surface_id",
+        "mode"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:SupportRequirement",
+  "$ref": "#/$defs/SupportRequirement",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

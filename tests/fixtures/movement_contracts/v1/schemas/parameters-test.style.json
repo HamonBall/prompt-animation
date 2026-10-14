@@ -1,0 +1,17 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "amount": {
+      "default": 0.5,
+      "maximum": 1,
+      "minimum": 0,
+      "type": "number",
+      "x-capability": null,
+      "x-control-id": null,
+      "x-frame": null,
+      "x-unit": "unitless"
+    }
+  },
+  "required": [],
+  "type": "object"
+}

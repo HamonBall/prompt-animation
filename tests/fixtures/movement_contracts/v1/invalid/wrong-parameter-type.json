@@ -1,0 +1,109 @@
+{
+  "avatar_id": "test.avatar",
+  "base_revision": 7,
+  "clause_coverage": [
+    {
+      "clause_id": "clause.1",
+      "explanation": null,
+      "schema_version": 1,
+      "source_clause": "Turn to zero",
+      "source_instance_ids": [
+        "turn.1"
+      ],
+      "status": "fulfilled"
+    },
+    {
+      "clause_id": "clause.2",
+      "explanation": null,
+      "schema_version": 1,
+      "source_clause": "Then turn to 25 degrees",
+      "source_instance_ids": [
+        "turn.2"
+      ],
+      "status": "fulfilled"
+    }
+  ],
+  "hard_goals": [
+    {
+      "clause_id": "clause.1",
+      "goal_id": "goal.1",
+      "interval": {
+        "end_s": 1,
+        "schema_version": 1,
+        "start_s": 0.8
+      },
+      "locked": true,
+      "schema_version": 1,
+      "target": {
+        "control_id": "head.yaw",
+        "frame": "joint:head",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      "tolerance": 3
+    }
+  ],
+  "instances": [
+    {
+      "clause_ids": [
+        "clause.1"
+      ],
+      "definition_id": "test.turn",
+      "definition_version": 1,
+      "explicit_parameters": [
+        "angle"
+      ],
+      "instance_id": "turn.1",
+      "parameters": [
+        {
+          "name": "angle",
+          "schema_version": 1,
+          "value": "left"
+        }
+      ],
+      "schema_version": 1
+    },
+    {
+      "clause_ids": [
+        "clause.2"
+      ],
+      "definition_id": "test.turn",
+      "definition_version": 1,
+      "explicit_parameters": [
+        "angle"
+      ],
+      "instance_id": "turn.2",
+      "parameters": [
+        {
+          "name": "angle",
+          "schema_version": 1,
+          "value": 25
+        },
+        {
+          "name": "duration_s",
+          "schema_version": 1,
+          "value": 1
+        }
+      ],
+      "schema_version": 1
+    }
+  ],
+  "loop": null,
+  "operation": "new",
+  "optional_styles": [],
+  "profile_version": 1,
+  "recipe_id": "recipe.sequence",
+  "relations": [
+    {
+      "kind": "after",
+      "offset_s": 0,
+      "relation_id": "relation.1",
+      "schema_version": 1,
+      "source_event": null,
+      "source_instance_id": "turn.1",
+      "target_instance_id": "turn.2"
+    }
+  ],
+  "schema_version": 1
+}
