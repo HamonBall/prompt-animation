@@ -1,0 +1,28 @@
+{
+  "api_version": 1,
+  "bounds": {
+    "fps": 30,
+    "max_contacts": 256,
+    "max_samples": 1801,
+    "max_seconds": 60,
+    "max_tracks": 256
+  },
+  "catalog": "test-only; production catalog remains empty",
+  "entry_setup_fixtures": [
+    "entry-neutral.json",
+    "entry-bent-turned.json"
+  ],
+  "invalid_fixtures": {
+    "invalid-frame.json": "INVALID_PARAMETER",
+    "invalid-number.json": "INVALID_SCHEMA",
+    "over-budget.json": "RESOURCE_LIMIT"
+  },
+  "legacy_source_revision": "7fbec2c12a6d9312835125d68cadba44f0bbf277",
+  "record_fixtures": {
+    "entry-snapshot.json": "MotionStateSnapshot",
+    "executable.json": "ExecutableMotion",
+    "fragment.json": "MotionFragment",
+    "instance.json": "MovementInstance"
+  },
+  "schema_version": 1
+}

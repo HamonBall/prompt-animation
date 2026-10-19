@@ -1,0 +1,20 @@
+{
+  "clause_ids": [],
+  "definition_id": "test.head_transition",
+  "definition_version": 1,
+  "explicit_parameters": [],
+  "instance_id": "preview.1",
+  "parameters": [
+    {
+      "name": "angle",
+      "schema_version": 1,
+      "value": 25
+    },
+    {
+      "name": "duration_s",
+      "schema_version": 1,
+      "value": 1.2
+    }
+  ],
+  "schema_version": 1
+}

@@ -4,6 +4,8 @@ import math
 import bpy
 from mathutils import Matrix, Quaternion, Vector
 from ..models import PlanError
+from ..movement_library.contracts import ExecutableMotion, to_dict
+from .primitive import FragmentAdapter
 from ..motion import ActionPlan, validate_action, sample_controls, schedule, blend_control
 from ..pose import LIMITS, PosePlan, validate_pose, serialize_pose
 from .pose import target_pose, axes, position_hand, ground_pose, frame_transition, rotate_bone, contacts
@@ -359,242 +361,253 @@ def compose_frame(plan, time, starting, baselines, measured):
     return values
 
 
-def bake_candidate_frames(handle, plan, repair_floor, progress):
+def bake_candidate_frames(handle, plan, repair_floor, progress, profile=None):
     rig, scene = handle.rig, handle.scene
-    action = bpy.data.actions.new(f'Avatar motion r{plan.revision}')
+    typed = isinstance(plan, ExecutableMotion)
+    adapter = FragmentAdapter(handle, plan, profile) if typed else None
+    revision = plan.entry_snapshot.revision if typed else plan.revision
+    action = bpy.data.actions.new(f'Avatar motion r{revision}')
     rig.animation_data.action = action
     try:
-        target_pose(handle, PosePlan())
-        neutral_feet = {side: handle.bones[side + 'Foot'].head.copy() for side in ('Left', 'Right')}
-        neutral_rotation = {side: handle.bones[side + 'Foot'].matrix.to_quaternion() for side in neutral_feet}
-        handle._palm_frames = {side: palm_frame(handle, side) for side in ('Left', 'Right')}
-        palm_padding = {}
-        for side in ('Left', 'Right'):
-            hand = handle.bones[side+'Hand']
-            basis = hand.matrix_basis.copy()
-            hand.matrix = Matrix.Translation(hand.head) @ handle._palm_frames[side].to_matrix().to_4x4()
-            bpy.context.view_layer.update()
-            padding = (rig.matrix_world @ hand.head).z - support_skin_height(handle, side.lower()+'_hand')
-            if math.isfinite(padding):
-                palm_padding[side.lower()+'_hand'] = max(.005, padding)
-            hand.matrix_basis = basis
-            bpy.context.view_layer.update()
-        control_origin = handle.bones['Hips'].head.copy()
-        target_pose(handle, plan.initial)
-        initial_support = contacts(plan.initial)
-        initial_values = dict(plan.initial.values)
-        starting_feet = {side: (handle.bones[side+'Foot'].head.copy()
-                               if side.lower()+'_foot_target_side' in initial_values else neutral_feet[side])
-                         for side in ('Left', 'Right')}
-        for side in initial_support:
-            solve_leg(handle, side, starting_feet[side])
-            foot = handle.bones[side + 'Foot']
-            foot.matrix = Matrix.Translation(foot.head) @ neutral_rotation[side].to_matrix().to_4x4()
-            bpy.context.view_layer.update()
-        if not initial_support:
-            ground_pose(handle, settle=bool(plan.initial.get('grounding', 1)))
-        origin = handle.bones['Hips'].head.copy()
-        world_height = (rig.matrix_world.to_3x3() @ (handle.up * handle.height)).length
-        floor = {s.name: s.height for s in plan.surfaces}
-        right, forward, up = axes(handle)
-        rest_feet = {side: handle.bones[side.title() + 'Foot'].matrix.to_quaternion()
-                     for side in ('left', 'right')}
-        from ..motion import ContactConstraint
-        cached = {}
-        entry_anchors = {}
-        foot_padding = {}
-        elbow_poles = {side: handle.bones[side+'ForeArm'].head.copy() for side in ('Left', 'Right')}
-        last_anchor = {side.lower() + '_foot': (0.0, ContactConstraint(side.lower() + '_foot'),
-                                               starting_feet[side], neutral_rotation[side])
-                       for side in initial_support}
-        samples = []
-        # New wrist movement starts from measured coordinates at activation.
-        # Future wrist targets must not constrain the preceding crouch.
-        initial = dict(plan.initial.values)
-        sampling_plan = plan
-        baselines = {}
-        measured = measured_controls(handle, initial, control_origin)
-        count = math.ceil(plan.duration * plan.fps)
+        if typed:
+            samples = []
+            count = math.ceil(plan.duration_s * plan.fps)
+            world_height = profile.height_m
+        else:
+            target_pose(handle, PosePlan())
+            neutral_feet = {side: handle.bones[side + 'Foot'].head.copy() for side in ('Left', 'Right')}
+            neutral_rotation = {side: handle.bones[side + 'Foot'].matrix.to_quaternion() for side in neutral_feet}
+            handle._palm_frames = {side: palm_frame(handle, side) for side in ('Left', 'Right')}
+            palm_padding = {}
+            for side in ('Left', 'Right'):
+                hand = handle.bones[side+'Hand']
+                basis = hand.matrix_basis.copy()
+                hand.matrix = Matrix.Translation(hand.head) @ handle._palm_frames[side].to_matrix().to_4x4()
+                bpy.context.view_layer.update()
+                padding = (rig.matrix_world @ hand.head).z - support_skin_height(handle, side.lower()+'_hand')
+                if math.isfinite(padding):
+                    palm_padding[side.lower()+'_hand'] = max(.005, padding)
+                hand.matrix_basis = basis
+                bpy.context.view_layer.update()
+            control_origin = handle.bones['Hips'].head.copy()
+            target_pose(handle, plan.initial)
+            initial_support = contacts(plan.initial)
+            initial_values = dict(plan.initial.values)
+            starting_feet = {side: (handle.bones[side+'Foot'].head.copy()
+                                   if side.lower()+'_foot_target_side' in initial_values else neutral_feet[side])
+                             for side in ('Left', 'Right')}
+            for side in initial_support:
+                solve_leg(handle, side, starting_feet[side])
+                foot = handle.bones[side + 'Foot']
+                foot.matrix = Matrix.Translation(foot.head) @ neutral_rotation[side].to_matrix().to_4x4()
+                bpy.context.view_layer.update()
+            if not initial_support:
+                ground_pose(handle, settle=bool(plan.initial.get('grounding', 1)))
+            origin = handle.bones['Hips'].head.copy()
+            world_height = (rig.matrix_world.to_3x3() @ (handle.up * handle.height)).length
+            floor = {s.name: s.height for s in plan.surfaces}
+            right, forward, up = axes(handle)
+            rest_feet = {side: handle.bones[side.title() + 'Foot'].matrix.to_quaternion()
+                         for side in ('left', 'right')}
+            from ..motion import ContactConstraint
+            cached = {}
+            entry_anchors = {}
+            foot_padding = {}
+            elbow_poles = {side: handle.bones[side+'ForeArm'].head.copy() for side in ('Left', 'Right')}
+            last_anchor = {side.lower() + '_foot': (0.0, ContactConstraint(side.lower() + '_foot'),
+                                                   starting_feet[side], neutral_rotation[side])
+                           for side in initial_support}
+            samples = []
+            # New wrist movement starts from measured coordinates at activation.
+            # Future wrist targets must not constrain the preceding crouch.
+            initial = dict(plan.initial.values)
+            sampling_plan = plan
+            baselines = {}
+            measured = measured_controls(handle, initial, control_origin)
+            count = math.ceil(plan.duration * plan.fps)
         for i in range(count + 1):
             handle._skin_cache_enabled = True
             handle._skin_signature = None
             frame = i + 1
             scene.frame_set(frame)
-            time = min(plan.duration, i / plan.fps)
-            values = compose_frame(sampling_plan, time, initial, baselines, measured)
-            # At the first frame wrist chains may be exactly straight; use the rest pose.
-            if not i:
-                values = dict(measured)
-                for key in list(values):
-                    if '_target_' in key and key not in dict(plan.initial.values):
-                        values.pop(key)
-            target_pose(handle, PosePlan(tuple(sorted(values.items())), 'none'))
-            desired_rotations = observed_rotations(handle)
-            active = active_contacts(plan, time)
-            for key, c, begin, end in active:
-                if key not in cached:
-                    bone = handle.bones[PART_BONES[c.part]]
-                    entry_anchors[key] = bone.head.copy()
-                    target = bone.head.copy()
-                    old = last_anchor.get(c.part)
-                    if old and abs(old[0] - begin) < 1e-6 and old[1].surface == c.surface and old[1].position == c.position:
-                        target = old[2].copy()
-                    elif c.position is not None:
-                        target = origin + handle.height * (right * c.position[0] + forward * c.position[1])
-                    world = rig.matrix_world @ target
-                    surface = next(s for s in plan.surfaces if s.name == c.surface)
-                    if c.position is None and c.part in ('pelvis', 'back') and surface.center:
-                        world.x, world.y = surface.center
-                        if c.part == 'pelvis':
-                            facing = (rig.matrix_world.to_3x3() @ forward).normalized()
-                            extent = (surface.size[0]*abs(facing.x) + surface.size[1]*abs(facing.y))/2
-                            # The pelvis sits on the forward half: centering the
-                            # hip joint lets descending thighs pass through a
-                            # high seat before the knee clears its front edge.
-                            world += facing * extent * .55
-                    if c.part.endswith('_foot'):
-                        # Preserve the neutral ankle-to-sole offset on every
-                        # surface; an elevated incoming foot is not floor support.
-                        rest = handle.bones[c.part.split('_')[0].title() + 'Foot'].bone.head_local
-                        world.z = floor[c.surface] + (rig.matrix_world @ rest).z
-                    else:
-                        world.z = floor[c.surface] + (palm_padding.get(c.part, c.clearance*world_height)
-                                                     if c.part.endswith('_hand') else c.clearance*world_height)
-                    target = rig.matrix_world.inverted() @ world
-                    orientation = rest_feet[c.part.split('_')[0]] if c.part.endswith('_foot') else bone.matrix.to_quaternion()
-                    cached[key] = target, orientation
-                target, orientation = cached[key]
-                last_anchor[c.part] = end, c, target, orientation
-            # Resolve torso supports before extremities so limb IK uses corrected hips.
-            active.sort(key=lambda item: 0 if item[1].part in ('pelvis', 'back') else 1)
-            strengths = {}
-            for key, c, begin, end in active:
-                if c.part not in ('pelvis', 'back') and not any(item[1].part.endswith('_foot') for item in active):
-                    minimum = support_floor(handle)
-                    if minimum < -.001:
-                        hips = handle.bones['Hips']
-                        matrix = hips.matrix.copy()
-                        matrix.translation += rig.matrix_world.inverted().to_3x3() @ Vector((0, 0, -minimum))
-                        hips.matrix = matrix
-                        bpy.context.view_layer.update()
-                target, orientation = cached[key]
-                strength = 1.0
-                if c.part in ('pelvis', 'back'):
-                    surface = next(s for s in plan.surfaces if s.name == c.surface)
-                    bone_world = rig.matrix_world @ handle.bones[PART_BONES[c.part]].head
-                    world = rig.matrix_world @ target
-                    offset = world.x-bone_world.x, world.y-bone_world.y
-                    # Only skin above the actual seat footprint can support it;
-                    # the lower end of a descending thigh may be outside it.
-                    skin = support_skin_height(handle, c.part, surface, offset)
-                    if math.isfinite(skin):
-                        # The skin offset changes as the body turns. Clearance
-                        # is a fallback hint, not a reason to float above a seat.
-                        world.z = floor[c.surface] + max(0.0, bone_world.z - skin)
-                        target = rig.matrix_world.inverted() @ world
-                        cached[key] = target, orientation
-                if c.part.endswith('_foot'):
-                    target = target + rig.matrix_world.inverted().to_3x3() @ Vector(
-                        (0, 0, foot_padding.get(c.part, 0)))
-                if not c.part.endswith('_foot'):
-                    ramp = min(c.acquire, end - begin)
-                    strength = min(1.0, max(0.0, (time - begin) / ramp))
-                    if c.part.endswith('_hand'):
-                        strength = min(strength, max(0.0, (end - time) / min(c.release, end-begin)))
-                    strength = contact_ease(strength)
-                    source = (entry_anchors[key] if c.part in ('pelvis', 'back') else
-                              handle.bones[PART_BONES[c.part]].head)
-                    target = source.lerp(target, strength)
-                strengths[key] = strength
-                if strength > 1e-6:
-                    set_contact(handle, c, target, orientation, strength,
-                                elbow_poles.get(c.part.split('_')[0].title()))
-            active_parts = {c.part for _, c, _, _ in active}
-            if active_parts & {'pelvis', 'back'} and not any(p.endswith('_foot') for p in active_parts):
-                # Collision avoidance continues after a supporting hand releases;
-                # ending a contact must not produce a one-frame solver jump.
-                for side in ('Left', 'Right'):
-                    if side.lower()+'_hand' not in active_parts:
-                        keep_hand_above_floor(handle, side, elbow_poles[side])
-            for part, (end, _, _, held_rotation) in last_anchor.items():
-                if part.endswith('_foot') and part not in active_parts and 0 <= time - end < .6:
-                    foot = handle.bones[PART_BONES[part]]
-                    weight = contact_ease((time - end) / .6)
-                    orientation = held_rotation.slerp(foot.matrix.to_quaternion(), weight)
-                    foot.matrix = Matrix.Translation(foot.head) @ orientation.to_matrix().to_4x4()
-                    bpy.context.view_layer.update()
-            partial_floor_support = (active and all(c.surface == 'floor' for _, c, _, _ in active)
-                                     and not any(strength >= .999 for strength in strengths.values()))
-            if not active or partial_floor_support:
-                # A support being approached has not attached yet. Grounded
-                # moves retain real skin contact through that handoff; explicit
-                # airborne stages still preserve their clearance.
-                ground_pose(handle, settle=bool(values.get('grounding', 1)))
-            surface_errors = {}
-            for surface in plan.surfaces:
-                if surface.name != 'floor':
-                    for _ in range(4):
-                        penetration = seat_penetration(handle, surface)
-                        if penetration <= .001:
-                            break
-                        hips = handle.bones['Hips']
-                        matrix = hips.matrix.copy()
-                        matrix.translation += rig.matrix_world.inverted().to_3x3() @ Vector((0, 0, penetration))
-                        hips.matrix = matrix
-                        bpy.context.view_layer.update()
-                        for key, c, _, _ in active:
-                            if c.part.endswith('_foot'):
-                                set_contact(handle, c, *cached[key])
-                    surface_errors[surface.name] = seat_penetration(handle, surface)
-            for _ in range(2 if repair_floor else 1):
-                if not active or mesh_floor(handle) >= -.001:
-                    break
-                penetration = -mesh_floor(handle)
-                ground_pose(handle, settle=False)
-                for key, c, _, _ in active:
-                    if c.part.endswith('_foot') or (c.part.endswith('_hand') and strengths[key] >= .999):
-                        target, orientation = cached[key]
+            if typed:
+                samples.append(adapter.step(min(plan.duration_s, i / plan.fps), frame))
+            else:
+                time = min(plan.duration, i / plan.fps)
+                values = compose_frame(sampling_plan, time, initial, baselines, measured)
+                # At the first frame wrist chains may be exactly straight; use the rest pose.
+                if not i:
+                    values = dict(measured)
+                    for key in list(values):
+                        if '_target_' in key and key not in dict(plan.initial.values):
+                            values.pop(key)
+                target_pose(handle, PosePlan(tuple(sorted(values.items())), 'none'))
+                desired_rotations = observed_rotations(handle)
+                active = active_contacts(plan, time)
+                for key, c, begin, end in active:
+                    if key not in cached:
+                        bone = handle.bones[PART_BONES[c.part]]
+                        entry_anchors[key] = bone.head.copy()
+                        target = bone.head.copy()
+                        old = last_anchor.get(c.part)
+                        if old and abs(old[0] - begin) < 1e-6 and old[1].surface == c.surface and old[1].position == c.position:
+                            target = old[2].copy()
+                        elif c.position is not None:
+                            target = origin + handle.height * (right * c.position[0] + forward * c.position[1])
+                        world = rig.matrix_world @ target
+                        surface = next(s for s in plan.surfaces if s.name == c.surface)
+                        if c.position is None and c.part in ('pelvis', 'back') and surface.center:
+                            world.x, world.y = surface.center
+                            if c.part == 'pelvis':
+                                facing = (rig.matrix_world.to_3x3() @ forward).normalized()
+                                extent = (surface.size[0]*abs(facing.x) + surface.size[1]*abs(facing.y))/2
+                                # The pelvis sits on the forward half: centering the
+                                # hip joint lets descending thighs pass through a
+                                # high seat before the knee clears its front edge.
+                                world += facing * extent * .55
                         if c.part.endswith('_foot'):
-                            foot_padding[c.part] = min(.02, foot_padding.get(c.part, 0) + penetration)
-                            lift = rig.matrix_world.inverted().to_3x3() @ Vector((0, 0, foot_padding[c.part]))
-                            target = target + lift
-                        if strengths[key] > 1e-6:
-                            set_contact(handle, c, target, orientation, strengths[key],
-                                        elbow_poles.get(c.part.split('_')[0].title()))
-            errors = {}
-            for key, c, _, _ in active:
-                if strengths[key] < .999:
-                    continue
-                delta = rig.matrix_world.to_3x3() @ (handle.bones[PART_BONES[c.part]].head - cached[key][0])
-                # Other skin can require a higher anchor after projection;
-                # the actual support gap is still checked independently.
-                if c.part in ('pelvis', 'back') or c.part.endswith('_hand'):
-                    delta.z = min(0.0, delta.z)
-                    surface = next(s for s in plan.surfaces if s.name == c.surface)
-                    skin_gap = abs(support_skin_height(handle, c.part, surface) - floor[c.surface])
-                    errors[c.part] = max(delta.length, skin_gap)
-                else:
-                    surface = next(s for s in plan.surfaces if s.name == c.surface)
-                    gap = abs(support_skin_height(handle, c.part, surface)-floor[c.surface])
-                    errors[c.part] = max(delta.length, gap)
-            stage_id = next((s.id for s, start, end in reversed(schedule(plan))
-                             if start <= time <= end), '')
-            samples.append(capture_sample(handle, frame, stage_id, errors))
-            samples[-1]['surfaces'] = surface_errors
-            measured = measured_controls(handle, values, control_origin)
-            samples[-1]['planned_controls'] = dict(values)
-            samples[-1]['controls'] = dict(measured)
-            # Expected body rotations come from the requested values, not from
-            # the same rig measurements that are being validated.
-            from .pose import rotation
-            requested = PosePlan(tuple(values.items()))
-            rq = rotation(requested, 'root', axes(handle))
-            tq = rotation(requested, 'torso', axes(handle, rq))
-            hq = rotation(requested, 'head', tuple(tq @ v for v in axes(handle, rq)))
-            desired_rotations.update(root=rq, torso=tq, head=hq)
-            samples[-1]['desired_rotations'] = desired_rotations
-            samples[-1]['actual_rotations'] = observed_rotations(handle)
-            elbow_poles = {side: handle.bones[side+'ForeArm'].head.copy() for side in ('Left', 'Right')}
+                            # Preserve the neutral ankle-to-sole offset on every
+                            # surface; an elevated incoming foot is not floor support.
+                            rest = handle.bones[c.part.split('_')[0].title() + 'Foot'].bone.head_local
+                            world.z = floor[c.surface] + (rig.matrix_world @ rest).z
+                        else:
+                            world.z = floor[c.surface] + (palm_padding.get(c.part, c.clearance*world_height)
+                                                         if c.part.endswith('_hand') else c.clearance*world_height)
+                        target = rig.matrix_world.inverted() @ world
+                        orientation = rest_feet[c.part.split('_')[0]] if c.part.endswith('_foot') else bone.matrix.to_quaternion()
+                        cached[key] = target, orientation
+                    target, orientation = cached[key]
+                    last_anchor[c.part] = end, c, target, orientation
+                # Resolve torso supports before extremities so limb IK uses corrected hips.
+                active.sort(key=lambda item: 0 if item[1].part in ('pelvis', 'back') else 1)
+                strengths = {}
+                for key, c, begin, end in active:
+                    if c.part not in ('pelvis', 'back') and not any(item[1].part.endswith('_foot') for item in active):
+                        minimum = support_floor(handle)
+                        if minimum < -.001:
+                            hips = handle.bones['Hips']
+                            matrix = hips.matrix.copy()
+                            matrix.translation += rig.matrix_world.inverted().to_3x3() @ Vector((0, 0, -minimum))
+                            hips.matrix = matrix
+                            bpy.context.view_layer.update()
+                    target, orientation = cached[key]
+                    strength = 1.0
+                    if c.part in ('pelvis', 'back'):
+                        surface = next(s for s in plan.surfaces if s.name == c.surface)
+                        bone_world = rig.matrix_world @ handle.bones[PART_BONES[c.part]].head
+                        world = rig.matrix_world @ target
+                        offset = world.x-bone_world.x, world.y-bone_world.y
+                        # Only skin above the actual seat footprint can support it;
+                        # the lower end of a descending thigh may be outside it.
+                        skin = support_skin_height(handle, c.part, surface, offset)
+                        if math.isfinite(skin):
+                            # The skin offset changes as the body turns. Clearance
+                            # is a fallback hint, not a reason to float above a seat.
+                            world.z = floor[c.surface] + max(0.0, bone_world.z - skin)
+                            target = rig.matrix_world.inverted() @ world
+                            cached[key] = target, orientation
+                    if c.part.endswith('_foot'):
+                        target = target + rig.matrix_world.inverted().to_3x3() @ Vector(
+                            (0, 0, foot_padding.get(c.part, 0)))
+                    if not c.part.endswith('_foot'):
+                        ramp = min(c.acquire, end - begin)
+                        strength = min(1.0, max(0.0, (time - begin) / ramp))
+                        if c.part.endswith('_hand'):
+                            strength = min(strength, max(0.0, (end - time) / min(c.release, end-begin)))
+                        strength = contact_ease(strength)
+                        source = (entry_anchors[key] if c.part in ('pelvis', 'back') else
+                                  handle.bones[PART_BONES[c.part]].head)
+                        target = source.lerp(target, strength)
+                    strengths[key] = strength
+                    if strength > 1e-6:
+                        set_contact(handle, c, target, orientation, strength,
+                                    elbow_poles.get(c.part.split('_')[0].title()))
+                active_parts = {c.part for _, c, _, _ in active}
+                if active_parts & {'pelvis', 'back'} and not any(p.endswith('_foot') for p in active_parts):
+                    # Collision avoidance continues after a supporting hand releases;
+                    # ending a contact must not produce a one-frame solver jump.
+                    for side in ('Left', 'Right'):
+                        if side.lower()+'_hand' not in active_parts:
+                            keep_hand_above_floor(handle, side, elbow_poles[side])
+                for part, (end, _, _, held_rotation) in last_anchor.items():
+                    if part.endswith('_foot') and part not in active_parts and 0 <= time - end < .6:
+                        foot = handle.bones[PART_BONES[part]]
+                        weight = contact_ease((time - end) / .6)
+                        orientation = held_rotation.slerp(foot.matrix.to_quaternion(), weight)
+                        foot.matrix = Matrix.Translation(foot.head) @ orientation.to_matrix().to_4x4()
+                        bpy.context.view_layer.update()
+                partial_floor_support = (active and all(c.surface == 'floor' for _, c, _, _ in active)
+                                         and not any(strength >= .999 for strength in strengths.values()))
+                if not active or partial_floor_support:
+                    # A support being approached has not attached yet. Grounded
+                    # moves retain real skin contact through that handoff; explicit
+                    # airborne stages still preserve their clearance.
+                    ground_pose(handle, settle=bool(values.get('grounding', 1)))
+                surface_errors = {}
+                for surface in plan.surfaces:
+                    if surface.name != 'floor':
+                        for _ in range(4):
+                            penetration = seat_penetration(handle, surface)
+                            if penetration <= .001:
+                                break
+                            hips = handle.bones['Hips']
+                            matrix = hips.matrix.copy()
+                            matrix.translation += rig.matrix_world.inverted().to_3x3() @ Vector((0, 0, penetration))
+                            hips.matrix = matrix
+                            bpy.context.view_layer.update()
+                            for key, c, _, _ in active:
+                                if c.part.endswith('_foot'):
+                                    set_contact(handle, c, *cached[key])
+                        surface_errors[surface.name] = seat_penetration(handle, surface)
+                for _ in range(2 if repair_floor else 1):
+                    if not active or mesh_floor(handle) >= -.001:
+                        break
+                    penetration = -mesh_floor(handle)
+                    ground_pose(handle, settle=False)
+                    for key, c, _, _ in active:
+                        if c.part.endswith('_foot') or (c.part.endswith('_hand') and strengths[key] >= .999):
+                            target, orientation = cached[key]
+                            if c.part.endswith('_foot'):
+                                foot_padding[c.part] = min(.02, foot_padding.get(c.part, 0) + penetration)
+                                lift = rig.matrix_world.inverted().to_3x3() @ Vector((0, 0, foot_padding[c.part]))
+                                target = target + lift
+                            if strengths[key] > 1e-6:
+                                set_contact(handle, c, target, orientation, strengths[key],
+                                            elbow_poles.get(c.part.split('_')[0].title()))
+                errors = {}
+                for key, c, _, _ in active:
+                    if strengths[key] < .999:
+                        continue
+                    delta = rig.matrix_world.to_3x3() @ (handle.bones[PART_BONES[c.part]].head - cached[key][0])
+                    # Other skin can require a higher anchor after projection;
+                    # the actual support gap is still checked independently.
+                    if c.part in ('pelvis', 'back') or c.part.endswith('_hand'):
+                        delta.z = min(0.0, delta.z)
+                        surface = next(s for s in plan.surfaces if s.name == c.surface)
+                        skin_gap = abs(support_skin_height(handle, c.part, surface) - floor[c.surface])
+                        errors[c.part] = max(delta.length, skin_gap)
+                    else:
+                        surface = next(s for s in plan.surfaces if s.name == c.surface)
+                        gap = abs(support_skin_height(handle, c.part, surface)-floor[c.surface])
+                        errors[c.part] = max(delta.length, gap)
+                stage_id = next((s.id for s, start, end in reversed(schedule(plan))
+                                 if start <= time <= end), '')
+                samples.append(capture_sample(handle, frame, stage_id, errors))
+                samples[-1]['surfaces'] = surface_errors
+                measured = measured_controls(handle, values, control_origin)
+                samples[-1]['planned_controls'] = dict(values)
+                samples[-1]['controls'] = dict(measured)
+                # Expected body rotations come from the requested values, not from
+                # the same rig measurements that are being validated.
+                from .pose import rotation
+                requested = PosePlan(tuple(values.items()))
+                rq = rotation(requested, 'root', axes(handle))
+                tq = rotation(requested, 'torso', axes(handle, rq))
+                hq = rotation(requested, 'head', tuple(tq @ v for v in axes(handle, rq)))
+                desired_rotations.update(root=rq, torso=tq, head=hq)
+                samples[-1]['desired_rotations'] = desired_rotations
+                samples[-1]['actual_rotations'] = observed_rotations(handle)
+                elbow_poles = {side: handle.bones[side+'ForeArm'].head.copy() for side in ('Left', 'Right')}
             for bone in rig.pose.bones:
                 bone.keyframe_insert('location', frame=frame, group=bone.name)
                 bone.keyframe_insert('rotation_quaternion', frame=frame, group=bone.name)
@@ -604,7 +617,7 @@ def bake_candidate_frames(handle, plan, repair_floor, progress):
             yield (i + 1) / (count + 1)
         linear_keys(action)
         report = review_samples(samples, height=world_height, fps=plan.fps)
-        return action, samples, check_completion(plan, samples, report)
+        return action, samples, adapter.finish(report) if typed else check_completion(plan, samples, report)
     except BaseException:
         handle._skin_cache_enabled = False
         rig.animation_data.action = None
@@ -612,22 +625,28 @@ def bake_candidate_frames(handle, plan, repair_floor, progress):
         raise
 
 
-def build_action_frames(handle, plan, progress=lambda fraction: None, allow_experimental=False):
+def build_action_frames(handle, plan, progress=lambda fraction: None, allow_experimental=False, *, profile=None):
     """Commit only reviewed motion. One measured repair attempt; restore everything on failure."""
-    validate_action(plan)
+    typed = isinstance(plan, ExecutableMotion)
+    if typed:
+        FragmentAdapter(handle, plan, profile)  # read-only preflight before opening the transaction
+    else:
+        validate_action(plan)
     rig, scene = handle.rig, handle.scene
     rig.animation_data_create()
     old_action = rig.animation_data.action
+    old_slot = rig.animation_data.action_slot
+    subframe, fps_base = scene.frame_subframe, scene.render.fps_base
     basis = {b.name: b.matrix_basis.copy() for b in rig.pose.bones}
     modes = {b.name: b.rotation_mode for b in rig.pose.bones}
     timeline = scene.frame_start, scene.frame_end, scene.frame_current, scene.render.fps
     camera = (scene.camera.matrix_world.copy() if scene.camera else None)
     action = None
     try:
-        action, samples, report = yield from bake_candidate_frames(handle, plan, False, lambda f: progress(f * .5))
+        action, samples, report = yield from bake_candidate_frames(handle, plan, False, lambda f: progress(f * .5), profile)
         before = report.to_dict()
         repaired = False
-        if not report.passed and all(i.kind == 'floor_penetration' for i in report.issues):
+        if not typed and not report.passed and all(i.kind == 'floor_penetration' for i in report.issues):
             rig.animation_data.action = None
             bpy.data.actions.remove(action)
             action = None
@@ -640,7 +659,20 @@ def build_action_frames(handle, plan, progress=lambda fraction: None, allow_expe
             error.review = report.to_dict()
             raise error
         scene.render.fps = plan.fps
+        if typed: scene.render.fps_base = 1
         scene.frame_start, scene.frame_end = 1, len(samples)
+        if typed:
+            frame_transition(handle, PosePlan(), [1, len(samples)//2+1, len(samples)])
+            scene.frame_set(1)
+            progress(1)
+            result = {'frames':len(samples), 'action':action.name, 'review':report.to_dict(),
+                      'before_repair':before, 'repaired':False, 'experimental':not report.passed,
+                      'ending_state':to_dict(samples[-1]['snapshot']),
+                      'samples':[s['semantic_details'] for s in samples],
+                      'source_map':[to_dict(s) for s in plan.source_map]}
+            if report.passed and not allow_experimental and old_action and old_action.users == 0:
+                bpy.data.actions.remove(old_action)
+            return result
         camera_frames = sorted({1, len(samples)} | {min(len(samples), round(t * plan.fps) + 1)
                                for _, start, end in schedule(plan) for t in (start, (start + end) / 2, end)})
         frame_transition(handle, plan.final_pose, camera_frames)
@@ -669,12 +701,14 @@ def build_action_frames(handle, plan, progress=lambda fraction: None, allow_expe
                 'experimental': not report.passed, 'ending_pose': serialize_pose(ending_pose)}
     except BaseException:
         rig.animation_data.action = old_action
+        if old_slot is not None: rig.animation_data.action_slot = old_slot
         if action and action.name in bpy.data.actions:
             bpy.data.actions.remove(action)
         scene.frame_start, scene.frame_end, frame, scene.render.fps = timeline
         if camera is not None:
             scene.camera.matrix_world = camera
-        scene.frame_set(frame)
+        scene.render.fps_base = fps_base
+        scene.frame_set(frame, subframe=subframe)
         for bone in rig.pose.bones:
             bone.rotation_mode = modes[bone.name]
             bone.matrix_basis = basis[bone.name]
@@ -682,8 +716,8 @@ def build_action_frames(handle, plan, progress=lambda fraction: None, allow_expe
         raise
 
 
-def build_action(handle, plan, progress=lambda fraction: None, allow_experimental=False):
-    iterator = build_action_frames(handle, plan, progress, allow_experimental)
+def build_action(handle, plan, progress=lambda fraction: None, allow_experimental=False, *, profile=None):
+    iterator = build_action_frames(handle, plan, progress, allow_experimental, profile=profile)
     try:
         while True:
             next(iterator)

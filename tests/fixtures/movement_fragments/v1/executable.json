@@ -1,0 +1,624 @@
+{
+  "contact_events": [],
+  "duration_s": 1.6,
+  "entry_snapshot": {
+    "active_contacts": [],
+    "avatar_id": "demo",
+    "captured_time_s": 0,
+    "contact_anchors": [],
+    "measured_controls": [
+      {
+        "control_id": "head.yaw",
+        "frame": "joint:spine.upper",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "head.pitch",
+        "frame": "joint:spine.upper",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "head.roll",
+        "frame": "joint:spine.upper",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "torso.yaw",
+        "frame": "joint:pelvis",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "torso.pitch",
+        "frame": "joint:pelvis",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "torso.roll",
+        "frame": "joint:pelvis",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "spine.mid.yaw",
+        "frame": "joint:torso",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "spine.mid.pitch",
+        "frame": "joint:torso",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "spine.mid.roll",
+        "frame": "joint:torso",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "spine.upper.yaw",
+        "frame": "joint:spine.mid",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "spine.upper.pitch",
+        "frame": "joint:spine.mid",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "spine.upper.roll",
+        "frame": "joint:spine.mid",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "left.elbow.flexion",
+        "frame": "joint:left.upper_arm",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "left.knee.flexion",
+        "frame": "joint:left.thigh",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "left.hip.flexion",
+        "frame": "joint:pelvis",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "left.forearm.twist",
+        "frame": "joint:left.upper_arm",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "left.ankle.flexion",
+        "frame": "joint:left.shin",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "left.wrist.flexion",
+        "frame": "joint:left.forearm",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "left.wrist.deviation",
+        "frame": "joint:left.forearm",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "left.upper_arm.direction",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "control_id": "left.forearm.direction",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "control_id": "left.thigh.direction",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "control_id": "left.shin.direction",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "control_id": "left.hand.position",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "metre",
+        "value": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "control_id": "left.hand.direction",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "control_id": "left.hand.orientation",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "control_id": "left.foot.position",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "metre",
+        "value": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "control_id": "left.foot.direction",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "control_id": "left.foot.orientation",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "control_id": "right.elbow.flexion",
+        "frame": "joint:right.upper_arm",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "right.knee.flexion",
+        "frame": "joint:right.thigh",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "right.hip.flexion",
+        "frame": "joint:pelvis",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "right.forearm.twist",
+        "frame": "joint:right.upper_arm",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "right.ankle.flexion",
+        "frame": "joint:right.shin",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "right.wrist.flexion",
+        "frame": "joint:right.forearm",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "right.wrist.deviation",
+        "frame": "joint:right.forearm",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 0
+      },
+      {
+        "control_id": "right.upper_arm.direction",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "control_id": "right.forearm.direction",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "control_id": "right.thigh.direction",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "control_id": "right.shin.direction",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "control_id": "right.hand.position",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "metre",
+        "value": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "control_id": "right.hand.direction",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "control_id": "right.hand.orientation",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "control_id": "right.foot.position",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "metre",
+        "value": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "control_id": "right.foot.direction",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          0,
+          1,
+          0
+        ]
+      },
+      {
+        "control_id": "right.foot.orientation",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          1,
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "control_id": "root.position",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "metre",
+        "value": [
+          0,
+          0,
+          1
+        ]
+      },
+      {
+        "control_id": "root.orientation",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          1,
+          0,
+          0,
+          0
+        ]
+      }
+    ],
+    "phase": null,
+    "profile_version": 1,
+    "revision": 1,
+    "root_transform": {
+      "frame": "world",
+      "orientation": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "position": [
+        0,
+        0,
+        1
+      ],
+      "schema_version": 1,
+      "unit": "metre"
+    },
+    "schema_version": 1,
+    "velocities": null
+  },
+  "fps": 30,
+  "goal_checks": [
+    {
+      "clause_id": "test.clause",
+      "goal_id": "preview.1.goal",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "locked": true,
+      "schema_version": 1,
+      "target": {
+        "control_id": "head.yaw",
+        "frame": "joint:spine.upper",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 25
+      },
+      "tolerance": 0.1
+    }
+  ],
+  "loop": null,
+  "runtime_entry_bindings": [
+    {
+      "activation_s": 0,
+      "predecessor_id": null,
+      "schema_version": 1,
+      "source_instance_id": "preview.1",
+      "track_id": "preview.1.entry"
+    },
+    {
+      "activation_s": 0.2,
+      "predecessor_id": null,
+      "schema_version": 1,
+      "source_instance_id": "preview.1",
+      "track_id": "preview.1.turn"
+    }
+  ],
+  "schema_version": 1,
+  "source_map": [
+    {
+      "clause_ids": [
+        "test.clause"
+      ],
+      "output_id": "preview.1.entry",
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ]
+    },
+    {
+      "clause_ids": [
+        "test.clause"
+      ],
+      "output_id": "preview.1.turn",
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ]
+    },
+    {
+      "clause_ids": [
+        "test.clause"
+      ],
+      "output_id": "preview.1.hold",
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ]
+    },
+    {
+      "clause_ids": [
+        "test.clause"
+      ],
+      "output_id": "preview.1.goal",
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    }
+  ]
+}

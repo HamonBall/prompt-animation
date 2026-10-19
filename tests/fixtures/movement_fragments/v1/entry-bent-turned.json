@@ -1,0 +1,13 @@
+{
+  "contact": "none",
+  "controls": {
+    "head_pitch": 10,
+    "head_yaw": -20,
+    "left_arm_elevation": 45,
+    "left_forearm_azimuth": 60,
+    "left_forearm_elevation": 80,
+    "root_yaw": 90,
+    "torso_pitch": 15
+  },
+  "schema_version": 1
+}

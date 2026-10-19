@@ -1,0 +1,6749 @@
+{
+  "contact_events": [],
+  "duration_s": 1.6,
+  "entry_requirements": [],
+  "exit_expectations": [],
+  "fragment_id": "preview.1.fragment",
+  "goals": [
+    {
+      "clause_id": "test.clause",
+      "goal_id": "preview.1.goal",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "locked": true,
+      "schema_version": 1,
+      "target": {
+        "control_id": "head.yaw",
+        "frame": "joint:spine.upper",
+        "schema_version": 1,
+        "unit": "degree",
+        "value": 25
+      },
+      "tolerance": 0.1
+    }
+  ],
+  "phase_landmarks": [
+    {
+      "name": "arrival",
+      "schema_version": 1,
+      "time_s": 1.4
+    }
+  ],
+  "schema_version": 1,
+  "source_instance_ids": [
+    "preview.1"
+  ],
+  "tracks": [
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": null,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.entry",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 1.2,
+        "easing": "smooth",
+        "end_value": 25,
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": null
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "measured_entry",
+      "track_id": "preview.1.turn",
+      "unit": "degree",
+      "value_shape": "scalar"
+    },
+    {
+      "control_id": "head.yaw",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "linear",
+        "end_value": 25,
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": 25
+      },
+      "dimensions": 1,
+      "frame": "joint:spine.upper",
+      "interval": {
+        "end_s": 1.6,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "preview.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "preview.1.hold",
+      "unit": "degree",
+      "value_shape": "scalar"
+    }
+  ]
+}
