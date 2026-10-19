@@ -1,0 +1,12 @@
+{
+  "angle_tolerance_deg": 0.1,
+  "calibration_version": 1,
+  "evidence": "artifacts/stages/03/profile-review.json",
+  "position_tolerance_m": 0.0001,
+  "profiles": [
+    "demo.json",
+    "mixamo.json"
+  ],
+  "schema_version": 1,
+  "source_revision": "d3d2071d54984bdcd3ccaf8e61a4e3e0e19d5855:stage03-working-tree"
+}

@@ -9,6 +9,7 @@ def create_demo_avatar():
     bpy.context.window.scene = scene
     data = bpy.data.armatures.new('Demo Skeleton')
     rig = bpy.data.objects.new('Built-in Avatar', data)
+    rig['avatar_reference'] = 'procedural-demo-v1'
     scene.collection.objects.link(rig)
     bpy.context.view_layer.objects.active = rig
     rig.select_set(True)

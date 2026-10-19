@@ -10,6 +10,29 @@ REQUIRED = ('Hips', 'Spine', 'Head', 'LeftArm', 'LeftForeArm', 'LeftHand',
             'RightArm', 'RightForeArm', 'RightHand', 'LeftUpLeg', 'LeftLeg',
             'LeftFoot', 'RightUpLeg', 'RightLeg', 'RightFoot')
 
+OPTIONAL = ('Spine1', 'Spine2', 'Neck') + tuple(
+    side + suffix for side in ('Left', 'Right') for suffix in (
+        'Shoulder', 'ToeBase', 'Toe_End',
+        *(f'Hand{finger}{part}' for finger in ('Thumb', 'Index', 'Middle', 'Ring', 'Pinky')
+          for part in range(1, 5)),
+        *(f'{segment}Twist{index}' for segment in ('Arm', 'ForeArm', 'UpLeg', 'Leg')
+          for index in ('', '1', '2', '3'))))
+
+
+def map_mixamo_bones(rig):
+    """Existing core mapping plus optional named anatomy; never create bones."""
+    names = {}
+    for bone in rig.pose.bones:
+        key = re.sub(r'[^a-z0-9]', '', bone.name.lower().split(':')[-1]).removeprefix('mixamorig')
+        if key in names:
+            raise ValueError(f'Ambiguous bone mapping: {key}')
+        names[key] = bone
+    missing = [name for name in REQUIRED if name.lower() not in names]
+    if missing:
+        raise ValueError('Unsupported rig; missing: ' + ', '.join(missing))
+    return {name: names[re.sub(r'[^a-z0-9]', '', name.lower())]
+            for name in REQUIRED + OPTIONAL if re.sub(r'[^a-z0-9]', '', name.lower()) in names}
+
 
 @dataclass
 class AvatarHandle:
@@ -47,21 +70,11 @@ def import_avatar(path: str, import_motion=False) -> AvatarHandle:
         if len(rigs) != 1:
             raise ValueError('Expected exactly one armature in the FBX.')
         rig = rigs[0]
-        names = {}
-        for bone in rig.pose.bones:
-            key = re.sub(r'[^a-z0-9]', '', bone.name.lower().split(':')[-1])
-            key = key.removeprefix('mixamorig')
-            if key in names:
-                raise ValueError(f'Ambiguous bone mapping: {key}')
-            names[key] = bone
-        missing = [name for name in REQUIRED if name.lower() not in names]
-        if missing:
-            raise ValueError('Unsupported rig; missing: ' + ', '.join(missing))
-        bones = {name: names[name.lower()] for name in REQUIRED}
+        mapped = map_mixamo_bones(rig)
+        # Legacy retargeting iterates this mapping. Optional discovery must not
+        # silently start animating additional fingers/clavicles/toes in that path.
+        bones = {name:mapped[name] for name in REQUIRED + ('Spine1','Spine2','Neck') if name in mapped}
         source_actions = tuple(action for action in bpy.data.actions if action not in actions_before)
-        for name in ('Spine1', 'Spine2', 'Neck'):
-            if name.lower() in names:
-                bones[name] = names[name.lower()]
         for obj in objects:
             obj.animation_data_clear()
         for bone in rig.pose.bones:
