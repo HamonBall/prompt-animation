@@ -33,8 +33,12 @@ class FragmentAdapter:
         fragment=c.MotionFragment('execution.preflight',tuple(sorted({s for t in (*motion.tracks,*motion.contact_events) for s in t.source_instance_ids})) or ('empty',),
             (),motion.duration_s,motion.tracks,motion.contact_events,(),(),motion.goal_checks)
         validate_fragment(fragment,profile,resolved_surface_ids=tuple(surfaces))
+        head_modes={t.control_id for t in motion.tracks if t.control_id in ('head.orientation','head.torso_orientation')}
+        if len(head_modes)>1 or head_modes and any(t.control_id in ('head.pitch','head.yaw','head.roll') for t in motion.tracks):
+            c.fail('CONSTRAINT_CONFLICT','Head orientation and individual head angles cannot own the same fragment')
         for track in motion.tracks:
             control=self.controls[track.control_id]
+            if track.control_id in head_modes: continue
             if control.chain in ANGULAR_CHAINS and control.value_shape=='scalar': continue
             if track.control_id.endswith('.hand.position'):
                 for value in (track.curve.start_value,track.curve.end_value):
@@ -110,10 +114,27 @@ class FragmentAdapter:
         bpy.context.view_layer.update()
         targets=sample_motion(self.motion,time_s,self.measured,self.cursor)
         requested={v.control_id:v.value for v in targets.controls}
-        chains=sorted({self.controls[id].chain for id in requested},
+        chains=sorted({self.controls[id].chain for id in requested if self.controls[id].value_shape=='scalar'},
                       key=lambda id:(sum(1 for _ in self._parents(id)),id))
         for chain in chains:
             if chain in ANGULAR_CHAINS: self._angular(chain,requested)
+        if any(id in requested for id in ('head.orientation','head.torso_orientation')):
+            # Parent tracks have already been applied. Resolve look-at from this frame's
+            # actual head position, using the shared sampler and existing activation bindings.
+            current=rp.capture_motion_state(h,p,revision=self.motion.entry_snapshot.revision,captured_time_s=time_s)
+            targets=sample_motion(self.motion,time_s,current,self.cursor)
+            requested={v.control_id:v.value for v in targets.controls}
+            for id in ('head.orientation','head.torso_orientation'):
+                if id not in requested: continue
+                desired=Quaternion(requested[id])
+                if id=='head.torso_orientation':
+                    torso=next(j for j in ('spine.upper','spine.mid','torso') if j in self.joints)
+                    desired=rp.semantic_frame(h,p,torso).to_quaternion() @ desired
+                bone=h.rig.pose.bones[self.joints['head'].source_bones[0]]
+                world=h.rig.matrix_world @ bone.matrix
+                rotation=desired @ rp.semantic_frame(h,p,'head').to_quaternion().conjugated() @ world.to_quaternion()
+                bone.matrix=h.rig.matrix_world.inverted() @ (Matrix.Translation(world.translation) @ rotation.to_matrix().to_4x4() @ Matrix.Diagonal((*world.to_scale(),1)))
+                bpy.context.view_layer.update()
         for value in targets.controls:
             if not value.control_id.endswith('.hand.position'): continue
             side=value.control_id.split('.')[0].title()
@@ -175,6 +196,8 @@ class FragmentAdapter:
         # Unowned angular components on an owned head/spine chain are explicit locks.
         for id,value in measured.items():
             if id in requested or self.controls[id].chain not in ANGULAR_CHAINS: continue
+            if self.controls[id].chain=='head' and any(key in requested for key in ('head.orientation','head.torso_orientation')): continue
+            if self.controls[id].value_shape!='scalar': continue
             error=value_error(value.value,entry[id].value,self.controls[id].value_shape)
             if error>.5: violations.append(('unrelated_change',id,error,.5))
         sample=capture_sample(h,frame,','.join(targets.source_instance_ids),errors)

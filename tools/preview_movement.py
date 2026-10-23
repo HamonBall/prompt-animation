@@ -123,7 +123,10 @@ def main(argv=None):
     prepare_preview(handle)
     load_entry(handle,args.entry)
     profile=rp.calibrate_joint_frames(handle,avatar_id='preview.'+('demo' if args.rig=='demo' else 'import'),
-                                     source_revision='developer-preview-stage04',recorded_at='2026-10-19')
+                                     source_revision='developer-preview',recorded_at='2026-10-23',include_head_aim=not args.test_catalog)
+    if not args.test_catalog:
+        from avatar_app.movement_library.joints import catalog_for_profile
+        catalog=catalog_for_profile(profile)
     entry=capture_entry(handle,profile)
     if args.parameters_file and args.parameters_file.stat().st_size>c.MAX_JSON_BYTES:
         c.fail('RESOURCE_LIMIT','Parameter file exceeds byte budget')

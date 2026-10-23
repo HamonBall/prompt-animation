@@ -1,0 +1,1 @@
+{"clause_ids":[],"definition_id":"head.nod","definition_version":1,"explicit_parameters":[],"instance_id":"move.1","parameters":[{"name":"angle","schema_version":1,"value":20},{"name":"duration_s","schema_version":1,"value":1},{"name":"hold_s","schema_version":1,"value":0.2},{"name":"return_policy","schema_version":1,"value":"return_to_entry"}],"schema_version":1}

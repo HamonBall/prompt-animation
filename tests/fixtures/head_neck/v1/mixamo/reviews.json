@@ -1,0 +1,600 @@
+[
+  {
+    "schema_version": 1,
+    "definition_id": "head.look",
+    "definition_version": 1,
+    "avatar_id": "head-neck.mixamo",
+    "profile_version": 2,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "yaw",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 25,
+        "minimum": -60,
+        "maximum": 60,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "pitch",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0,
+        "minimum": -40,
+        "maximum": 40,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "torso",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "torso"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "preserve_end",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "preserve_end",
+          "return_to_entry"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1a/mixamo/: look-left,look-right,look-min,look-max,look-return,world-left,world-right,world-turn,world-return,look-small",
+      "Full-frame numeric/playback and front-sheet review; side views for default/baseline cases.",
+      "World targets: fixture points 3m away at +/-25deg, with up to 30deg externally authored torso turn; torso look limits tested independently.",
+      "Measured calibrated articulation; entry, reach and preservation checks remain mandatory.",
+      "Registry envelope is torso mode. World-point fixture cases are reviewed separately in the receipt; arbitrary world points are not advertised as reviewed."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "max_tracking_error_deg",
+        "value": 0.00033478379671947664
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "head.nod",
+    "definition_version": 1,
+    "avatar_id": "head-neck.mixamo",
+    "profile_version": 2,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 20,
+        "minimum": -35,
+        "maximum": 35,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "preserve_end",
+          "return_to_entry"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1a/mixamo/: nod-default,nod-min,nod-max,nod-zero,nod-preserve,nod-small",
+      "Full-frame numeric/playback and front-sheet review; side views for default/baseline cases.",
+      "World targets: fixture points 3m away at +/-25deg, with up to 30deg externally authored torso turn; torso look limits tested independently.",
+      "Measured calibrated articulation; entry, reach and preservation checks remain mandatory."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "max_tracking_error_deg",
+        "value": 0.00012426688904731975
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "head.shake",
+    "definition_version": 1,
+    "avatar_id": "head-neck.mixamo",
+    "profile_version": 2,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 20,
+        "minimum": 0,
+        "maximum": 35,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "preserve_end",
+          "return_to_entry"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "direction",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1a/mixamo/: shake-default,shake-min,shake-max,shake-zero,shake-preserve,shake-right,shake-small",
+      "Full-frame numeric/playback and front-sheet review; side views for default/baseline cases.",
+      "World targets: fixture points 3m away at +/-25deg, with up to 30deg externally authored torso turn; torso look limits tested independently.",
+      "Measured calibrated articulation; entry, reach and preservation checks remain mandatory."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "max_tracking_error_deg",
+        "value": 4.062736359600194e-05
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "head.tilt",
+    "definition_version": 1,
+    "avatar_id": "head-neck.mixamo",
+    "profile_version": 2,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 20,
+        "minimum": -35,
+        "maximum": 35,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "preserve_end",
+          "return_to_entry"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1a/mixamo/: tilt-default,tilt-min,tilt-max,tilt-zero,tilt-preserve,tilt-left,tilt-small",
+      "Full-frame numeric/playback and front-sheet review; side views for default/baseline cases.",
+      "World targets: fixture points 3m away at +/-25deg, with up to 30deg externally authored torso turn; torso look limits tested independently.",
+      "Measured calibrated articulation; entry, reach and preservation checks remain mandatory."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "max_tracking_error_deg",
+        "value": 0.00021955505085813343
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "neck.lead",
+    "definition_version": 1,
+    "avatar_id": "head-neck.mixamo",
+    "profile_version": 2,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "yaw",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 30,
+        "minimum": -50,
+        "maximum": 50,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "pitch",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0,
+        "minimum": -30,
+        "maximum": 30,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "neck_share",
+        "type": "number",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.4,
+        "minimum": 0.2,
+        "maximum": 0.6,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "neck_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "require_neck",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "require_neck",
+          "head_only"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "preserve_end",
+          "return_to_entry"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1a/mixamo/: lead-default,lead-min,lead-max,lead-zero,lead-preserve,lead-head-only,lead-small",
+      "Full-frame numeric/playback and front-sheet review; side views for default/baseline cases.",
+      "World targets: fixture points 3m away at +/-25deg, with up to 30deg externally authored torso turn; torso look limits tested independently.",
+      "Measured calibrated articulation; entry, reach and preservation checks remain mandatory."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "max_tracking_error_deg",
+        "value": 0.00021727397588833242
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  }
+]

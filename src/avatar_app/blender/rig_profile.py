@@ -98,7 +98,8 @@ def _binding(handle, profile):
     evidence = 'rig_sha256:'+_fingerprint(handle)
     if evidence not in profile.calibration_provenance.evidence:
         c.fail('ENTRY_MISMATCH','Profile belongs to a different skeleton or scale; recalibrate explicitly')
-    if profile.version != CALIBRATION_VERSION:
+    head_aim=profile.version==2 and 'head_aim_v1:world_position_world_and_torso_orientation' in profile.calibration_provenance.evidence
+    if profile.version != CALIBRATION_VERSION and not head_aim:
         c.fail('VERSION_MISMATCH','Unsupported rig calibration version; recalibrate explicitly')
 
 
@@ -172,7 +173,7 @@ def _sole_anchor(handle,bone,up):
     return sum(support,Vector())/len(support)
 
 
-def calibrate_joint_frames(handle, *, avatar_id=None, source_revision='unversioned', recorded_at):
+def calibrate_joint_frames(handle, *, avatar_id=None, source_revision='unversioned', recorded_at, include_head_aim=False):
     """Read bind data without zeroing pose, changing a rest bone or evaluating an action.
 
     Returns schema-v1 AvatarProfile, calibration version 1. Required provenance is explicit.
@@ -285,11 +286,15 @@ def calibrate_joint_frames(handle, *, avatar_id=None, source_revision='unversion
                 'optional_bones:detected_not_created',
                 'poles:parent_relative_fallback_below_0.5deg_smooth_blend_to_5deg',
                 'palm_reference:'+('procedural_convention' if _procedural(handle) else 'index_pinky_plane_or_unavailable'))
-    return c.AvatarProfile(avatar_id or 'rig.'+fingerprint[:16],CALIBRATION_VERSION,height,
+    profile=c.AvatarProfile(avatar_id or 'rig.'+fingerprint[:16],CALIBRATION_VERSION,height,
         ('world','entry_body','current_root','current_torso','current_pelvis')+tuple('joint:'+j for j in mapped),
         tuple(joint_records),tuple(lengths),tuple(landmarks),tuple(limits),tuple(controls),
         tuple(sorted(set(capabilities))),
         c.Provenance('rest-skeleton and weighted-skin calibration v1; no anatomy edits',source_revision,evidence,recorded_at))
+    if include_head_aim:
+        from ..movement_library.spatial import with_head_aim_v1
+        profile=with_head_aim_v1(profile)
+    return profile
 
 
 def _joint(handle,profile,joint_id):
@@ -407,6 +412,13 @@ def capture_motion_state(handle,profile,*,revision,captured_time_s=None,contact_
             value = measure_joint_angle(handle,profile,control.id)
         elif control.id.startswith('root.'):
             value = _tuple(root.translation) if control.id.endswith('.position') else _tuple(_rotation(root))
+        elif control.id.startswith('head.'):
+            head=semantic_frame(handle,profile,'head')
+            if control.id=='head.position': value=_tuple(head.translation)
+            elif control.id=='head.orientation': value=_tuple(_rotation(head))
+            else:
+                torso=next(j for j in ('spine.upper','spine.mid','torso') if any(m.semantic_id==j for m in profile.rest_to_semantic_mappings))
+                value=_tuple(_rotation(semantic_frame(handle,profile,torso)).conjugated() @ _rotation(head))
         else:
             endpoint,suffix = control.id.rsplit('.',1)
             if suffix=='position': value = measure_endpoint(handle,profile,endpoint)

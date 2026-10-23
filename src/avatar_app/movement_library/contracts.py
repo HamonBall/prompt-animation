@@ -495,8 +495,11 @@ class CurveSpec(Record):
     end_value: Value | None
     duration_s: Annotated[float, Rule(minimum=1e-9, maximum=MAX_SECONDS)]
     easing: Literal['linear', 'smooth'] = 'linear'
+    look_at_world_v1: Vector3 | None = None
 
     def _validate(self):
+        if self.look_at_world_v1 is not None:
+            position_budget(self.look_at_world_v1,'world','metre')
         if self.kind == 'transition' and self.end_value is None:
             fail('INVALID_PARAMETER', 'A transition requires an explicit destination')
         if self.kind == 'hold' and self.end_value is not None and self.end_value != self.start_value:
@@ -517,6 +520,8 @@ class TrackSpec(Record):
     interval: TimeInterval
 
     def _validate(self):
+        if self.curve.look_at_world_v1 is not None and (self.control_id,self.value_shape,self.frame)!=('head.orientation','quaternion','world'):
+            fail('INVALID_PARAMETER','look_at_world_v1 requires the calibrated world head orientation')
         distinct(self.source_instance_ids,None)
         if self.value_shape == 'scalar' and self.dimensions != 1 or self.value_shape == 'quaternion' and self.dimensions != 4:
             fail('INVALID_PARAMETER', 'Track shape and dimension disagree')
@@ -903,7 +908,9 @@ RECORD_TYPES = {name:value for name,value in tuple(globals().items())
 def to_dict(record):
     if type(record) not in RECORD_TYPES.values(): fail('INVALID_SCHEMA', 'Unknown record type')
     def encode(value):
-        if isinstance(value,Record): return {f.name:encode(getattr(value,f.name)) for f in fields(value)}
+        if isinstance(value,Record):
+            return {f.name:encode(getattr(value,f.name)) for f in fields(value)
+                    if not (isinstance(value,CurveSpec) and f.name=='look_at_world_v1' and value.look_at_world_v1 is None)}
         if type(value) is tuple: return [encode(item) for item in value]
         return value
     return encode(record)
@@ -943,8 +950,10 @@ def from_dict(record_type, data):
     if 'schema_version' not in data: fail('VERSION_MISMATCH', 'Saved records require an explicit schema version')
     if type(data['schema_version']) is not int or data['schema_version'] != SCHEMA_VERSION:
         fail('VERSION_MISMATCH', 'Unsupported schema version; migrate explicitly')
-    if names-set(data): fail('INVALID_SCHEMA', 'Canonical saved records require every field, with null for unknown optional information',
-                            details={'missing':sorted(names-set(data))})
+    missing=names-set(data)
+    if record_type is CurveSpec: missing.discard('look_at_world_v1')
+    if missing: fail('INVALID_SCHEMA', 'Canonical saved records require every field, with null for unknown optional information',
+                     details={'missing':sorted(missing)})
     try:
         return record_type(**{name:decode(hints(record_type)[name],value) for name,value in data.items()})
     except TypeError as exc:
@@ -1003,7 +1012,7 @@ def json_schema(record_type):
                 definitions[name] = {}
                 definitions[name] = {'type':'object','additionalProperties':False,
                     'properties':{f.name:schema(hints(annotation)[f.name]) for f in fields(annotation)},
-                    'required':[f.name for f in fields(annotation)]}
+                    'required':[f.name for f in fields(annotation) if not (annotation is CurveSpec and f.name=='look_at_world_v1')]}
             return {'$ref':'#/$defs/'+name}
         return {'type':{float:'number',int:'integer',bool:'boolean',str:'string',type(None):'null'}[annotation]}
     reference = schema(record_type)

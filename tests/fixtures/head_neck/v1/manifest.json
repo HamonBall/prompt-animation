@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "definition_version": 1,
+  "profile_version": 2,
+  "curve_extension": "look_at_world_v1",
+  "source_revision": "bb108450906e3544ea48d6964513a27a3451e8e5",
+  "rigs": {
+    "demo": {
+      "head.look": {
+        "records": {
+          "entry": "demo/head.look-entry.json",
+          "instance": "demo/head.look-instance.json",
+          "fragment": "demo/head.look-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "look-left",
+          "look-right",
+          "look-min",
+          "look-max",
+          "look-return",
+          "world-left",
+          "world-right",
+          "world-turn",
+          "world-return",
+          "look-small"
+        ]
+      },
+      "head.nod": {
+        "records": {
+          "entry": "demo/head.nod-entry.json",
+          "instance": "demo/head.nod-instance.json",
+          "fragment": "demo/head.nod-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "nod-default",
+          "nod-min",
+          "nod-max",
+          "nod-zero",
+          "nod-preserve",
+          "nod-small"
+        ]
+      },
+      "head.shake": {
+        "records": {
+          "entry": "demo/head.shake-entry.json",
+          "instance": "demo/head.shake-instance.json",
+          "fragment": "demo/head.shake-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "shake-default",
+          "shake-min",
+          "shake-max",
+          "shake-zero",
+          "shake-preserve",
+          "shake-right",
+          "shake-small"
+        ]
+      },
+      "head.tilt": {
+        "records": {
+          "entry": "demo/head.tilt-entry.json",
+          "instance": "demo/head.tilt-instance.json",
+          "fragment": "demo/head.tilt-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "tilt-default",
+          "tilt-min",
+          "tilt-max",
+          "tilt-zero",
+          "tilt-preserve",
+          "tilt-left",
+          "tilt-small"
+        ]
+      },
+      "neck.lead": {
+        "records": {
+          "entry": "demo/neck.lead-entry.json",
+          "instance": "demo/neck.lead-instance.json",
+          "fragment": "demo/neck.lead-fragment.json"
+        },
+        "status": "unavailable_on_rig",
+        "cases": [
+          "lead-default",
+          "lead-min",
+          "lead-max",
+          "lead-zero",
+          "lead-preserve",
+          "lead-head-only",
+          "lead-small"
+        ]
+      }
+    },
+    "mixamo": {
+      "head.look": {
+        "records": {
+          "entry": "mixamo/head.look-entry.json",
+          "instance": "mixamo/head.look-instance.json",
+          "fragment": "mixamo/head.look-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "look-left",
+          "look-right",
+          "look-min",
+          "look-max",
+          "look-return",
+          "world-left",
+          "world-right",
+          "world-turn",
+          "world-return",
+          "look-small"
+        ]
+      },
+      "head.nod": {
+        "records": {
+          "entry": "mixamo/head.nod-entry.json",
+          "instance": "mixamo/head.nod-instance.json",
+          "fragment": "mixamo/head.nod-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "nod-default",
+          "nod-min",
+          "nod-max",
+          "nod-zero",
+          "nod-preserve",
+          "nod-small"
+        ]
+      },
+      "head.shake": {
+        "records": {
+          "entry": "mixamo/head.shake-entry.json",
+          "instance": "mixamo/head.shake-instance.json",
+          "fragment": "mixamo/head.shake-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "shake-default",
+          "shake-min",
+          "shake-max",
+          "shake-zero",
+          "shake-preserve",
+          "shake-right",
+          "shake-small"
+        ]
+      },
+      "head.tilt": {
+        "records": {
+          "entry": "mixamo/head.tilt-entry.json",
+          "instance": "mixamo/head.tilt-instance.json",
+          "fragment": "mixamo/head.tilt-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "tilt-default",
+          "tilt-min",
+          "tilt-max",
+          "tilt-zero",
+          "tilt-preserve",
+          "tilt-left",
+          "tilt-small"
+        ]
+      },
+      "neck.lead": {
+        "records": {
+          "entry": "mixamo/neck.lead-entry.json",
+          "instance": "mixamo/neck.lead-instance.json",
+          "fragment": "mixamo/neck.lead-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "lead-default",
+          "lead-min",
+          "lead-max",
+          "lead-zero",
+          "lead-preserve",
+          "lead-head-only",
+          "lead-small"
+        ]
+      }
+    }
+  },
+  "review_scope": "Two measured entry fixtures, listed cases/parameter boundaries; valid angular and world-target constraints remain mandatory. No arbitrary-rig or arbitrary-parent-trajectory claim."
+}

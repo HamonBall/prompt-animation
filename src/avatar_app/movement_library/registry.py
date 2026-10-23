@@ -51,10 +51,6 @@ class Catalog:
         return record
 
 
-# No movement/capability is advertised merely because its record/schema exists.
-CATALOG = Catalog()
-
-
 def _catalog(catalog):
     if type(catalog) is not Catalog: fail('INVALID_PARAMETER', 'Expected a trusted movement catalog')
 
@@ -258,3 +254,9 @@ def parameter_schema(definition):
         properties[spec.name] = value
     return {'type':'object','additionalProperties':False,'properties':properties,
             'required':[p.name for p in definition.parameter_specs if p.required and not p.has_default]}
+
+
+# Only executable application-owned content is registered. Reviews remain rig-scoped
+# evidence, never inferred from definitions or silently granted at import time.
+from .joints import BUILDERS, register_head_neck
+CATALOG=register_head_neck(Catalog(BUILDERS))

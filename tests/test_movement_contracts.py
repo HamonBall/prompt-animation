@@ -55,7 +55,7 @@ class MovementContractTests(unittest.TestCase):
                     return validate_fixture(record, self.examples)
                 self.rejects(entry['error'], load_and_validate)
 
-    def test_import_is_pure_in_fresh_process_and_catalog_is_empty(self):
+    def test_import_is_pure_in_fresh_process_and_catalog_is_explicit(self):
         script = '''
 import importlib.abc, json, sys
 blocked = ('bpy', 'avatar_app.blender', 'avatar_app.planning.local_model', 'llama_cpp', 'torch', 'transformers')
@@ -65,15 +65,15 @@ class Guard(importlib.abc.MetaPathFinder):
             raise AssertionError('Unexpected import: '+fullname)
 sys.meta_path.insert(0, Guard())
 from avatar_app.movement_library import contracts, registry
-assert not registry.CATALOG.definitions
+assert set(registry.CATALOG.definitions)=={'head.look','head.nod','head.shake','head.tilt','neck.lead'}
 assert not registry.CATALOG.reviews
 assert not any(n in sys.modules for n in blocked)
-print(json.dumps({'record_types':len(contracts.RECORD_TYPES), 'catalog_size':0, 'blocked_imports':list(blocked)}))
+print(json.dumps({'record_types':len(contracts.RECORD_TYPES), 'catalog_size':len(registry.CATALOG.definitions), 'blocked_imports':list(blocked)}))
 '''
         result = subprocess.run([sys.executable, '-c', script], capture_output=True, text=True, timeout=20)
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn('"catalog_size": 0', result.stdout)
-        self.assertFalse(r.CATALOG.definitions)
+        self.assertIn('"catalog_size": 5', result.stdout)
+        self.assertFalse(r.CATALOG.reviews)
 
     def test_defaults_preserve_explicit_zero_and_resolution_is_idempotent(self):
         unresolved = dataclasses.replace(self.instance, parameters=(c.ParameterValue('angle', 0),))

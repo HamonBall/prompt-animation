@@ -63,7 +63,8 @@ class RigProfileFixtureTests(unittest.TestCase):
         self.assertIn('anatomy.left.clavicle',mixamo.capabilities)
         self.assertIn('anatomy.left.toe',mixamo.capabilities)
         self.assertNotIn('anatomy.left.twist.forearm',mixamo.capabilities)
-        self.assertEqual(len(CATALOG.definitions),0)
+        self.assertEqual(set(CATALOG.definitions),{'head.look','head.nod','head.shake','head.tilt','neck.lead'})
+        self.assertFalse(CATALOG.reviews)  # Anatomy/calibration never grants movement reviews.
         self.assertFalse(any('.finger.' in v.id for v in mixamo.controls))
 
     def test_palm_sole_and_poles_have_parent_relative_references(self):

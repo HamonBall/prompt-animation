@@ -1,0 +1,335 @@
+{
+  "head.look": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "yaw": {
+        "type": "number",
+        "minimum": -60,
+        "maximum": 60,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 25
+      },
+      "pitch": {
+        "type": "number",
+        "minimum": -40,
+        "maximum": 40,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0
+      },
+      "frame": {
+        "type": "string",
+        "enum": [
+          "torso",
+          "world"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "torso"
+      },
+      "target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 0.8,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.2
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "preserve_end",
+          "return_to_entry"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "preserve_end"
+      }
+    },
+    "required": []
+  },
+  "head.nod": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "angle": {
+        "type": "number",
+        "minimum": -35,
+        "maximum": 35,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 20
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 0.8,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.2
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "preserve_end",
+          "return_to_entry"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      }
+    },
+    "required": []
+  },
+  "head.shake": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "angle": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 35,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 20
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 0.8,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.2
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "preserve_end",
+          "return_to_entry"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      },
+      "direction": {
+        "type": "string",
+        "enum": [
+          "left",
+          "right"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "left"
+      }
+    },
+    "required": []
+  },
+  "head.tilt": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "angle": {
+        "type": "number",
+        "minimum": -35,
+        "maximum": 35,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 20
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 0.8,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.2
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "preserve_end",
+          "return_to_entry"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      }
+    },
+    "required": []
+  },
+  "neck.lead": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "yaw": {
+        "type": "number",
+        "minimum": -50,
+        "maximum": 50,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 30
+      },
+      "pitch": {
+        "type": "number",
+        "minimum": -30,
+        "maximum": 30,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0
+      },
+      "neck_share": {
+        "type": "number",
+        "minimum": 0.2,
+        "maximum": 0.6,
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.4
+      },
+      "neck_policy": {
+        "type": "string",
+        "enum": [
+          "require_neck",
+          "head_only"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "require_neck"
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 0.8,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.2
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "preserve_end",
+          "return_to_entry"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      }
+    },
+    "required": []
+  }
+}

@@ -8,6 +8,7 @@ from . import contracts as c
 from .registry import (get_movement, validate_instance, validate_fragment,
                        validate_snapshot, validate_control_value)
 from ..motion import Surface
+from .spatial import look_rotation
 
 
 def supporting_chains(control_ids):
@@ -141,6 +142,11 @@ def prepare_fragment(fragment, entry_state, profile):
         previous=by_control.get(track.control_id)
         target=c.ControlValue(track.control_id,track.unit,track.frame,0)
         measured=_measured(entry_state,target)
+        if previous is None and track.curve.kind=='hold' and track.curve.look_at_world_v1 is not None:
+            position=_measured(entry_state,c.ControlValue('head.position','metre','world',0))
+            aimed=look_rotation(position,track.curve.look_at_world_v1)
+            if value_error(measured,aimed,'quaternion')>.05:
+                c.fail('ENTRY_MISMATCH','Initial look-at hold would reset the measured orientation; author an approach transition',control_id=track.control_id)
         if track.start_source=='explicit':
             expected=measured if previous is None else previous.curve.end_value if previous.curve.end_value is not None else previous.curve.start_value
             if expected is not None and value_error(expected,track.curve.start_value,track.value_shape)>1e-5:
@@ -211,10 +217,20 @@ def sample_motion(executable, time_s, measured_state, execution_cursor):
         start=track.curve.start_value if track.start_source=='explicit' else bindings[track.track_id]
         weight=min(1,max(0,(time_s-track.interval.start_s)/track.curve.duration_s))
         if track.curve.easing=='smooth': weight=weight*weight*(3-2*weight)
-        value=start if track.curve.kind=='hold' else interpolate(start,track.curve.end_value,weight,track.value_shape)
+        end=track.curve.end_value
+        if track.curve.look_at_world_v1 is not None:
+            position=_measured(measured_state,c.ControlValue('head.position','metre','world',0))
+            end=look_rotation(position,track.curve.look_at_world_v1)
+        value=(end if track.curve.look_at_world_v1 is not None else start) if track.curve.kind=='hold' else interpolate(start,end,weight,track.value_shape)
         selected[track.control_id]=(c.ControlValue(track.control_id,track.unit,track.frame,value),track.source_instance_ids)
     contacts=tuple(e for e in executable.contact_events if e.interval.start_s<=time_s<=e.interval.end_s)
     goals=tuple(g for g in executable.goal_checks if g.interval.start_s-1e-9<=time_s<=g.interval.end_s+1e-9)
+    # World-point goals use the same versioned binding, then compare achieved rotation.
+    aim=next((t for t in reversed(sorted(executable.tracks,key=lambda t:(t.interval.start_s,t.track_id)))
+              if t.control_id=='head.orientation' and t.interval.start_s<=time_s+1e-9),None)
+    if aim is not None and aim.curve.look_at_world_v1 is not None:
+        end=look_rotation(_measured(measured_state,c.ControlValue('head.position','metre','world',0)),aim.curve.look_at_world_v1)
+        goals=tuple(replace(g,target=replace(g.target,value=end)) if g.target.control_id=='head.orientation' else g for g in goals)
     sources=tuple(sorted({s for _,ids in selected.values() for s in ids}|{s for e in contacts for s in e.source_instance_ids}))
     frame=c.FrameTargets(time_s,tuple(v for v,_ in selected.values()),contacts,None,sources,goals,supporting_chains(selected))
     cursor.bindings.update(pending); cursor.last_time_s=time_s; cursor.executable=executable
