@@ -99,7 +99,8 @@ def _binding(handle, profile):
     if evidence not in profile.calibration_provenance.evidence:
         c.fail('ENTRY_MISMATCH','Profile belongs to a different skeleton or scale; recalibrate explicitly')
     head_aim=profile.version==2 and 'head_aim_v1:world_position_world_and_torso_orientation' in profile.calibration_provenance.evidence
-    if profile.version != CALIBRATION_VERSION and not head_aim:
+    pelvis=profile.version==3 and 'pelvis_v1:bone_world_transform_not_object_root' in profile.calibration_provenance.evidence
+    if profile.version != CALIBRATION_VERSION and not head_aim and not pelvis:
         c.fail('VERSION_MISMATCH','Unsupported rig calibration version; recalibrate explicitly')
 
 
@@ -410,7 +411,10 @@ def capture_motion_state(handle,profile,*,revision,captured_time_s=None,contact_
     for control in profile.controls:
         if control.value_shape=='scalar':
             value = measure_joint_angle(handle,profile,control.id)
-        elif control.id.startswith('root.'):
+        elif control.id.startswith('object_root.'):
+            world=handle.rig.matrix_world
+            value=_tuple(world.translation) if control.id.endswith('.position') else _tuple(_rotation(world))
+        elif control.id.startswith(('root.','pelvis.')):
             value = _tuple(root.translation) if control.id.endswith('.position') else _tuple(_rotation(root))
         elif control.id.startswith('head.'):
             head=semantic_frame(handle,profile,'head')

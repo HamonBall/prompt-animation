@@ -63,7 +63,7 @@ class RigProfileFixtureTests(unittest.TestCase):
         self.assertIn('anatomy.left.clavicle',mixamo.capabilities)
         self.assertIn('anatomy.left.toe',mixamo.capabilities)
         self.assertNotIn('anatomy.left.twist.forearm',mixamo.capabilities)
-        self.assertEqual(set(CATALOG.definitions),{'head.look','head.nod','head.shake','head.tilt','neck.lead'})
+        self.assertEqual(set(CATALOG.definitions),{'head.look','head.nod','head.shake','head.tilt','neck.lead','torso.lean','torso.twist','torso.curl','torso.wave','torso.sway','pelvis.shift','pelvis.raise_lower','pelvis.tilt_turn','pelvis.circle'})
         self.assertFalse(CATALOG.reviews)  # Anatomy/calibration never grants movement reviews.
         self.assertFalse(any('.finger.' in v.id for v in mixamo.controls))
 

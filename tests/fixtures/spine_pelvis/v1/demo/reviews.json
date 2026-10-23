@@ -1,0 +1,1699 @@
+[
+  {
+    "schema_version": 1,
+    "definition_id": "torso.lean",
+    "definition_version": 1,
+    "avatar_id": "spine-pelvis.demo",
+    "profile_version": 3,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 10,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "pitch",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "pitch",
+          "roll"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1b/demo/: torso.lean.default,torso.lean.small,torso.lean.min,torso.lean.max,torso.lean.zero,torso.lean.preserve,torso.lean.neutral,torso.lean.free-space,torso.lean.pitch,torso.lean.pitch-negative,torso.lean.roll,torso.lean.roll-negative,torso.lean.roll-min,torso.lean.roll-max",
+      "Captured 90-degree heading, asymmetric arms/head and 9cm supported crouch; neutral torso cases also tested.",
+      "All frames measured and replayed; full-cycle front and side frame evidence with inspected contact sheets.",
+      "Entry-dependent reach and joint-limit rejection; circle uses 32 continuous linear chords with eased radial entry/exit."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.4901161193847656e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 9.986292578167979e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 37.413447406281385
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 182.30670752517128
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 211
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 211
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0.0005338973677363303
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "head_error_deg",
+        "value": 0.0005338973677363303
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_deg",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "unrelated_arm_deg",
+        "value": 0.0005563670053803094
+      },
+      {
+        "schema_version": 1,
+        "name": "circle_radial_error_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "wave_peak_gap_error_frames",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "torso.twist",
+    "definition_version": 1,
+    "avatar_id": "spine-pelvis.demo",
+    "profile_version": 3,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 10,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "yaw",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "yaw"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1b/demo/: torso.twist.default,torso.twist.small,torso.twist.min,torso.twist.max,torso.twist.zero,torso.twist.preserve,torso.twist.neutral",
+      "Captured 90-degree heading, asymmetric arms/head and 9cm supported crouch; neutral torso cases also tested.",
+      "All frames measured and replayed; full-cycle front and side frame evidence with inspected contact sheets.",
+      "Entry-dependent reach and joint-limit rejection; circle uses 32 continuous linear chords with eased radial entry/exit."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.4901161193847656e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 9.986292578167979e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 37.37868985519153
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 182.1504326657016
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 211
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 211
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0.00048825701754042183
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "head_error_deg",
+        "value": 0.00048825701754042183
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_deg",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "unrelated_arm_deg",
+        "value": 0.0005517506362977542
+      },
+      {
+        "schema_version": 1,
+        "name": "circle_radial_error_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "wave_peak_gap_error_frames",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "torso.curl",
+    "definition_version": 1,
+    "avatar_id": "spine-pelvis.demo",
+    "profile_version": 3,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 10,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "pitch",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "pitch"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1b/demo/: torso.curl.default,torso.curl.small,torso.curl.min,torso.curl.max,torso.curl.zero,torso.curl.preserve,torso.curl.neutral",
+      "Captured 90-degree heading, asymmetric arms/head and 9cm supported crouch; neutral torso cases also tested.",
+      "All frames measured and replayed; full-cycle front and side frame evidence with inspected contact sheets.",
+      "Entry-dependent reach and joint-limit rejection; circle uses 32 continuous linear chords with eased radial entry/exit."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.4901161193847656e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 9.986292578167979e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 37.41360046379302
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 182.3050792336244
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 211
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 211
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0.000911715131383902
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "head_error_deg",
+        "value": 0.000911715131383902
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_deg",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "unrelated_arm_deg",
+        "value": 0.0006941291025626128
+      },
+      {
+        "schema_version": 1,
+        "name": "circle_radial_error_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "wave_peak_gap_error_frames",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "torso.wave",
+    "definition_version": 1,
+    "avatar_id": "spine-pelvis.demo",
+    "profile_version": 3,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 10,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "pitch",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "pitch"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1b/demo/: torso.wave.default,torso.wave.small,torso.wave.min,torso.wave.max,torso.wave.zero,torso.wave.preserve,torso.wave.neutral",
+      "Captured 90-degree heading, asymmetric arms/head and 9cm supported crouch; neutral torso cases also tested.",
+      "All frames measured and replayed; full-cycle front and side frame evidence with inspected contact sheets.",
+      "Entry-dependent reach and joint-limit rejection; circle uses 32 continuous linear chords with eased radial entry/exit."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.4901161193847656e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 9.986292578167979e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 26.302462740743167
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 150.156196731371
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 257
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 257
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0.0012724378452397523
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "head_error_deg",
+        "value": 0.0012724378452397523
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_deg",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "unrelated_arm_deg",
+        "value": 0.0007527461391774182
+      },
+      {
+        "schema_version": 1,
+        "name": "circle_radial_error_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "wave_peak_gap_error_frames",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "torso.sway",
+    "definition_version": 1,
+    "avatar_id": "spine-pelvis.demo",
+    "profile_version": 3,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 10,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "roll",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "pitch",
+          "roll"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1b/demo/: torso.sway.default,torso.sway.small,torso.sway.min,torso.sway.max,torso.sway.zero,torso.sway.preserve,torso.sway.neutral,torso.sway.pitch,torso.sway.pitch-negative,torso.sway.pitch-min,torso.sway.pitch-max,torso.sway.roll,torso.sway.roll-negative",
+      "Captured 90-degree heading, asymmetric arms/head and 9cm supported crouch; neutral torso cases also tested.",
+      "All frames measured and replayed; full-cycle front and side frame evidence with inspected contact sheets.",
+      "Entry-dependent reach and joint-limit rejection; circle uses 32 continuous linear chords with eased radial entry/exit."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.564621925354004e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 9.986292578167979e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 74.7569304379797
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 343.4643488534459
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 331
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 331
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0.0007584201580004196
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "head_error_deg",
+        "value": 0.0007584201580004196
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_deg",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "unrelated_arm_deg",
+        "value": 0.0007718133772840474
+      },
+      {
+        "schema_version": 1,
+        "name": "circle_radial_error_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "wave_peak_gap_error_frames",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "pelvis.shift",
+    "definition_version": 1,
+    "avatar_id": "spine-pelvis.demo",
+    "profile_version": 3,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "distance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.01,
+        "minimum": -0.04,
+        "maximum": 0.04,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "side",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "forward",
+          "side"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1b/demo/: pelvis.shift.default,pelvis.shift.small,pelvis.shift.min,pelvis.shift.max,pelvis.shift.zero,pelvis.shift.preserve,pelvis.shift.side,pelvis.shift.side-negative,pelvis.shift.forward,pelvis.shift.forward-negative,pelvis.shift.forward-min,pelvis.shift.forward-max",
+      "Captured 90-degree heading, asymmetric arms/head and 9cm supported crouch; neutral torso cases also tested.",
+      "All frames measured and replayed; full-cycle front and side frame evidence with inspected contact sheets.",
+      "Entry-dependent reach and joint-limit rejection; circle uses 32 continuous linear chords with eased radial entry/exit."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 6.593763828277588e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 7.937929625295174e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 6.378617283052113
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 80.88027875319281
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.00249421224763401
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 211
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 211
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0.000579882658285494
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 2.4871826921953653e-09
+      },
+      {
+        "schema_version": 1,
+        "name": "head_error_deg",
+        "value": 0.000579882658285494
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_deg",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "unrelated_arm_deg",
+        "value": 0.0006478319923033382
+      },
+      {
+        "schema_version": 1,
+        "name": "circle_radial_error_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "wave_peak_gap_error_frames",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "pelvis.raise_lower",
+    "definition_version": 1,
+    "avatar_id": "spine-pelvis.demo",
+    "profile_version": 3,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "distance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": -0.02,
+        "minimum": -0.04,
+        "maximum": 0.04,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "vertical",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "vertical"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1b/demo/: pelvis.raise_lower.default,pelvis.raise_lower.small,pelvis.raise_lower.min,pelvis.raise_lower.max,pelvis.raise_lower.zero,pelvis.raise_lower.preserve,pelvis.raise_lower.turned-standing",
+      "Captured 90-degree heading, asymmetric arms/head and 9cm supported crouch; neutral torso cases also tested.",
+      "All frames measured and replayed; full-cycle front and side frame evidence with inspected contact sheets.",
+      "Entry-dependent reach and joint-limit rejection; circle uses 32 continuous linear chords with eased radial entry/exit."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 5.699694156646729e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 3.829189592435879e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 21.18620370323027
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 106.12162915283865
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0024942159852123337
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 211
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 211
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0.000579882658285494
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 2.9139065826910837e-08
+      },
+      {
+        "schema_version": 1,
+        "name": "head_error_deg",
+        "value": 0.000579882658285494
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_deg",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "unrelated_arm_deg",
+        "value": 0.0006535349036767002
+      },
+      {
+        "schema_version": 1,
+        "name": "circle_radial_error_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "wave_peak_gap_error_frames",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "pelvis.tilt_turn",
+    "definition_version": 1,
+    "avatar_id": "spine-pelvis.demo",
+    "profile_version": 3,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 5,
+        "minimum": -10,
+        "maximum": 10,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "yaw",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "pitch",
+          "roll",
+          "yaw"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1b/demo/: pelvis.tilt_turn.default,pelvis.tilt_turn.small,pelvis.tilt_turn.min,pelvis.tilt_turn.max,pelvis.tilt_turn.zero,pelvis.tilt_turn.preserve,pelvis.tilt_turn.pitch,pelvis.tilt_turn.pitch-negative,pelvis.tilt_turn.pitch-min,pelvis.tilt_turn.pitch-max,pelvis.tilt_turn.roll,pelvis.tilt_turn.roll-negative,pelvis.tilt_turn.roll-min,pelvis.tilt_turn.roll-max,pelvis.tilt_turn.yaw,pelvis.tilt_turn.yaw-negative",
+      "Captured 90-degree heading, asymmetric arms/head and 9cm supported crouch; neutral torso cases also tested.",
+      "All frames measured and replayed; full-cycle front and side frame evidence with inspected contact sheets.",
+      "Entry-dependent reach and joint-limit rejection; circle uses 32 continuous linear chords with eased radial entry/exit."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 3.427267074584961e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 4.6143208212921843e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 18.96003239841996
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 133.84821833704473
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 211
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 211
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0.000737771096422973
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "head_error_deg",
+        "value": 0.000737771096422973
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_deg",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "unrelated_arm_deg",
+        "value": 0.0002434659069123768
+      },
+      {
+        "schema_version": 1,
+        "name": "circle_radial_error_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "wave_peak_gap_error_frames",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "pelvis.circle",
+    "definition_version": 1,
+    "avatar_id": "spine-pelvis.demo",
+    "profile_version": 3,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "distance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.01,
+        "minimum": -0.04,
+        "maximum": 0.04,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "side",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "side"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.1b/demo/: pelvis.circle.default,pelvis.circle.small,pelvis.circle.min,pelvis.circle.max,pelvis.circle.zero,pelvis.circle.preserve",
+      "Captured 90-degree heading, asymmetric arms/head and 9cm supported crouch; neutral torso cases also tested.",
+      "All frames measured and replayed; full-cycle front and side frame evidence with inspected contact sheets.",
+      "Entry-dependent reach and joint-limit rejection; circle uses 32 continuous linear chords with eased radial entry/exit."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.6726553440093994e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 1.5227457984329827e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 6.378768748717523
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 88.29326647638935
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.00249421224763401
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 1007
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 1007
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0.0033385270179889506
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 3.057710309061895e-09
+      },
+      {
+        "schema_version": 1,
+        "name": "head_error_deg",
+        "value": 0.0033385270179889506
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_error_deg",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "unrelated_arm_deg",
+        "value": 0.0018845638946771714
+      },
+      {
+        "schema_version": 1,
+        "name": "circle_radial_error_m",
+        "value": 0.00019261570274298895
+      },
+      {
+        "schema_version": 1,
+        "name": "wave_peak_gap_error_frames",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  }
+]

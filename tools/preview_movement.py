@@ -68,12 +68,18 @@ def render_preview(handle,profile,out):
     scene.render.image_settings.file_format='PNG'
     scene.frame_set(scene.frame_start)
     scene.render.filepath=str(out/'overview.png'); bpy.ops.render.render(write_still=True)
-    head=handle.rig.matrix_world @ handle.bones['Head'].head
     frame=rp.semantic_frame(handle,profile,'pelvis').to_3x3()
-    focus=head-frame.col[2]*.2
-    scene.camera.location=focus+frame.col[1]*1.7+frame.col[0]*.65+frame.col[2]*.12
+    body=any(t.startswith(('torso.','pelvis.','spine.')) for t in json.loads((out/'result.json').read_text())['samples'][0]['targets'])
+    if body:
+        focus=Vector((0,0,profile.height_m*.52))
+        scene.camera.location=focus+frame.col[1]*4+frame.col[0]*1.5
+        scene.camera.data.type='ORTHO';scene.camera.data.ortho_scale=profile.height_m*1.5
+    else:
+        head=handle.rig.matrix_world @ handle.bones['Head'].head
+        focus=head-frame.col[2]*.2
+        scene.camera.location=focus+frame.col[1]*1.7+frame.col[0]*.65+frame.col[2]*.12
+        scene.camera.data.lens=48
     scene.camera.rotation_euler=(focus-scene.camera.location).to_track_quat('-Z','Y').to_euler()
-    scene.camera.data.lens=48
     width=256; scene.render.resolution_x=width; scene.render.resolution_y=width
     count=scene.frame_end-scene.frame_start+1; columns=7; rows=math.ceil(count/columns)
     sheet=np.zeros((rows*width,columns*width,4),dtype=np.float32); sheet[:,:,3]=1
@@ -113,6 +119,8 @@ def main(argv=None):
     parser.add_argument('--entry',type=Path,required=True); parser.add_argument('--output-dir',type=Path,required=True)
     parser.add_argument('--test-catalog',action='store_true'); parser.add_argument('--render',action='store_true')
     args=parser.parse_args(argv)
+    # Blender resolves render paths relative to its project, not Python's cwd.
+    args.output_dir=args.output_dir.resolve()
     catalog=CATALOG
     if args.test_catalog:
         sys.path.insert(0,str(ROOT/'tests'))
@@ -125,6 +133,9 @@ def main(argv=None):
     profile=rp.calibrate_joint_frames(handle,avatar_id='preview.'+('demo' if args.rig=='demo' else 'import'),
                                      source_revision='developer-preview',recorded_at='2026-10-23',include_head_aim=not args.test_catalog)
     if not args.test_catalog:
+        if args.id.startswith('pelvis.'):
+            from avatar_app.movement_library.torso_pelvis import with_pelvis_v1
+            profile=with_pelvis_v1(profile)
         from avatar_app.movement_library.joints import catalog_for_profile
         catalog=catalog_for_profile(profile)
     entry=capture_entry(handle,profile)

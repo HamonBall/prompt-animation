@@ -210,11 +210,11 @@ def keep_hand_above_floor(handle, side, pole=None):
         bpy.context.view_layer.update()
 
 
-def set_contact(handle, constraint, target, foot_orientation, strength=1, elbow=None):
+def set_contact(handle, constraint, target, foot_orientation, strength=1, elbow=None, leg_pole=None):
     bone = handle.bones[PART_BONES[constraint.part]]
     if constraint.part.endswith('_foot'):
         side = constraint.part.split('_')[0].title()
-        solve_leg(handle, side, target)
+        solve_leg(handle, side, target, pole=leg_pole)
         bone.matrix = Matrix.Translation(bone.head) @ foot_orientation.to_matrix().to_4x4()
         bpy.context.view_layer.update()
     elif constraint.part.endswith('_hand'):

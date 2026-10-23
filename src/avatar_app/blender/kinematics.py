@@ -1,7 +1,7 @@
 """Shared bone aiming and two-segment leg IK for pose, motion and clips."""
 import math
 import bpy
-from mathutils import Matrix
+from mathutils import Matrix, Vector
 
 
 def aim(bone, direction):
@@ -16,7 +16,7 @@ def aim(bone, direction):
     bpy.context.view_layer.update()
 
 
-def solve_leg(handle, side, target):
+def solve_leg(handle, side, target, pole=None):
     upper = handle.bones[side + 'UpLeg']
     lower = handle.bones[side + 'Leg']
     foot = handle.bones[side + 'Foot']
@@ -28,7 +28,10 @@ def solve_leg(handle, side, target):
     if distance > a + b + 1e-4 or distance < abs(a - b) + 1e-5:
         raise ValueError('The foot target is beyond this avatar’s leg reach.')
     axis = delta.normalized()
-    bend = handle.forward - axis * handle.forward.dot(axis)
+    forward = handle.forward if pole is None else Vector(pole)
+    bend = forward - axis * forward.dot(axis)
+    if pole is not None and bend.length < 1e-7:
+        raise ValueError('The leg bend plane is degenerate for this target.')
     bend.normalize()
     along = (a * a - b * b + distance * distance) / (2 * distance)
     knee = origin + axis * along + bend * math.sqrt(max(0, a * a - along * along))

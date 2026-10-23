@@ -307,3 +307,21 @@ tools for a disposable scene/process; their scene-clearing behavior is outside
 the application startup path.
 Original personal assets and the `problems/` folder are not
 modified by this work.
+
+The developer movement library now includes the five head/neck movements and nine
+spine/pelvis movements through the shared typed-fragment executor. These remain
+internal animation building blocks; the prompt is still the user-facing input.
+Body movements preserve head orientation, and supported pelvis movement solves
+the planted legs while keeping captured foot anchors. Unsupported reach fails
+without replacing the previous animation. Whole-avatar travel and recipe/AI
+integration remain later stages.
+
+Stage 05.1b source and validation are in `movement_library/torso_pelvis.py`,
+`tests/test_movement_spine_pelvis.py`, `tests/blender_movement_spine_pelvis.py`, and
+`tests/blender_spine_pelvis_boundaries.py`. The local contract is
+`docs/contracts/spine-pelvis-v1.md`. Run the Blender matrix with `-- --rig demo`
+or `-- --rig mixamo`; add `--render-only --skip-rendered` to generate frame images
+from the saved actions. Results are under `artifacts/stages/05.1b/<rig>/<case>/`:
+`preview.blend` is playable, `result.json` contains all measured samples, and
+`front-sheet.png` / `side-sheet.png` show the full animation. Rendering is a
+separate validation step. The stage receipt records completed checks and limits.

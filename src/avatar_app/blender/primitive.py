@@ -38,6 +38,7 @@ class FragmentAdapter:
             c.fail('CONSTRAINT_CONFLICT','Head orientation and individual head angles cannot own the same fragment')
         for track in motion.tracks:
             control=self.controls[track.control_id]
+            if track.control_id in ('pelvis.position','pelvis.orientation'): continue
             if track.control_id in head_modes: continue
             if control.chain in ANGULAR_CHAINS and control.value_shape=='scalar': continue
             if track.control_id.endswith('.hand.position'):
@@ -72,7 +73,66 @@ class FragmentAdapter:
             if (Vector(rp.measure_endpoint(handle,profile,anchor))-self.anchors[anchor]).length>.025:
                 c.fail('ENTRY_MISMATCH','Captured active anchor differs from the solved support',details={'anchor_id':anchor})
         self.foot_orientations={s:handle.bones[s.title()+'Foot'].matrix.to_quaternion().copy() for s in ('left','right')}
+        self.foot_heads={s:handle.bones[s.title()+'Foot'].head.copy() for s in ('left','right')}
+        self.pelvis_entry_orientation=rp.semantic_frame(handle,profile,'pelvis').to_quaternion()
+        self.leg_poles={}
+        for side in ('left','right'):
+            upper,lower,foot=(handle.bones[side.title()+name] for name in ('UpLeg','Leg','Foot'))
+            axis=(foot.head-upper.head).normalized()
+            bend=lower.head-upper.head-axis*(lower.head-upper.head).dot(axis)
+            self.leg_poles[side]=(handle.rig.matrix_world.to_3x3() @ bend.normalized() if bend.length>1e-6
+                else Vector(rp.measure_bend_plane(handle,profile,side+'.shin')))
+        pelvis_tracks=[t for t in motion.tracks if t.control_id.startswith('pelvis.')]
+        if pelvis_tracks:
+            if set(motion.entry_snapshot.active_contacts)!={'left.sole','right.sole'} or not all(
+                any(e.anchor_id==side+'.sole' and e.interval.start_s==0 and e.interval.end_s==motion.duration_s
+                    and e.acquire_s==0 and e.release_s==0 for e in motion.contact_events) for side in ('left','right')):
+                c.fail('ENTRY_MISMATCH','Pelvis adapter requires both captured sole anchors held for the full fragment')
+            for track in pelvis_tracks:
+                for value in (track.curve.start_value,track.curve.end_value):
+                    if value is not None:self._check_pelvis_reach({track.control_id:value})
         self.diagnostics=[]
+
+    def _check_pelvis_reach(self,requested):
+        h,p=self.handle,self.profile
+        frame=rp.semantic_frame(h,p,'pelvis')
+        rotation=Quaternion(requested.get('pelvis.orientation',tuple(frame.to_quaternion()))) @ frame.to_quaternion().conjugated()
+        position=Vector(requested.get('pelvis.position',tuple(frame.translation)))
+        for side in ('left','right'):
+            upper,lower,foot=(h.bones[side.title()+name] for name in ('UpLeg','Leg','Foot'))
+            hip=h.rig.matrix_world @ upper.head
+            hip=position+rotation @ (hip-frame.translation)
+            a=(h.rig.matrix_world.to_3x3() @ (lower.head-upper.head)).length
+            b=(h.rig.matrix_world.to_3x3() @ (foot.head-lower.head)).length
+            distance=(h.rig.matrix_world @ self.foot_heads[side]-hip).length
+            if distance>a+b+1e-5 or distance<abs(a-b)+1e-5:
+                c.fail('INVALID_PARAMETER','Pelvis request exceeds the captured planted-leg reach',details={'side':side,'distance_m':distance,'reach_m':a+b})
+
+    def _pelvis(self,requested):
+        from .motion import set_contact
+        h,p=self.handle,self.profile
+        self._check_pelvis_reach(requested)
+        bone=h.rig.pose.bones[self.joints['pelvis'].source_bones[0]]
+        semantic=rp.semantic_frame(h,p,'pelvis')
+        position=Vector(requested.get('pelvis.position',tuple(semantic.translation)))
+        orientation=requested.get('pelvis.orientation',tuple(semantic.to_quaternion()))
+        if (position-semantic.translation).length<1e-8 and value_error(orientation,tuple(semantic.to_quaternion()),'quaternion')<1e-4:
+            return  # An identity request must not re-solve a captured straight knee.
+        world=h.rig.matrix_world @ bone.matrix
+        rotation=Quaternion(orientation) @ semantic.to_quaternion().conjugated() @ world.to_quaternion()
+        bone.matrix=h.rig.matrix_world.inverted() @ (Matrix.Translation(position) @ rotation.to_matrix().to_4x4() @ Matrix.Diagonal((*world.to_scale(),1)))
+        bpy.context.view_layer.update()
+        for side in ('left','right'):
+            try:
+                delta=Quaternion(requested.get('pelvis.orientation',tuple(semantic.to_quaternion()))) @ self.pelvis_entry_orientation.conjugated()
+                pole=h.rig.matrix_world.inverted().to_3x3() @ (delta @ self.leg_poles[side])
+                set_contact(h,ContactConstraint(side+'_foot'),self.foot_heads[side],self.foot_orientations[side],leg_pole=pole)
+            except ValueError:
+                c.fail('INVALID_PARAMETER','Pelvis request exceeds the captured planted-leg reach',details={'side':side})
+
+    def _leg_pole(self,side):
+        rotation=rp.semantic_frame(self.handle,self.profile,'pelvis').to_quaternion() @ self.pelvis_entry_orientation.conjugated()
+        return self.handle.rig.matrix_world.inverted().to_3x3() @ (rotation @ self.leg_poles[side])
 
     def _check_reach(self,control_id,target):
         h=self.handle; side=control_id.split('.')[0].title(); world=h.rig.matrix_world
@@ -114,6 +174,8 @@ class FragmentAdapter:
         bpy.context.view_layer.update()
         targets=sample_motion(self.motion,time_s,self.measured,self.cursor)
         requested={v.control_id:v.value for v in targets.controls}
+        if any(id in requested for id in ('pelvis.position','pelvis.orientation')):
+            self._pelvis(requested)
         chains=sorted({self.controls[id].chain for id in requested if self.controls[id].value_shape=='scalar'},
                       key=lambda id:(sum(1 for _ in self._parents(id)),id))
         for chain in chains:
@@ -165,7 +227,7 @@ class FragmentAdapter:
                 if delta.length>1e-6:
                     foot=h.bones[side.title()+'Foot']
                     target=foot.head+h.rig.matrix_world.inverted().to_3x3() @ delta
-                    set_contact(h,ContactConstraint(side+'_foot'),target,self.foot_orientations[side])
+                    set_contact(h,ContactConstraint(side+'_foot'),target,self.foot_orientations[side],leg_pole=self._leg_pole(side))
                 errors[side+'_foot']=(Vector(rp.measure_endpoint(h,p,event.anchor_id))-anchor).length*weight
         anchors=tuple(c.ContactAnchor(id,'floor',tuple(self.anchors[id]),'world','metre') for id in active)
         solved=rp.capture_motion_state(h,p,revision=self.motion.entry_snapshot.revision,captured_time_s=time_s,

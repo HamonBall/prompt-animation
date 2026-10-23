@@ -7,6 +7,7 @@ from avatar_app.movement_library import contracts as c
 from avatar_app.movement_library import registry as r
 from avatar_app.movement_library.compiler import instantiate_movement,build_fragment,prepare_fragment,sample_motion,ExecutionCursor,value_error
 from avatar_app.movement_library.joints import IDS,catalog_for_profile
+from avatar_app.movement_library.torso_pelvis import IDS as BODY_IDS
 from avatar_app.movement_library.spatial import with_head_aim_v1,angle_rotation,look_rotation,rotate
 from avatar_app.motion import Surface
 
@@ -34,7 +35,7 @@ class HeadNeckTests(unittest.TestCase):
         return build_fragment(i,e,p,(Surface(),),cat)
 
     def test_registered_ids_and_generated_parameter_schemas(self):
-        self.assertEqual(set(r.CATALOG.definitions),set(IDS))
+        self.assertEqual(set(r.CATALOG.definitions),set(IDS) | set(BODY_IDS))
         self.assertFalse(r.CATALOG.reviews)
         for definition in self.catalog.definitions.values():
             schema=r.parameter_schema(definition)

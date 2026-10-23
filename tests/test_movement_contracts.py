@@ -65,14 +65,14 @@ class Guard(importlib.abc.MetaPathFinder):
             raise AssertionError('Unexpected import: '+fullname)
 sys.meta_path.insert(0, Guard())
 from avatar_app.movement_library import contracts, registry
-assert set(registry.CATALOG.definitions)=={'head.look','head.nod','head.shake','head.tilt','neck.lead'}
+assert set(registry.CATALOG.definitions)=={'head.look','head.nod','head.shake','head.tilt','neck.lead','torso.lean','torso.twist','torso.curl','torso.wave','torso.sway','pelvis.shift','pelvis.raise_lower','pelvis.tilt_turn','pelvis.circle'}
 assert not registry.CATALOG.reviews
 assert not any(n in sys.modules for n in blocked)
 print(json.dumps({'record_types':len(contracts.RECORD_TYPES), 'catalog_size':len(registry.CATALOG.definitions), 'blocked_imports':list(blocked)}))
 '''
         result = subprocess.run([sys.executable, '-c', script], capture_output=True, text=True, timeout=20)
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn('"catalog_size": 5', result.stdout)
+        self.assertIn('"catalog_size": 14', result.stdout)
         self.assertFalse(r.CATALOG.reviews)
 
     def test_defaults_preserve_explicit_zero_and_resolution_is_idempotent(self):

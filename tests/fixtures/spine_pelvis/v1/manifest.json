@@ -1,0 +1,370 @@
+{
+  "schema_version": 1,
+  "definition_version": 1,
+  "profile_version": 3,
+  "source_revision": "7f84a4a379010b10259d84906f04d90199829229 plus Stage 05.1b working tree",
+  "rigs": {
+    "demo": {
+      "torso.lean": {
+        "records": {
+          "entry": "demo/torso.lean-entry.json",
+          "instance": "demo/torso.lean-instance.json",
+          "fragment": "demo/torso.lean-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "torso.lean.default",
+          "torso.lean.small",
+          "torso.lean.min",
+          "torso.lean.max",
+          "torso.lean.zero",
+          "torso.lean.preserve",
+          "torso.lean.neutral",
+          "torso.lean.free-space",
+          "torso.lean.pitch",
+          "torso.lean.pitch-negative",
+          "torso.lean.roll",
+          "torso.lean.roll-negative",
+          "torso.lean.roll-min",
+          "torso.lean.roll-max"
+        ]
+      },
+      "torso.twist": {
+        "records": {
+          "entry": "demo/torso.twist-entry.json",
+          "instance": "demo/torso.twist-instance.json",
+          "fragment": "demo/torso.twist-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "torso.twist.default",
+          "torso.twist.small",
+          "torso.twist.min",
+          "torso.twist.max",
+          "torso.twist.zero",
+          "torso.twist.preserve",
+          "torso.twist.neutral"
+        ]
+      },
+      "torso.curl": {
+        "records": {
+          "entry": "demo/torso.curl-entry.json",
+          "instance": "demo/torso.curl-instance.json",
+          "fragment": "demo/torso.curl-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "torso.curl.default",
+          "torso.curl.small",
+          "torso.curl.min",
+          "torso.curl.max",
+          "torso.curl.zero",
+          "torso.curl.preserve",
+          "torso.curl.neutral"
+        ]
+      },
+      "torso.wave": {
+        "records": {
+          "entry": "demo/torso.wave-entry.json",
+          "instance": "demo/torso.wave-instance.json",
+          "fragment": "demo/torso.wave-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "torso.wave.default",
+          "torso.wave.small",
+          "torso.wave.min",
+          "torso.wave.max",
+          "torso.wave.zero",
+          "torso.wave.preserve",
+          "torso.wave.neutral"
+        ]
+      },
+      "torso.sway": {
+        "records": {
+          "entry": "demo/torso.sway-entry.json",
+          "instance": "demo/torso.sway-instance.json",
+          "fragment": "demo/torso.sway-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "torso.sway.default",
+          "torso.sway.small",
+          "torso.sway.min",
+          "torso.sway.max",
+          "torso.sway.zero",
+          "torso.sway.preserve",
+          "torso.sway.neutral",
+          "torso.sway.pitch",
+          "torso.sway.pitch-negative",
+          "torso.sway.pitch-min",
+          "torso.sway.pitch-max",
+          "torso.sway.roll",
+          "torso.sway.roll-negative"
+        ]
+      },
+      "pelvis.shift": {
+        "records": {
+          "entry": "demo/pelvis.shift-entry.json",
+          "instance": "demo/pelvis.shift-instance.json",
+          "fragment": "demo/pelvis.shift-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "pelvis.shift.default",
+          "pelvis.shift.small",
+          "pelvis.shift.min",
+          "pelvis.shift.max",
+          "pelvis.shift.zero",
+          "pelvis.shift.preserve",
+          "pelvis.shift.side",
+          "pelvis.shift.side-negative",
+          "pelvis.shift.forward",
+          "pelvis.shift.forward-negative",
+          "pelvis.shift.forward-min",
+          "pelvis.shift.forward-max"
+        ]
+      },
+      "pelvis.raise_lower": {
+        "records": {
+          "entry": "demo/pelvis.raise_lower-entry.json",
+          "instance": "demo/pelvis.raise_lower-instance.json",
+          "fragment": "demo/pelvis.raise_lower-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "pelvis.raise_lower.default",
+          "pelvis.raise_lower.small",
+          "pelvis.raise_lower.min",
+          "pelvis.raise_lower.max",
+          "pelvis.raise_lower.zero",
+          "pelvis.raise_lower.preserve",
+          "pelvis.raise_lower.turned-standing"
+        ]
+      },
+      "pelvis.tilt_turn": {
+        "records": {
+          "entry": "demo/pelvis.tilt_turn-entry.json",
+          "instance": "demo/pelvis.tilt_turn-instance.json",
+          "fragment": "demo/pelvis.tilt_turn-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "pelvis.tilt_turn.default",
+          "pelvis.tilt_turn.small",
+          "pelvis.tilt_turn.min",
+          "pelvis.tilt_turn.max",
+          "pelvis.tilt_turn.zero",
+          "pelvis.tilt_turn.preserve",
+          "pelvis.tilt_turn.pitch",
+          "pelvis.tilt_turn.pitch-negative",
+          "pelvis.tilt_turn.pitch-min",
+          "pelvis.tilt_turn.pitch-max",
+          "pelvis.tilt_turn.roll",
+          "pelvis.tilt_turn.roll-negative",
+          "pelvis.tilt_turn.roll-min",
+          "pelvis.tilt_turn.roll-max",
+          "pelvis.tilt_turn.yaw",
+          "pelvis.tilt_turn.yaw-negative"
+        ]
+      },
+      "pelvis.circle": {
+        "records": {
+          "entry": "demo/pelvis.circle-entry.json",
+          "instance": "demo/pelvis.circle-instance.json",
+          "fragment": "demo/pelvis.circle-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "pelvis.circle.default",
+          "pelvis.circle.small",
+          "pelvis.circle.min",
+          "pelvis.circle.max",
+          "pelvis.circle.zero",
+          "pelvis.circle.preserve"
+        ]
+      }
+    },
+    "mixamo": {
+      "torso.lean": {
+        "records": {
+          "entry": "mixamo/torso.lean-entry.json",
+          "instance": "mixamo/torso.lean-instance.json",
+          "fragment": "mixamo/torso.lean-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "torso.lean.default",
+          "torso.lean.small",
+          "torso.lean.min",
+          "torso.lean.max",
+          "torso.lean.zero",
+          "torso.lean.preserve",
+          "torso.lean.neutral",
+          "torso.lean.free-space",
+          "torso.lean.pitch",
+          "torso.lean.pitch-negative",
+          "torso.lean.roll",
+          "torso.lean.roll-negative",
+          "torso.lean.roll-min",
+          "torso.lean.roll-max"
+        ]
+      },
+      "torso.twist": {
+        "records": {
+          "entry": "mixamo/torso.twist-entry.json",
+          "instance": "mixamo/torso.twist-instance.json",
+          "fragment": "mixamo/torso.twist-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "torso.twist.default",
+          "torso.twist.small",
+          "torso.twist.min",
+          "torso.twist.max",
+          "torso.twist.zero",
+          "torso.twist.preserve",
+          "torso.twist.neutral"
+        ]
+      },
+      "torso.curl": {
+        "records": {
+          "entry": "mixamo/torso.curl-entry.json",
+          "instance": "mixamo/torso.curl-instance.json",
+          "fragment": "mixamo/torso.curl-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "torso.curl.default",
+          "torso.curl.small",
+          "torso.curl.min",
+          "torso.curl.max",
+          "torso.curl.zero",
+          "torso.curl.preserve",
+          "torso.curl.neutral"
+        ]
+      },
+      "torso.wave": {
+        "records": {
+          "entry": "mixamo/torso.wave-entry.json",
+          "instance": "mixamo/torso.wave-instance.json",
+          "fragment": "mixamo/torso.wave-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "torso.wave.default",
+          "torso.wave.small",
+          "torso.wave.min",
+          "torso.wave.max",
+          "torso.wave.zero",
+          "torso.wave.preserve",
+          "torso.wave.neutral"
+        ]
+      },
+      "torso.sway": {
+        "records": {
+          "entry": "mixamo/torso.sway-entry.json",
+          "instance": "mixamo/torso.sway-instance.json",
+          "fragment": "mixamo/torso.sway-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "torso.sway.default",
+          "torso.sway.small",
+          "torso.sway.min",
+          "torso.sway.max",
+          "torso.sway.zero",
+          "torso.sway.preserve",
+          "torso.sway.neutral",
+          "torso.sway.pitch",
+          "torso.sway.pitch-negative",
+          "torso.sway.pitch-min",
+          "torso.sway.pitch-max",
+          "torso.sway.roll",
+          "torso.sway.roll-negative"
+        ]
+      },
+      "pelvis.shift": {
+        "records": {
+          "entry": "mixamo/pelvis.shift-entry.json",
+          "instance": "mixamo/pelvis.shift-instance.json",
+          "fragment": "mixamo/pelvis.shift-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "pelvis.shift.default",
+          "pelvis.shift.small",
+          "pelvis.shift.min",
+          "pelvis.shift.max",
+          "pelvis.shift.zero",
+          "pelvis.shift.preserve",
+          "pelvis.shift.side",
+          "pelvis.shift.side-negative",
+          "pelvis.shift.forward",
+          "pelvis.shift.forward-negative",
+          "pelvis.shift.forward-min",
+          "pelvis.shift.forward-max"
+        ]
+      },
+      "pelvis.raise_lower": {
+        "records": {
+          "entry": "mixamo/pelvis.raise_lower-entry.json",
+          "instance": "mixamo/pelvis.raise_lower-instance.json",
+          "fragment": "mixamo/pelvis.raise_lower-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "pelvis.raise_lower.default",
+          "pelvis.raise_lower.small",
+          "pelvis.raise_lower.min",
+          "pelvis.raise_lower.max",
+          "pelvis.raise_lower.zero",
+          "pelvis.raise_lower.preserve",
+          "pelvis.raise_lower.turned-standing"
+        ]
+      },
+      "pelvis.tilt_turn": {
+        "records": {
+          "entry": "mixamo/pelvis.tilt_turn-entry.json",
+          "instance": "mixamo/pelvis.tilt_turn-instance.json",
+          "fragment": "mixamo/pelvis.tilt_turn-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "pelvis.tilt_turn.default",
+          "pelvis.tilt_turn.small",
+          "pelvis.tilt_turn.min",
+          "pelvis.tilt_turn.max",
+          "pelvis.tilt_turn.zero",
+          "pelvis.tilt_turn.preserve",
+          "pelvis.tilt_turn.pitch",
+          "pelvis.tilt_turn.pitch-negative",
+          "pelvis.tilt_turn.pitch-min",
+          "pelvis.tilt_turn.pitch-max",
+          "pelvis.tilt_turn.roll",
+          "pelvis.tilt_turn.roll-negative",
+          "pelvis.tilt_turn.roll-min",
+          "pelvis.tilt_turn.roll-max",
+          "pelvis.tilt_turn.yaw",
+          "pelvis.tilt_turn.yaw-negative"
+        ]
+      },
+      "pelvis.circle": {
+        "records": {
+          "entry": "mixamo/pelvis.circle-entry.json",
+          "instance": "mixamo/pelvis.circle-instance.json",
+          "fragment": "mixamo/pelvis.circle-fragment.json"
+        },
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "pelvis.circle.default",
+          "pelvis.circle.small",
+          "pelvis.circle.min",
+          "pelvis.circle.max",
+          "pelvis.circle.zero",
+          "pelvis.circle.preserve"
+        ]
+      }
+    }
+  }
+}

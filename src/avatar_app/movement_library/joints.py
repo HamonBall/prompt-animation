@@ -184,4 +184,6 @@ def register_head_neck(catalog,*,head_only=False):
 def catalog_for_profile(profile):
     """Profile-scoped neck fallback is explicit metadata, never fake anatomy."""
     from .registry import Catalog
-    return register_head_neck(Catalog(BUILDERS),head_only='anatomy.neck' not in profile.capabilities)
+    from .torso_pelvis import BUILDERS as BODY_BUILDERS,register_body
+    catalog=register_head_neck(Catalog({**BUILDERS,**BODY_BUILDERS}),head_only='anatomy.neck' not in profile.capabilities)
+    return register_body(catalog,profile)

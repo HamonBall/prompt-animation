@@ -259,4 +259,5 @@ def parameter_schema(definition):
 # Only executable application-owned content is registered. Reviews remain rig-scoped
 # evidence, never inferred from definitions or silently granted at import time.
 from .joints import BUILDERS, register_head_neck
-CATALOG=register_head_neck(Catalog(BUILDERS))
+from .torso_pelvis import BUILDERS as BODY_BUILDERS, register_body
+CATALOG=register_body(register_head_neck(Catalog({**BUILDERS,**BODY_BUILDERS})))
