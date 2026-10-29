@@ -1,0 +1,2520 @@
+[
+  {
+    "schema_version": 1,
+    "definition_id": "shoulder.shrug",
+    "definition_version": 1,
+    "avatar_id": "shoulders-arms.demo",
+    "profile_version": 4,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right",
+          "both"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "joint_parent",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "joint_parent"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 4,
+        "minimum": -10,
+        "maximum": 10,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "left_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -10,
+        "maximum": 10,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "right_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -10,
+        "maximum": 10,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.2/demo: shoulder.shrug.default,shoulder.shrug.right,shoulder.shrug.both,shoulder.shrug.independent,shoulder.shrug.neutral,shoulder.shrug.preserve,shoulder.shrug.min,shoulder.shrug.max,shoulder.shrug.zero,shoulder.shrug.fast,shoulder.shrug.slow",
+      "Actual optional clavicles only; absent anatomy is explicitly unavailable.",
+      "No proxy shoulder animation or additional bones.",
+      "Named entries: neutral, shoulders-bent."
+    ],
+    "measured_maxima": [],
+    "status": "unavailable_on_rig"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "shoulder.reach",
+    "definition_version": 1,
+    "avatar_id": "shoulders-arms.demo",
+    "profile_version": 4,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right",
+          "both"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "joint_parent",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "joint_parent"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 4,
+        "minimum": -10,
+        "maximum": 10,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "left_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -10,
+        "maximum": 10,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "right_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -10,
+        "maximum": 10,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.2/demo: shoulder.reach.default,shoulder.reach.right,shoulder.reach.both,shoulder.reach.independent,shoulder.reach.neutral,shoulder.reach.preserve,shoulder.reach.min,shoulder.reach.max,shoulder.reach.zero,shoulder.reach.fast,shoulder.reach.slow",
+      "Actual optional clavicles only; absent anatomy is explicitly unavailable.",
+      "No proxy shoulder animation or additional bones.",
+      "Named entries: neutral, shoulders-bent."
+    ],
+    "measured_maxima": [],
+    "status": "unavailable_on_rig"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "shoulder.roll",
+    "definition_version": 1,
+    "avatar_id": "shoulders-arms.demo",
+    "profile_version": 4,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right",
+          "both"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "joint_parent",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "joint_parent"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 4,
+        "minimum": -8,
+        "maximum": 8,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "left_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -8,
+        "maximum": 8,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "right_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -8,
+        "maximum": 8,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.2/demo: shoulder.roll.default,shoulder.roll.right,shoulder.roll.both,shoulder.roll.independent,shoulder.roll.neutral,shoulder.roll.preserve,shoulder.roll.min,shoulder.roll.max,shoulder.roll.zero,shoulder.roll.fast,shoulder.roll.slow",
+      "Actual optional clavicles only; absent anatomy is explicitly unavailable.",
+      "No proxy shoulder animation or additional bones.",
+      "Named entries: neutral, shoulders-bent."
+    ],
+    "measured_maxima": [],
+    "status": "unavailable_on_rig"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "arm.raise",
+    "definition_version": 1,
+    "avatar_id": "shoulders-arms.demo",
+    "profile_version": 4,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right",
+          "both"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "forward",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "forward",
+          "side"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "entry_body",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "entry_body",
+          "world"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 20,
+        "minimum": -30,
+        "maximum": 150,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "left_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -30,
+        "maximum": 150,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "right_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -30,
+        "maximum": 150,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.2/demo: arm.raise.default,arm.raise.right,arm.raise.both,arm.raise.independent,arm.raise.neutral,arm.raise.preserve,arm.raise.side,arm.raise.world,arm.raise.min,arm.raise.max,arm.raise.zero,arm.raise.fast,arm.raise.slow",
+      "Named measured entry envelope, both sides, declared ranges/timing and independent overrides; arbitrary target feasibility remains conditional.",
+      "Every motion frame measured and saved playback checked; front/side complete media and inspected review pages.",
+      "Named entries: bent-turned, neutral."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.601874828338623e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 9.984056784683488e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 149.97602087923372
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 382.2299737353978
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 184
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 184
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0.00024313218994592736
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "other_hand_m",
+        "value": 6.412826213491252e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "elbow_preservation_deg",
+        "value": 0.0003479629261704531
+      },
+      {
+        "schema_version": 1,
+        "name": "head_drift_deg",
+        "value": 0.0004039711905706187
+      },
+      {
+        "schema_version": 1,
+        "name": "body_angle_drift_deg",
+        "value": 0.0003748320567389385
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "min_clearance_m",
+        "value": 0.02309504114386271
+      },
+      {
+        "schema_version": 1,
+        "name": "max_pole_step_deg",
+        "value": 4.889023970908027
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_velocity_delta_deg_s",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "frame_count",
+        "value": 184
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "arm.sweep",
+    "definition_version": 1,
+    "avatar_id": "shoulders-arms.demo",
+    "profile_version": 4,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right",
+          "both"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "horizontal",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "horizontal"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "entry_body",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "entry_body",
+          "world"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 20,
+        "minimum": -70,
+        "maximum": 110,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "left_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -70,
+        "maximum": 110,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "right_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -70,
+        "maximum": 110,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.2/demo: arm.sweep.default,arm.sweep.right,arm.sweep.both,arm.sweep.independent,arm.sweep.neutral,arm.sweep.preserve,arm.sweep.backward,arm.sweep.cross-body,arm.sweep.world,arm.sweep.min,arm.sweep.max,arm.sweep.zero,arm.sweep.fast,arm.sweep.slow",
+      "Named measured entry envelope, both sides, declared ranges/timing and independent overrides; arbitrary target feasibility remains conditional.",
+      "Every motion frame measured and saved playback checked; front/side complete media and inspected review pages.",
+      "Named entries: bent-turned, cross-body-clearance, neutral.",
+      "110-degree cross-body and bilateral maximum use the shoulder-height cross-body-clearance entry; lowered Mixamo entry at 110 degrees is explicitly rejected. No silent arm lift or torso help."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.601874828338623e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 9.984056784683488e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 109.98261044211172
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 280.314369476601
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 184
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 184
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0.0002471051623277064
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "other_hand_m",
+        "value": 6.412826213491252e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "elbow_preservation_deg",
+        "value": 0.00041082241590117974
+      },
+      {
+        "schema_version": 1,
+        "name": "head_drift_deg",
+        "value": 0.0004039711905706187
+      },
+      {
+        "schema_version": 1,
+        "name": "body_angle_drift_deg",
+        "value": 0.0003748320567389385
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "min_clearance_m",
+        "value": 0.017576639872180222
+      },
+      {
+        "schema_version": 1,
+        "name": "max_pole_step_deg",
+        "value": 2.5920894897733024
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_velocity_delta_deg_s",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "frame_count",
+        "value": 184
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "arm.swing",
+    "definition_version": 1,
+    "avatar_id": "shoulders-arms.demo",
+    "profile_version": 4,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right",
+          "both"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "forward",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "forward",
+          "side"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "entry_body",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "entry_body",
+          "world"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 20,
+        "minimum": -70,
+        "maximum": 70,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "left_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -70,
+        "maximum": 70,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "right_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -70,
+        "maximum": 70,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.2/demo: arm.swing.default,arm.swing.right,arm.swing.both,arm.swing.independent,arm.swing.neutral,arm.swing.preserve,arm.swing.side,arm.swing.world,arm.swing.min,arm.swing.max,arm.swing.zero,arm.swing.fast,arm.swing.slow",
+      "Named measured entry envelope, both sides, declared ranges/timing and independent overrides; arbitrary target feasibility remains conditional.",
+      "Every motion frame measured and saved playback checked; front/side complete media and inspected review pages.",
+      "Named entries: bent-turned, neutral."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.601874828338623e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 9.984056784683488e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 139.97735064823635
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 356.97184581512477
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 277
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 277
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0.0004230721943283636
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "other_hand_m",
+        "value": 9.396001158667329e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "elbow_preservation_deg",
+        "value": 0.0006433203887326044
+      },
+      {
+        "schema_version": 1,
+        "name": "head_drift_deg",
+        "value": 0.0006800498693018305
+      },
+      {
+        "schema_version": 1,
+        "name": "body_angle_drift_deg",
+        "value": 0.000566272375202459
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "min_clearance_m",
+        "value": 0.02309344319222062
+      },
+      {
+        "schema_version": 1,
+        "name": "max_pole_step_deg",
+        "value": 4.563083587936221
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_velocity_delta_deg_s",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "frame_count",
+        "value": 277
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "arm.circle",
+    "definition_version": 1,
+    "avatar_id": "shoulders-arms.demo",
+    "profile_version": 4,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right",
+          "both"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "entry_body",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "entry_body",
+          "world"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 12,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "left_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "right_angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.2/demo: arm.circle.default,arm.circle.right,arm.circle.both,arm.circle.independent,arm.circle.neutral,arm.circle.preserve,arm.circle.overhead,arm.circle.world,arm.circle.min,arm.circle.max,arm.circle.zero,arm.circle.fast,arm.circle.slow",
+      "Named measured entry envelope, both sides, declared ranges/timing and independent overrides; arbitrary target feasibility remains conditional.",
+      "Every motion frame measured and saved playback checked; front/side complete media and inspected review pages.",
+      "Named entries: bent-turned, neutral, overhead."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.601874828338623e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 9.984056784683488e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 105.50935273688873
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 927.4063758264924
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 280
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 280
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 6.466172950283386e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "other_hand_m",
+        "value": 9.449504871930718e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "elbow_preservation_deg",
+        "value": 0.0013750974694133333
+      },
+      {
+        "schema_version": 1,
+        "name": "head_drift_deg",
+        "value": 0.0006853500100008802
+      },
+      {
+        "schema_version": 1,
+        "name": "body_angle_drift_deg",
+        "value": 0.0005804697957962901
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "min_clearance_m",
+        "value": 0.023095117692710304
+      },
+      {
+        "schema_version": 1,
+        "name": "max_pole_step_deg",
+        "value": 3.4936106228644017
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_deg",
+        "value": 3.0545534566662854e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_m",
+        "value": 1.2910056817713566e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_velocity_delta_deg_s",
+        "value": 6.48870349728853
+      },
+      {
+        "schema_version": 1,
+        "name": "frame_count",
+        "value": 280
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "arm.fold",
+    "definition_version": 1,
+    "avatar_id": "shoulders-arms.demo",
+    "profile_version": 4,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right",
+          "both"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "entry_body",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "entry_body",
+          "world"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "left_target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "right_target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.2/demo: arm.fold.default,arm.fold.right,arm.fold.both,arm.fold.independent-targets,arm.fold.neutral,arm.fold.preserve,arm.fold.fast,arm.fold.slow",
+      "Named measured entry envelope, both sides, declared ranges/timing and independent overrides; arbitrary target feasibility remains conditional.",
+      "Every motion frame measured and saved playback checked; front/side complete media and inspected review pages.",
+      "Named entries: bent-turned, neutral."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.601874828338623e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 9.984056784683488e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 116.04522054071953
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 519.1766799609429
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 184
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 184
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 1.1379656465392748e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "other_hand_m",
+        "value": 6.412826213491252e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "elbow_preservation_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "head_drift_deg",
+        "value": 0.0004039711905706187
+      },
+      {
+        "schema_version": 1,
+        "name": "body_angle_drift_deg",
+        "value": 0.0003748320567389385
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "min_clearance_m",
+        "value": 0.01973365544053904
+      },
+      {
+        "schema_version": 1,
+        "name": "max_pole_step_deg",
+        "value": 3.0996906855536963
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_velocity_delta_deg_s",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "frame_count",
+        "value": 184
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "arm.reach",
+    "definition_version": 1,
+    "avatar_id": "shoulders-arms.demo",
+    "profile_version": 4,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right",
+          "both"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "forward",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "forward",
+          "side"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "entry_body",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "entry_body",
+          "world"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "distance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.02,
+        "minimum": -0.08,
+        "maximum": 0.08,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "left_target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "right_target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.2/demo: arm.reach.default,arm.reach.right,arm.reach.both,arm.reach.independent-targets,arm.reach.neutral,arm.reach.preserve,arm.reach.cross-body-target,arm.reach.min,arm.reach.max,arm.reach.fast,arm.reach.slow",
+      "Named measured entry envelope, both sides, declared ranges/timing and independent overrides; arbitrary target feasibility remains conditional.",
+      "Every motion frame measured and saved playback checked; front/side complete media and inspected review pages.",
+      "Named entries: bent-turned, neutral."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.601874828338623e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 9.984056784683488e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 120.6781085146554
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 772.0795060127161
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 184
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 184
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 1.0272143283065054e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "other_hand_m",
+        "value": 6.412826213491252e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "elbow_preservation_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "head_drift_deg",
+        "value": 0.0004039711905706187
+      },
+      {
+        "schema_version": 1,
+        "name": "body_angle_drift_deg",
+        "value": 0.0003748320567389385
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "min_clearance_m",
+        "value": 0.002961793002215052
+      },
+      {
+        "schema_version": 1,
+        "name": "max_pole_step_deg",
+        "value": 3.3376749551818055
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_velocity_delta_deg_s",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "frame_count",
+        "value": 184
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "arm.stroke",
+    "definition_version": 1,
+    "avatar_id": "shoulders-arms.demo",
+    "profile_version": 4,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right",
+          "both"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "entry_body",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "entry_body",
+          "world"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "amplitude_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.08,
+        "minimum": 0,
+        "maximum": 0.16,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "left_target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "right_target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.2/demo: arm.stroke.default,arm.stroke.right,arm.stroke.both,arm.stroke.independent-targets,arm.stroke.neutral,arm.stroke.preserve,arm.stroke.min,arm.stroke.max,arm.stroke.fast,arm.stroke.slow",
+      "Named measured entry envelope, both sides, declared ranges/timing and independent overrides; arbitrary target feasibility remains conditional.",
+      "Every motion frame measured and saved playback checked; front/side complete media and inspected review pages.",
+      "Named entries: bent-turned, neutral."
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 1.601874828338623e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 9.984056784683488e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 119.410937815346
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 497.59241537529465
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 277
+      },
+      {
+        "schema_version": 1,
+        "name": "semantic_frames",
+        "value": 277
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 3.390660918552373e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "other_hand_m",
+        "value": 9.396001158667329e-06
+      },
+      {
+        "schema_version": 1,
+        "name": "elbow_preservation_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "head_drift_deg",
+        "value": 0.0006800498693018305
+      },
+      {
+        "schema_version": 1,
+        "name": "body_angle_drift_deg",
+        "value": 0.000566272375202459
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "object_root_drift_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "min_clearance_m",
+        "value": 0.022159614921460763
+      },
+      {
+        "schema_version": 1,
+        "name": "max_pole_step_deg",
+        "value": 42.530166973112706
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_seam_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "cycle_velocity_delta_deg_s",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "frame_count",
+        "value": 277
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  }
+]

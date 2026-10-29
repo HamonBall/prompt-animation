@@ -19,7 +19,13 @@ from avatar_app.movement_library.torso_pelvis import with_pelvis_v1
 from avatar_app.movement_library.compiler import instantiate_movement,build_fragment,prepare_fragment
 from tools.preview_movement import load_entry,capture_entry
 
-OUT=ROOT/'artifacts/stages/05.1b';OUT.mkdir(parents=True,exist_ok=True)
+from tools.artifact_store import hold_producer_lease
+OUT=ROOT/'artifacts/stages/05.1b'
+if '--output-dir' in sys.argv: OUT=Path(sys.argv[sys.argv.index('--output-dir')+1]).resolve()
+OUT.mkdir(parents=True,exist_ok=True)
+hold_producer_lease(OUT)
+from tools.storage_policy import measured_preflight
+measured_preflight(OUT,[('reduced-spine',193,2)],reference=ROOT/'artifacts/stages/05.1b')
 
 def crouch(h):
     load_entry(h,ROOT/'tests/fixtures/movement_fragments/v1/entry-bent-turned.json')
@@ -105,10 +111,12 @@ assert not any(t.control_id.startswith('spine.') for t in f.tracks)
 result=build_action(h,x,profile=p);assert result['review']['passed']
 out=OUT/'single-spine';out.mkdir(exist_ok=True)
 (out/'profile.json').write_text(c.dumps(p));(out/'fragment.json').write_text(c.dumps(f));(out/'result.json').write_text(json.dumps(result,indent=2))
-bpy.ops.wm.save_as_mainfile(filepath=str(out/'preview.blend'))
+from tools.artifact_store import save_scene,write_manifest
+save_scene(out/'preview.blend')
 from tools.movement_evidence import render
-render(h,p,out);render(h,p,out,True)
-bpy.ops.wm.save_as_mainfile(filepath=str(out/'visual-preview.blend'))
+views={'front':render(h,p,out),'side':render(h,p,out,True)}
+save_scene(out/'preview.blend')
+write_manifest(out,h.scene,views=views,complete=True)
 report['single_spine']={'declared_approximation':True,'frames':result['frames'],'review':result['review']}
 (OUT/'boundary-review.json').write_text(json.dumps(report,indent=2))
 print('ALL_SPINE_PELVIS_BOUNDARY_CHECKS_PASSED',flush=True)

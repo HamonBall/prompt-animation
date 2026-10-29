@@ -10,7 +10,7 @@ from ..motion import ContactConstraint
 from . import rig_profile as rp
 from .pose import position_hand, axes
 
-ANGULAR_CHAINS=('head','neck','torso','spine.mid','spine.upper')
+ANGULAR_CHAINS=('head','neck','torso','spine.mid','spine.upper','left.clavicle','right.clavicle')
 
 
 class FragmentAdapter:
@@ -40,6 +40,7 @@ class FragmentAdapter:
             control=self.controls[track.control_id]
             if track.control_id in ('pelvis.position','pelvis.orientation'): continue
             if track.control_id in head_modes: continue
+            if track.control_id.endswith('.upper_arm.orientation'):continue
             if control.chain in ANGULAR_CHAINS and control.value_shape=='scalar': continue
             if track.control_id.endswith('.hand.position'):
                 for value in (track.curve.start_value,track.curve.end_value):
@@ -92,6 +93,31 @@ class FragmentAdapter:
                 for value in (track.curve.start_value,track.curve.end_value):
                     if value is not None:self._check_pelvis_reach({track.control_id:value})
         self.diagnostics=[]
+        self.arm_review=profile.version==4
+        self.previous_arm_poles={}
+
+    def _arm_clearance(self,side):
+        """Chest/head and opposite-arm capsules; no skin collision claim."""
+        from ..movement_library.curves import segment_distance
+        h,p=self.handle,self.profile
+        hip=rp.semantic_frame(h,p,'pelvis').translation
+        chest=rp.semantic_frame(h,p,next(j for j in ('spine.upper','spine.mid','torso') if j in self.joints)).translation
+        head=rp.semantic_frame(h,p,'head').translation
+        start=hip.lerp(chest,.35);axis=chest-start
+        points=[h.rig.matrix_world @ h.bones[side.title()+name].head for name in ('Arm','ForeArm','Hand')]
+        minimum=float('inf')
+        for a,b in zip(points,points[1:]):
+            for index in range(1,9):
+                point=a.lerp(b,index/8)
+                t=max(0,min(1,(point-start).dot(axis)/max(axis.length_squared,1e-12)))
+                minimum=min(minimum,(point-(start+axis*t)).length-.093*p.height_m,
+                            (point-head).length-.083*p.height_m)
+        other='right' if side=='left' else 'left'
+        opposite=[h.rig.matrix_world @ h.bones[other.title()+name].head for name in ('Arm','ForeArm','Hand')]
+        for a,b in zip(points,points[1:]):
+            for c0,d in zip(opposite,opposite[1:]):
+                minimum=min(minimum,segment_distance(a,b,c0,d)-.036*p.height_m)
+        return minimum
 
     def _check_pelvis_reach(self,requested):
         h,p=self.handle,self.profile
@@ -180,6 +206,14 @@ class FragmentAdapter:
                       key=lambda id:(sum(1 for _ in self._parents(id)),id))
         for chain in chains:
             if chain in ANGULAR_CHAINS: self._angular(chain,requested)
+        for id,orientation in requested.items():
+            if not id.endswith('.upper_arm.orientation'):continue
+            chain=self.controls[id].chain
+            bone=h.rig.pose.bones[self.joints[chain].source_bones[0]]
+            world=h.rig.matrix_world @ bone.matrix
+            rotation=Quaternion(orientation) @ rp.semantic_frame(h,p,chain).to_quaternion().conjugated() @ world.to_quaternion()
+            bone.matrix=h.rig.matrix_world.inverted() @ (Matrix.Translation(world.translation) @ rotation.to_matrix().to_4x4() @ Matrix.Diagonal((*world.to_scale(),1)))
+            bpy.context.view_layer.update()
         if any(id in requested for id in ('head.orientation','head.torso_orientation')):
             # Parent tracks have already been applied. Resolve look-at from this frame's
             # actual head position, using the shared sampler and existing activation bindings.
@@ -234,6 +268,17 @@ class FragmentAdapter:
                                       contact_anchors=anchors,active_contacts=tuple(active))
         measured={v.control_id:v for v in solved.measured_controls}
         violations=[]
+        arm_clearance={};arm_poles={}
+        if self.arm_review:
+            for side in ('left','right'):
+                if not any(id.startswith(side+'.') for id in requested):continue
+                clearance=self._arm_clearance(side);arm_clearance[side]=clearance
+                if clearance<-.003:violations.append(('body_clearance',side,-clearance,.003))
+                pole=Vector(rp.measure_bend_plane(h,p,side+'.forearm'));arm_poles[side]=tuple(pole)
+                previous=self.previous_arm_poles.get(side)
+                if previous is not None and previous.dot(pole)<0:
+                    violations.append(('elbow_pole_flip',side,math.degrees(previous.angle(pole)),90))
+                self.previous_arm_poles[side]=pole.copy()
         tracking={}
         for target in targets.controls:
             control=self.controls[target.control_id]
@@ -247,6 +292,13 @@ class FragmentAdapter:
             tolerance=min(goal.tolerance,3 if control.unit=='degree' or control.value_shape=='quaternion' else .01)
             if error>tolerance: violations.append(('incomplete_goal',control.id,error,tolerance))
         entry={v.control_id:v for v in self.motion.entry_snapshot.measured_controls}
+        if self.arm_review:
+            for side in ('left','right'):
+                if side+'.hand.position' in requested:continue  # Declared coordinated elbow motion.
+                if not any(id.startswith(side+'.') for id in requested):continue
+                id=side+'.elbow.flexion'
+                error=abs(measured[id].value-entry[id].value)
+                if error>.5:violations.append(('unrequested_elbow_change',id,error,.5))
         unrelated=0
         for id,value in measured.items():
             control=self.controls[id]
@@ -269,6 +321,7 @@ class FragmentAdapter:
             'targets':{v.control_id:v.value for v in targets.controls},'measured':sample['controls'],
             'checked_goal_ids':[g.goal_id for g in targets.expected_goals],
             'tracking_errors':tracking,'contacts':dict(errors),'floor_m':sample['floor'],'violations':violations}
+        if self.arm_review:details.update({'arm_clearance_m':arm_clearance,'elbow_poles':arm_poles})
         self.diagnostics.append(details)
         sample['semantic_details']=details
         sample['snapshot']=solved

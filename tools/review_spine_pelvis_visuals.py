@@ -10,8 +10,9 @@ import sys
 from PIL import Image,ImageDraw,ImageFont
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path[:0]=[str(ROOT/'src'),str(ROOT/'tests')]
+sys.path[:0]=[str(ROOT/'src'),str(ROOT/'tests'),str(ROOT)]
 from spine_pelvis_cases import cases
+from tools.artifact_store import render_complete
 from avatar_app.movement_library import contracts as c
 from avatar_app.movement_library.compiler import build_fragment
 from avatar_app.movement_library.joints import catalog_for_profile
@@ -22,12 +23,13 @@ font=ImageFont.truetype('C:/Windows/Fonts/segoeui.ttf',22)
 
 def make_pages():
     index={}
+    entry_kinds={name:pose for name,id,parameters,pose in cases()}
     for rig in ('demo','mixamo'):
         ready=[];pending=[]
         profile=c.loads(c.AvatarProfile,(OUT/rig/'profile.json').read_text());catalog=catalog_for_profile(profile)
         for name,id,p,pose in cases():
             path=OUT/rig/name;marker=path/'visual-source.json'
-            if not marker.exists() or json.loads(marker.read_text())['result_sha256']!=hashlib.sha256((path/'result.json').read_bytes()).hexdigest():
+            if not render_complete(path,('front','side'),allow_legacy=True):
                 pending.append(name);continue
             entry=c.loads(c.MotionStateSnapshot,(path/'entry.json').read_text())
             instance=c.loads(c.MovementInstance,(path/'instance.json').read_text())
@@ -42,7 +44,7 @@ def make_pages():
             group=ready[start:start+8];page=Image.new('RGB',(2048,40+len(group)*174),(27,30,34));draw=ImageDraw.Draw(page)
             draw.text((12,4),rig+' — full-cycle review, paired front / side views',font=font,fill='white')
             for row,(name,numbers) in enumerate(group):
-                y=40+row*174;draw.text((12,y),name,font=font,fill=(230,235,240))
+                y=40+row*174;draw.text((12,y),name+' | '+('default parameters; ' if name.endswith('.default') else '')+('neutral entry' if entry_kinds[name] in ('neutral','free-space') else 'authored non-neutral entry'),font=font,fill=(230,235,240))
                 for column,number in enumerate(numbers):
                     for side,view in enumerate(('front','side')):
                         path=OUT/rig/name/view/f'{number:04d}.png'

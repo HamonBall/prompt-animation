@@ -22,7 +22,11 @@ from avatar_app.movement_library.torso_pelvis import with_pelvis_v1
 from avatar_app.movement_library.compiler import instantiate_movement,build_fragment,prepare_fragment,value_error
 from tools.preview_movement import load_entry,capture_entry
 
-OUT=ROOT/'artifacts/stages/05.1b';OUT.mkdir(parents=True,exist_ok=True)
+from tools.artifact_store import save_scene,write_manifest,entry_metadata,write_source_identity,render_complete,scene_path,hold_producer_lease,open_preview
+OUT=ROOT/'artifacts/stages/05.1b'
+if '--output-dir' in sys.argv: OUT=Path(sys.argv[sys.argv.index('--output-dir')+1]).resolve()
+OUT.mkdir(parents=True,exist_ok=True)
+hold_producer_lease(OUT)
 RENDER='--render' in sys.argv
 
 def entry_pose(h,name):
@@ -37,22 +41,34 @@ def entry_pose(h,name):
     for side,(point,rotation) in feet.items(): set_contact(h,ContactConstraint(side.lower()+'_foot'),point,rotation,leg_pole=pole)
 
 from spine_pelvis_cases import cases
+from tools.storage_policy import measured_preflight
+selected=[v for v in cases() if ('--case' not in sys.argv or v[0]==sys.argv[sys.argv.index('--case')+1])
+          and ('--quick' not in sys.argv or v[0].endswith('.default'))]
+rigs=[sys.argv[sys.argv.index('--rig')+1]] if '--rig' in sys.argv else ['demo','mixamo']
+measured_preflight(OUT,[(rig+'/'+name,max(193,int((parameters.get('duration_s',3)+parameters.get('hold_s',1))*48+1)),
+                        2 if RENDER or '--render-only' in sys.argv else 0)
+                       for rig in rigs for name,_,parameters,_ in selected],reference=ROOT/'artifacts/stages/05.1b')
 
 from tools.movement_evidence import render
 
 report={}
 for rig in ('demo','mixamo'):
     if '--rig' in sys.argv and rig!=sys.argv[sys.argv.index('--rig')+1]:continue
-    h=create_demo_avatar() if rig=='demo' else import_avatar(str(ROOT/'Hip Hop Mixamo.fbx'));prepare_preview(h)
-    p=with_pelvis_v1(rp.calibrate_joint_frames(h,avatar_id='spine-pelvis.'+rig,recorded_at='2026-10-23',include_head_aim=True))
-    catalog=catalog_for_profile(p);rig_out=OUT/rig;rig_out.mkdir(exist_ok=True);(rig_out/'profile.json').write_text(c.dumps(p))
+    rig_out=OUT/rig;rig_out.mkdir(exist_ok=True)
+    if '--render-only' in sys.argv:
+        p=c.loads(c.AvatarProfile,(rig_out/'profile.json').read_text(encoding='utf-8'))
+    else:
+        h=create_demo_avatar() if rig=='demo' else import_avatar(str(ROOT/'Hip Hop Mixamo.fbx'));prepare_preview(h)
+        p=with_pelvis_v1(rp.calibrate_joint_frames(h,avatar_id='spine-pelvis.'+rig,recorded_at='2026-10-23',include_head_aim=True))
+        (rig_out/'profile.json').write_text(c.dumps(p),encoding='utf-8')
+        write_source_identity(rig_out,rig)
+    catalog=catalog_for_profile(p)
     report[rig]={}
     if '--render-only' in sys.argv:
         for name,id,parameters,pose in cases():
             if '--case' in sys.argv and name!=sys.argv[sys.argv.index('--case')+1]:continue
             out=rig_out/name
-            if not (out/'preview.blend').exists():continue
-            if (out/'preview.blend').stat().st_mtime_ns<(out/'result.json').stat().st_mtime_ns or time.time()-(out/'preview.blend').stat().st_mtime<2:continue
+            if not (out/'preview-manifest.json').exists() and not (out/'preview.blend').exists() and not (out/'visual-preview.blend').exists():continue
             saved_entry=c.loads(c.MotionStateSnapshot,(out/'entry.json').read_text())
             saved_instance=c.loads(c.MovementInstance,(out/'instance.json').read_text())
             if build_fragment(saved_instance,saved_entry,p,(Surface(),),catalog)!=c.loads(c.MotionFragment,(out/'fragment.json').read_text()):continue
@@ -62,21 +78,19 @@ for rig in ('demo','mixamo'):
                     if previous.stem.isdigit() and int(previous.stem)>result['frames']:previous.unlink()
             digest=hashlib.sha256((out/'result.json').read_bytes()).hexdigest()
             marker=out/'visual-source.json'
-            if '--skip-rendered' in sys.argv and (out/'visual-preview.blend').exists() and marker.exists() and json.loads(marker.read_text())['result_sha256']==digest:continue
-            with bpy.data.libraries.load(str(out/'preview.blend')) as (source,target):target.actions=[result['action']]
-            action=target.actions[0];h.rig.animation_data_create();h.rig.animation_data.action=action;h.rig.animation_data.action_slot=action.slots[0]
-            for bone in h.rig.pose.bones:bone.rotation_mode='QUATERNION'
-            h.scene.frame_start=1;h.scene.frame_end=result['frames'];h.scene.render.fps=30;h.scene.render.fps_base=1
+            if '--skip-rendered' in sys.argv and '--detail' not in sys.argv and render_complete(out,('front','side')):continue
+            h=open_preview(out)
+            assert h.scene.frame_end-h.scene.frame_start+1==result['frames']
             detail='--detail' in sys.argv
             if detail:
                 out=rig_out/(name+'.detail');out.mkdir(exist_ok=True)
                 (out/'result.json').write_text(json.dumps(result,indent=2));marker=out/'visual-source.json'
-            render(h,p,out,width=384 if detail else 128);render(h,p,out,True,width=384 if detail else 128)
-            bpy.ops.wm.save_as_mainfile(filepath=str(out/'visual-preview.blend'))
-            marker.write_text(json.dumps({'result_sha256':digest,'frames_per_view':result['frames'],'views':['front','side']}))
+            write_manifest(out,h.scene)
+            views={'front':render(h,p,out,width=384 if detail else 128),'side':render(h,p,out,True,width=384 if detail else 128)}
+            save_scene(out/'preview.blend')
+            write_manifest(out,h.scene,views=views,metadata=entry_metadata('entry-'+('neutral' if pose in ('neutral','free-space') else 'bent-turned')+'.json; '+pose,parameters,h.scene),complete=True)
             print('SPINE_PELVIS_RENDERED',rig,name,result['frames']*2,flush=True)
-            h.rig.animation_data_clear();bpy.data.actions.remove(action)
-        discard_avatar(h);continue
+        continue
     for name,id,parameters,pose in cases():
         if '--quick' in sys.argv and not name.endswith('.default'):continue
         if '--case' in sys.argv and name!=sys.argv[sys.argv.index('--case')+1]:continue
@@ -127,10 +141,12 @@ for rig in ('demo','mixamo'):
         out=rig_out/name;out.mkdir(exist_ok=True)
         for filename,record in (('entry',entry),('instance',instance),('fragment',fragment),('executable',motion)):(out/(filename+'.json')).write_text(c.dumps(record))
         (out/'result.json').write_text(json.dumps(result,indent=2))
-        if RENDER:
-            render(h,p,out);render(h,p,out,True)
-        h.scene.frame_set(1);bpy.ops.wm.save_as_mainfile(filepath=str(out/'preview.blend'))
-        report[rig][name]={'frames':result['frames'],'tracking_max':tracking,'head_error_deg':head,'playback_max':playback,'review':result['review']}
+        write_manifest(out,h.scene)
+        views={'front':render(h,p,out),'side':render(h,p,out,True)} if RENDER else {}
+        h.scene.frame_set(1);save_scene(out/'preview.blend')
+        write_manifest(out,h.scene,views=views,metadata=entry_metadata('entry-'+('neutral' if pose in ('neutral','free-space') else 'bent-turned')+'.json; '+pose,parameters,h.scene),complete=RENDER)
+        report[rig][name]={'frames':result['frames'],'tracking_max':tracking,'head_error_deg':head,'playback_max':playback,'review':result['review'],
+                         'entry_context':entry_metadata('entry-'+('neutral' if pose in ('neutral','free-space') else 'bent-turned')+'.json; '+pose,parameters,h.scene)}
         (rig_out/'execution-review.json').write_text(json.dumps(report[rig],indent=2))
         print('SPINE_PELVIS_PASSED',rig,name,result['frames'],flush=True)
     discard_avatar(h)

@@ -3,6 +3,8 @@
 No movement builders or pose application live here. All returned state is v1 plain data.
 """
 from dataclasses import dataclass
+from contextvars import ContextVar
+from functools import wraps
 import hashlib
 import json
 import math
@@ -19,6 +21,19 @@ ANGLE_TOLERANCE_DEG = .1
 POSITION_TOLERANCE_M = .0001
 POLE_STRAIGHT_THRESHOLD_DEG = .5
 POLE_FULL_MEASUREMENT_DEG = 5
+_MEASUREMENT_BINDING=ContextVar('rig_profile_readonly_binding',default=None)
+
+
+def _readonly_measurement(function):
+    """Validate once for one synchronous read-only capture, never across frames."""
+    @wraps(function)
+    def capture(handle,profile,*args,**kwargs):
+        bpy.context.view_layer.update()
+        _binding(handle,profile)
+        token=_MEASUREMENT_BINDING.set((id(handle),id(profile)))
+        try:return function(handle,profile,*args,**kwargs)
+        finally:_MEASUREMENT_BINDING.reset(token)
+    return capture
 
 
 @dataclass(frozen=True)
@@ -94,13 +109,15 @@ def _fingerprint(handle):
 
 
 def _binding(handle, profile):
+    if _MEASUREMENT_BINDING.get()==(id(handle),id(profile)):return
     if type(profile) is not c.AvatarProfile: c.fail('INVALID_PARAMETER','Expected an AvatarProfile')
     evidence = 'rig_sha256:'+_fingerprint(handle)
     if evidence not in profile.calibration_provenance.evidence:
         c.fail('ENTRY_MISMATCH','Profile belongs to a different skeleton or scale; recalibrate explicitly')
     head_aim=profile.version==2 and 'head_aim_v1:world_position_world_and_torso_orientation' in profile.calibration_provenance.evidence
     pelvis=profile.version==3 and 'pelvis_v1:bone_world_transform_not_object_root' in profile.calibration_provenance.evidence
-    if profile.version != CALIBRATION_VERSION and not head_aim and not pelvis:
+    arms=profile.version==4 and 'shoulder_arm_v1:optional_clavicle_and_world_upper_arm_orientation' in profile.calibration_provenance.evidence
+    if profile.version != CALIBRATION_VERSION and not head_aim and not pelvis and not arms:
         c.fail('VERSION_MISMATCH','Unsupported rig calibration version; recalibrate explicitly')
 
 
@@ -402,10 +419,10 @@ def measure_bend_plane(handle,profile,limb_id):
     return _tuple(reference.lerp(measured,weight).normalized())
 
 
+@_readonly_measurement
 def capture_motion_state(handle,profile,*,revision,captured_time_s=None,contact_anchors=(),active_contacts=()):
     """Read current solved state. Contacts are caller-asserted, never inferred from targets."""
     _binding(handle,profile)
-    bpy.context.view_layer.update()
     root = semantic_frame(handle,profile,'pelvis')
     values = []
     for control in profile.controls:
@@ -416,6 +433,8 @@ def capture_motion_state(handle,profile,*,revision,captured_time_s=None,contact_
             value=_tuple(world.translation) if control.id.endswith('.position') else _tuple(_rotation(world))
         elif control.id.startswith(('root.','pelvis.')):
             value = _tuple(root.translation) if control.id.endswith('.position') else _tuple(_rotation(root))
+        elif control.id.endswith('.upper_arm.orientation'):
+            value=_tuple(_rotation(semantic_frame(handle,profile,control.chain)))
         elif control.id.startswith('head.'):
             head=semantic_frame(handle,profile,'head')
             if control.id=='head.position': value=_tuple(head.translation)

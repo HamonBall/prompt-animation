@@ -35,7 +35,8 @@ class HeadNeckTests(unittest.TestCase):
         return build_fragment(i,e,p,(Surface(),),cat)
 
     def test_registered_ids_and_generated_parameter_schemas(self):
-        self.assertEqual(set(r.CATALOG.definitions),set(IDS) | set(BODY_IDS))
+        from avatar_app.movement_library.limbs import IDS as ARM_IDS
+        self.assertEqual(set(r.CATALOG.definitions),set(IDS) | set(BODY_IDS) | set(ARM_IDS))
         self.assertFalse(r.CATALOG.reviews)
         for definition in self.catalog.definitions.values():
             schema=r.parameter_schema(definition)

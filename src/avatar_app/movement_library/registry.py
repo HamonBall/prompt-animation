@@ -260,4 +260,5 @@ def parameter_schema(definition):
 # evidence, never inferred from definitions or silently granted at import time.
 from .joints import BUILDERS, register_head_neck
 from .torso_pelvis import BUILDERS as BODY_BUILDERS, register_body
-CATALOG=register_body(register_head_neck(Catalog({**BUILDERS,**BODY_BUILDERS})))
+from .limbs import BUILDERS as ARM_BUILDERS, register_arms
+CATALOG=register_arms(register_body(register_head_neck(Catalog({**BUILDERS,**BODY_BUILDERS,**ARM_BUILDERS}))))

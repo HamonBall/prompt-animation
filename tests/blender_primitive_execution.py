@@ -24,7 +24,14 @@ from avatar_app.planning.movements import movement
 from primitive_fixtures import ROOT as FIXTURES,executable,make_catalog,LEGACY_BASELINE
 from tools.preview_movement import load_entry,capture_entry,render_preview
 
-OUT=ROOT/'artifacts/stages/04'; OUT.mkdir(parents=True,exist_ok=True)
+from tools.artifact_store import save_scene,hold_producer_lease,write_manifest,entry_metadata
+OUT=ROOT/'artifacts/stages/04'
+if '--output-dir' in sys.argv: OUT=Path(sys.argv[sys.argv.index('--output-dir')+1]).resolve()
+OUT.mkdir(parents=True,exist_ok=True)
+hold_producer_lease(OUT)
+from tools.storage_policy import measured_preflight
+measured_preflight(OUT,[(rig+'-'+pose,193,2 if '--render' in sys.argv else 0)
+                       for rig in ('demo','mixamo') for pose in ('neutral','bent-turned')],reference=ROOT/'artifacts/stages/04')
 legacy_spec=importlib.util.spec_from_file_location('avatar_app.blender.stage04_baseline',OUT/'legacy-motion.py')
 baseline=importlib.util.module_from_spec(legacy_spec)
 sys.modules[legacy_spec.name]=baseline
@@ -145,8 +152,9 @@ for rig_name in ('demo','mixamo'):
             (out/(filename+'.json')).write_text(c.dumps(record)+'\n',encoding='utf-8')
         (out/'result.json').write_text(json.dumps(result,indent=2,allow_nan=False)+'\n',encoding='utf-8')
         h.scene.render.fps=30; h.scene.render.fps_base=1; h.scene.frame_set(1)
-        if '--render' in sys.argv: render_preview(h,profile,out)
-        bpy.ops.wm.save_as_mainfile(filepath=str(out/'preview.blend'))
+        views=render_preview(h,profile,out) if '--render' in sys.argv else {}
+        save_scene(out/'preview.blend')
+        write_manifest(out,h.scene,views=views,metadata=entry_metadata(str(FIXTURES/('entry-'+entry_name+'.json')),{},h.scene),complete='--render' in sys.argv)
         good.use_fake_user=False
         cases[entry_name]={'frames':result['frames'],'review':result['review'],
             'max_start_error':result['max_start_error'],'max_playback_error':playback,

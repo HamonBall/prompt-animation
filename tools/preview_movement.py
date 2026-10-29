@@ -11,7 +11,8 @@ from pathlib import Path
 import sys
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'src'))
+sys.path[:0]=[str(ROOT/'src'),str(ROOT)]
+from tools.artifact_store import save_scene,write_manifest,entry_metadata,write_source_identity,hold_producer_lease
 
 
 def read_json(text):
@@ -54,50 +55,8 @@ def capture_entry(handle,profile,revision=1):
 
 
 def render_preview(handle,profile,out):
-    import bpy
-    import numpy as np
-    from mathutils import Vector
-    from avatar_app.blender import rig_profile as rp
-    scene=handle.scene
-    scene.render.engine='BLENDER_WORKBENCH'
-    scene.display.shading.light='STUDIO'; scene.display.shading.color_type='MATERIAL'
-    scene.display.shading.show_shadows=True; scene.display.shading.show_cavity=True
-    scene.view_settings.view_transform='Standard'
-    scene.render.resolution_percentage=100
-    scene.render.resolution_x=480; scene.render.resolution_y=480
-    scene.render.image_settings.file_format='PNG'
-    scene.frame_set(scene.frame_start)
-    scene.render.filepath=str(out/'overview.png'); bpy.ops.render.render(write_still=True)
-    frame=rp.semantic_frame(handle,profile,'pelvis').to_3x3()
-    body=any(t.startswith(('torso.','pelvis.','spine.')) for t in json.loads((out/'result.json').read_text())['samples'][0]['targets'])
-    if body:
-        focus=Vector((0,0,profile.height_m*.52))
-        scene.camera.location=focus+frame.col[1]*4+frame.col[0]*1.5
-        scene.camera.data.type='ORTHO';scene.camera.data.ortho_scale=profile.height_m*1.5
-    else:
-        head=handle.rig.matrix_world @ handle.bones['Head'].head
-        focus=head-frame.col[2]*.2
-        scene.camera.location=focus+frame.col[1]*1.7+frame.col[0]*.65+frame.col[2]*.12
-        scene.camera.data.lens=48
-    scene.camera.rotation_euler=(focus-scene.camera.location).to_track_quat('-Z','Y').to_euler()
-    width=256; scene.render.resolution_x=width; scene.render.resolution_y=width
-    count=scene.frame_end-scene.frame_start+1; columns=7; rows=math.ceil(count/columns)
-    sheet=np.zeros((rows*width,columns*width,4),dtype=np.float32); sheet[:,:,3]=1
-    frames=out/'frames'; frames.mkdir(parents=True,exist_ok=True)
-    for index,number in enumerate(range(scene.frame_start,scene.frame_end+1)):
-        scene.frame_set(number)
-        filename=frames/f'{number:04d}.png'
-        scene.render.filepath=str(filename); bpy.ops.render.render(write_still=True)
-        image=bpy.data.images.load(str(filename),check_existing=False)
-        pixels=np.array(image.pixels[:],dtype=np.float32).reshape((width,width,4))
-        x=(index%columns)*width; y=(rows-1-index//columns)*width
-        sheet[y:y+width,x:x+width,:]=pixels
-        bpy.data.images.remove(image)
-    image=bpy.data.images.new('Movement contact sheet',columns*width,rows*width,alpha=True)
-    image.pixels.foreach_set(sheet.ravel())
-    image.save_render(str(out/'contact-sheet.png'),scene=scene)
-    bpy.data.images.remove(image)
-    scene.frame_set(scene.frame_start)
+    from tools.movement_evidence import render
+    return {view: render(handle,profile,out,side=(view=='side'),width=256) for view in ('front','side')}
 
 
 def main(argv=None):
@@ -133,6 +92,9 @@ def main(argv=None):
     profile=rp.calibrate_joint_frames(handle,avatar_id='preview.'+('demo' if args.rig=='demo' else 'import'),
                                      source_revision='developer-preview',recorded_at='2026-10-23',include_head_aim=not args.test_catalog)
     if not args.test_catalog:
+        if args.id.startswith(('arm.','shoulder.')):
+            from avatar_app.movement_library.limbs import with_shoulders_v1
+            profile=with_shoulders_v1(profile)
         if args.id.startswith('pelvis.'):
             from avatar_app.movement_library.torso_pelvis import with_pelvis_v1
             profile=with_pelvis_v1(profile)
@@ -145,13 +107,21 @@ def main(argv=None):
     instance=instantiate_movement(args.id,parameters,instance_id='preview.1',profile=profile,entry_state=entry,catalog=catalog)
     fragment=build_fragment(instance,entry,profile,(Surface(),),catalog)
     motion=prepare_fragment(fragment,entry,profile)
+    from tools.storage_policy import measured_preflight
+    import math
+    measured_preflight(args.output_dir,[('.',math.ceil(motion.duration_s*motion.fps)+1,2 if args.render else 0)],
+                       reference=ROOT/'artifacts/stages/05.1b')
     result=build_action(handle,motion,profile=profile)
     args.output_dir.mkdir(parents=True,exist_ok=True)
+    hold_producer_lease(args.output_dir)
+    write_source_identity(args.output_dir,args.rig)
     for name,record in (('profile',profile),('entry',entry),('instance',instance),('fragment',fragment),('executable',motion)):
         (args.output_dir/(name+'.json')).write_text(c.dumps(record)+'\n',encoding='utf-8')
     (args.output_dir/'result.json').write_text(json.dumps(result,indent=2,allow_nan=False)+'\n',encoding='utf-8')
-    if args.render: render_preview(handle,profile,args.output_dir)
-    bpy.ops.wm.save_as_mainfile(filepath=str(args.output_dir/'preview.blend'))
+    write_manifest(args.output_dir,handle.scene)
+    views=render_preview(handle,profile,args.output_dir) if args.render else {}
+    save_scene(args.output_dir/'preview.blend')
+    write_manifest(args.output_dir,handle.scene,views=views,metadata=entry_metadata(args.entry,parameters,handle.scene),complete=args.render)
     print('MOVEMENT_PREVIEW_PASSED',args.id,'frames',result['frames'],'output',args.output_dir,flush=True)
     return result
 

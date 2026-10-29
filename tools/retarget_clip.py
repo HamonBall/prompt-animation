@@ -6,7 +6,8 @@ import sys
 import bpy
 
 ROOT = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(ROOT / 'src'))
+sys.path[:0]=[str(ROOT / 'src'),str(ROOT)]
+from tools.artifact_store import save_scene,hold_producer_lease
 from avatar_app.clips import load_catalog
 from avatar_app.blender.avatar import import_avatar
 from avatar_app.blender.scene import prepare_preview
@@ -27,10 +28,14 @@ handle = import_avatar(args.avatar)
 prepare_preview(handle)
 out = ROOT / 'artifacts' / 'clips'
 out.mkdir(parents=True, exist_ok=True)
+hold_producer_lease(out)
+from tools.storage_policy import measured_preflight
+import math
+measured_preflight(out,[('.',math.ceil((args.duration or 10)*30)+1,0)],reference=ROOT/'artifacts/stages/05.1b')
 try:
     result = build_clip(handle, record, args.duration, args.pelvis_height)
     (out / 'retarget-review.json').write_text(json.dumps(result, indent=2), encoding='utf-8')
-    bpy.ops.wm.save_as_mainfile(filepath=str(out / 'adapted.blend'))
+    save_scene(out / 'adapted.blend')
     print('CLIP_ADAPTED', json.dumps(result))
 except Exception as exc:
     (out / 'retarget-review.json').write_text(json.dumps(

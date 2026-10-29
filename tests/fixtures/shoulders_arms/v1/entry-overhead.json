@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "contact": "none",
+  "controls": {
+    "root_yaw": 90,
+    "torso_pitch": 10,
+    "head_yaw": -20,
+    "left_arm_elevation": 150,
+    "left_arm_azimuth": 90,
+    "left_forearm_elevation": 120,
+    "left_forearm_azimuth": 90
+  }
+}

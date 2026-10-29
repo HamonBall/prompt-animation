@@ -5,7 +5,7 @@ from pathlib import Path
 import sys
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path[:0]=[str(ROOT/'src'),str(ROOT/'tests')]
+sys.path[:0]=[str(ROOT/'src'),str(ROOT/'tests'),str(ROOT)]
 from avatar_app.movement_library import contracts as c
 from avatar_app.movement_library.compiler import build_fragment,prepare_fragment,value_error
 from avatar_app.movement_library.joints import catalog_for_profile
@@ -14,6 +14,7 @@ from avatar_app.movement_library.torso_pelvis import IDS
 from avatar_app.movement_library.spatial import rotate,inverse
 from avatar_app.motion import Surface
 from spine_pelvis_cases import cases
+from tools.artifact_store import render_complete
 
 SOURCE=ROOT/'artifacts/stages/05.1b';DEST=ROOT/'tests/fixtures/spine_pelvis/v1'
 
@@ -33,8 +34,7 @@ def publish():
             path=source/name;result=json.loads((path/'result.json').read_text())
             assert result['review']['passed'],(rig,name)
             assert name in visual[rig]['reviewed_cases'],('Visual review missing',rig,name)
-            marker=json.loads((path/'visual-source.json').read_text())
-            assert marker['result_sha256']==hashlib.sha256((path/'result.json').read_bytes()).hexdigest(),('Stale visual',name)
+            assert render_complete(path,('front','side'),allow_legacy=True),('Stale or incomplete visual',name)
             for view in ('front','side'):
                 assert len(list((path/view).glob('*.png')))==result['frames'],('Missing frames',name,view)
                 assert (path/(view+'-sheet.png')).exists()

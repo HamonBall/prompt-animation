@@ -23,7 +23,11 @@ from avatar_app.movement_library.spatial import rotate,angle_rotation
 from avatar_app.motion import Surface
 from tools.preview_movement import load_entry,capture_entry
 
-OUT=ROOT/'artifacts/stages/05.1a'; OUT.mkdir(parents=True,exist_ok=True)
+from tools.artifact_store import save_scene,write_manifest,entry_metadata,write_source_identity,render_complete,scene_path,hold_producer_lease,camera_record,open_preview
+OUT=ROOT/'artifacts/stages/05.1a'
+if '--output-dir' in sys.argv: OUT=Path(sys.argv[sys.argv.index('--output-dir')+1]).resolve()
+OUT.mkdir(parents=True,exist_ok=True)
+hold_producer_lease(OUT)
 ENTRY=ROOT/'tests/fixtures/movement_fragments/v1'
 RENDER='--render' in sys.argv
 QUICK='--quick' in sys.argv
@@ -59,6 +63,16 @@ def cases():
     yield 'lead-head-only','neck.lead',{'neck_policy':'head_only'},'bent-turned',False
 
 
+if '--rollback-only' not in sys.argv:
+    from tools.storage_policy import measured_preflight
+    selected=[v for v in cases() if ('--case' not in sys.argv or v[0]==sys.argv[sys.argv.index('--case')+1])
+              and (not QUICK or v[0] in ('look-left','world-turn','nod-default','shake-default','tilt-left','lead-default','world-return'))]
+    rigs=[sys.argv[sys.argv.index('--render-rig')+1]] if '--render-rig' in sys.argv else ['demo','mixamo']
+    measured_preflight(OUT,[(rig+'/'+name, max(193,int((parameters.get('duration_s',3)+parameters.get('hold_s',1))*48+1)),
+                            (2 if name.endswith('default') or name in ('look-left','world-turn','tilt-left') else 1) if RENDER or '--render-only' in sys.argv else 0)
+                           for rig in rigs for name,_,parameters,_,_ in selected],reference=ROOT/'artifacts/stages/05.1a')
+
+
 def render(h,profile,out,*,side=False):
     import numpy as np
     scene=h.scene
@@ -75,6 +89,9 @@ def render(h,profile,out,*,side=False):
     scene.camera.rotation_euler=(focus-scene.camera.location).to_track_quat('-Z','Y').to_euler()
     scene.camera.data.lens=55
     width=112; columns=12; count=scene.frame_end; rows=math.ceil(count/columns)
+    from tools.storage_policy import enforce
+    enforce(out,growth=(count+columns*rows)*width*width*8+65536,
+            temporary=columns*rows*width*width*8+65536)
     sheet=np.zeros((rows*width,columns*width,4),dtype=np.float32); sheet[:,:,3]=1
     label='side' if side else 'front'; frames=out/label; frames.mkdir(exist_ok=True)
     expected=json.loads((out/'result.json').read_text())['samples']
@@ -90,6 +107,8 @@ def render(h,profile,out,*,side=False):
     image=bpy.data.images.new('Head-neck '+label,columns*width,rows*width,alpha=True)
     image.pixels.foreach_set(sheet.ravel()); image.save_render(str(out/(label+'-sheet.png')),scene=scene)
     bpy.data.images.remove(image); scene.frame_set(1)
+    enforce(out)
+    return camera_record(scene)
 
 
 def checkpoint(report):
@@ -152,28 +171,23 @@ if '--render-only' in sys.argv:
     rendered=0
     for rig in ('demo','mixamo'):
         if '--render-rig' in sys.argv and rig!=sys.argv[sys.argv.index('--render-rig')+1]: continue
-        h=create_demo_avatar() if rig=='demo' else import_avatar(str(ROOT/'Hip Hop Mixamo.fbx'))
-        prepare_preview(h)
         profile=c.loads(c.AvatarProfile,(OUT/rig/'profile.json').read_text())
         for name,id,parameters,entry_name,torso_turn in cases():
+            if '--case' in sys.argv and name!=sys.argv[sys.argv.index('--case')+1]: continue
             out=OUT/rig/name
             if '--render-ready' in sys.argv and not (out/'result.json').exists(): continue
             needs_side=name.endswith('default') or name in ('look-left','world-turn','tilt-left')
-            if '--skip-rendered' in sys.argv and (out/'visual-preview.blend').exists() and (out/'front-sheet.png').exists() and (not needs_side or (out/'side-sheet.png').exists()): continue
+            views={v:{} for v in (('front','side') if needs_side else ('front',))}
+            if '--skip-rendered' in sys.argv and render_complete(out,views): continue
             result=json.loads((out/'result.json').read_text())
-            with bpy.data.libraries.load(str(out/'preview.blend')) as (source,target):
-                target.actions=[result['action']]
-            action=target.actions[0]
-            h.rig.animation_data_create(); h.rig.animation_data.action=action
-            h.rig.animation_data.action_slot=action.slots[0]
-            for bone in h.rig.pose.bones: bone.rotation_mode='QUATERNION'
-            h.scene.frame_start=1; h.scene.frame_end=result['frames']; h.scene.render.fps=30; h.scene.render.fps_base=1
-            render(h,profile,out)
-            if needs_side: render(h,profile,out,side=True)
-            bpy.ops.wm.save_as_mainfile(filepath=str(out/'visual-preview.blend'))
+            h=open_preview(out)
+            assert h.scene.frame_end-h.scene.frame_start+1==result['frames']
+            write_manifest(out,h.scene)
+            views['front']=render(h,profile,out)
+            if needs_side: views['side']=render(h,profile,out,side=True)
+            save_scene(out/'preview.blend')
+            write_manifest(out,h.scene,views=views,metadata=entry_metadata(ENTRY/('entry-'+entry_name+'.json'),parameters,h.scene),complete=True)
             rendered+=1; print('HEAD_NECK_VISUAL_RENDERED',rig,name,result['frames'],flush=True)
-            h.rig.animation_data.action=None
-        discard_avatar(h)
     print('ALL_HEAD_NECK_VISUALS_RENDERED',rendered,flush=True)
     raise SystemExit(0)
 
@@ -186,10 +200,12 @@ for rig in ('demo','mixamo'):
     profile=rp.calibrate_joint_frames(h,avatar_id='head-neck.'+rig,recorded_at='2026-10-23',source_revision='stage05.1a',include_head_aim=True)
     catalog=catalog_for_profile(profile)
     rig_out=OUT/rig; rig_out.mkdir(exist_ok=True)
+    write_source_identity(rig_out,rig)
     (rig_out/'profile.json').write_text(c.dumps(profile)+'\n',encoding='utf-8')
     (rig_out/'schemas.json').write_text(json.dumps({id:parameter_schema(v) for id,v in catalog.definitions.items()},indent=2)+'\n',encoding='utf-8')
     report.setdefault(rig,{'profile_version':profile.version,'neck_capable':'anatomy.neck' in profile.capabilities,'cases':{}})
     for name,id,parameters,entry_name,torso_turn in cases():
+        if '--case' in sys.argv and name!=sys.argv[sys.argv.index('--case')+1]: continue
         if '--small-only' in sys.argv and not name.endswith('-small'): continue
         if QUICK and name not in ('look-left','world-turn','nod-default','shake-default','tilt-left','lead-default','world-return'): continue
         h.rig.animation_data_clear(); load_entry(h,ENTRY/('entry-'+entry_name+'.json'))
@@ -254,12 +270,15 @@ for rig in ('demo','mixamo'):
         for filename,record in (('entry',entry),('instance',instance),('fragment',fragment),('executable',motion)):
             (out/(filename+'.json')).write_text(c.dumps(record)+'\n',encoding='utf-8')
         (out/'result.json').write_text(json.dumps(result,indent=2,allow_nan=False)+'\n',encoding='utf-8')
+        views={}
+        write_manifest(out,h.scene)
         if RENDER:
-            render(h,profile,out)
-            if name.endswith('default') or name in ('look-left','world-turn','tilt-left'): render(h,profile,out,side=True)
-        h.scene.frame_set(1); bpy.ops.wm.save_as_mainfile(filepath=str(out/'preview.blend'))
-        if RENDER: bpy.ops.wm.save_as_mainfile(filepath=str(out/'visual-preview.blend'))
+            views['front']=render(h,profile,out)
+            if name.endswith('default') or name in ('look-left','world-turn','tilt-left'): views['side']=render(h,profile,out,side=True)
+        h.scene.frame_set(1); save_scene(out/'preview.blend')
+        write_manifest(out,h.scene,views=views,metadata=entry_metadata(ENTRY/('entry-'+entry_name+'.json'),original,h.scene),complete=RENDER)
         summary={'id':id,'parameters':parameters,'entry':entry_name,'frames':result['frames'],'passed':True,
+            'entry_context':entry_metadata(ENTRY/('entry-'+entry_name+'.json'),original,h.scene),
             'max_start_error':start,'max_tracking_error_deg':tracking,'max_playback_error':playback,
             'max_world_aim_error_deg':world_error,'goals_measured':len(checked),'review':result['review'],
             'head_only_approximation':any(v.name=='head_only_approximation' for v in fragment.phase_landmarks),

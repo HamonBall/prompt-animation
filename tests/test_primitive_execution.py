@@ -33,7 +33,7 @@ class PrimitiveExecutionTests(unittest.TestCase):
         instance=self.instantiate({'angle':0})
         self.assertEqual({p.name:p.value for p in instance.parameters},{'angle':0,'duration_s':1.2})
         self.assertEqual(instance.explicit_parameters,('angle',))
-        self.assertEqual(set(r.CATALOG.definitions),{'head.look','head.nod','head.shake','head.tilt','neck.lead','torso.lean','torso.twist','torso.curl','torso.wave','torso.sway','pelvis.shift','pelvis.raise_lower','pelvis.tilt_turn','pelvis.circle'})
+        self.assertEqual(set(r.CATALOG.definitions),{'head.look','head.nod','head.shake','head.tilt','neck.lead','torso.lean','torso.twist','torso.curl','torso.wave','torso.sway','pelvis.shift','pelvis.raise_lower','pelvis.tilt_turn','pelvis.circle','shoulder.shrug','shoulder.reach','shoulder.roll','arm.raise','arm.sweep','arm.swing','arm.circle','arm.fold','arm.reach','arm.stroke'})
         self.assertFalse(r.CATALOG.reviews)
 
     def test_invalid_parameters_types_bounds_and_capabilities(self):

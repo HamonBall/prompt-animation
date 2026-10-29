@@ -322,6 +322,22 @@ Stage 05.1b source and validation are in `movement_library/torso_pelvis.py`,
 `docs/contracts/spine-pelvis-v1.md`. Run the Blender matrix with `-- --rig demo`
 or `-- --rig mixamo`; add `--render-only --skip-rendered` to generate frame images
 from the saved actions. Results are under `artifacts/stages/05.1b/<rig>/<case>/`:
-`preview.blend` is playable, `result.json` contains all measured samples, and
+`motion.blend` plus `preview-manifest.json` resolve playable motion through
+`tools/load_artifact.py`; `result.json` contains all measured samples, and
 `front-sheet.png` / `side-sheet.png` show the full animation. Rendering is a
 separate validation step. The stage receipt records completed checks and limits.
+
+Stage 05.2 adds ten internal shoulder and upper-arm primitives through the same
+executor. See [the contract](docs/contracts/shoulders-arms-v1.md) and
+[the validation receipt](to%20do/stages/receipts/05.2.md) for their actual status,
+conditional entry envelopes and optional-clavicle behavior. The prompt remains
+the user-facing animation interface.
+
+Generate both rigs with `tests/blender_movement_shoulders_arms.py -- --rig demo`
+and `-- --rig mixamo` before the first full render. Run Blender's storage pilot
+with `--python tools/shoulders_arms_storage_preflight.py -- --pilot --render`, then
+render each rig with `--render-only --lossless-video --skip-rendered`. These commands
+enforce [the retention policy](docs/artifact-retention-policy.md). Render-only
+preserves the saved motion while publishing exact FFV1/MKV views and full contact
+sheets under `artifacts/stages/05.2/<rig>/<case>/`. Use `tools/load_artifact.py --
+--case <case-directory>` in Blender to open the complete avatar/action bundle.
