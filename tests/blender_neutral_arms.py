@@ -1,4 +1,4 @@
-"""Check relaxed startup arms and wrist alignment on both supplied rigs."""
+"""Check relaxed arms without replacing each rig's authored wrist/head angles."""
 from pathlib import Path
 import math
 import sys
@@ -20,24 +20,30 @@ for filename in ('Hip Hop Andrejs.fbx', 'Hip Hop Mixamo.fbx'):
         forearm = handle.bones[side + 'ForeArm']
         hand = handle.bones[side + 'Hand']
         upper = handle.bones[side + 'Arm']
-        for bone in (upper, forearm, hand):
+        for bone in (upper, forearm):
             direction = (bone.tail - bone.head).normalized()
             assert abs(direction.dot(up) + math.cos(math.radians(8))) < 1e-4
             assert abs(direction.dot(right) - sign * math.sin(math.radians(8))) < 1e-4
             assert abs(direction.dot(forward)) < 1e-4
         assert (hand.head - upper.head).dot(right) * sign > 0
+        assert hand.matrix_basis.to_quaternion().angle < 1e-4, 'Neutral pose changed the authored wrist angle'
+    assert handle.bones['Head'].matrix_basis.to_quaternion().angle < 1e-4, 'Neutral pose added a head rotation'
 
     # Explicit down and wrist rotation must override the relaxed defaults.
     handle.rig.animation_data_clear()
     target_pose(handle, update_pose(None, {'right_arm_elevation': 0}))
     hand = handle.bones['RightHand']
-    assert (hand.tail - hand.head).normalized().dot(up) < -.9999
+    assert hand.matrix_basis.to_quaternion().angle < 1e-4
     baseline = hand.matrix.to_quaternion()
     plan = update_pose(None, {'right_arm_elevation': 0, 'right_hand_pitch': 30})
     target_pose(handle, plan)
     expected = rotation(plan, 'right_hand', axes(handle)) @ baseline
     actual = hand.matrix.to_quaternion()
     assert abs(expected.dot(actual)) > .9999
+    # Parent rotations should carry wrists/head without adding local offsets.
+    target_pose(handle, update_pose(None, {'torso_pitch': 20, 'left_arm_elevation': 90}))
+    for name in ('LeftHand', 'RightHand', 'Head'):
+        assert handle.bones[name].matrix_basis.to_quaternion().angle < 1e-4, name
     print('NEUTRAL_ARMS_VERIFIED', filename, flush=True)
     bpy.context.window.scene = original_scene
     discard_avatar(handle)

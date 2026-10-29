@@ -105,10 +105,8 @@ def target_pose(handle, plan):
                 + forward * plan.get(key + '_hand_target_forward')
                 + up * plan.get(key + '_hand_target_height'))
             position_hand(handle, side, target, root_axes)
-        # Imported bind poses can have asymmetric wrist bends. Align the hand
-        # with the solved forearm before applying the requested wrist rotation.
-        forearm = bones[side + 'ForeArm']
-        aim(bones[side + 'Hand'], forearm.tail - forearm.head)
+        # Preserve this avatar's authored wrist angle as its arm moves. A bind
+        # pose correction for one asset must not straighten every rig's hands.
         rotate_bone(bones[side + 'Hand'], rotation(plan, key + '_hand', root_axes))
         # Preserve the original stance unless the legs have explicit directions.
         if any(name.startswith((key + '_thigh_', key + '_shin_')) for name in specified):
