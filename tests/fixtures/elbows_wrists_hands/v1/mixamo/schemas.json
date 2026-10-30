@@ -1,0 +1,1962 @@
+{
+  "elbow.flex": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "side": {
+        "type": "string",
+        "enum": [
+          "left",
+          "right",
+          "both"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "left"
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1.5
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.1
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      },
+      "angle": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 130,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 45
+      },
+      "left_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 130
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 130
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      }
+    },
+    "required": []
+  },
+  "elbow.orient": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "side": {
+        "type": "string",
+        "enum": [
+          "left",
+          "right",
+          "both"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "left"
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1.5
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.1
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      },
+      "angle": {
+        "type": "number",
+        "minimum": -45,
+        "maximum": 45,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 20
+      },
+      "left_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -45,
+            "maximum": 45
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -45,
+            "maximum": 45
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      }
+    },
+    "required": []
+  },
+  "forearm.twist": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "side": {
+        "type": "string",
+        "enum": [
+          "left",
+          "right",
+          "both"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "left"
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1.5
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.1
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      },
+      "angle": {
+        "type": "number",
+        "minimum": -179,
+        "maximum": 179,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 45
+      },
+      "left_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -179,
+            "maximum": 179
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -179,
+            "maximum": 179
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      }
+    },
+    "required": []
+  },
+  "wrist.flex": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "side": {
+        "type": "string",
+        "enum": [
+          "left",
+          "right",
+          "both"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "left"
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1.5
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.1
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      },
+      "angle": {
+        "type": "number",
+        "minimum": -60,
+        "maximum": 60,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 20
+      },
+      "left_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -60,
+            "maximum": 60
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -60,
+            "maximum": 60
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      }
+    },
+    "required": []
+  },
+  "wrist.deviate": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "side": {
+        "type": "string",
+        "enum": [
+          "left",
+          "right",
+          "both"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "left"
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1.5
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.1
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      },
+      "angle": {
+        "type": "number",
+        "minimum": -25,
+        "maximum": 25,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 10
+      },
+      "left_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -25,
+            "maximum": 25
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -25,
+            "maximum": 25
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      }
+    },
+    "required": []
+  },
+  "wrist.circle": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "side": {
+        "type": "string",
+        "enum": [
+          "left",
+          "right",
+          "both"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "left"
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1.5
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.1
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      },
+      "angle": {
+        "type": "number",
+        "minimum": -10,
+        "maximum": 10,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 5
+      },
+      "left_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -10,
+            "maximum": 10
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      }
+    },
+    "required": []
+  },
+  "hand.orient": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "side": {
+        "type": "string",
+        "enum": [
+          "left",
+          "right",
+          "both"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "left"
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1.5
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.1
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      },
+      "angle": {
+        "type": "number",
+        "minimum": -150,
+        "maximum": 150,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 30
+      },
+      "left_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -150,
+            "maximum": 150
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_angle": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -150,
+            "maximum": 150
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "orientation_frame": {
+        "type": "string",
+        "enum": [
+          "world",
+          "entry_body",
+          "current_torso"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "world"
+      },
+      "orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "entry_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_entry_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_entry_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "torso_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_torso_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_torso_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      }
+    },
+    "required": []
+  },
+  "hand.trace": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "side": {
+        "type": "string",
+        "enum": [
+          "left",
+          "right",
+          "both"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "left"
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1.5
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.1
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      },
+      "orientation_frame": {
+        "type": "string",
+        "enum": [
+          "world",
+          "entry_body",
+          "current_torso"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "world"
+      },
+      "orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "entry_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_entry_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_entry_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "torso_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_torso_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_torso_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "position_frame": {
+        "type": "string",
+        "enum": [
+          "world",
+          "entry_body",
+          "current_torso"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "world"
+      },
+      "target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "entry_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_entry_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_entry_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "torso_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_torso_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_torso_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "elbow_plane_deg": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_elbow_plane_deg": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_elbow_plane_deg": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "plane_policy": {
+        "type": "string",
+        "enum": [
+          "soft",
+          "hard"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "soft"
+      },
+      "flexion_deg": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 130
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "path": {
+        "type": "string",
+        "enum": [
+          "line",
+          "arc",
+          "circle"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "line"
+      },
+      "distance_m": {
+        "type": "number",
+        "minimum": -0.04,
+        "maximum": 0.04,
+        "x-unit": "metre",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.02
+      }
+    },
+    "required": []
+  },
+  "hand.hold": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "side": {
+        "type": "string",
+        "enum": [
+          "left",
+          "right",
+          "both"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "left"
+      },
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1.5
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.1
+      },
+      "return_policy": {
+        "type": "string",
+        "enum": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "return_to_entry"
+      },
+      "orientation_frame": {
+        "type": "string",
+        "enum": [
+          "world",
+          "entry_body",
+          "current_torso"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "world"
+      },
+      "orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "entry_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_entry_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_entry_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "torso_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_torso_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_torso_orientation": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "unitless",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "position_frame": {
+        "type": "string",
+        "enum": [
+          "world",
+          "entry_body",
+          "current_torso"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "world"
+      },
+      "target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "world",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "entry_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_entry_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_entry_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "entry_body",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "torso_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_torso_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_torso_target": {
+        "anyOf": [
+          {
+            "type": "array",
+            "items": {
+              "type": "number",
+              "minimum": -20,
+              "maximum": 20
+            },
+            "minItems": 3,
+            "maxItems": 3
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "metre",
+        "x-frame": "current_torso",
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "elbow_plane_deg": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "left_elbow_plane_deg": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "right_elbow_plane_deg": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": -180,
+            "maximum": 180
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      },
+      "plane_policy": {
+        "type": "string",
+        "enum": [
+          "soft",
+          "hard"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "soft"
+      },
+      "flexion_deg": {
+        "anyOf": [
+          {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 130
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": null
+      }
+    },
+    "required": []
+  }
+}

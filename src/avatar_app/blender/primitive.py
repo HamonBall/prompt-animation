@@ -41,6 +41,8 @@ class FragmentAdapter:
             if track.control_id in ('pelvis.position','pelvis.orientation'): continue
             if track.control_id in head_modes: continue
             if track.control_id.endswith('.upper_arm.orientation'):continue
+            if profile.version==5 and '.hand.torso_' in track.control_id:continue
+            if profile.version==5 and (track.control_id.endswith(('.elbow.flexion','.elbow.plane','.forearm.twist','.wrist.flexion','.wrist.deviation','.hand.orientation'))):continue
             if control.chain in ANGULAR_CHAINS and control.value_shape=='scalar': continue
             if track.control_id.endswith('.hand.position'):
                 for value in (track.curve.start_value,track.curve.end_value):
@@ -67,6 +69,7 @@ class FragmentAdapter:
             self._entry_errors.append(error)
         self.measured=motion.entry_snapshot
         self.basis={b.name:b.matrix_basis.copy() for b in handle.rig.pose.bones}
+        self.arm_entry_basis={name:matrix.copy() for name,matrix in self.basis.items()}
         self.anchors={a.anchor_id:Vector(a.position) for a in motion.entry_snapshot.contact_anchors}
         for anchor in motion.entry_snapshot.active_contacts:
             if anchor not in ('left.sole','right.sole'):
@@ -93,7 +96,7 @@ class FragmentAdapter:
                 for value in (track.curve.start_value,track.curve.end_value):
                     if value is not None:self._check_pelvis_reach({track.control_id:value})
         self.diagnostics=[]
-        self.arm_review=profile.version==4
+        self.arm_review=profile.version in (4,5)
         self.previous_arm_poles={}
 
     def _arm_clearance(self,side):
@@ -161,6 +164,8 @@ class FragmentAdapter:
         return self.handle.rig.matrix_world.inverted().to_3x3() @ (rotation @ self.leg_poles[side])
 
     def _check_reach(self,control_id,target):
+        if Vector(target).length>20:
+            c.fail('RESOURCE_LIMIT','Solved hand target exceeds the 20 metre workspace',control_id=control_id)
         h=self.handle; side=control_id.split('.')[0].title(); world=h.rig.matrix_world
         a=world @ h.bones[side+'Arm'].head
         b=world @ h.bones[side+'ForeArm'].head
@@ -231,7 +236,11 @@ class FragmentAdapter:
                 rotation=desired @ rp.semantic_frame(h,p,'head').to_quaternion().conjugated() @ world.to_quaternion()
                 bone.matrix=h.rig.matrix_world.inverted() @ (Matrix.Translation(world.translation) @ rotation.to_matrix().to_4x4() @ Matrix.Diagonal((*world.to_scale(),1)))
                 bpy.context.view_layer.update()
+        if p.version==5:
+            from .hand_mechanics import apply
+            apply(self,requested)
         for value in targets.controls:
+            if p.version==5:continue  # Coordinated endpoint/pole/palm solve above.
             if not value.control_id.endswith('.hand.position'): continue
             side=value.control_id.split('.')[0].title()
             current=Vector(rp.measure_endpoint(h,p,side.lower()+'.hand'))
@@ -294,7 +303,7 @@ class FragmentAdapter:
         entry={v.control_id:v for v in self.motion.entry_snapshot.measured_controls}
         if self.arm_review:
             for side in ('left','right'):
-                if side+'.hand.position' in requested:continue  # Declared coordinated elbow motion.
+                if side+'.hand.position' in requested or side+'.hand.torso_position' in requested or side+'.elbow.flexion' in requested:continue  # Declared coordinated elbow motion.
                 if not any(id.startswith(side+'.') for id in requested):continue
                 id=side+'.elbow.flexion'
                 error=abs(measured[id].value-entry[id].value)

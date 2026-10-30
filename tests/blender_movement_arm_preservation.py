@@ -18,6 +18,7 @@ from tools.preview_movement import load_entry,capture_entry
 from tools.artifact_store import atomic_json
 
 out=ROOT/'artifacts/maintenance/neutral-artifacts/preservation'
+if '--output-dir' in sys.argv:out=Path(sys.argv[sys.argv.index('--output-dir')+1]).resolve()
 report={}
 for rig in ('demo','mixamo'):
     h=create_demo_avatar() if rig=='demo' else import_avatar(str(ROOT/'Hip Hop Mixamo.fbx'))

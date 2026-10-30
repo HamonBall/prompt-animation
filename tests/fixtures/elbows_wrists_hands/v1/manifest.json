@@ -1,0 +1,555 @@
+{
+  "schema_version": 1,
+  "definition_version": 1,
+  "profile_version": 5,
+  "rigs": {
+    "demo": {
+      "elbow.flex": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "elbow.flex.default",
+          "elbow.flex.right",
+          "elbow.flex.both",
+          "elbow.flex.preserve",
+          "elbow.flex.neutral",
+          "elbow.flex.min",
+          "elbow.flex.max",
+          "elbow.flex.zero",
+          "elbow.flex.independent"
+        ],
+        "records": {
+          "entry": "demo/elbow.flex-entry.json",
+          "instance": "demo/elbow.flex-instance.json",
+          "fragment": "demo/elbow.flex-fragment.json",
+          "executable": "demo/elbow.flex-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.601874828338623e-07,
+          "surface_penetration_m": 0,
+          "contact_error_m": 9.984056784683488e-07,
+          "joint_speed_deg_s": 61.89323511748901,
+          "joint_acceleration_deg_s2": 173.80990805859392,
+          "root_step_m": 0
+        }
+      },
+      "elbow.orient": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "elbow.orient.default",
+          "elbow.orient.right",
+          "elbow.orient.both",
+          "elbow.orient.preserve",
+          "elbow.orient.min",
+          "elbow.orient.max",
+          "elbow.orient.zero",
+          "elbow.orient.independent",
+          "elbow.orient.near-straight"
+        ],
+        "records": {
+          "entry": "demo/elbow.orient-entry.json",
+          "instance": "demo/elbow.orient-instance.json",
+          "fragment": "demo/elbow.orient-fragment.json",
+          "executable": "demo/elbow.orient-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.601874828338623e-07,
+          "surface_penetration_m": 0,
+          "contact_error_m": 9.984056784683488e-07,
+          "joint_speed_deg_s": 23.143091597487157,
+          "joint_acceleration_deg_s2": 89.60481733343312,
+          "root_step_m": 0
+        }
+      },
+      "forearm.twist": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "forearm.twist.default",
+          "forearm.twist.right",
+          "forearm.twist.both",
+          "forearm.twist.preserve",
+          "forearm.twist.neutral",
+          "forearm.twist.min",
+          "forearm.twist.max",
+          "forearm.twist.zero",
+          "forearm.twist.independent",
+          "forearm.twist.palms-up.straight",
+          "forearm.twist.palms-down.straight",
+          "forearm.twist.palms-up.palms-bent",
+          "forearm.twist.palms-down.palms-bent"
+        ],
+        "records": {
+          "entry": "demo/forearm.twist-entry.json",
+          "instance": "demo/forearm.twist-instance.json",
+          "fragment": "demo/forearm.twist-fragment.json",
+          "executable": "demo/forearm.twist-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.601874828338623e-07,
+          "surface_penetration_m": 0,
+          "contact_error_m": 9.984056784683488e-07,
+          "joint_speed_deg_s": 179.971061880437,
+          "joint_acceleration_deg_s2": 470.2684364385757,
+          "root_step_m": 0
+        }
+      },
+      "wrist.flex": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "wrist.flex.default",
+          "wrist.flex.right",
+          "wrist.flex.both",
+          "wrist.flex.preserve",
+          "wrist.flex.neutral",
+          "wrist.flex.min",
+          "wrist.flex.max",
+          "wrist.flex.zero",
+          "wrist.flex.independent",
+          "wrist.flex.overhead"
+        ],
+        "records": {
+          "entry": "demo/wrist.flex-entry.json",
+          "instance": "demo/wrist.flex-instance.json",
+          "fragment": "demo/wrist.flex-fragment.json",
+          "executable": "demo/wrist.flex-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.601874828338623e-07,
+          "surface_penetration_m": 0,
+          "contact_error_m": 9.984056784683488e-07,
+          "joint_speed_deg_s": 59.990462185048635,
+          "joint_acceleration_deg_s2": 157.64027292477232,
+          "root_step_m": 0
+        }
+      },
+      "wrist.deviate": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "wrist.deviate.default",
+          "wrist.deviate.right",
+          "wrist.deviate.both",
+          "wrist.deviate.preserve",
+          "wrist.deviate.neutral",
+          "wrist.deviate.min",
+          "wrist.deviate.max",
+          "wrist.deviate.zero",
+          "wrist.deviate.independent",
+          "wrist.deviate.overhead"
+        ],
+        "records": {
+          "entry": "demo/wrist.deviate-entry.json",
+          "instance": "demo/wrist.deviate-instance.json",
+          "fragment": "demo/wrist.deviate-fragment.json",
+          "executable": "demo/wrist.deviate-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.601874828338623e-07,
+          "surface_penetration_m": 0,
+          "contact_error_m": 9.984056784683488e-07,
+          "joint_speed_deg_s": 24.996011657896254,
+          "joint_acceleration_deg_s2": 96.56163923762512,
+          "root_step_m": 0
+        }
+      },
+      "wrist.circle": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "wrist.circle.default",
+          "wrist.circle.right",
+          "wrist.circle.both",
+          "wrist.circle.preserve",
+          "wrist.circle.neutral",
+          "wrist.circle.min",
+          "wrist.circle.max",
+          "wrist.circle.zero",
+          "wrist.circle.independent"
+        ],
+        "records": {
+          "entry": "demo/wrist.circle-entry.json",
+          "instance": "demo/wrist.circle-instance.json",
+          "fragment": "demo/wrist.circle-fragment.json",
+          "executable": "demo/wrist.circle-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 0,
+          "surface_penetration_m": 0,
+          "contact_error_m": 8.121133811925946e-07,
+          "joint_speed_deg_s": 43.35045331423157,
+          "joint_acceleration_deg_s2": 386.5127789254466,
+          "root_step_m": 0
+        }
+      },
+      "hand.orient": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "hand.orient.default",
+          "hand.orient.right",
+          "hand.orient.both",
+          "hand.orient.preserve",
+          "hand.orient.neutral",
+          "hand.orient.min",
+          "hand.orient.max",
+          "hand.orient.zero",
+          "hand.orient.independent",
+          "hand.orient.palms-up.straight",
+          "hand.orient.palms-down.straight",
+          "hand.orient.palms-up.palms-bent",
+          "hand.orient.palms-down.palms-bent",
+          "hand.orient.opposite-palms"
+        ],
+        "records": {
+          "entry": "demo/hand.orient-entry.json",
+          "instance": "demo/hand.orient-instance.json",
+          "fragment": "demo/hand.orient-fragment.json",
+          "executable": "demo/hand.orient-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.601874828338623e-07,
+          "surface_penetration_m": 0,
+          "contact_error_m": 9.984056784683488e-07,
+          "joint_speed_deg_s": 179.97106188045743,
+          "joint_acceleration_deg_s2": 458.6670661849222,
+          "root_step_m": 0
+        }
+      },
+      "hand.trace": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "hand.trace.default",
+          "hand.trace.right",
+          "hand.trace.both",
+          "hand.trace.preserve",
+          "hand.trace.neutral",
+          "hand.trace.min",
+          "hand.trace.max",
+          "hand.trace.zero",
+          "hand.trace.independent-targets",
+          "hand.trace.arc",
+          "hand.trace.circle",
+          "hand.trace.arc.min",
+          "hand.trace.arc.max",
+          "hand.trace.circle.min",
+          "hand.trace.circle.max"
+        ],
+        "records": {
+          "entry": "demo/hand.trace-entry.json",
+          "instance": "demo/hand.trace-instance.json",
+          "fragment": "demo/hand.trace-fragment.json",
+          "executable": "demo/hand.trace-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.601874828338623e-07,
+          "surface_penetration_m": 0,
+          "contact_error_m": 9.984056784683488e-07,
+          "joint_speed_deg_s": 92.16181082379876,
+          "joint_acceleration_deg_s2": 2453.3091979392984,
+          "root_step_m": 0
+        }
+      },
+      "hand.hold": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "hand.hold.default",
+          "hand.hold.right",
+          "hand.hold.both",
+          "hand.hold.preserve",
+          "hand.hold.neutral",
+          "hand.hold.min",
+          "hand.hold.max",
+          "hand.hold.zero",
+          "hand.hold.independent-targets",
+          "hand.hold.entry_body",
+          "hand.hold.current_torso",
+          "hand.hold.chest-forward-elbows"
+        ],
+        "records": {
+          "entry": "demo/hand.hold-entry.json",
+          "instance": "demo/hand.hold-instance.json",
+          "fragment": "demo/hand.hold-fragment.json",
+          "executable": "demo/hand.hold-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.601874828338623e-07,
+          "surface_penetration_m": 0,
+          "contact_error_m": 9.984056784683488e-07,
+          "joint_speed_deg_s": 4.542626766375386,
+          "joint_acceleration_deg_s2": 69.00342748039581,
+          "root_step_m": 0
+        }
+      }
+    },
+    "mixamo": {
+      "elbow.flex": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "elbow.flex.default",
+          "elbow.flex.right",
+          "elbow.flex.both",
+          "elbow.flex.preserve",
+          "elbow.flex.neutral",
+          "elbow.flex.min",
+          "elbow.flex.max",
+          "elbow.flex.zero",
+          "elbow.flex.independent"
+        ],
+        "records": {
+          "entry": "mixamo/elbow.flex-entry.json",
+          "instance": "mixamo/elbow.flex-instance.json",
+          "fragment": "mixamo/elbow.flex-fragment.json",
+          "executable": "mixamo/elbow.flex-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.0025789975998123e-08,
+          "surface_penetration_m": 0,
+          "contact_error_m": 0,
+          "joint_speed_deg_s": 62.0776999769956,
+          "joint_acceleration_deg_s2": 174.3681939110868,
+          "root_step_m": 0
+        }
+      },
+      "elbow.orient": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "elbow.orient.default",
+          "elbow.orient.right",
+          "elbow.orient.both",
+          "elbow.orient.preserve",
+          "elbow.orient.min",
+          "elbow.orient.max",
+          "elbow.orient.zero",
+          "elbow.orient.independent",
+          "elbow.orient.near-straight"
+        ],
+        "records": {
+          "entry": "mixamo/elbow.orient-entry.json",
+          "instance": "mixamo/elbow.orient-instance.json",
+          "fragment": "mixamo/elbow.orient-fragment.json",
+          "executable": "mixamo/elbow.orient-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.0025789975998123e-08,
+          "surface_penetration_m": 0,
+          "contact_error_m": 0,
+          "joint_speed_deg_s": 23.60675304762896,
+          "joint_acceleration_deg_s2": 101.50677512621843,
+          "root_step_m": 0
+        }
+      },
+      "forearm.twist": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "forearm.twist.default",
+          "forearm.twist.right",
+          "forearm.twist.both",
+          "forearm.twist.preserve",
+          "forearm.twist.neutral",
+          "forearm.twist.min",
+          "forearm.twist.max",
+          "forearm.twist.zero",
+          "forearm.twist.independent",
+          "forearm.twist.palms-up.straight",
+          "forearm.twist.palms-down.straight",
+          "forearm.twist.palms-up.palms-bent",
+          "forearm.twist.palms-down.palms-bent"
+        ],
+        "records": {
+          "entry": "mixamo/forearm.twist-entry.json",
+          "instance": "mixamo/forearm.twist-instance.json",
+          "fragment": "mixamo/forearm.twist-fragment.json",
+          "executable": "mixamo/forearm.twist-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.0025789975998123e-08,
+          "surface_penetration_m": 0,
+          "contact_error_m": 0,
+          "joint_speed_deg_s": 179.9710804877725,
+          "joint_acceleration_deg_s2": 470.25965815184225,
+          "root_step_m": 0
+        }
+      },
+      "wrist.flex": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "wrist.flex.default",
+          "wrist.flex.right",
+          "wrist.flex.both",
+          "wrist.flex.preserve",
+          "wrist.flex.neutral",
+          "wrist.flex.min",
+          "wrist.flex.max",
+          "wrist.flex.zero",
+          "wrist.flex.independent",
+          "wrist.flex.overhead"
+        ],
+        "records": {
+          "entry": "mixamo/wrist.flex-entry.json",
+          "instance": "mixamo/wrist.flex-instance.json",
+          "fragment": "mixamo/wrist.flex-fragment.json",
+          "executable": "mixamo/wrist.flex-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.0025789975998123e-08,
+          "surface_penetration_m": 0,
+          "contact_error_m": 0,
+          "joint_speed_deg_s": 59.99060936879161,
+          "joint_acceleration_deg_s2": 157.60856375533655,
+          "root_step_m": 0
+        }
+      },
+      "wrist.deviate": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "wrist.deviate.default",
+          "wrist.deviate.right",
+          "wrist.deviate.both",
+          "wrist.deviate.preserve",
+          "wrist.deviate.neutral",
+          "wrist.deviate.min",
+          "wrist.deviate.max",
+          "wrist.deviate.zero",
+          "wrist.deviate.independent",
+          "wrist.deviate.overhead"
+        ],
+        "records": {
+          "entry": "mixamo/wrist.deviate-entry.json",
+          "instance": "mixamo/wrist.deviate-instance.json",
+          "fragment": "mixamo/wrist.deviate-fragment.json",
+          "executable": "mixamo/wrist.deviate-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.0025789975998123e-08,
+          "surface_penetration_m": 0,
+          "contact_error_m": 0,
+          "joint_speed_deg_s": 24.995792923349782,
+          "joint_acceleration_deg_s2": 96.5518749146066,
+          "root_step_m": 0
+        }
+      },
+      "wrist.circle": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "wrist.circle.default",
+          "wrist.circle.right",
+          "wrist.circle.both",
+          "wrist.circle.preserve",
+          "wrist.circle.neutral",
+          "wrist.circle.min",
+          "wrist.circle.max",
+          "wrist.circle.zero",
+          "wrist.circle.independent"
+        ],
+        "records": {
+          "entry": "mixamo/wrist.circle-entry.json",
+          "instance": "mixamo/wrist.circle-instance.json",
+          "fragment": "mixamo/wrist.circle-fragment.json",
+          "executable": "mixamo/wrist.circle-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.0025789975998123e-08,
+          "surface_penetration_m": 0,
+          "contact_error_m": 0,
+          "joint_speed_deg_s": 43.35095682135798,
+          "joint_acceleration_deg_s2": 386.5187669176246,
+          "root_step_m": 0
+        }
+      },
+      "hand.orient": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "hand.orient.default",
+          "hand.orient.right",
+          "hand.orient.both",
+          "hand.orient.preserve",
+          "hand.orient.neutral",
+          "hand.orient.min",
+          "hand.orient.max",
+          "hand.orient.zero",
+          "hand.orient.independent",
+          "hand.orient.palms-up.straight",
+          "hand.orient.palms-down.straight",
+          "hand.orient.palms-up.palms-bent",
+          "hand.orient.palms-down.palms-bent",
+          "hand.orient.opposite-palms"
+        ],
+        "records": {
+          "entry": "mixamo/hand.orient-entry.json",
+          "instance": "mixamo/hand.orient-instance.json",
+          "fragment": "mixamo/hand.orient-fragment.json",
+          "executable": "mixamo/hand.orient-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.0025789975998123e-08,
+          "surface_penetration_m": 0,
+          "contact_error_m": 0,
+          "joint_speed_deg_s": 179.76792302991726,
+          "joint_acceleration_deg_s2": 458.1505164682864,
+          "root_step_m": 0
+        }
+      },
+      "hand.trace": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "hand.trace.default",
+          "hand.trace.right",
+          "hand.trace.both",
+          "hand.trace.preserve",
+          "hand.trace.neutral",
+          "hand.trace.min",
+          "hand.trace.max",
+          "hand.trace.zero",
+          "hand.trace.independent-targets",
+          "hand.trace.arc",
+          "hand.trace.circle",
+          "hand.trace.arc.min",
+          "hand.trace.arc.max",
+          "hand.trace.circle.min",
+          "hand.trace.circle.max"
+        ],
+        "records": {
+          "entry": "mixamo/hand.trace-entry.json",
+          "instance": "mixamo/hand.trace-instance.json",
+          "fragment": "mixamo/hand.trace-fragment.json",
+          "executable": "mixamo/hand.trace-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.0025789975998123e-08,
+          "surface_penetration_m": 0,
+          "contact_error_m": 0,
+          "joint_speed_deg_s": 88.57078514307439,
+          "joint_acceleration_deg_s2": 2252.1002313781623,
+          "root_step_m": 0
+        }
+      },
+      "hand.hold": {
+        "status": "reviewed_for_envelope",
+        "cases": [
+          "hand.hold.default",
+          "hand.hold.right",
+          "hand.hold.both",
+          "hand.hold.preserve",
+          "hand.hold.neutral",
+          "hand.hold.min",
+          "hand.hold.max",
+          "hand.hold.zero",
+          "hand.hold.independent-targets",
+          "hand.hold.entry_body",
+          "hand.hold.current_torso",
+          "hand.hold.chest-forward-elbows"
+        ],
+        "records": {
+          "entry": "mixamo/hand.hold-entry.json",
+          "instance": "mixamo/hand.hold-instance.json",
+          "fragment": "mixamo/hand.hold-fragment.json",
+          "executable": "mixamo/hand.hold-executable.json"
+        },
+        "metrics": {
+          "floor_penetration_m": 1.0025789975998123e-08,
+          "surface_penetration_m": 0,
+          "contact_error_m": 0,
+          "joint_speed_deg_s": 4.330321178435841,
+          "joint_acceleration_deg_s2": 73.73893980054333,
+          "root_step_m": 0
+        }
+      }
+    }
+  }
+}

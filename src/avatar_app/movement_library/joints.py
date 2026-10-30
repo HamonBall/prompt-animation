@@ -186,5 +186,6 @@ def catalog_for_profile(profile):
     from .registry import Catalog
     from .torso_pelvis import BUILDERS as BODY_BUILDERS,register_body
     from .limbs import BUILDERS as ARM_BUILDERS,register_arms
-    catalog=register_head_neck(Catalog({**BUILDERS,**BODY_BUILDERS,**ARM_BUILDERS}),head_only='anatomy.neck' not in profile.capabilities)
-    return register_arms(register_body(catalog,profile),profile)
+    from .hands import BUILDERS as HAND_BUILDERS,register_hands
+    catalog=register_head_neck(Catalog({**BUILDERS,**BODY_BUILDERS,**ARM_BUILDERS,**HAND_BUILDERS}),head_only='anatomy.neck' not in profile.capabilities)
+    return register_hands(register_arms(register_body(catalog,profile),profile),profile)

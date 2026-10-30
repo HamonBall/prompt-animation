@@ -39,6 +39,19 @@ def look_rotation(position,target):
         c.fail('INVALID_PARAMETER','Look target is too close to the vertical roll singularity')
     x=normalize(x)
     z=(x[1]*y[2]-x[2]*y[1],x[2]*y[0]-x[0]*y[2],x[0]*y[1]-x[1]*y[0])
+    return _frame_rotation(x,y,z)
+
+
+def palm_rotation(finger_forward,palm_normal):
+    """Hard orthogonal +Y finger and +Z palm targets, in one declared frame."""
+    y=normalize(finger_forward);z=normalize(palm_normal)
+    if abs(sum(a*b for a,b in zip(y,z)))>1e-6:
+        c.fail('CONSTRAINT_CONFLICT','Finger-forward and palm-normal targets must be perpendicular')
+    x=(y[1]*z[2]-y[2]*z[1],y[2]*z[0]-y[0]*z[2],y[0]*z[1]-y[1]*z[0])
+    return _frame_rotation(x,y,z)
+
+
+def _frame_rotation(x,y,z):
     rows=tuple(tuple(column[i] for column in (x,y,z)) for i in range(3))
     # Stable matrix-to-quaternion conversion, including targets behind the world axes.
     trace=sum(rows[i][i] for i in range(3))

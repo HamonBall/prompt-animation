@@ -13,8 +13,8 @@ from .spatial import look_rotation
 
 def supporting_chains(control_ids):
     """Endpoint IK's narrowly declared supporting chains, in semantic IDs."""
-    return tuple(sorted({side+'.'+part for id in control_ids if id in ('left.hand.position','right.hand.position')
-                         for side in (id.split('.')[0],) for part in ('upper_arm','forearm')}))
+    return tuple(sorted({side+'.'+part for id in control_ids if id.split('.')[0] in ('left','right') and '.hand.' in id and id.rsplit('.',1)[1] in ('position','orientation','torso_position','torso_orientation')
+                         for side in (id.split('.')[0],) for part in (('upper_arm','forearm') if id.endswith('position') else ('forearm',))}))
 
 
 def check_goal_coverage(goals,duration_s,fps):

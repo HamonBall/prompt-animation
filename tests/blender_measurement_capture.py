@@ -11,8 +11,11 @@ from avatar_app.movement_library import contracts as c
 from tools.artifact_store import open_preview,atomic_json
 
 OUT=ROOT/'artifacts/stages/05.2';report={}
+if '--case-root' in sys.argv:OUT=Path(sys.argv[sys.argv.index('--case-root')+1]).resolve()
+REPORT=Path(sys.argv[sys.argv.index('--output-dir')+1]).resolve() if '--output-dir' in sys.argv else OUT
+CASE=sys.argv[sys.argv.index('--case')+1] if '--case' in sys.argv else 'arm.raise.default'
 for rig in ('demo','mixamo'):
-    case=OUT/rig/'arm.raise.default';h=open_preview(case)
+    case=OUT/rig/CASE;h=open_preview(case)
     p=c.loads(c.AvatarProfile,(case.parent/'profile.json').read_text())
     h.scene.frame_set(17,subframe=.25)
     with patch.object(rp,'_fingerprint',wraps=rp._fingerprint) as fingerprints:
@@ -38,5 +41,5 @@ for rig in ('demo','mixamo'):
     finally:h.rig.scale=scale;bpy.context.view_layer.update()
     report[rig]={'exact_snapshot_equality':True,'fingerprint_calls_cached':cached_calls,'fingerprint_calls_uncached':uncached_calls,
                  'capture_seconds_cached':cached_time,'capture_seconds_uncached':uncached_time,'changed_scale_rejected':True}
-atomic_json(OUT/'measurement-capture-review.json',report)
+atomic_json(REPORT/'measurement-capture-review.json',report)
 print('ALL_MEASUREMENT_CAPTURE_CHECKS_PASSED',json.dumps(report),flush=True)

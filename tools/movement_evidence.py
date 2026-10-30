@@ -35,7 +35,13 @@ def render(h,p,out,side=False,width=128):
         scene.frame_set(index+1)
         for id in expected[index]['targets']:
             spec=controls[id]
-            if spec.value_shape=='scalar':actual=rp.measure_joint_angle(h,p,id)
+            if '.hand.torso_' in id:
+                torso=rp.semantic_frame(h,p,'torso');endpoint=id.split('.')[0]+'.hand'
+                if id.endswith('torso_position'):actual=tuple(torso.inverted() @ Vector(rp.measure_endpoint(h,p,endpoint)))
+                else:
+                    from mathutils import Quaternion
+                    actual=tuple(torso.to_quaternion().conjugated() @ Quaternion(rp.measure_orientation(h,p,endpoint)))
+            elif spec.value_shape=='scalar':actual=rp.measure_joint_angle(h,p,id)
             elif id.endswith('.hand.position'):actual=rp.measure_endpoint(h,p,id.rsplit('.',1)[0])
             elif id.endswith('.hand.orientation'):actual=rp.measure_orientation(h,p,id.rsplit('.',1)[0])
             else:

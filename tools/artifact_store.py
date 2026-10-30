@@ -250,6 +250,7 @@ def input_identity(directory):
         ROOT / 'tools/preview_movement.py', ROOT / 'tests/blender_movement_head_neck.py',
         ROOT / 'tests/blender_movement_spine_pelvis.py',ROOT / 'tests/blender_movement_shoulders_arms.py',
         ROOT / 'tests/blender_primitive_execution.py',ROOT / 'tests/blender_spine_pelvis_boundaries.py',
+        ROOT / 'tests/blender_movement_elbows_wrists_hands.py',ROOT / 'tests/elbows_wrists_hands_cases.py',
         ROOT / 'tools/retarget_clip.py',ROOT / 'tools/shoulders_arms_storage_preflight.py']
     inputs['producer_sha256'] = hashlib.sha256(''.join(digest(p) for p in sources).encode()).hexdigest()
     return inputs

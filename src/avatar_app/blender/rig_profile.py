@@ -117,7 +117,8 @@ def _binding(handle, profile):
     head_aim=profile.version==2 and 'head_aim_v1:world_position_world_and_torso_orientation' in profile.calibration_provenance.evidence
     pelvis=profile.version==3 and 'pelvis_v1:bone_world_transform_not_object_root' in profile.calibration_provenance.evidence
     arms=profile.version==4 and 'shoulder_arm_v1:optional_clavicle_and_world_upper_arm_orientation' in profile.calibration_provenance.evidence
-    if profile.version != CALIBRATION_VERSION and not head_aim and not pelvis and not arms:
+    hands=profile.version==5 and 'hand_v1:geometric_elbow_and_root_referenced_plane' in profile.calibration_provenance.evidence
+    if profile.version != CALIBRATION_VERSION and not head_aim and not pelvis and not arms and not hands:
         c.fail('VERSION_MISMATCH','Unsupported rig calibration version; recalibrate explicitly')
 
 
@@ -342,10 +343,24 @@ def measure_joint_angle(handle,profile,control_id):
     mapping,bone = _joint(handle,profile,control.chain)
     parent_frame = semantic_frame(handle,profile,mapping.parent_id) if mapping.parent_id else _character_basis(handle).to_4x4()
     axis = Vector(limit.positive_axis)
+    if profile.version==5 and control_id.endswith('.elbow.plane'):
+        side=control_id.split('.')[0].title()
+        world=handle.rig.matrix_world
+        shoulder,elbow,wrist=(world @ handle.bones[side+part].head for part in ('Arm','ForeArm','Hand'))
+        upper=elbow-shoulder;lower=wrist-elbow
+        if upper.angle(lower)<math.radians(3):return 0.0
+        chain=(wrist-shoulder).normalized()
+        reference=elbow_plane_reference(handle,profile,chain)
+        bend=elbow-shoulder-chain*(elbow-shoulder).dot(chain)
+        if bend.length<1e-7:return 0.0
+        bend.normalize()
+        return math.degrees(math.atan2(chain.dot(reference.cross(bend)),reference.dot(bend)))
     if control_id.endswith(('elbow.flexion','knee.flexion')):
         parent = _joint(handle,profile,mapping.parent_id)[1]
         upper = handle.rig.matrix_world.to_3x3() @ (parent.tail-parent.head)
         lower = handle.rig.matrix_world.to_3x3() @ (bone.tail-bone.head)
+        if profile.version==5 and control_id.endswith('.elbow.flexion'):
+            return math.degrees(upper.angle(lower))
         world_axis = parent_frame.to_3x3() @ axis
         first,second = _project(upper,world_axis),_project(lower,world_axis)
         return math.degrees(math.atan2(world_axis.dot(first.cross(second)),first.dot(second)))
@@ -356,6 +371,16 @@ def measure_joint_angle(handle,profile,control_id):
     if abs(delta.w)+abs(projection) < 1e-8:
         c.fail('ENTRY_MISMATCH','Swing/twist is singular at this orientation',control_id=control_id)
     return math.degrees(2*math.atan2(projection,delta.w))
+
+
+def elbow_plane_reference(handle,profile,chain):
+    """Root backward projected around the endpoint axis; root up near parallel."""
+    frame=semantic_frame(handle,profile,'pelvis').to_3x3()
+    forward=-frame.col[1]
+    reference=forward-chain*forward.dot(chain)
+    if reference.length<.1:
+        up=frame.col[2];reference=up-chain*up.dot(chain)
+    return reference.normalized()
 
 
 def measure_endpoint(handle,profile,endpoint_id):
@@ -428,6 +453,14 @@ def capture_motion_state(handle,profile,*,revision,captured_time_s=None,contact_
     for control in profile.controls:
         if control.value_shape=='scalar':
             value = measure_joint_angle(handle,profile,control.id)
+        elif '.hand.torso_' in control.id:
+            endpoint=control.id.split('.')[0]+'.hand'
+            torso=semantic_frame(handle,profile,'torso')
+            value=(_tuple(torso.inverted() @ Vector(measure_endpoint(handle,profile,endpoint))) if control.id.endswith('torso_position') else
+                   _tuple(torso.to_quaternion().conjugated() @ Quaternion(measure_orientation(handle,profile,endpoint))))
+        elif control.id.startswith('torso_frame.'):
+            world=semantic_frame(handle,profile,'torso')
+            value=_tuple(world.translation) if control.id.endswith('.position') else _tuple(world.to_quaternion())
         elif control.id.startswith('object_root.'):
             world=handle.rig.matrix_world
             value=_tuple(world.translation) if control.id.endswith('.position') else _tuple(_rotation(world))
