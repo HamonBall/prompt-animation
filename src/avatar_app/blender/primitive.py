@@ -41,8 +41,9 @@ class FragmentAdapter:
             if track.control_id in ('pelvis.position','pelvis.orientation'): continue
             if track.control_id in head_modes: continue
             if track.control_id.endswith('.upper_arm.orientation'):continue
-            if profile.version==5 and '.hand.torso_' in track.control_id:continue
-            if profile.version==5 and (track.control_id.endswith(('.elbow.flexion','.elbow.plane','.forearm.twist','.wrist.flexion','.wrist.deviation','.hand.orientation'))):continue
+            if profile.version==6 and '.finger.' in track.control_id and control.value_shape=='scalar':continue
+            if profile.version in (5,6) and '.hand.torso_' in track.control_id:continue
+            if profile.version in (5,6) and (track.control_id.endswith(('.elbow.flexion','.elbow.plane','.forearm.twist','.wrist.flexion','.wrist.deviation','.hand.orientation'))):continue
             if control.chain in ANGULAR_CHAINS and control.value_shape=='scalar': continue
             if track.control_id.endswith('.hand.position'):
                 for value in (track.curve.start_value,track.curve.end_value):
@@ -96,7 +97,7 @@ class FragmentAdapter:
                 for value in (track.curve.start_value,track.curve.end_value):
                     if value is not None:self._check_pelvis_reach({track.control_id:value})
         self.diagnostics=[]
-        self.arm_review=profile.version in (4,5)
+        self.arm_review=profile.version in (4,5,6)
         self.previous_arm_poles={}
 
     def _arm_clearance(self,side):
@@ -236,11 +237,14 @@ class FragmentAdapter:
                 rotation=desired @ rp.semantic_frame(h,p,'head').to_quaternion().conjugated() @ world.to_quaternion()
                 bone.matrix=h.rig.matrix_world.inverted() @ (Matrix.Translation(world.translation) @ rotation.to_matrix().to_4x4() @ Matrix.Diagonal((*world.to_scale(),1)))
                 bpy.context.view_layer.update()
-        if p.version==5:
+        if p.version in (5,6):
             from .hand_mechanics import apply
             apply(self,requested)
+        if p.version==6:
+            from .finger_mechanics import apply as apply_fingers
+            apply_fingers(self,requested)
         for value in targets.controls:
-            if p.version==5:continue  # Coordinated endpoint/pole/palm solve above.
+            if p.version in (5,6):continue  # Coordinated endpoint/pole/palm solve above.
             if not value.control_id.endswith('.hand.position'): continue
             side=value.control_id.split('.')[0].title()
             current=Vector(rp.measure_endpoint(h,p,side.lower()+'.hand'))
@@ -324,12 +328,22 @@ class FragmentAdapter:
             error=value_error(value.value,entry[id].value,self.controls[id].value_shape)
             if error>.5: violations.append(('unrelated_change',id,error,.5))
         sample=capture_sample(h,frame,','.join(targets.source_instance_ids),errors)
+        if p.version==6:
+            # Extend the existing whole-motion speed/acceleration reviewer with
+            # actual digit rotations; the core avatar map deliberately omits them.
+            for chain,mapping in self.joints.items():
+                if '.finger.' in chain:
+                    sample['rotations'][chain]=(h.rig.matrix_world @ h.rig.pose.bones[mapping.source_bones[0]].matrix).to_quaternion()
         sample['controls']={v.control_id:v.value for v in solved.measured_controls}
         sample['semantic_violations']=violations
         details={'frame':frame,'time_s':time_s,'source_instance_ids':list(targets.source_instance_ids),
             'targets':{v.control_id:v.value for v in targets.controls},'measured':sample['controls'],
             'checked_goal_ids':[g.goal_id for g in targets.expected_goals],
             'tracking_errors':tracking,'contacts':dict(errors),'floor_m':sample['floor'],'violations':violations}
+        if p.version==6:
+            details['finger_rotations']={key:tuple(q) for key,q in sample['rotations'].items() if '.finger.' in key}
+            details['finger_tips']={key:tuple(h.rig.matrix_world @ h.rig.pose.bones[mapping.source_bones[0]].tail)
+                for key,mapping in self.joints.items() if '.finger.' in key and key.endswith('.3')}
         if self.arm_review:details.update({'arm_clearance_m':arm_clearance,'elbow_poles':arm_poles})
         self.diagnostics.append(details)
         sample['semantic_details']=details

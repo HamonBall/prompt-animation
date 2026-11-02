@@ -118,7 +118,8 @@ def _binding(handle, profile):
     pelvis=profile.version==3 and 'pelvis_v1:bone_world_transform_not_object_root' in profile.calibration_provenance.evidence
     arms=profile.version==4 and 'shoulder_arm_v1:optional_clavicle_and_world_upper_arm_orientation' in profile.calibration_provenance.evidence
     hands=profile.version==5 and 'hand_v1:geometric_elbow_and_root_referenced_plane' in profile.calibration_provenance.evidence
-    if profile.version != CALIBRATION_VERSION and not head_aim and not pelvis and not arms and not hands:
+    fingers=profile.version==6 and 'finger_v1:bind_palm_axes_three_joint_digits' in profile.calibration_provenance.evidence and 'hand_v1:geometric_elbow_and_root_referenced_plane' in profile.calibration_provenance.evidence
+    if profile.version != CALIBRATION_VERSION and not head_aim and not pelvis and not arms and not hands and not fingers:
         c.fail('VERSION_MISMATCH','Unsupported rig calibration version; recalibrate explicitly')
 
 
@@ -343,7 +344,7 @@ def measure_joint_angle(handle,profile,control_id):
     mapping,bone = _joint(handle,profile,control.chain)
     parent_frame = semantic_frame(handle,profile,mapping.parent_id) if mapping.parent_id else _character_basis(handle).to_4x4()
     axis = Vector(limit.positive_axis)
-    if profile.version==5 and control_id.endswith('.elbow.plane'):
+    if profile.version in (5,6) and control_id.endswith('.elbow.plane'):
         side=control_id.split('.')[0].title()
         world=handle.rig.matrix_world
         shoulder,elbow,wrist=(world @ handle.bones[side+part].head for part in ('Arm','ForeArm','Hand'))
@@ -359,7 +360,7 @@ def measure_joint_angle(handle,profile,control_id):
         parent = _joint(handle,profile,mapping.parent_id)[1]
         upper = handle.rig.matrix_world.to_3x3() @ (parent.tail-parent.head)
         lower = handle.rig.matrix_world.to_3x3() @ (bone.tail-bone.head)
-        if profile.version==5 and control_id.endswith('.elbow.flexion'):
+        if profile.version in (5,6) and control_id.endswith('.elbow.flexion'):
             return math.degrees(upper.angle(lower))
         world_axis = parent_frame.to_3x3() @ axis
         first,second = _project(upper,world_axis),_project(lower,world_axis)

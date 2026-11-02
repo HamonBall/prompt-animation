@@ -1,4 +1,8 @@
-# Avatar Animation prototype
+# Avatar Animation 
+
+Development and maintenance follow the [validation efficiency policy](docs/validation-efficiency-policy.md)
+and [artifact retention policy](docs/artifact-retention-policy.md). Use targeted checks
+during iteration, preserve complete final coverage, and reuse only verified current evidence.
 
 A local application for turning natural-language descriptions into body poses and staged motion
 on a Mixamo-rigged FBX avatar. General AI planning and internal movement foundations

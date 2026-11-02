@@ -1,0 +1,21 @@
+{
+  "mapping": "exact existing chains; no anatomy changes",
+  "available_digits": {
+    "left": [
+      "thumb",
+      "index",
+      "middle",
+      "ring",
+      "pinky"
+    ],
+    "right": [
+      "thumb",
+      "index",
+      "middle",
+      "ring",
+      "pinky"
+    ]
+  },
+  "thumb": "approximate hinge; opposition unavailable",
+  "gestures": "authored approximate poses on measured calibrated controls"
+}

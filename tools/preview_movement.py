@@ -85,13 +85,19 @@ def main(argv=None):
         sys.path.insert(0,str(ROOT/'tests'))
         from primitive_fixtures import make_catalog
         catalog=make_catalog()
-    get_movement(args.id,args.version,catalog)
+    if args.test_catalog:get_movement(args.id,args.version,catalog)
     handle=create_demo_avatar() if args.rig=='demo' else import_avatar(str(ROOT/('Hip Hop Mixamo.fbx' if args.rig=='mixamo' else args.rig)))
     prepare_preview(handle)
     load_entry(handle,args.entry)
     profile=rp.calibrate_joint_frames(handle,avatar_id='preview.'+('demo' if args.rig=='demo' else 'import'),
                                      source_revision='developer-preview',recorded_at='2026-10-23',include_head_aim=not args.test_catalog)
     if not args.test_catalog:
+        if args.id in ('hand.gesture','finger.curl_spread'):
+            from avatar_app.movement_library.fingers import with_fingers_v1
+            profile=with_fingers_v1(profile)
+        elif args.id.startswith(('elbow.','forearm.','wrist.','hand.')):
+            from avatar_app.movement_library.hands import with_hands_v1
+            profile=with_hands_v1(profile)
         if args.id.startswith(('arm.','shoulder.')):
             from avatar_app.movement_library.limbs import with_shoulders_v1
             profile=with_shoulders_v1(profile)
@@ -100,6 +106,7 @@ def main(argv=None):
             profile=with_pelvis_v1(profile)
         from avatar_app.movement_library.joints import catalog_for_profile
         catalog=catalog_for_profile(profile)
+    get_movement(args.id,args.version,catalog)
     entry=capture_entry(handle,profile)
     if args.parameters_file and args.parameters_file.stat().st_size>c.MAX_JSON_BYTES:
         c.fail('RESOURCE_LIMIT','Parameter file exceeds byte budget')

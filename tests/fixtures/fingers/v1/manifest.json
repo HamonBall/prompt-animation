@@ -1,0 +1,36 @@
+{
+  "profile_version": 6,
+  "definition_version": 1,
+  "rigs": {
+    "demo": {
+      "hand.gesture": {
+        "status": "unavailable_on_rig",
+        "records": {}
+      },
+      "finger.curl_spread": {
+        "status": "unavailable_on_rig",
+        "records": {}
+      }
+    },
+    "mixamo": {
+      "hand.gesture": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/hand.gesture-entry.json",
+          "instance": "mixamo/hand.gesture-instance.json",
+          "fragment": "mixamo/hand.gesture-fragment.json",
+          "executable": "mixamo/hand.gesture-executable.json"
+        }
+      },
+      "finger.curl_spread": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/finger.curl_spread-entry.json",
+          "instance": "mixamo/finger.curl_spread-instance.json",
+          "fragment": "mixamo/finger.curl_spread-fragment.json",
+          "executable": "mixamo/finger.curl_spread-executable.json"
+        }
+      }
+    }
+  }
+}
