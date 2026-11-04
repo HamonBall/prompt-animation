@@ -38,12 +38,13 @@ class FragmentAdapter:
             c.fail('CONSTRAINT_CONFLICT','Head orientation and individual head angles cannot own the same fragment')
         for track in motion.tracks:
             control=self.controls[track.control_id]
+            if profile.version==7 and track.control_id.endswith(('.hip.flexion','.hip.abduction','.hip.rotation','.knee.flexion','.knee.plane','.foot.position','.foot.orientation')):continue
             if track.control_id in ('pelvis.position','pelvis.orientation'): continue
             if track.control_id in head_modes: continue
             if track.control_id.endswith('.upper_arm.orientation'):continue
-            if profile.version==6 and '.finger.' in track.control_id and control.value_shape=='scalar':continue
-            if profile.version in (5,6) and '.hand.torso_' in track.control_id:continue
-            if profile.version in (5,6) and (track.control_id.endswith(('.elbow.flexion','.elbow.plane','.forearm.twist','.wrist.flexion','.wrist.deviation','.hand.orientation'))):continue
+            if profile.version in (6,7) and '.finger.' in track.control_id and control.value_shape=='scalar':continue
+            if profile.version in (5,6,7) and '.hand.torso_' in track.control_id:continue
+            if profile.version in (5,6,7) and (track.control_id.endswith(('.elbow.flexion','.elbow.plane','.forearm.twist','.wrist.flexion','.wrist.deviation','.hand.orientation'))):continue
             if control.chain in ANGULAR_CHAINS and control.value_shape=='scalar': continue
             if track.control_id.endswith('.hand.position'):
                 for value in (track.curve.start_value,track.curve.end_value):
@@ -55,6 +56,15 @@ class FragmentAdapter:
                 c.fail('MISSING_CAPABILITY','Stage 04 supports existing floor sole anchors',details={'anchor_id':event.anchor_id})
             if event.clearance_m!=0:
                 c.fail('UNSUPPORTED_GOAL','Floor sole support requires zero surface clearance')
+        if profile.version==7:
+            for side in ('left','right'):
+                ids={t.control_id for t in motion.tracks if t.control_id.startswith(side+'.')}
+                if (side+'.foot.position' in ids or side+'.knee.plane' in ids) and any('.hip.' in key or key.endswith('.knee.flexion') for key in ids):
+                    c.fail('CONSTRAINT_CONFLICT','Hard foot IK conflicts with independently prescribed hip/knee angles')
+                planted=any(e.anchor_id==side+'.sole' and e.interval.start_s==0 and e.interval.end_s==motion.duration_s and e.release_s==0 for e in motion.contact_events)
+                if planted and any(t.curve.start_value!=t.curve.end_value and
+                        ('.hip.' in t.control_id or t.control_id.endswith(('.knee.flexion','.foot.position'))) for t in motion.tracks if t.control_id in ids):
+                    c.fail('CONSTRAINT_CONFLICT','Moving a free leg contradicts its full-duration planted contact')
         actual=rp.capture_motion_state(handle,profile,revision=motion.entry_snapshot.revision,captured_time_s=0)
         expected={v.control_id:v for v in motion.entry_snapshot.measured_controls}
         self._entry_errors=[]
@@ -97,7 +107,7 @@ class FragmentAdapter:
                 for value in (track.curve.start_value,track.curve.end_value):
                     if value is not None:self._check_pelvis_reach({track.control_id:value})
         self.diagnostics=[]
-        self.arm_review=profile.version in (4,5,6)
+        self.arm_review=profile.version in (4,5,6,7)
         self.previous_arm_poles={}
 
     def _arm_clearance(self,side):
@@ -206,6 +216,14 @@ class FragmentAdapter:
         bpy.context.view_layer.update()
         targets=sample_motion(self.motion,time_s,self.measured,self.cursor)
         requested={v.control_id:v.value for v in targets.controls}
+        if p.version==7 and any(id in requested for id in ('pelvis.position','pelvis.orientation')):
+            pelvis=h.rig.pose.bones[self.joints['pelvis'].source_bones[0]]
+            pelvis.matrix_basis=self.arm_entry_basis[pelvis.name]
+            for side in ('left','right'):
+                for part in ('UpLeg','Leg','Foot'):
+                    bone=h.bones[side.title()+part]
+                    bone.matrix_basis=self.arm_entry_basis[bone.name]
+            bpy.context.view_layer.update()
         if any(id in requested for id in ('pelvis.position','pelvis.orientation')):
             self._pelvis(requested)
         chains=sorted({self.controls[id].chain for id in requested if self.controls[id].value_shape=='scalar'},
@@ -237,14 +255,17 @@ class FragmentAdapter:
                 rotation=desired @ rp.semantic_frame(h,p,'head').to_quaternion().conjugated() @ world.to_quaternion()
                 bone.matrix=h.rig.matrix_world.inverted() @ (Matrix.Translation(world.translation) @ rotation.to_matrix().to_4x4() @ Matrix.Diagonal((*world.to_scale(),1)))
                 bpy.context.view_layer.update()
-        if p.version in (5,6):
+        if p.version==7:
+            from .leg_mechanics import apply as apply_legs
+            apply_legs(self,requested)
+        if p.version in (5,6,7):
             from .hand_mechanics import apply
             apply(self,requested)
-        if p.version==6:
+        if p.version in (6,7) and 'finger_v1:bind_palm_axes_three_joint_digits' in p.calibration_provenance.evidence:
             from .finger_mechanics import apply as apply_fingers
             apply_fingers(self,requested)
         for value in targets.controls:
-            if p.version in (5,6):continue  # Coordinated endpoint/pole/palm solve above.
+            if p.version in (5,6,7):continue  # Coordinated endpoint/pole/palm solve above.
             if not value.control_id.endswith('.hand.position'): continue
             side=value.control_id.split('.')[0].title()
             current=Vector(rp.measure_endpoint(h,p,side.lower()+'.hand'))
@@ -328,23 +349,32 @@ class FragmentAdapter:
             error=value_error(value.value,entry[id].value,self.controls[id].value_shape)
             if error>.5: violations.append(('unrelated_change',id,error,.5))
         sample=capture_sample(h,frame,','.join(targets.source_instance_ids),errors)
-        if p.version==6:
+        if p.version in (6,7) and 'finger_v1:bind_palm_axes_three_joint_digits' in p.calibration_provenance.evidence:
             # Extend the existing whole-motion speed/acceleration reviewer with
             # actual digit rotations; the core avatar map deliberately omits them.
             for chain,mapping in self.joints.items():
                 if '.finger.' in chain:
                     sample['rotations'][chain]=(h.rig.matrix_world @ h.rig.pose.bones[mapping.source_bones[0]].matrix).to_quaternion()
         sample['controls']={v.control_id:v.value for v in solved.measured_controls}
+        leg_clearance=None
+        if p.version==7 and any('.hip.' in key or '.knee.' in key or '.foot.' in key or key=='pelvis.position' for key in requested):
+            from .leg_mechanics import clearance
+            leg_clearance=clearance(self)
+            if leg_clearance<-.003:violations.append(('leg_clearance','legs',-leg_clearance,.003))
         sample['semantic_violations']=violations
         details={'frame':frame,'time_s':time_s,'source_instance_ids':list(targets.source_instance_ids),
             'targets':{v.control_id:v.value for v in targets.controls},'measured':sample['controls'],
             'checked_goal_ids':[g.goal_id for g in targets.expected_goals],
             'tracking_errors':tracking,'contacts':dict(errors),'floor_m':sample['floor'],'violations':violations}
-        if p.version==6:
+        if p.version in (6,7) and 'finger_v1:bind_palm_axes_three_joint_digits' in p.calibration_provenance.evidence:
             details['finger_rotations']={key:tuple(q) for key,q in sample['rotations'].items() if '.finger.' in key}
             details['finger_tips']={key:tuple(h.rig.matrix_world @ h.rig.pose.bones[mapping.source_bones[0]].tail)
                 for key,mapping in self.joints.items() if '.finger.' in key and key.endswith('.3')}
         if self.arm_review:details.update({'arm_clearance_m':arm_clearance,'elbow_poles':arm_poles})
+        if p.version==7:
+            details['leg_clearance_m']=leg_clearance
+            details['leg_points']={side:[tuple(h.rig.matrix_world @ h.bones[side.title()+part].head)
+                for part in ('UpLeg','Leg','Foot')] for side in ('left','right')}
         self.diagnostics.append(details)
         sample['semantic_details']=details
         sample['snapshot']=solved

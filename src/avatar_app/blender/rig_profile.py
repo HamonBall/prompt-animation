@@ -119,7 +119,8 @@ def _binding(handle, profile):
     arms=profile.version==4 and 'shoulder_arm_v1:optional_clavicle_and_world_upper_arm_orientation' in profile.calibration_provenance.evidence
     hands=profile.version==5 and 'hand_v1:geometric_elbow_and_root_referenced_plane' in profile.calibration_provenance.evidence
     fingers=profile.version==6 and 'finger_v1:bind_palm_axes_three_joint_digits' in profile.calibration_provenance.evidence and 'hand_v1:geometric_elbow_and_root_referenced_plane' in profile.calibration_provenance.evidence
-    if profile.version != CALIBRATION_VERSION and not head_aim and not pelvis and not arms and not hands and not fingers:
+    legs=profile.version==7 and 'leg_v1:geometric_knee_parent_hip_and_reachable_bend_plane' in profile.calibration_provenance.evidence
+    if profile.version != CALIBRATION_VERSION and not head_aim and not pelvis and not arms and not hands and not fingers and not legs:
         c.fail('VERSION_MISMATCH','Unsupported rig calibration version; recalibrate explicitly')
 
 
@@ -344,7 +345,7 @@ def measure_joint_angle(handle,profile,control_id):
     mapping,bone = _joint(handle,profile,control.chain)
     parent_frame = semantic_frame(handle,profile,mapping.parent_id) if mapping.parent_id else _character_basis(handle).to_4x4()
     axis = Vector(limit.positive_axis)
-    if profile.version in (5,6) and control_id.endswith('.elbow.plane'):
+    if profile.version in (5,6,7) and control_id.endswith('.elbow.plane'):
         side=control_id.split('.')[0].title()
         world=handle.rig.matrix_world
         shoulder,elbow,wrist=(world @ handle.bones[side+part].head for part in ('Arm','ForeArm','Hand'))
@@ -356,11 +357,13 @@ def measure_joint_angle(handle,profile,control_id):
         if bend.length<1e-7:return 0.0
         bend.normalize()
         return math.degrees(math.atan2(chain.dot(reference.cross(bend)),reference.dot(bend)))
+    if profile.version==7 and control_id.endswith('.knee.plane'):
+        return measure_knee_plane(handle,profile,control_id.split('.')[0])
     if control_id.endswith(('elbow.flexion','knee.flexion')):
         parent = _joint(handle,profile,mapping.parent_id)[1]
         upper = handle.rig.matrix_world.to_3x3() @ (parent.tail-parent.head)
         lower = handle.rig.matrix_world.to_3x3() @ (bone.tail-bone.head)
-        if profile.version in (5,6) and control_id.endswith('.elbow.flexion'):
+        if (profile.version in (5,6,7) and control_id.endswith('.elbow.flexion')) or (profile.version==7 and control_id.endswith('.knee.flexion')):
             return math.degrees(upper.angle(lower))
         world_axis = parent_frame.to_3x3() @ axis
         first,second = _project(upper,world_axis),_project(lower,world_axis)
@@ -382,6 +385,24 @@ def elbow_plane_reference(handle,profile,chain):
     if reference.length<.1:
         up=frame.col[2];reference=up-chain*up.dot(chain)
     return reference.normalized()
+
+
+def knee_plane_reference(handle,profile,chain):
+    frame=semantic_frame(handle,profile,'pelvis').to_3x3()
+    reference=frame.col[1]-chain*frame.col[1].dot(chain)
+    if reference.length<.1:reference=frame.col[2]-chain*frame.col[2].dot(chain)
+    return reference.normalized()
+
+
+def measure_knee_plane(handle,profile,side):
+    world=handle.rig.matrix_world
+    hip,knee,ankle=(world @ handle.bones[side.title()+part].head for part in ('UpLeg','Leg','Foot'))
+    if (knee-hip).angle(ankle-knee)<math.radians(3):return 0.0
+    chain=(ankle-hip).normalized();reference=knee_plane_reference(handle,profile,chain)
+    bend=knee-hip-chain*(knee-hip).dot(chain)
+    if bend.length<1e-7:return 0.0
+    bend.normalize()
+    return math.degrees(math.atan2(chain.dot(reference.cross(bend)),reference.dot(bend)))
 
 
 def measure_endpoint(handle,profile,endpoint_id):

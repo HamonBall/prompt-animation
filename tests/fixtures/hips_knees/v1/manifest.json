@@ -1,0 +1,226 @@
+{
+  "profile_version": 7,
+  "definition_version": 1,
+  "rigs": {
+    "demo": {
+      "hip.lift": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/hip.lift-entry.json",
+          "instance": "demo/hip.lift-instance.json",
+          "fragment": "demo/hip.lift-fragment.json",
+          "executable": "demo/hip.lift-executable.json"
+        }
+      },
+      "hip.open_close": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/hip.open_close-entry.json",
+          "instance": "demo/hip.open_close-instance.json",
+          "fragment": "demo/hip.open_close-fragment.json",
+          "executable": "demo/hip.open_close-executable.json"
+        }
+      },
+      "hip.rotate": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/hip.rotate-entry.json",
+          "instance": "demo/hip.rotate-instance.json",
+          "fragment": "demo/hip.rotate-fragment.json",
+          "executable": "demo/hip.rotate-executable.json"
+        }
+      },
+      "leg.extend": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/leg.extend-entry.json",
+          "instance": "demo/leg.extend-instance.json",
+          "fragment": "demo/leg.extend-fragment.json",
+          "executable": "demo/leg.extend-executable.json"
+        }
+      },
+      "leg.swing": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/leg.swing-entry.json",
+          "instance": "demo/leg.swing-instance.json",
+          "fragment": "demo/leg.swing-fragment.json",
+          "executable": "demo/leg.swing-executable.json"
+        }
+      },
+      "knee.flex": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/knee.flex-entry.json",
+          "instance": "demo/knee.flex-instance.json",
+          "fragment": "demo/knee.flex-fragment.json",
+          "executable": "demo/knee.flex-executable.json"
+        }
+      },
+      "knee.lift": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/knee.lift-entry.json",
+          "instance": "demo/knee.lift-instance.json",
+          "fragment": "demo/knee.lift-fragment.json",
+          "executable": "demo/knee.lift-executable.json"
+        }
+      },
+      "knee.orient": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/knee.orient-entry.json",
+          "instance": "demo/knee.orient-instance.json",
+          "fragment": "demo/knee.orient-fragment.json",
+          "executable": "demo/knee.orient-executable.json"
+        }
+      },
+      "knee.pulse": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/knee.pulse-entry.json",
+          "instance": "demo/knee.pulse-instance.json",
+          "fragment": "demo/knee.pulse-fragment.json",
+          "executable": "demo/knee.pulse-executable.json"
+        }
+      },
+      "leg.cross": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/leg.cross-entry.json",
+          "instance": "demo/leg.cross-instance.json",
+          "fragment": "demo/leg.cross-fragment.json",
+          "executable": "demo/leg.cross-executable.json"
+        }
+      },
+      "leg.fold": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/leg.fold-entry.json",
+          "instance": "demo/leg.fold-instance.json",
+          "fragment": "demo/leg.fold-fragment.json",
+          "executable": "demo/leg.fold-executable.json"
+        }
+      },
+      "leg.kick": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/leg.kick-entry.json",
+          "instance": "demo/leg.kick-instance.json",
+          "fragment": "demo/leg.kick-fragment.json",
+          "executable": "demo/leg.kick-executable.json"
+        }
+      }
+    },
+    "mixamo": {
+      "hip.lift": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/hip.lift-entry.json",
+          "instance": "mixamo/hip.lift-instance.json",
+          "fragment": "mixamo/hip.lift-fragment.json",
+          "executable": "mixamo/hip.lift-executable.json"
+        }
+      },
+      "hip.open_close": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/hip.open_close-entry.json",
+          "instance": "mixamo/hip.open_close-instance.json",
+          "fragment": "mixamo/hip.open_close-fragment.json",
+          "executable": "mixamo/hip.open_close-executable.json"
+        }
+      },
+      "hip.rotate": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/hip.rotate-entry.json",
+          "instance": "mixamo/hip.rotate-instance.json",
+          "fragment": "mixamo/hip.rotate-fragment.json",
+          "executable": "mixamo/hip.rotate-executable.json"
+        }
+      },
+      "leg.extend": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/leg.extend-entry.json",
+          "instance": "mixamo/leg.extend-instance.json",
+          "fragment": "mixamo/leg.extend-fragment.json",
+          "executable": "mixamo/leg.extend-executable.json"
+        }
+      },
+      "leg.swing": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/leg.swing-entry.json",
+          "instance": "mixamo/leg.swing-instance.json",
+          "fragment": "mixamo/leg.swing-fragment.json",
+          "executable": "mixamo/leg.swing-executable.json"
+        }
+      },
+      "knee.flex": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/knee.flex-entry.json",
+          "instance": "mixamo/knee.flex-instance.json",
+          "fragment": "mixamo/knee.flex-fragment.json",
+          "executable": "mixamo/knee.flex-executable.json"
+        }
+      },
+      "knee.lift": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/knee.lift-entry.json",
+          "instance": "mixamo/knee.lift-instance.json",
+          "fragment": "mixamo/knee.lift-fragment.json",
+          "executable": "mixamo/knee.lift-executable.json"
+        }
+      },
+      "knee.orient": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/knee.orient-entry.json",
+          "instance": "mixamo/knee.orient-instance.json",
+          "fragment": "mixamo/knee.orient-fragment.json",
+          "executable": "mixamo/knee.orient-executable.json"
+        }
+      },
+      "knee.pulse": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/knee.pulse-entry.json",
+          "instance": "mixamo/knee.pulse-instance.json",
+          "fragment": "mixamo/knee.pulse-fragment.json",
+          "executable": "mixamo/knee.pulse-executable.json"
+        }
+      },
+      "leg.cross": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/leg.cross-entry.json",
+          "instance": "mixamo/leg.cross-instance.json",
+          "fragment": "mixamo/leg.cross-fragment.json",
+          "executable": "mixamo/leg.cross-executable.json"
+        }
+      },
+      "leg.fold": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/leg.fold-entry.json",
+          "instance": "mixamo/leg.fold-instance.json",
+          "fragment": "mixamo/leg.fold-fragment.json",
+          "executable": "mixamo/leg.fold-executable.json"
+        }
+      },
+      "leg.kick": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/leg.kick-entry.json",
+          "instance": "mixamo/leg.kick-instance.json",
+          "fragment": "mixamo/leg.kick-fragment.json",
+          "executable": "mixamo/leg.kick-executable.json"
+        }
+      }
+    }
+  }
+}

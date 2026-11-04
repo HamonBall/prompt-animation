@@ -1,0 +1,8 @@
+{
+  "core_leg_chains": "existing exact thigh/shin/ankle mapping",
+  "free_leg_support": "opposite captured sole required; release precedes movement",
+  "pulse_support": "both captured floor soles planted; shallow crouch/upright entry",
+  "plane": "reachable bent chain, not lateral knee hinge",
+  "knee_floor": "unavailable",
+  "airborne": "unavailable"
+}

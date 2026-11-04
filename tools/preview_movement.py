@@ -92,7 +92,10 @@ def main(argv=None):
     profile=rp.calibrate_joint_frames(handle,avatar_id='preview.'+('demo' if args.rig=='demo' else 'import'),
                                      source_revision='developer-preview',recorded_at='2026-10-23',include_head_aim=not args.test_catalog)
     if not args.test_catalog:
-        if args.id in ('hand.gesture','finger.curl_spread'):
+        if args.id.startswith(('hip.','leg.','knee.')):
+            from avatar_app.movement_library.legs import with_legs_v1
+            profile=with_legs_v1(profile)
+        elif args.id in ('hand.gesture','finger.curl_spread'):
             from avatar_app.movement_library.fingers import with_fingers_v1
             profile=with_fingers_v1(profile)
         elif args.id.startswith(('elbow.','forearm.','wrist.','hand.')):

@@ -188,5 +188,6 @@ def catalog_for_profile(profile):
     from .limbs import BUILDERS as ARM_BUILDERS,register_arms
     from .hands import BUILDERS as HAND_BUILDERS,register_hands
     from .fingers import BUILDERS as FINGER_BUILDERS,register_fingers
-    catalog=register_head_neck(Catalog({**BUILDERS,**BODY_BUILDERS,**ARM_BUILDERS,**HAND_BUILDERS,**FINGER_BUILDERS}),head_only='anatomy.neck' not in profile.capabilities)
-    return register_fingers(register_hands(register_arms(register_body(catalog,profile),profile),profile),profile)
+    from .legs import BUILDERS as LEG_BUILDERS,register_legs
+    catalog=register_head_neck(Catalog({**BUILDERS,**BODY_BUILDERS,**ARM_BUILDERS,**HAND_BUILDERS,**FINGER_BUILDERS,**LEG_BUILDERS}),head_only='anatomy.neck' not in profile.capabilities)
+    return register_legs(register_fingers(register_hands(register_arms(register_body(catalog,profile),profile),profile),profile),profile)

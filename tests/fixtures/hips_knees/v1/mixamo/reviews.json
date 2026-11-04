@@ -1,0 +1,1992 @@
+[
+  {
+    "schema_version": 1,
+    "definition_id": "hip.lift",
+    "definition_version": 1,
+    "avatar_id": "legs.mixamo",
+    "profile_version": 7,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "opposite_planted",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both_planted",
+          "opposite_planted"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1.5,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 40,
+        "minimum": 0,
+        "maximum": 70,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.4/validation-summary.json",
+      "artifacts/stages/05.4/saved-playback-summary.json",
+      "artifacts/stages/05.4/visual-review.json",
+      "artifacts/stages/05.4/boundary-review.json",
+      "conditional entry/support/reach/joint/floor/clearance envelope; no grasp, knee-floor or airborne physics"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "cases",
+        "value": 12
+      },
+      {
+        "schema_version": 1,
+        "name": "samples",
+        "value": 1734
+      },
+      {
+        "schema_version": 1,
+        "name": "max_tracking_deg",
+        "value": 0.002224319359651214
+      },
+      {
+        "schema_version": 1,
+        "name": "native_speed_deg_s",
+        "value": 69.98873836101441
+      },
+      {
+        "schema_version": 1,
+        "name": "native_acceleration_deg_s2",
+        "value": 178.63931243931634
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 9.420665792356169e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "hip.open_close",
+    "definition_version": 1,
+    "avatar_id": "legs.mixamo",
+    "profile_version": 7,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "opposite_planted",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both_planted",
+          "opposite_planted"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1.5,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 12,
+        "minimum": -8,
+        "maximum": 22,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.4/validation-summary.json",
+      "artifacts/stages/05.4/saved-playback-summary.json",
+      "artifacts/stages/05.4/visual-review.json",
+      "artifacts/stages/05.4/boundary-review.json",
+      "conditional entry/support/reach/joint/floor/clearance envelope; no grasp, knee-floor or airborne physics"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "cases",
+        "value": 12
+      },
+      {
+        "schema_version": 1,
+        "name": "samples",
+        "value": 1734
+      },
+      {
+        "schema_version": 1,
+        "name": "max_tracking_deg",
+        "value": 0.0010420663111275208
+      },
+      {
+        "schema_version": 1,
+        "name": "native_speed_deg_s",
+        "value": 33.297123042643776
+      },
+      {
+        "schema_version": 1,
+        "name": "native_acceleration_deg_s2",
+        "value": 128.66637605517099
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 9.420665792356169e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "hip.rotate",
+    "definition_version": 1,
+    "avatar_id": "legs.mixamo",
+    "profile_version": 7,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "opposite_planted",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both_planted",
+          "opposite_planted"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1.5,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 15,
+        "minimum": -25,
+        "maximum": 25,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.4/validation-summary.json",
+      "artifacts/stages/05.4/saved-playback-summary.json",
+      "artifacts/stages/05.4/visual-review.json",
+      "artifacts/stages/05.4/boundary-review.json",
+      "conditional entry/support/reach/joint/floor/clearance envelope; no grasp, knee-floor or airborne physics"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "cases",
+        "value": 12
+      },
+      {
+        "schema_version": 1,
+        "name": "samples",
+        "value": 1734
+      },
+      {
+        "schema_version": 1,
+        "name": "max_tracking_deg",
+        "value": 0.0010420663111275208
+      },
+      {
+        "schema_version": 1,
+        "name": "native_speed_deg_s",
+        "value": 35.351023871279075
+      },
+      {
+        "schema_version": 1,
+        "name": "native_acceleration_deg_s2",
+        "value": 136.67292929183122
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 9.420665792356169e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "leg.extend",
+    "definition_version": 1,
+    "avatar_id": "legs.mixamo",
+    "profile_version": 7,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "opposite_planted",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both_planted",
+          "opposite_planted"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1.5,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 15,
+        "minimum": 0,
+        "maximum": 40,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.4/validation-summary.json",
+      "artifacts/stages/05.4/saved-playback-summary.json",
+      "artifacts/stages/05.4/visual-review.json",
+      "artifacts/stages/05.4/boundary-review.json",
+      "conditional entry/support/reach/joint/floor/clearance envelope; no grasp, knee-floor or airborne physics"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "cases",
+        "value": 12
+      },
+      {
+        "schema_version": 1,
+        "name": "samples",
+        "value": 1164
+      },
+      {
+        "schema_version": 1,
+        "name": "max_tracking_deg",
+        "value": 0.0004079559965768642
+      },
+      {
+        "schema_version": 1,
+        "name": "native_speed_deg_s",
+        "value": 82.49539522380147
+      },
+      {
+        "schema_version": 1,
+        "name": "native_acceleration_deg_s2",
+        "value": 210.24896754701638
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "leg.swing",
+    "definition_version": 1,
+    "avatar_id": "legs.mixamo",
+    "profile_version": 7,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "opposite_planted",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both_planted",
+          "opposite_planted"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1.5,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "distance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.06,
+        "minimum": 0,
+        "maximum": 0.1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "plane",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "forward",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "forward",
+          "side"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.4/validation-summary.json",
+      "artifacts/stages/05.4/saved-playback-summary.json",
+      "artifacts/stages/05.4/visual-review.json",
+      "artifacts/stages/05.4/boundary-review.json",
+      "conditional entry/support/reach/joint/floor/clearance envelope; no grasp, knee-floor or airborne physics"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "cases",
+        "value": 16
+      },
+      {
+        "schema_version": 1,
+        "name": "samples",
+        "value": 3888
+      },
+      {
+        "schema_version": 1,
+        "name": "max_tracking_deg",
+        "value": 9.977103998378189e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "native_speed_deg_s",
+        "value": 48.489568413700056
+      },
+      {
+        "schema_version": 1,
+        "name": "native_acceleration_deg_s2",
+        "value": 1454.6870524110018
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 6.447633461332146e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "knee.flex",
+    "definition_version": 1,
+    "avatar_id": "legs.mixamo",
+    "profile_version": 7,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "opposite_planted",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both_planted",
+          "opposite_planted"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1.5,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 60,
+        "minimum": 0,
+        "maximum": 100,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.4/validation-summary.json",
+      "artifacts/stages/05.4/saved-playback-summary.json",
+      "artifacts/stages/05.4/visual-review.json",
+      "artifacts/stages/05.4/boundary-review.json",
+      "conditional entry/support/reach/joint/floor/clearance envelope; no grasp, knee-floor or airborne physics"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "cases",
+        "value": 12
+      },
+      {
+        "schema_version": 1,
+        "name": "samples",
+        "value": 1734
+      },
+      {
+        "schema_version": 1,
+        "name": "max_tracking_deg",
+        "value": 0.006636438163545165
+      },
+      {
+        "schema_version": 1,
+        "name": "native_speed_deg_s",
+        "value": 61.99004466516546
+      },
+      {
+        "schema_version": 1,
+        "name": "native_acceleration_deg_s2",
+        "value": 181.4728590462711
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 9.420665792356169e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "knee.lift",
+    "definition_version": 1,
+    "avatar_id": "legs.mixamo",
+    "profile_version": 7,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "opposite_planted",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both_planted",
+          "opposite_planted"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1.5,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 55,
+        "minimum": 30,
+        "maximum": 70,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.4/validation-summary.json",
+      "artifacts/stages/05.4/saved-playback-summary.json",
+      "artifacts/stages/05.4/visual-review.json",
+      "artifacts/stages/05.4/boundary-review.json",
+      "conditional entry/support/reach/joint/floor/clearance envelope; no grasp, knee-floor or airborne physics"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "cases",
+        "value": 14
+      },
+      {
+        "schema_version": 1,
+        "name": "samples",
+        "value": 2030
+      },
+      {
+        "schema_version": 1,
+        "name": "max_tracking_deg",
+        "value": 0.0009225024247747626
+      },
+      {
+        "schema_version": 1,
+        "name": "native_speed_deg_s",
+        "value": 69.98873836101441
+      },
+      {
+        "schema_version": 1,
+        "name": "native_acceleration_deg_s2",
+        "value": 193.06910910877116
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 9.420665792356169e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "knee.orient",
+    "definition_version": 1,
+    "avatar_id": "legs.mixamo",
+    "profile_version": 7,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "opposite_planted",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both_planted",
+          "opposite_planted"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1.5,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 20,
+        "minimum": -35,
+        "maximum": 35,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.4/validation-summary.json",
+      "artifacts/stages/05.4/saved-playback-summary.json",
+      "artifacts/stages/05.4/visual-review.json",
+      "artifacts/stages/05.4/boundary-review.json",
+      "conditional entry/support/reach/joint/floor/clearance envelope; no grasp, knee-floor or airborne physics"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "cases",
+        "value": 12
+      },
+      {
+        "schema_version": 1,
+        "name": "samples",
+        "value": 1164
+      },
+      {
+        "schema_version": 1,
+        "name": "max_tracking_deg",
+        "value": 0.0003573351376147116
+      },
+      {
+        "schema_version": 1,
+        "name": "native_speed_deg_s",
+        "value": 32.43849978858292
+      },
+      {
+        "schema_version": 1,
+        "name": "native_acceleration_deg_s2",
+        "value": 125.50898232049592
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "knee.pulse",
+    "definition_version": 1,
+    "avatar_id": "legs.mixamo",
+    "profile_version": 7,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "both",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "both_planted",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both_planted",
+          "opposite_planted"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1.5,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "depth_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.02,
+        "minimum": 0.005,
+        "maximum": 0.05,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.4/validation-summary.json",
+      "artifacts/stages/05.4/saved-playback-summary.json",
+      "artifacts/stages/05.4/visual-review.json",
+      "artifacts/stages/05.4/boundary-review.json",
+      "conditional entry/support/reach/joint/floor/clearance envelope; no grasp, knee-floor or airborne physics"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "cases",
+        "value": 12
+      },
+      {
+        "schema_version": 1,
+        "name": "samples",
+        "value": 1032
+      },
+      {
+        "schema_version": 1,
+        "name": "max_tracking_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "native_speed_deg_s",
+        "value": 22.385695380669215
+      },
+      {
+        "schema_version": 1,
+        "name": "native_acceleration_deg_s2",
+        "value": 177.674965827018
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 7.223082152479724e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "leg.cross",
+    "definition_version": 1,
+    "avatar_id": "legs.mixamo",
+    "profile_version": 7,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "opposite_planted",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both_planted",
+          "opposite_planted"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1.5,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "distance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.18,
+        "minimum": 0,
+        "maximum": 0.2,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.4/validation-summary.json",
+      "artifacts/stages/05.4/saved-playback-summary.json",
+      "artifacts/stages/05.4/visual-review.json",
+      "artifacts/stages/05.4/boundary-review.json",
+      "conditional entry/support/reach/joint/floor/clearance envelope; no grasp, knee-floor or airborne physics"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "cases",
+        "value": 14
+      },
+      {
+        "schema_version": 1,
+        "name": "samples",
+        "value": 2618
+      },
+      {
+        "schema_version": 1,
+        "name": "max_tracking_deg",
+        "value": 9.308873815469624e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "native_speed_deg_s",
+        "value": 48.489568413700056
+      },
+      {
+        "schema_version": 1,
+        "name": "native_acceleration_deg_s2",
+        "value": 1454.6870524110018
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 6.447633461332146e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "leg.fold",
+    "definition_version": 1,
+    "avatar_id": "legs.mixamo",
+    "profile_version": 7,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "opposite_planted",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both_planted",
+          "opposite_planted"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1.5,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "distance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.06,
+        "minimum": 0,
+        "maximum": 0.1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.4/validation-summary.json",
+      "artifacts/stages/05.4/saved-playback-summary.json",
+      "artifacts/stages/05.4/visual-review.json",
+      "artifacts/stages/05.4/boundary-review.json",
+      "conditional entry/support/reach/joint/floor/clearance envelope; no grasp, knee-floor or airborne physics"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "cases",
+        "value": 14
+      },
+      {
+        "schema_version": 1,
+        "name": "samples",
+        "value": 2618
+      },
+      {
+        "schema_version": 1,
+        "name": "max_tracking_deg",
+        "value": 0.00010994801415640258
+      },
+      {
+        "schema_version": 1,
+        "name": "native_speed_deg_s",
+        "value": 48.489568413700056
+      },
+      {
+        "schema_version": 1,
+        "name": "native_acceleration_deg_s2",
+        "value": 1454.6870524110018
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 6.447633461332146e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "leg.kick",
+    "definition_version": 1,
+    "avatar_id": "legs.mixamo",
+    "profile_version": 7,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "opposite_planted",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "both_planted",
+          "opposite_planted"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1.5,
+        "minimum": 1.5,
+        "maximum": 3,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.1,
+        "minimum": 0,
+        "maximum": 1,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 45,
+        "minimum": 30,
+        "maximum": 60,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.4/validation-summary.json",
+      "artifacts/stages/05.4/saved-playback-summary.json",
+      "artifacts/stages/05.4/visual-review.json",
+      "artifacts/stages/05.4/boundary-review.json",
+      "conditional entry/support/reach/joint/floor/clearance envelope; no grasp, knee-floor or airborne physics"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "cases",
+        "value": 14
+      },
+      {
+        "schema_version": 1,
+        "name": "samples",
+        "value": 3230
+      },
+      {
+        "schema_version": 1,
+        "name": "max_tracking_deg",
+        "value": 0.0022425728102053177
+      },
+      {
+        "schema_version": 1,
+        "name": "native_speed_deg_s",
+        "value": 74.98708932970918
+      },
+      {
+        "schema_version": 1,
+        "name": "native_acceleration_deg_s2",
+        "value": 191.14968910607925
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 9.420665792356169e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  }
+]

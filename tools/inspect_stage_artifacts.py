@@ -54,17 +54,26 @@ def audit(stages=('05.1a','05.1b')):
         from finger_cases import cases as finger_cases
         fingers={name:(parameters,entry) for name,id,parameters,entry in finger_cases()}
         report['validator_sources']={name:digest(ROOT/name) for name in ('tools/inspect_stage_artifacts.py','tools/fingers_native_cache.py','tools/fingers_runtime.py')}
+    legs={}
+    if '05.4' in stages:
+        from hips_knees_cases import cases as leg_cases
+        from tools.hips_knees_views import render_valid
+        legs={name:(parameters,entry) for name,_,parameters,entry in leg_cases()}
+        report.setdefault('validator_sources',{}).update({name:digest(ROOT/name) for name in
+            ('tools/inspect_stage_artifacts.py','tools/hips_knees_views.py','tools/hips_knees_provenance.py','tools/legs_evidence.py')})
     for stage in stages:
         base=ROOT/'artifacts/stages'/stage
         head=json.loads((base/'execution-review.json').read_text(encoding='utf-8')) if stage=='05.1a' else None
         rigs={}
         for rig in ('demo','mixamo'):
             entries={}
-            names=head[rig]['cases'] if head else {n:v for n,v in arms.items() if rig!='demo' or not n.startswith('shoulder.')} if stage=='05.2' else hands if stage=='05.3a' else (fingers if rig=='mixamo' else {}) if stage=='05.3b' else body
+            names=legs if stage=='05.4' else head[rig]['cases'] if head else {n:v for n,v in arms.items() if rig!='demo' or not n.startswith('shoulder.')} if stage=='05.2' else hands if stage=='05.3a' else (fingers if rig=='mixamo' else {}) if stage=='05.3b' else body
             for name in names:
                 directory=base/rig/name
                 result=json.loads((directory/'result.json').read_text(encoding='utf-8'))
                 assert result['review']['passed'] and len(result['samples'])==result['frames'],directory
+                if stage=='05.4':
+                    assert render_valid(directory),directory
                 if stage=='05.3b':
                     from tools.fingers_provenance import producer_valid
                     from tools.fingers_native_cache import verified_native_cache
@@ -81,19 +90,19 @@ def audit(stages=('05.1a','05.1b')):
                     from tools.artifact_bundle import validate_manifest
                     bundle,asset,motion=validate_manifest(directory)
                     assert bundle.get('verification',{}).get('passed') or bundle.get('complete'),directory
-                views=list(bundle['views']) if stage in ('05.3a','05.3b') else ['front','side'] if stage in ('05.1b','05.2') or name.endswith('default') or name in ('look-left','world-turn','tilt-left') else ['front']
+                views=list(bundle['views']) if stage in ('05.3a','05.3b') else ['front','side'] if stage in ('05.1b','05.2','05.4') or name.endswith('default') or name in ('look-left','world-turn','tilt-left') else ['front']
                 check_frames(directory,views,result['frames'])
-                if stage in ('05.1b','05.2','05.3a','05.3b'):
+                if stage in ('05.1b','05.2','05.3a','05.3b','05.4'):
                     marker=bundle['visual_evidence'] if bundle else json.loads((directory/'visual-source.json').read_text(encoding='utf-8'))
                     assert marker['result_sha256']==digest(directory/'result.json'),directory
                 if head:
                     previous=head[rig]['cases'][name]
                     pose=previous['entry'];parameters=previous['parameters']
                 else:
-                    parameters,pose=(arms if stage=='05.2' else hands if stage=='05.3a' else fingers if stage=='05.3b' else body)[name]
+                    parameters,pose=(arms if stage=='05.2' else hands if stage=='05.3a' else fingers if stage=='05.3b' else legs if stage=='05.4' else body)[name]
                 neutral=pose in ('neutral','free-space') or stage=='05.3b' and pose=='sequence'
                 entry_file=ROOT/'tests/fixtures/movement_fragments/v1'/('entry-neutral.json' if neutral else 'entry-bent-turned.json')
-                if stage in ('05.2','05.3a','05.3b'):
+                if stage in ('05.2','05.3a','05.3b','05.4'):
                     from avatar_app.movement_library import contracts as c
                     instance=c.loads(c.MovementInstance,(directory/'instance.json').read_text(encoding='utf-8'))
                     parameters={p.name:p.value for p in instance.parameters}
@@ -103,6 +112,7 @@ def audit(stages=('05.1a','05.1b')):
                         entry_file=(ROOT/'tests/fixtures/shoulders_arms/v1/entry-shoulders-bent.json' if pose=='bent-turned' else
                                     ROOT/'tests/fixtures/elbows_wrists_hands/v1'/('entry-'+pose+'.json') if pose not in ('neutral','overhead') else entry_file)
                     if stage=='05.3b' and pose=='bent-turned':entry_file=ROOT/'tests/fixtures/shoulders_arms/v1/entry-shoulders-bent.json'
+                    if stage=='05.4':entry_file=ROOT/'tests/blender_movement_hips_knees.py'
                 value={'case_id':name,'entry_fixture':str(entry_file),'captured_entry':str(directory/'entry.json'),
                        'entry_kind':'neutral' if neutral else 'authored_non_neutral','authored_entry':pose,
                        'movement_parameters':parameters,'parameter_label':'default parameters' if 'default' in name or name=='look-left' else 'case parameters',
@@ -133,7 +143,7 @@ def audit(stages=('05.1a','05.1b')):
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output',type=Path,default=ROOT/'artifacts/maintenance/storage-v2/evidence-audit.json')
-    parser.add_argument('--stage',action='append',choices=('05.1a','05.1b','05.2','05.3a','05.3b'),help='Audit selected stages; defaults to the preserved migration stages')
+    parser.add_argument('--stage',action='append',choices=('05.1a','05.1b','05.2','05.3a','05.3b','05.4'),help='Audit selected stages; defaults to the preserved migration stages')
     args=parser.parse_args()
     value=audit(tuple(args.stage) if args.stage else ('05.1a','05.1b'));atomic_json(args.output,value)
     print(json.dumps({stage:{rig:{k:v for k,v in data.items() if k!='entries'} for rig,data in rigs.items()}

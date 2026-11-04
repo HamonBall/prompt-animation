@@ -42,8 +42,8 @@ def render(h,p,out,side=False,width=128):
                     from mathutils import Quaternion
                     actual=tuple(torso.to_quaternion().conjugated() @ Quaternion(rp.measure_orientation(h,p,endpoint)))
             elif spec.value_shape=='scalar':actual=rp.measure_joint_angle(h,p,id)
-            elif id.endswith('.hand.position'):actual=rp.measure_endpoint(h,p,id.rsplit('.',1)[0])
-            elif id.endswith('.hand.orientation'):actual=rp.measure_orientation(h,p,id.rsplit('.',1)[0])
+            elif id.endswith(('.hand.position','.foot.position')):actual=rp.measure_endpoint(h,p,id.rsplit('.',1)[0])
+            elif id.endswith(('.hand.orientation','.foot.orientation')):actual=rp.measure_orientation(h,p,id.rsplit('.',1)[0])
             else:
                 frame=rp.semantic_frame(h,p,spec.chain)
                 actual=tuple(frame.translation if spec.value_shape=='vector' else frame.to_quaternion())

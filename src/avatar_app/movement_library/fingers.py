@@ -56,7 +56,7 @@ def selected_digits(parameters):
 
 
 def build(instance,entry,profile,surfaces):
-    if profile.version!=6 or MARKER not in profile.calibration_provenance.evidence:
+    if profile.version not in (6,7) or MARKER not in profile.calibration_provenance.evidence:
         c.fail('MISSING_CAPABILITY','Finger detail requires calibrated profile 6')
     p={x.name:x.value for x in instance.parameters};values={x.control_id:x.value for x in entry.measured_controls}
     sides=('left','right') if p['side']=='both' else (p['side'],)
@@ -95,7 +95,7 @@ BUILDERS={'fingers.targets.v1':build}
 
 def register_fingers(catalog,profile):
     from .registry import register_movement
-    if profile.version!=6:return catalog
+    if profile.version not in (6,7) or MARKER not in profile.calibration_provenance.evidence:return catalog
     for id in IDS:
         common=(_enum('side','left',('left','right','both')),_number('duration_s','second',1.5,1.5,3),
                 _number('hold_s','second',.1,0,1),_enum('return_policy','return_to_entry',('return_to_entry','preserve_end')))
