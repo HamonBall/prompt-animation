@@ -361,12 +361,27 @@ def start_job(plan, job):
         return process
 
 
+def open_progress_window(jobs_root):
+    powershell = Path(os.environ.get('SystemRoot', r'C:\Windows')) / 'System32/WindowsPowerShell/v1.0/powershell.exe'
+    try:
+        subprocess.Popen(
+            [str(powershell), '-NoProfile', '-STA', '-File',
+             str(ROOT / 'tools/watch_evidence_jobs.ps1'), '-JobsRoot', str(jobs_root)],
+            cwd=ROOT, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL, creationflags=subprocess.CREATE_NO_WINDOW,
+        )
+    except OSError:
+        # A desktop viewer is optional and must never interrupt evidence work.
+        pass
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('operation', choices=('run', 'start', 'wait', 'report', 'cancel'))
     parser.add_argument('--plan', type=Path)
     parser.add_argument('--job', type=Path, required=True)
     parser.add_argument('--seconds', type=float, default=50)
+    parser.add_argument('--no-viewer', action='store_true', help='Skip the Windows progress window on start')
     args = parser.parse_args(argv)
     job = job_path(args.job)
     if args.operation in ('run', 'start') and not args.plan:
@@ -380,6 +395,8 @@ def main(argv=None):
         enforce(job, growth=MAX_JOB_LOGS + 1024**2)
         job.mkdir(parents=True, exist_ok=True)
         process = start_job(args.plan, job)
+        if os.name == 'nt' and not args.no_viewer:
+            open_progress_window(job.parent)
         print(json.dumps({'status': 'started', 'pid': process.pid, 'report': str(job / 'report.json'),
                           'next_action': 'Keep this managed tool session alive. Use its completion event or hand off the session/report location; do not poll.'}), flush=True)
         # Some hosts kill detached descendants as soon as the launcher exits.

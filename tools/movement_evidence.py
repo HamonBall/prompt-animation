@@ -3,7 +3,7 @@ import math
 import json
 
 
-def render(h,p,out,side=False,width=128):
+def render(h,p,out,side=False,width=128,*,lower_body=False):
     import bpy
     import numpy as np
     from mathutils import Vector
@@ -16,7 +16,11 @@ def render(h,p,out,side=False,width=128):
     scene.render.resolution_x=width;scene.render.resolution_y=width;scene.render.image_settings.file_format='PNG'
     scene.render.image_settings.compression=100
     basis=rp.semantic_frame(h,p,'pelvis').to_3x3();focus=Vector((0,0,p.height_m*.52))
-    scene.camera.data.type='ORTHO';scene.camera.data.ortho_scale=p.height_m*1.45
+    if lower_body:
+        left,right=(Vector(rp.measure_endpoint(h,p,side+'.foot')) for side in ('left','right'))
+        focus=(left+right)/2
+        focus.z=p.height_m*.28
+    scene.camera.data.type='ORTHO';scene.camera.data.ortho_scale=p.height_m*(.72 if lower_body else 1.45)
     scene.camera.location=focus+(basis.col[0] if side else basis.col[1])*4
     scene.camera.rotation_euler=(focus-scene.camera.location).to_track_quat('-Z','Y').to_euler()
     count=scene.frame_end;columns=12;rows=math.ceil(count/columns)

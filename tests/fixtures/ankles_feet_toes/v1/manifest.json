@@ -1,0 +1,185 @@
+{
+  "profile_version": 8,
+  "definition_version": 1,
+  "rigs": {
+    "demo": {
+      "ankle.flex": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/ankle.flex-entry.json",
+          "instance": "demo/ankle.flex-instance.json",
+          "fragment": "demo/ankle.flex-fragment.json",
+          "executable": "demo/ankle.flex-executable.json"
+        }
+      },
+      "ankle.tilt": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/ankle.tilt-entry.json",
+          "instance": "demo/ankle.tilt-instance.json",
+          "fragment": "demo/ankle.tilt-fragment.json",
+          "executable": "demo/ankle.tilt-executable.json"
+        }
+      },
+      "foot.place": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/foot.place-entry.json",
+          "instance": "demo/foot.place-instance.json",
+          "fragment": "demo/foot.place-fragment.json",
+          "executable": "demo/foot.place-executable.json"
+        }
+      },
+      "foot.lift": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/foot.lift-entry.json",
+          "instance": "demo/foot.lift-instance.json",
+          "fragment": "demo/foot.lift-fragment.json",
+          "executable": "demo/foot.lift-executable.json"
+        }
+      },
+      "foot.pivot": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/foot.pivot-entry.json",
+          "instance": "demo/foot.pivot-instance.json",
+          "fragment": "demo/foot.pivot-fragment.json",
+          "executable": "demo/foot.pivot-executable.json"
+        }
+      },
+      "heel.raise": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/heel.raise-entry.json",
+          "instance": "demo/heel.raise-instance.json",
+          "fragment": "demo/heel.raise-fragment.json",
+          "executable": "demo/heel.raise-executable.json"
+        }
+      },
+      "toe.raise": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/toe.raise-entry.json",
+          "instance": "demo/toe.raise-instance.json",
+          "fragment": "demo/toe.raise-fragment.json",
+          "executable": "demo/toe.raise-executable.json"
+        }
+      },
+      "foot.roll": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/foot.roll-entry.json",
+          "instance": "demo/foot.roll-instance.json",
+          "fragment": "demo/foot.roll-fragment.json",
+          "executable": "demo/foot.roll-executable.json"
+        }
+      },
+      "foot.tap": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/foot.tap-entry.json",
+          "instance": "demo/foot.tap-instance.json",
+          "fragment": "demo/foot.tap-fragment.json",
+          "executable": "demo/foot.tap-executable.json"
+        }
+      },
+      "toes.curl": {
+        "status": "unavailable_on_rig",
+        "records": {}
+      }
+    },
+    "mixamo": {
+      "ankle.flex": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/ankle.flex-entry.json",
+          "instance": "mixamo/ankle.flex-instance.json",
+          "fragment": "mixamo/ankle.flex-fragment.json",
+          "executable": "mixamo/ankle.flex-executable.json"
+        }
+      },
+      "ankle.tilt": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/ankle.tilt-entry.json",
+          "instance": "mixamo/ankle.tilt-instance.json",
+          "fragment": "mixamo/ankle.tilt-fragment.json",
+          "executable": "mixamo/ankle.tilt-executable.json"
+        }
+      },
+      "foot.place": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/foot.place-entry.json",
+          "instance": "mixamo/foot.place-instance.json",
+          "fragment": "mixamo/foot.place-fragment.json",
+          "executable": "mixamo/foot.place-executable.json"
+        }
+      },
+      "foot.lift": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/foot.lift-entry.json",
+          "instance": "mixamo/foot.lift-instance.json",
+          "fragment": "mixamo/foot.lift-fragment.json",
+          "executable": "mixamo/foot.lift-executable.json"
+        }
+      },
+      "foot.pivot": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/foot.pivot-entry.json",
+          "instance": "mixamo/foot.pivot-instance.json",
+          "fragment": "mixamo/foot.pivot-fragment.json",
+          "executable": "mixamo/foot.pivot-executable.json"
+        }
+      },
+      "heel.raise": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/heel.raise-entry.json",
+          "instance": "mixamo/heel.raise-instance.json",
+          "fragment": "mixamo/heel.raise-fragment.json",
+          "executable": "mixamo/heel.raise-executable.json"
+        }
+      },
+      "toe.raise": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/toe.raise-entry.json",
+          "instance": "mixamo/toe.raise-instance.json",
+          "fragment": "mixamo/toe.raise-fragment.json",
+          "executable": "mixamo/toe.raise-executable.json"
+        }
+      },
+      "foot.roll": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/foot.roll-entry.json",
+          "instance": "mixamo/foot.roll-instance.json",
+          "fragment": "mixamo/foot.roll-fragment.json",
+          "executable": "mixamo/foot.roll-executable.json"
+        }
+      },
+      "foot.tap": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/foot.tap-entry.json",
+          "instance": "mixamo/foot.tap-instance.json",
+          "fragment": "mixamo/foot.tap-fragment.json",
+          "executable": "mixamo/foot.tap-executable.json"
+        }
+      },
+      "toes.curl": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/toes.curl-entry.json",
+          "instance": "mixamo/toes.curl-instance.json",
+          "fragment": "mixamo/toes.curl-fragment.json",
+          "executable": "mixamo/toes.curl-executable.json"
+        }
+      }
+    }
+  }
+}

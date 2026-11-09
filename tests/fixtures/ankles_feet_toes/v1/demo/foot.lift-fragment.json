@@ -1,0 +1,463 @@
+{
+  "contact_events": [
+    {
+      "acquire_s": 0.2,
+      "anchor_id": "left.sole",
+      "clearance_m": 0,
+      "event_id": "feet.1.left.sole.72",
+      "interval": {
+        "end_s": 2.6,
+        "schema_version": 1,
+        "start_s": 2.4
+      },
+      "release_s": 0,
+      "schema_version": 1,
+      "source_instance_ids": [
+        "feet.1"
+      ],
+      "surface_id": "floor"
+    },
+    {
+      "acquire_s": 0,
+      "anchor_id": "left.sole",
+      "clearance_m": 0,
+      "event_id": "feet.1.left.sole.0",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0.0
+      },
+      "release_s": 0.2,
+      "schema_version": 1,
+      "source_instance_ids": [
+        "feet.1"
+      ],
+      "surface_id": "floor"
+    },
+    {
+      "acquire_s": 0,
+      "anchor_id": "right.sole",
+      "clearance_m": 0,
+      "event_id": "feet.1.right.sole.0",
+      "interval": {
+        "end_s": 2.6,
+        "schema_version": 1,
+        "start_s": 0.0
+      },
+      "release_s": 0,
+      "schema_version": 1,
+      "source_instance_ids": [
+        "feet.1"
+      ],
+      "surface_id": "floor"
+    }
+  ],
+  "duration_s": 2.6,
+  "entry_requirements": [
+    {
+      "requirement_id": "feet.1.r0",
+      "schema_version": 1,
+      "target": {
+        "control_id": "left.foot.position",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "metre",
+        "value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.07999994605779648
+        ]
+      },
+      "tolerance": 0.05
+    },
+    {
+      "requirement_id": "feet.1.r1",
+      "schema_version": 1,
+      "target": {
+        "control_id": "left.foot.orientation",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          8.313415957319654e-17,
+          1.616342018919648e-17,
+          -1.0,
+          1.4901161193847656e-08
+        ]
+      },
+      "tolerance": 0.05
+    }
+  ],
+  "exit_expectations": [],
+  "fragment_id": "feet.1.fragment",
+  "goals": [
+    {
+      "clause_id": "feet.1",
+      "goal_id": "feet.1.g0",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "locked": true,
+      "schema_version": 1,
+      "target": {
+        "control_id": "left.foot.position",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "metre",
+        "value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.07999994605779648
+        ]
+      },
+      "tolerance": 0.1
+    },
+    {
+      "clause_id": "feet.1",
+      "goal_id": "feet.1.g1",
+      "interval": {
+        "end_s": 1.2,
+        "schema_version": 1,
+        "start_s": 1.2
+      },
+      "locked": true,
+      "schema_version": 1,
+      "target": {
+        "control_id": "left.foot.position",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "metre",
+        "value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.14999994605779648
+        ]
+      },
+      "tolerance": 0.1
+    },
+    {
+      "clause_id": "feet.1",
+      "goal_id": "feet.1.g2",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "locked": true,
+      "schema_version": 1,
+      "target": {
+        "control_id": "left.foot.position",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "metre",
+        "value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.14999994605779648
+        ]
+      },
+      "tolerance": 0.1
+    },
+    {
+      "clause_id": "feet.1",
+      "goal_id": "feet.1.g3",
+      "interval": {
+        "end_s": 2.4,
+        "schema_version": 1,
+        "start_s": 2.4
+      },
+      "locked": true,
+      "schema_version": 1,
+      "target": {
+        "control_id": "left.foot.position",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "metre",
+        "value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.07999994605779648
+        ]
+      },
+      "tolerance": 0.1
+    },
+    {
+      "clause_id": "feet.1",
+      "goal_id": "feet.1.g4",
+      "interval": {
+        "end_s": 2.6,
+        "schema_version": 1,
+        "start_s": 2.6
+      },
+      "locked": true,
+      "schema_version": 1,
+      "target": {
+        "control_id": "left.foot.position",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "metre",
+        "value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.07999994605779648
+        ]
+      },
+      "tolerance": 0.1
+    },
+    {
+      "clause_id": "feet.1",
+      "goal_id": "feet.1.g5",
+      "interval": {
+        "end_s": 2.6,
+        "schema_version": 1,
+        "start_s": 2.6
+      },
+      "locked": true,
+      "schema_version": 1,
+      "target": {
+        "control_id": "left.foot.orientation",
+        "frame": "world",
+        "schema_version": 1,
+        "unit": "unitless",
+        "value": [
+          8.313415957319654e-17,
+          1.616342018919648e-17,
+          -1.0,
+          1.4901161193847656e-08
+        ]
+      },
+      "tolerance": 0.1
+    }
+  ],
+  "phase_landmarks": [
+    {
+      "name": "release",
+      "schema_version": 1,
+      "time_s": 0
+    },
+    {
+      "name": "action",
+      "schema_version": 1,
+      "time_s": 1.2
+    },
+    {
+      "name": "end",
+      "schema_version": 1,
+      "time_s": 2.6
+    }
+  ],
+  "schema_version": 1,
+  "source_instance_ids": [
+    "feet.1"
+  ],
+  "tracks": [
+    {
+      "control_id": "left.foot.position",
+      "curve": {
+        "duration_s": 0.2,
+        "easing": "smooth",
+        "end_value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.07999994605779648
+        ],
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.07999994605779648
+        ]
+      },
+      "dimensions": 3,
+      "frame": "world",
+      "interval": {
+        "end_s": 0.2,
+        "schema_version": 1,
+        "start_s": 0.0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "feet.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "feet.1.t0",
+      "unit": "metre",
+      "value_shape": "vector"
+    },
+    {
+      "control_id": "left.foot.position",
+      "curve": {
+        "duration_s": 1.0,
+        "easing": "smooth",
+        "end_value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.14999994605779648
+        ],
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.07999994605779648
+        ]
+      },
+      "dimensions": 3,
+      "frame": "world",
+      "interval": {
+        "end_s": 1.2,
+        "schema_version": 1,
+        "start_s": 0.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "feet.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "feet.1.t1",
+      "unit": "metre",
+      "value_shape": "vector"
+    },
+    {
+      "control_id": "left.foot.position",
+      "curve": {
+        "duration_s": 0.19999999999999996,
+        "easing": "smooth",
+        "end_value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.14999994605779648
+        ],
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.14999994605779648
+        ]
+      },
+      "dimensions": 3,
+      "frame": "world",
+      "interval": {
+        "end_s": 1.4,
+        "schema_version": 1,
+        "start_s": 1.2
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "feet.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "feet.1.t2",
+      "unit": "metre",
+      "value_shape": "vector"
+    },
+    {
+      "control_id": "left.foot.position",
+      "curve": {
+        "duration_s": 1.0,
+        "easing": "smooth",
+        "end_value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.07999994605779648
+        ],
+        "kind": "transition",
+        "schema_version": 1,
+        "start_value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.14999994605779648
+        ]
+      },
+      "dimensions": 3,
+      "frame": "world",
+      "interval": {
+        "end_s": 2.4,
+        "schema_version": 1,
+        "start_s": 1.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "feet.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "feet.1.t3",
+      "unit": "metre",
+      "value_shape": "vector"
+    },
+    {
+      "control_id": "left.foot.position",
+      "curve": {
+        "duration_s": 0.20000000000000018,
+        "easing": "smooth",
+        "end_value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.07999994605779648
+        ],
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": [
+          -0.10000000894069672,
+          -3.0061087841204426e-08,
+          0.07999994605779648
+        ]
+      },
+      "dimensions": 3,
+      "frame": "world",
+      "interval": {
+        "end_s": 2.6,
+        "schema_version": 1,
+        "start_s": 2.4
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "feet.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "feet.1.t4",
+      "unit": "metre",
+      "value_shape": "vector"
+    },
+    {
+      "control_id": "left.foot.orientation",
+      "curve": {
+        "duration_s": 2.6,
+        "easing": "smooth",
+        "end_value": [
+          8.313415957319654e-17,
+          1.616342018919648e-17,
+          -1.0,
+          1.4901161193847656e-08
+        ],
+        "kind": "hold",
+        "schema_version": 1,
+        "start_value": [
+          8.313415957319654e-17,
+          1.616342018919648e-17,
+          -1.0,
+          1.4901161193847656e-08
+        ]
+      },
+      "dimensions": 4,
+      "frame": "world",
+      "interval": {
+        "end_s": 2.6,
+        "schema_version": 1,
+        "start_s": 0
+      },
+      "schema_version": 1,
+      "source_instance_ids": [
+        "feet.1"
+      ],
+      "start_source": "explicit",
+      "track_id": "feet.1.t5",
+      "unit": "unitless",
+      "value_shape": "quaternion"
+    }
+  ]
+}

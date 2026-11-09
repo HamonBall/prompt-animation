@@ -48,10 +48,13 @@ def load_entry(handle,path):
 def capture_entry(handle,profile,revision=1):
     from avatar_app.blender import rig_profile as rp
     from avatar_app.movement_library import contracts as c
-    anchors=tuple(c.ContactAnchor(side+'.sole','floor',rp.measure_endpoint(handle,profile,side+'.sole'),'world','metre')
-                  for side in ('left','right'))
+    parts=('sole','heel','forefoot') if profile.version==8 else ('sole',)
+    anchors=tuple(c.ContactAnchor(side+'.'+part,'floor',rp.measure_endpoint(handle,profile,side+'.'+part),'world','metre')
+                  for side in ('left','right') for part in parts)
+    active=tuple(a.anchor_id for a in anchors if profile.version!=8 or
+                 (a.anchor_id.endswith('.sole') and abs(a.position[2])<=.003))
     return rp.capture_motion_state(handle,profile,revision=revision,captured_time_s=0,
-                                  contact_anchors=anchors,active_contacts=tuple(a.anchor_id for a in anchors))
+                                  contact_anchors=anchors,active_contacts=active)
 
 
 def render_preview(handle,profile,out):
@@ -92,7 +95,10 @@ def main(argv=None):
     profile=rp.calibrate_joint_frames(handle,avatar_id='preview.'+('demo' if args.rig=='demo' else 'import'),
                                      source_revision='developer-preview',recorded_at='2026-10-23',include_head_aim=not args.test_catalog)
     if not args.test_catalog:
-        if args.id.startswith(('hip.','leg.','knee.')):
+        if args.id.startswith(('ankle.','foot.','heel.','toe.','toes.')):
+            from avatar_app.blender.foot_mechanics import calibrate_feet
+            profile=calibrate_feet(handle,profile)
+        elif args.id.startswith(('hip.','leg.','knee.')):
             from avatar_app.movement_library.legs import with_legs_v1
             profile=with_legs_v1(profile)
         elif args.id in ('hand.gesture','finger.curl_spread'):

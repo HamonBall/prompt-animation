@@ -1,0 +1,37 @@
+{
+  "clause_ids": [],
+  "definition_id": "foot.lift",
+  "definition_version": 1,
+  "explicit_parameters": [
+    "side"
+  ],
+  "instance_id": "feet.1",
+  "parameters": [
+    {
+      "name": "clearance_m",
+      "schema_version": 1,
+      "value": 0.07
+    },
+    {
+      "name": "duration_s",
+      "schema_version": 1,
+      "value": 1
+    },
+    {
+      "name": "hold_s",
+      "schema_version": 1,
+      "value": 0.2
+    },
+    {
+      "name": "return_policy",
+      "schema_version": 1,
+      "value": "return_to_entry"
+    },
+    {
+      "name": "side",
+      "schema_version": 1,
+      "value": "left"
+    }
+  ],
+  "schema_version": 1
+}

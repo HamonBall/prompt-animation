@@ -50,7 +50,7 @@ def reachable(values,profile,side,target):
 
 
 def build(instance,entry,profile,surfaces):
-    if profile.version!=7 or MARKER not in profile.calibration_provenance.evidence:
+    if profile.version not in (7,8) or MARKER not in profile.calibration_provenance.evidence:
         c.fail('MISSING_CAPABILITY','Leg mechanics require calibrated profile 7')
     p={x.name:x.value for x in instance.parameters};v={x.control_id:x.value for x in entry.measured_controls}
     side=p['side'];other='right' if side=='left' else 'left';id=instance.definition_id
@@ -155,7 +155,7 @@ BUILDERS={'legs.mechanics.v1':build}
 
 def register_legs(catalog,profile):
     from .registry import register_movement
-    if profile.version!=7:return catalog
+    if profile.version not in (7,8):return catalog
     bounds={'hip.lift':(0,70,40),'hip.open_close':(-8,22,12),'hip.rotate':(-25,25,15),
             'leg.extend':(0,40,15),'knee.flex':(0,100,60),'knee.lift':(30,70,55),
             'knee.orient':(-35,35,20),'leg.kick':(30,60,45)}

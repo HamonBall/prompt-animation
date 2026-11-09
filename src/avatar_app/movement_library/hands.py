@@ -47,7 +47,7 @@ def with_hands_v1(profile):
 
 
 def build(instance,entry,profile,surfaces):
-    if profile.version not in (5,6,7) or MARKER not in profile.calibration_provenance.evidence:
+    if profile.version not in (5,6,7,8) or MARKER not in profile.calibration_provenance.evidence:
         c.fail('MISSING_CAPABILITY','Hand mechanics require calibrated profile v5')
     p={v.name:v.value for v in instance.parameters};v={x.control_id:x.value for x in entry.measured_controls}
     id=instance.definition_id;sides=('left','right') if p['side']=='both' else (p['side'],)
@@ -168,7 +168,7 @@ BUILDERS={'hands.mechanics.v1':build}
 
 def register_hands(catalog,profile):
     from .registry import register_movement
-    if profile.version not in (5,6,7):return catalog
+    if profile.version not in (5,6,7,8):return catalog
     for id in IDS:
         bounds={'elbow.flex':(0,130,45),'elbow.orient':(-45,45,20),'forearm.twist':(-179,179,45),
                 'wrist.flex':(-60,60,20),'wrist.deviate':(-25,25,10),'wrist.circle':(-10,10,5),'hand.orient':(-150,150,30)}

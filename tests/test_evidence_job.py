@@ -149,8 +149,13 @@ class JobTests(unittest.TestCase):
         with patch.object(job, 'job_path', return_value=self.output), \
              patch.object(job, 'enforce', return_value={}), \
              patch.object(job, 'read_status', side_effect=[{'status': 'interrupted'}, {'status': 'completed'}]), \
-             patch.object(job, 'start_job', return_value=worker), redirect_stdout(output):
+             patch.object(job, 'start_job', return_value=worker), \
+             patch.object(job, 'open_progress_window') as viewer, redirect_stdout(output):
             self.assertEqual(job.main(['start', '--plan', str(self.plan), '--job', str(self.output)]), 0)
+        if os.name == 'nt':
+            viewer.assert_called_once_with(self.output.parent)
+        else:
+            viewer.assert_not_called()
         worker.wait.assert_called_once_with()
         messages = [json.loads(line) for line in output.getvalue().splitlines()]
         self.assertEqual([m['status'] for m in messages], ['started', 'completed'])

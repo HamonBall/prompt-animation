@@ -120,7 +120,8 @@ def _binding(handle, profile):
     hands=profile.version==5 and 'hand_v1:geometric_elbow_and_root_referenced_plane' in profile.calibration_provenance.evidence
     fingers=profile.version==6 and 'finger_v1:bind_palm_axes_three_joint_digits' in profile.calibration_provenance.evidence and 'hand_v1:geometric_elbow_and_root_referenced_plane' in profile.calibration_provenance.evidence
     legs=profile.version==7 and 'leg_v1:geometric_knee_parent_hip_and_reachable_bend_plane' in profile.calibration_provenance.evidence
-    if profile.version != CALIBRATION_VERSION and not head_aim and not pelvis and not arms and not hands and not fingers and not legs:
+    feet=profile.version==8 and 'foot_v1:rigid_heel_forefoot_contacts' in profile.calibration_provenance.evidence and 'leg_v1:geometric_knee_parent_hip_and_reachable_bend_plane' in profile.calibration_provenance.evidence
+    if profile.version != CALIBRATION_VERSION and not any((head_aim,pelvis,arms,hands,fingers,legs,feet)):
         c.fail('VERSION_MISMATCH','Unsupported rig calibration version; recalibrate explicitly')
 
 
@@ -345,7 +346,7 @@ def measure_joint_angle(handle,profile,control_id):
     mapping,bone = _joint(handle,profile,control.chain)
     parent_frame = semantic_frame(handle,profile,mapping.parent_id) if mapping.parent_id else _character_basis(handle).to_4x4()
     axis = Vector(limit.positive_axis)
-    if profile.version in (5,6,7) and control_id.endswith('.elbow.plane'):
+    if profile.version in (5,6,7,8) and control_id.endswith('.elbow.plane'):
         side=control_id.split('.')[0].title()
         world=handle.rig.matrix_world
         shoulder,elbow,wrist=(world @ handle.bones[side+part].head for part in ('Arm','ForeArm','Hand'))
@@ -357,13 +358,13 @@ def measure_joint_angle(handle,profile,control_id):
         if bend.length<1e-7:return 0.0
         bend.normalize()
         return math.degrees(math.atan2(chain.dot(reference.cross(bend)),reference.dot(bend)))
-    if profile.version==7 and control_id.endswith('.knee.plane'):
+    if profile.version in (7,8) and control_id.endswith('.knee.plane'):
         return measure_knee_plane(handle,profile,control_id.split('.')[0])
     if control_id.endswith(('elbow.flexion','knee.flexion')):
         parent = _joint(handle,profile,mapping.parent_id)[1]
         upper = handle.rig.matrix_world.to_3x3() @ (parent.tail-parent.head)
         lower = handle.rig.matrix_world.to_3x3() @ (bone.tail-bone.head)
-        if (profile.version in (5,6,7) and control_id.endswith('.elbow.flexion')) or (profile.version==7 and control_id.endswith('.knee.flexion')):
+        if (profile.version in (5,6,7,8) and control_id.endswith('.elbow.flexion')) or (profile.version in (7,8) and control_id.endswith('.knee.flexion')):
             return math.degrees(upper.angle(lower))
         world_axis = parent_frame.to_3x3() @ axis
         first,second = _project(upper,world_axis),_project(lower,world_axis)
@@ -409,9 +410,9 @@ def measure_endpoint(handle,profile,endpoint_id):
     """Actual solved bone-head or calibrated sole position, in world metres."""
     _binding(handle,profile)
     c.check_type(endpoint_id,c.ID,'endpoint_id')
-    if endpoint_id.endswith('.sole'):
+    if endpoint_id.endswith('.sole') or (profile.version==8 and endpoint_id.endswith(('.heel','.forefoot'))):
         landmark = next((v for v in profile.landmarks if v.id==endpoint_id),None)
-        if landmark is None: c.fail('MISSING_CAPABILITY','Sole reference unavailable')
+        if landmark is None: c.fail('MISSING_CAPABILITY','Foot contact reference unavailable')
         return _tuple(semantic_frame(handle,profile,landmark.joint_id) @ Vector(landmark.position))
     key,part = endpoint_id.split('.') if endpoint_id.count('.')==1 else ('','')
     joint = {'hand':'wrist','foot':'ankle'}.get(part)

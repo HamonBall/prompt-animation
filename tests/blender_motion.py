@@ -23,6 +23,10 @@ ankle_rest = {side: (handle.bones[side + 'Leg'].matrix.to_quaternion().conjugate
                     @ handle.bones[side + 'Foot'].matrix.to_quaternion())
               for side in ('Left', 'Right')}
 output = ROOT / 'artifacts' / 'motion'
+if '--output-dir' in sys.argv:
+    sys.path.insert(0, str(ROOT))
+    from tools.storage_policy import confined
+    output = confined(Path(sys.argv[sys.argv.index('--output-dir') + 1]).resolve())
 output.mkdir(parents=True, exist_ok=True)
 report = {}
 build_pose_transition(handle, update_pose(None, {'root_pitch': -90, 'pelvis_drop': .48}, 'none'))

@@ -1,0 +1,2888 @@
+{
+  "schema_version": 1,
+  "avatar_id": "feet.demo",
+  "version": 8,
+  "height_m": 1.7899999618530273,
+  "canonical_frames": [
+    "world",
+    "entry_body",
+    "current_root",
+    "current_torso",
+    "current_pelvis",
+    "joint:pelvis",
+    "joint:torso",
+    "joint:head",
+    "joint:spine.mid",
+    "joint:spine.upper",
+    "joint:left.upper_arm",
+    "joint:left.forearm",
+    "joint:left.wrist",
+    "joint:left.thigh",
+    "joint:left.shin",
+    "joint:left.ankle",
+    "joint:right.upper_arm",
+    "joint:right.forearm",
+    "joint:right.wrist",
+    "joint:right.thigh",
+    "joint:right.shin",
+    "joint:right.ankle"
+  ],
+  "rest_to_semantic_mappings": [
+    {
+      "schema_version": 1,
+      "semantic_id": "pelvis",
+      "parent_id": null,
+      "source_bones": [
+        "Hips"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "orientation": [
+          0.7071068286895752,
+          0.7071068286895752,
+          0.0,
+          0.0
+        ],
+        "frame": "entry_body",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "torso",
+      "parent_id": "pelvis",
+      "source_bones": [
+        "Spine"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0,
+          0.0,
+          0.12000000476837158
+        ],
+        "orientation": [
+          0.7071068286895752,
+          0.7071068286895752,
+          0.0,
+          0.0
+        ],
+        "frame": "joint:pelvis",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "head",
+      "parent_id": "spine.upper",
+      "source_bones": [
+        "Head"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0,
+          0.0,
+          0.15999996662139893
+        ],
+        "orientation": [
+          0.7071068286895752,
+          0.7071068286895752,
+          0.0,
+          0.0
+        ],
+        "frame": "joint:spine.upper",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "spine.mid",
+      "parent_id": "torso",
+      "source_bones": [
+        "Spine1"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0,
+          0.0,
+          0.12000000476837158
+        ],
+        "orientation": [
+          0.7071068286895752,
+          0.7071068286895752,
+          0.0,
+          0.0
+        ],
+        "frame": "joint:torso",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "spine.upper",
+      "parent_id": "spine.mid",
+      "source_bones": [
+        "Spine2"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0,
+          0.0,
+          0.12000000476837158
+        ],
+        "orientation": [
+          0.7071068286895752,
+          0.7071068286895752,
+          0.0,
+          0.0
+        ],
+        "frame": "joint:spine.mid",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.upper_arm",
+      "parent_id": "spine.upper",
+      "source_bones": [
+        "LeftArm"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.18000000715255737,
+          0.0,
+          0.07999992370605469
+        ],
+        "orientation": [
+          0.7071068286895752,
+          -1.5454311608209537e-08,
+          1.5454311608209537e-08,
+          0.7071068286895752
+        ],
+        "frame": "joint:spine.upper",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.forearm",
+      "parent_id": "left.upper_arm",
+      "source_bones": [
+        "LeftForeArm"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.25,
+          0.0,
+          0.0
+        ],
+        "orientation": [
+          0.7071068286895752,
+          0.0,
+          0.0,
+          0.7071068286895752
+        ],
+        "frame": "joint:left.upper_arm",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.wrist",
+      "parent_id": "left.forearm",
+      "source_bones": [
+        "LeftHand"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.25,
+          0.0,
+          0.0
+        ],
+        "orientation": [
+          0.7071068286895752,
+          0.0,
+          0.0,
+          0.7071068286895752
+        ],
+        "frame": "joint:left.forearm",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.thigh",
+      "parent_id": "pelvis",
+      "source_bones": [
+        "LeftUpLeg"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.10000000149011612,
+          0.0,
+          -0.04000002145767212
+        ],
+        "orientation": [
+          0.7071068286895752,
+          -0.7071068286895752,
+          -3.090862321641907e-08,
+          3.090862321641907e-08
+        ],
+        "frame": "joint:pelvis",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.shin",
+      "parent_id": "left.thigh",
+      "source_bones": [
+        "LeftLeg"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0,
+          0.0,
+          -0.4300000071525574
+        ],
+        "orientation": [
+          0.7071068286895752,
+          -0.7071068286895752,
+          0.0,
+          0.0
+        ],
+        "frame": "joint:left.thigh",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.ankle",
+      "parent_id": "left.shin",
+      "source_bones": [
+        "LeftFoot"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0,
+          0.0,
+          -0.4300000071525574
+        ],
+        "orientation": [
+          0.9984697699546814,
+          -0.055300358682870865,
+          0.0,
+          0.0
+        ],
+        "frame": "joint:left.shin",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.upper_arm",
+      "parent_id": "spine.upper",
+      "source_bones": [
+        "RightArm"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.18000000715255737,
+          0.0,
+          0.07999992370605469
+        ],
+        "orientation": [
+          0.7071068286895752,
+          -1.5454311608209537e-08,
+          -1.5454311608209537e-08,
+          -0.7071068286895752
+        ],
+        "frame": "joint:spine.upper",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.forearm",
+      "parent_id": "right.upper_arm",
+      "source_bones": [
+        "RightForeArm"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.25,
+          0.0,
+          0.0
+        ],
+        "orientation": [
+          0.7071068286895752,
+          0.0,
+          0.0,
+          -0.7071068286895752
+        ],
+        "frame": "joint:right.upper_arm",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.wrist",
+      "parent_id": "right.forearm",
+      "source_bones": [
+        "RightHand"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.25,
+          0.0,
+          0.0
+        ],
+        "orientation": [
+          0.7071068286895752,
+          0.0,
+          0.0,
+          -0.7071068286895752
+        ],
+        "frame": "joint:right.forearm",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.thigh",
+      "parent_id": "pelvis",
+      "source_bones": [
+        "RightUpLeg"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.10000000149011612,
+          0.0,
+          -0.04000002145767212
+        ],
+        "orientation": [
+          0.7071068286895752,
+          -0.7071068286895752,
+          -3.090862321641907e-08,
+          3.090862321641907e-08
+        ],
+        "frame": "joint:pelvis",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.shin",
+      "parent_id": "right.thigh",
+      "source_bones": [
+        "RightLeg"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0,
+          0.0,
+          -0.4300000071525574
+        ],
+        "orientation": [
+          0.7071068286895752,
+          -0.7071068286895752,
+          0.0,
+          0.0
+        ],
+        "frame": "joint:right.thigh",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.ankle",
+      "parent_id": "right.shin",
+      "source_bones": [
+        "RightFoot"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0,
+          0.0,
+          -0.4300000071525574
+        ],
+        "orientation": [
+          0.9984697699546814,
+          -0.055300358682870865,
+          0.0,
+          0.0
+        ],
+        "frame": "joint:right.shin",
+        "unit": "metre"
+      }
+    }
+  ],
+  "lengths": [
+    {
+      "schema_version": 1,
+      "id": "rig.unit",
+      "value_m": 1.0
+    },
+    {
+      "schema_version": 1,
+      "id": "pelvis",
+      "value_m": 0.12000000284984705
+    },
+    {
+      "schema_version": 1,
+      "id": "torso",
+      "value_m": 0.12000000284984705
+    },
+    {
+      "schema_version": 1,
+      "id": "head",
+      "value_m": 0.23000001925489097
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.mid",
+      "value_m": 0.12000000284984705
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.upper",
+      "value_m": 0.12000000284984705
+    },
+    {
+      "schema_version": 1,
+      "id": "left.upper_arm",
+      "value_m": 0.25
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forearm",
+      "value_m": 0.25
+    },
+    {
+      "schema_version": 1,
+      "id": "left.wrist",
+      "value_m": 0.09999996628611711
+    },
+    {
+      "schema_version": 1,
+      "id": "left.thigh",
+      "value_m": 0.4300000008039696
+    },
+    {
+      "schema_version": 1,
+      "id": "left.shin",
+      "value_m": 0.4300000008039696
+    },
+    {
+      "schema_version": 1,
+      "id": "left.ankle",
+      "value_m": 0.18110770505508772
+    },
+    {
+      "schema_version": 1,
+      "id": "right.upper_arm",
+      "value_m": 0.25
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forearm",
+      "value_m": 0.25
+    },
+    {
+      "schema_version": 1,
+      "id": "right.wrist",
+      "value_m": 0.09999996628611711
+    },
+    {
+      "schema_version": 1,
+      "id": "right.thigh",
+      "value_m": 0.4300000008039696
+    },
+    {
+      "schema_version": 1,
+      "id": "right.shin",
+      "value_m": 0.4300000008039696
+    },
+    {
+      "schema_version": 1,
+      "id": "right.ankle",
+      "value_m": 0.18110770505508772
+    }
+  ],
+  "landmarks": [
+    {
+      "schema_version": 1,
+      "id": "pelvis.origin",
+      "joint_id": "pelvis",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:pelvis",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "pelvis.tip",
+      "joint_id": "pelvis",
+      "position": [
+        0.0,
+        0.0,
+        0.12000000476837158
+      ],
+      "frame": "joint:pelvis",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso.origin",
+      "joint_id": "torso",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:torso",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso.tip",
+      "joint_id": "torso",
+      "position": [
+        0.0,
+        0.0,
+        0.12000000476837158
+      ],
+      "frame": "joint:torso",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.origin",
+      "joint_id": "head",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:head",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.tip",
+      "joint_id": "head",
+      "position": [
+        0.0,
+        0.0,
+        0.23000001907348633
+      ],
+      "frame": "joint:head",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.mid.origin",
+      "joint_id": "spine.mid",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:spine.mid",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.mid.tip",
+      "joint_id": "spine.mid",
+      "position": [
+        0.0,
+        0.0,
+        0.12000000476837158
+      ],
+      "frame": "joint:spine.mid",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.upper.origin",
+      "joint_id": "spine.upper",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:spine.upper",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.upper.tip",
+      "joint_id": "spine.upper",
+      "position": [
+        0.0,
+        0.0,
+        0.12000000476837158
+      ],
+      "frame": "joint:spine.upper",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.upper_arm.origin",
+      "joint_id": "left.upper_arm",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.upper_arm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.upper_arm.tip",
+      "joint_id": "left.upper_arm",
+      "position": [
+        -0.25,
+        0.0,
+        0.0
+      ],
+      "frame": "joint:left.upper_arm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forearm.origin",
+      "joint_id": "left.forearm",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.forearm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forearm.tip",
+      "joint_id": "left.forearm",
+      "position": [
+        -0.25,
+        0.0,
+        0.0
+      ],
+      "frame": "joint:left.forearm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.wrist.origin",
+      "joint_id": "left.wrist",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.wrist.tip",
+      "joint_id": "left.wrist",
+      "position": [
+        -0.09999996423721313,
+        0.0,
+        0.0
+      ],
+      "frame": "joint:left.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.thigh.origin",
+      "joint_id": "left.thigh",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.thigh",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.thigh.tip",
+      "joint_id": "left.thigh",
+      "position": [
+        0.0,
+        0.0,
+        -0.4300000071525574
+      ],
+      "frame": "joint:left.thigh",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.shin.origin",
+      "joint_id": "left.shin",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.shin",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.shin.tip",
+      "joint_id": "left.shin",
+      "position": [
+        0.0,
+        0.0,
+        -0.4300000071525574
+      ],
+      "frame": "joint:left.shin",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.ankle.origin",
+      "joint_id": "left.ankle",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.ankle.tip",
+      "joint_id": "left.ankle",
+      "position": [
+        0.0,
+        0.18000000715255737,
+        -0.019999999552965164
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.upper_arm.origin",
+      "joint_id": "right.upper_arm",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.upper_arm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.upper_arm.tip",
+      "joint_id": "right.upper_arm",
+      "position": [
+        0.25,
+        0.0,
+        0.0
+      ],
+      "frame": "joint:right.upper_arm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forearm.origin",
+      "joint_id": "right.forearm",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.forearm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forearm.tip",
+      "joint_id": "right.forearm",
+      "position": [
+        0.25,
+        0.0,
+        0.0
+      ],
+      "frame": "joint:right.forearm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.wrist.origin",
+      "joint_id": "right.wrist",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.wrist.tip",
+      "joint_id": "right.wrist",
+      "position": [
+        0.09999996423721313,
+        0.0,
+        0.0
+      ],
+      "frame": "joint:right.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.thigh.origin",
+      "joint_id": "right.thigh",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.thigh",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.thigh.tip",
+      "joint_id": "right.thigh",
+      "position": [
+        0.0,
+        0.0,
+        -0.4300000071525574
+      ],
+      "frame": "joint:right.thigh",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.shin.origin",
+      "joint_id": "right.shin",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.shin",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.shin.tip",
+      "joint_id": "right.shin",
+      "position": [
+        0.0,
+        0.0,
+        -0.4300000071525574
+      ],
+      "frame": "joint:right.shin",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.ankle.origin",
+      "joint_id": "right.ankle",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.ankle.tip",
+      "joint_id": "right.ankle",
+      "position": [
+        0.0,
+        0.18000000715255737,
+        -0.019999999552965164
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.palm.forward",
+      "joint_id": "left.wrist",
+      "position": [
+        -0.05000000074505806,
+        0.0,
+        0.0
+      ],
+      "frame": "joint:left.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.palm.radial",
+      "joint_id": "left.wrist",
+      "position": [
+        0.0,
+        0.05000000074505806,
+        0.0
+      ],
+      "frame": "joint:left.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.palm.normal",
+      "joint_id": "left.wrist",
+      "position": [
+        0.0,
+        0.0,
+        -0.05000000074505806
+      ],
+      "frame": "joint:left.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.sole.normal",
+      "joint_id": "left.ankle",
+      "position": [
+        0.0,
+        0.0,
+        -0.05000000074505806
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.sole.forward",
+      "joint_id": "left.ankle",
+      "position": [
+        0.0,
+        0.05000000074505806,
+        0.0
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.sole",
+      "joint_id": "left.ankle",
+      "position": [
+        0.0,
+        0.07500000298023224,
+        -0.07999998331069946
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forearm.pole",
+      "joint_id": "left.upper_arm",
+      "position": [
+        0.0,
+        -0.44749999046325684,
+        0.0
+      ],
+      "frame": "joint:left.upper_arm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.shin.pole",
+      "joint_id": "left.thigh",
+      "position": [
+        0.0,
+        0.44749999046325684,
+        0.0
+      ],
+      "frame": "joint:left.thigh",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.palm.forward",
+      "joint_id": "right.wrist",
+      "position": [
+        0.05000000074505806,
+        0.0,
+        0.0
+      ],
+      "frame": "joint:right.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.palm.radial",
+      "joint_id": "right.wrist",
+      "position": [
+        0.0,
+        0.05000000074505806,
+        0.0
+      ],
+      "frame": "joint:right.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.palm.normal",
+      "joint_id": "right.wrist",
+      "position": [
+        0.0,
+        0.0,
+        -0.05000000074505806
+      ],
+      "frame": "joint:right.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.sole.normal",
+      "joint_id": "right.ankle",
+      "position": [
+        0.0,
+        0.0,
+        -0.05000000074505806
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.sole.forward",
+      "joint_id": "right.ankle",
+      "position": [
+        0.0,
+        0.05000000074505806,
+        0.0
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.sole",
+      "joint_id": "right.ankle",
+      "position": [
+        0.0,
+        0.07500000298023224,
+        -0.07999998331069946
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forearm.pole",
+      "joint_id": "right.upper_arm",
+      "position": [
+        0.0,
+        -0.44749999046325684,
+        0.0
+      ],
+      "frame": "joint:right.upper_arm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.shin.pole",
+      "joint_id": "right.thigh",
+      "position": [
+        0.0,
+        0.44749999046325684,
+        0.0
+      ],
+      "frame": "joint:right.thigh",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "character.right",
+      "joint_id": "pelvis",
+      "position": [
+        0.1,
+        0,
+        0
+      ],
+      "frame": "joint:pelvis",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "character.forward",
+      "joint_id": "pelvis",
+      "position": [
+        0,
+        0.1,
+        0
+      ],
+      "frame": "joint:pelvis",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "character.up",
+      "joint_id": "pelvis",
+      "position": [
+        0,
+        0,
+        0.1
+      ],
+      "frame": "joint:pelvis",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.heel",
+      "joint_id": "left.ankle",
+      "position": [
+        0.0,
+        0.021424323320388794,
+        -0.07999998331069946
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forefoot",
+      "joint_id": "left.ankle",
+      "position": [
+        0.0,
+        0.12857568264007568,
+        -0.07999998331069946
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.heel",
+      "joint_id": "right.ankle",
+      "position": [
+        0.0,
+        0.021424323320388794,
+        -0.07999998331069946
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forefoot",
+      "joint_id": "right.ankle",
+      "position": [
+        0.0,
+        0.12857568264007568,
+        -0.07999998331069946
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    }
+  ],
+  "joint_limits": [
+    {
+      "schema_version": 1,
+      "control_id": "head.yaw",
+      "minimum": -80,
+      "maximum": 80,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "mirror_control_id": "head.yaw",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "head.pitch",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "mirror_control_id": "head.pitch",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "head.roll",
+      "minimum": -45,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "mirror_control_id": "head.roll",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "torso.yaw",
+      "minimum": -80,
+      "maximum": 80,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "mirror_control_id": "torso.yaw",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "torso.pitch",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "mirror_control_id": "torso.pitch",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "torso.roll",
+      "minimum": -45,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "mirror_control_id": "torso.roll",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "spine.mid.yaw",
+      "minimum": -80,
+      "maximum": 80,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "mirror_control_id": "spine.mid.yaw",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "spine.mid.pitch",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "mirror_control_id": "spine.mid.pitch",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "spine.mid.roll",
+      "minimum": -45,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "mirror_control_id": "spine.mid.roll",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "spine.upper.yaw",
+      "minimum": -80,
+      "maximum": 80,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "mirror_control_id": "spine.upper.yaw",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "spine.upper.pitch",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "mirror_control_id": "spine.upper.pitch",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "spine.upper.roll",
+      "minimum": -45,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "mirror_control_id": "spine.upper.roll",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.elbow.flexion",
+      "minimum": 0,
+      "maximum": 145,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "mirror_control_id": "right.elbow.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "geometric unsigned segment angle; straight=0",
+      "preferred_minimum": 0,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.knee.flexion",
+      "minimum": 0,
+      "maximum": 150,
+      "zero": 0,
+      "positive_axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "mirror_control_id": "right.knee.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "geometric unsigned thigh/shin segment angle; straight=0",
+      "preferred_minimum": 0,
+      "preferred_maximum": 100
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.hip.flexion",
+      "minimum": -90,
+      "maximum": 120,
+      "zero": 0,
+      "positive_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "mirror_control_id": "right.hip.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.forearm.twist",
+      "minimum": -180,
+      "maximum": 180,
+      "zero": 0,
+      "positive_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "mirror_control_id": "right.forearm.twist",
+      "mirror_sign": 1,
+      "measurement_method": "parent-relative axial swing/twist; positive supination convention",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.ankle.flexion",
+      "minimum": -50,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "mirror_control_id": "right.ankle.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.wrist.flexion",
+      "minimum": -70,
+      "maximum": 70,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        -1.0,
+        0.0
+      ],
+      "mirror_control_id": "right.wrist.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.wrist.deviation",
+      "minimum": -30,
+      "maximum": 30,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "mirror_control_id": "right.wrist.deviation",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.elbow.flexion",
+      "minimum": 0,
+      "maximum": 145,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "mirror_control_id": "left.elbow.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "geometric unsigned segment angle; straight=0",
+      "preferred_minimum": 0,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.knee.flexion",
+      "minimum": 0,
+      "maximum": 150,
+      "zero": 0,
+      "positive_axis": [
+        -1.0,
+        0.0,
+        0.0
+      ],
+      "mirror_control_id": "left.knee.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "geometric unsigned thigh/shin segment angle; straight=0",
+      "preferred_minimum": 0,
+      "preferred_maximum": 100
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.hip.flexion",
+      "minimum": -90,
+      "maximum": 120,
+      "zero": 0,
+      "positive_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "mirror_control_id": "left.hip.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.forearm.twist",
+      "minimum": -180,
+      "maximum": 180,
+      "zero": 0,
+      "positive_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "mirror_control_id": "left.forearm.twist",
+      "mirror_sign": 1,
+      "measurement_method": "parent-relative axial swing/twist; positive supination convention",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.ankle.flexion",
+      "minimum": -50,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        1.0,
+        0.0,
+        0.0
+      ],
+      "mirror_control_id": "left.ankle.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.wrist.flexion",
+      "minimum": -70,
+      "maximum": 70,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        1.0,
+        0.0
+      ],
+      "mirror_control_id": "left.wrist.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.wrist.deviation",
+      "minimum": -30,
+      "maximum": 30,
+      "zero": 0,
+      "positive_axis": [
+        0.0,
+        0.0,
+        1.0
+      ],
+      "mirror_control_id": "left.wrist.deviation",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.elbow.plane",
+      "minimum": -180,
+      "maximum": 180,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": null,
+      "mirror_sign": 1,
+      "measurement_method": "signed geometric pole angle about shoulder-to-wrist, root backward reference",
+      "preferred_minimum": -60,
+      "preferred_maximum": 60
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.elbow.plane",
+      "minimum": -180,
+      "maximum": 180,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": null,
+      "mirror_sign": 1,
+      "measurement_method": "signed geometric pole angle about shoulder-to-wrist, root backward reference",
+      "preferred_minimum": -60,
+      "preferred_maximum": 60
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.hip.abduction",
+      "minimum": -25,
+      "maximum": 40,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": "right.hip.abduction",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative swing/twist",
+      "preferred_minimum": -25,
+      "preferred_maximum": 40
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.hip.rotation",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        0,
+        1
+      ],
+      "mirror_control_id": "right.hip.rotation",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative swing/twist",
+      "preferred_minimum": -60,
+      "preferred_maximum": 60
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.knee.plane",
+      "minimum": -180,
+      "maximum": 180,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": "right.knee.plane",
+      "mirror_sign": 1,
+      "measurement_method": "signed geometric pole about hip-to-ankle; pelvis-forward reference; undefined below 3 degrees",
+      "preferred_minimum": -180,
+      "preferred_maximum": 180
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.hip.abduction",
+      "minimum": -25,
+      "maximum": 40,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        -1,
+        0
+      ],
+      "mirror_control_id": "left.hip.abduction",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative swing/twist",
+      "preferred_minimum": -25,
+      "preferred_maximum": 40
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.hip.rotation",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        0,
+        -1
+      ],
+      "mirror_control_id": "left.hip.rotation",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative swing/twist",
+      "preferred_minimum": -60,
+      "preferred_maximum": 60
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.knee.plane",
+      "minimum": -180,
+      "maximum": 180,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": "left.knee.plane",
+      "mirror_sign": 1,
+      "measurement_method": "signed geometric pole about hip-to-ankle; pelvis-forward reference; undefined below 3 degrees",
+      "preferred_minimum": -180,
+      "preferred_maximum": 180
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.ankle.tilt",
+      "minimum": -25,
+      "maximum": 25,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": "right.ankle.tilt",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -15,
+      "preferred_maximum": 15
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.ankle.tilt",
+      "minimum": -25,
+      "maximum": 25,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        -1,
+        0
+      ],
+      "mirror_control_id": "left.ankle.tilt",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -15,
+      "preferred_maximum": 15
+    }
+  ],
+  "controls": [
+    {
+      "schema_version": 1,
+      "id": "head.yaw",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.upper"
+      ],
+      "chain": "head",
+      "capability": "measure.head.yaw"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.pitch",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.upper"
+      ],
+      "chain": "head",
+      "capability": "measure.head.pitch"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.roll",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.upper"
+      ],
+      "chain": "head",
+      "capability": "measure.head.roll"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso.yaw",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "torso",
+      "capability": "measure.torso.yaw"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso.pitch",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "torso",
+      "capability": "measure.torso.pitch"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso.roll",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "torso",
+      "capability": "measure.torso.roll"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.mid.yaw",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:torso"
+      ],
+      "chain": "spine.mid",
+      "capability": "measure.spine.mid.yaw"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.mid.pitch",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:torso"
+      ],
+      "chain": "spine.mid",
+      "capability": "measure.spine.mid.pitch"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.mid.roll",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:torso"
+      ],
+      "chain": "spine.mid",
+      "capability": "measure.spine.mid.roll"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.upper.yaw",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.mid"
+      ],
+      "chain": "spine.upper",
+      "capability": "measure.spine.upper.yaw"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.upper.pitch",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.mid"
+      ],
+      "chain": "spine.upper",
+      "capability": "measure.spine.upper.pitch"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.upper.roll",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.mid"
+      ],
+      "chain": "spine.upper",
+      "capability": "measure.spine.upper.roll"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.elbow.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.upper_arm"
+      ],
+      "chain": "left.forearm",
+      "capability": "measure.left.elbow.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.knee.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.thigh"
+      ],
+      "chain": "left.shin",
+      "capability": "measure.left.knee.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hip.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "left.thigh",
+      "capability": "measure.left.hip.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forearm.twist",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.upper_arm"
+      ],
+      "chain": "left.forearm",
+      "capability": "measure.left.forearm.twist"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.ankle.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.shin"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.ankle.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.wrist.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.forearm"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.wrist.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.wrist.deviation",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.forearm"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.wrist.deviation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.upper_arm.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.upper_arm",
+      "capability": "measure.left.upper_arm.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forearm.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.forearm",
+      "capability": "measure.left.forearm.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.thigh.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.thigh",
+      "capability": "measure.left.thigh.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.shin.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.shin",
+      "capability": "measure.left.shin.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hand.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.hand.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hand.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.hand.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hand.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.hand.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.foot.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.foot.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.foot.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.foot.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.foot.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.foot.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.elbow.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.upper_arm"
+      ],
+      "chain": "right.forearm",
+      "capability": "measure.right.elbow.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.knee.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.thigh"
+      ],
+      "chain": "right.shin",
+      "capability": "measure.right.knee.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hip.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "right.thigh",
+      "capability": "measure.right.hip.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forearm.twist",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.upper_arm"
+      ],
+      "chain": "right.forearm",
+      "capability": "measure.right.forearm.twist"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.ankle.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.shin"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.ankle.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.wrist.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.forearm"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.wrist.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.wrist.deviation",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.forearm"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.wrist.deviation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.upper_arm.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.upper_arm",
+      "capability": "measure.right.upper_arm.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forearm.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.forearm",
+      "capability": "measure.right.forearm.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.thigh.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.thigh",
+      "capability": "measure.right.thigh.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.shin.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.shin",
+      "capability": "measure.right.shin.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hand.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.hand.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hand.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.hand.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hand.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.hand.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.foot.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.foot.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.foot.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.foot.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.foot.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.foot.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "root.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "pelvis",
+      "capability": "measure.root.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "root.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "pelvis",
+      "capability": "measure.root.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "head",
+      "capability": "measure.head.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "head",
+      "capability": "measure.head.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.torso_orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "current_torso"
+      ],
+      "chain": "head",
+      "capability": "measure.head.torso_orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "pelvis.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "pelvis",
+      "capability": "measure.pelvis.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "pelvis.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "pelvis",
+      "capability": "measure.pelvis.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "object_root.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "pelvis",
+      "capability": "measure.object_root.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "object_root.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "pelvis",
+      "capability": "measure.object_root.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.upper_arm.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.upper_arm",
+      "capability": "measure.left.upper_arm.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.upper_arm.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.upper_arm",
+      "capability": "measure.right.upper_arm.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.elbow.plane",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "current_root"
+      ],
+      "chain": "left.forearm",
+      "capability": "measure.left.elbow.plane"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hand.torso_position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "current_torso"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.hand.torso_position"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hand.torso_orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "current_torso"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.hand.torso_orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.elbow.plane",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "current_root"
+      ],
+      "chain": "right.forearm",
+      "capability": "measure.right.elbow.plane"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hand.torso_position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "current_torso"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.hand.torso_position"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hand.torso_orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "current_torso"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.hand.torso_orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso_frame.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "torso",
+      "capability": "measure.torso_frame.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso_frame.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "torso",
+      "capability": "measure.torso_frame.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hip.abduction",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "left.thigh",
+      "capability": "measure.left.hip.abduction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hip.rotation",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "left.thigh",
+      "capability": "measure.left.hip.rotation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.knee.plane",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "current_pelvis"
+      ],
+      "chain": "left.shin",
+      "capability": "measure.left.knee.plane"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hip.abduction",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "right.thigh",
+      "capability": "measure.right.hip.abduction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hip.rotation",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "right.thigh",
+      "capability": "measure.right.hip.rotation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.knee.plane",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "current_pelvis"
+      ],
+      "chain": "right.shin",
+      "capability": "measure.right.knee.plane"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.sole.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.sole.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.heel.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.heel.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forefoot.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.forefoot.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.ankle.tilt",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.shin"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.ankle.tilt"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.sole.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.sole.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.heel.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.heel.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forefoot.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.forefoot.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.ankle.tilt",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.shin"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.ankle.tilt"
+    }
+  ],
+  "capabilities": [
+    "anatomy.spine.mid",
+    "anatomy.spine.upper",
+    "measure.head.orientation",
+    "measure.head.pitch",
+    "measure.head.position",
+    "measure.head.roll",
+    "measure.head.torso_orientation",
+    "measure.head.yaw",
+    "measure.left.ankle.flexion",
+    "measure.left.ankle.tilt",
+    "measure.left.elbow.flexion",
+    "measure.left.elbow.plane",
+    "measure.left.foot.direction",
+    "measure.left.foot.orientation",
+    "measure.left.foot.position",
+    "measure.left.forearm.direction",
+    "measure.left.forearm.twist",
+    "measure.left.forefoot.position",
+    "measure.left.hand.direction",
+    "measure.left.hand.orientation",
+    "measure.left.hand.position",
+    "measure.left.hand.torso_orientation",
+    "measure.left.hand.torso_position",
+    "measure.left.heel.position",
+    "measure.left.hip.abduction",
+    "measure.left.hip.flexion",
+    "measure.left.hip.rotation",
+    "measure.left.knee.flexion",
+    "measure.left.knee.plane",
+    "measure.left.shin.direction",
+    "measure.left.sole.position",
+    "measure.left.thigh.direction",
+    "measure.left.upper_arm.direction",
+    "measure.left.upper_arm.orientation",
+    "measure.left.wrist.deviation",
+    "measure.left.wrist.flexion",
+    "measure.object_root.orientation",
+    "measure.object_root.position",
+    "measure.pelvis.orientation",
+    "measure.pelvis.position",
+    "measure.right.ankle.flexion",
+    "measure.right.ankle.tilt",
+    "measure.right.elbow.flexion",
+    "measure.right.elbow.plane",
+    "measure.right.foot.direction",
+    "measure.right.foot.orientation",
+    "measure.right.foot.position",
+    "measure.right.forearm.direction",
+    "measure.right.forearm.twist",
+    "measure.right.forefoot.position",
+    "measure.right.hand.direction",
+    "measure.right.hand.orientation",
+    "measure.right.hand.position",
+    "measure.right.hand.torso_orientation",
+    "measure.right.hand.torso_position",
+    "measure.right.heel.position",
+    "measure.right.hip.abduction",
+    "measure.right.hip.flexion",
+    "measure.right.hip.rotation",
+    "measure.right.knee.flexion",
+    "measure.right.knee.plane",
+    "measure.right.shin.direction",
+    "measure.right.sole.position",
+    "measure.right.thigh.direction",
+    "measure.right.upper_arm.direction",
+    "measure.right.upper_arm.orientation",
+    "measure.right.wrist.deviation",
+    "measure.right.wrist.flexion",
+    "measure.root.orientation",
+    "measure.root.position",
+    "measure.spine.mid.pitch",
+    "measure.spine.mid.roll",
+    "measure.spine.mid.yaw",
+    "measure.spine.upper.pitch",
+    "measure.spine.upper.roll",
+    "measure.spine.upper.yaw",
+    "measure.torso.pitch",
+    "measure.torso.roll",
+    "measure.torso.yaw",
+    "measure.torso_frame.orientation",
+    "measure.torso_frame.position",
+    "reference.left.palm",
+    "reference.right.palm"
+  ],
+  "calibration_provenance": {
+    "schema_version": 1,
+    "method": "rest-skeleton and weighted-skin calibration v1; no anatomy edits",
+    "source_revision": "unversioned",
+    "evidence": [
+      "rig_sha256:ba6ce72a7f224bab3cd118fc023f8d57b6091ed58bbd3b941ca651b3e9d24b72",
+      "angles_tolerance_deg:0.1",
+      "position_tolerance_m:0.0001",
+      "software_ranges:engineering_bounds_not_medical_or_collision_certification",
+      "optional_bones:detected_not_created",
+      "poles:parent_relative_fallback_below_0.5deg_smooth_blend_to_5deg",
+      "palm_reference:procedural_convention",
+      "head_aim_v1:world_position_world_and_torso_orientation",
+      "pelvis_v1:bone_world_transform_not_object_root",
+      "shoulder_arm_v1:optional_clavicle_and_world_upper_arm_orientation",
+      "hand_v1:geometric_elbow_and_root_referenced_plane",
+      "leg_v1:geometric_knee_parent_hip_and_reachable_bend_plane",
+      "foot_v1:rigid_heel_forefoot_contacts"
+    ],
+    "recorded_at": "2026-11-05"
+  }
+}

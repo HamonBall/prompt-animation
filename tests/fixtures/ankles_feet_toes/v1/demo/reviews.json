@@ -1,0 +1,1485 @@
+[
+  {
+    "schema_version": 1,
+    "definition_id": "ankle.flex",
+    "definition_version": 1,
+    "avatar_id": "feet.demo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 2,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 0.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 12,
+        "minimum": -18,
+        "maximum": 18,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "free",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "free",
+          "pivot"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.5/publication-summary.json",
+      "artifacts/stages/05.5/visual-review.json",
+      "docs/contracts/ankles-feet-toes-v1.md",
+      "artifacts/maintenance/jobs/stage-05.5-raised-entry/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "acceleration_deg_s2",
+        "value": 100.81671086484478
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 9.982937161385154e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 0.0020000000949949026
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "speed_deg_s",
+        "value": 26.96053568489233
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 2.3337605859374833e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "ankle.tilt",
+    "definition_version": 1,
+    "avatar_id": "feet.demo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 2,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 0.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 8,
+        "minimum": -12,
+        "maximum": 12,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "support",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "free",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "free",
+          "pivot"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.5/publication-summary.json",
+      "artifacts/stages/05.5/visual-review.json",
+      "docs/contracts/ankles-feet-toes-v1.md",
+      "artifacts/maintenance/jobs/stage-05.5-raised-entry/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "acceleration_deg_s2",
+        "value": 67.20380088540715
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 1.3805112757983556e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 0.0020000000949949026
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "speed_deg_s",
+        "value": 17.973388300549697
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 1.3679826964541064e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "foot.place",
+    "definition_version": 1,
+    "avatar_id": "feet.demo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 2,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 0.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "preserve_end",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "clearance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.07,
+        "minimum": 0.045,
+        "maximum": 0.13,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "distance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.05,
+        "minimum": -0.06,
+        "maximum": 0.09,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.5/publication-summary.json",
+      "artifacts/stages/05.5/visual-review.json",
+      "docs/contracts/ankles-feet-toes-v1.md",
+      "artifacts/maintenance/jobs/stage-05.5-raised-entry/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "acceleration_deg_s2",
+        "value": 181.3203356843641
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 6.978235493850439e-08
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 0.0020000000949949026
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "speed_deg_s",
+        "value": 37.12194319484794
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 2.119010463505988e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 2.4713076560228165e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "foot.lift",
+    "definition_version": 1,
+    "avatar_id": "feet.demo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 2,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 0.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "clearance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.07,
+        "minimum": 0.045,
+        "maximum": 0.13,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.5/publication-summary.json",
+      "artifacts/stages/05.5/visual-review.json",
+      "docs/contracts/ankles-feet-toes-v1.md",
+      "artifacts/maintenance/jobs/stage-05.5-raised-entry/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "acceleration_deg_s2",
+        "value": 128.03337730164895
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 6.978235493850439e-08
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 0.0020000000949949026
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "speed_deg_s",
+        "value": 25.634653952950824
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 2.173352885506323e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 1.888458148926976e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "foot.pivot",
+    "definition_version": 1,
+    "avatar_id": "feet.demo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 2,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 0.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 12,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "anchor",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "heel",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "heel",
+          "forefoot"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.5/publication-summary.json",
+      "artifacts/stages/05.5/visual-review.json",
+      "docs/contracts/ankles-feet-toes-v1.md",
+      "artifacts/maintenance/jobs/stage-05.5-raised-entry/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "acceleration_deg_s2",
+        "value": 112.01829015035516
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 1.5967846631429793e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 0.0020000000949949026
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "speed_deg_s",
+        "value": 29.95606427559491
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 4.026337134929288e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "heel.raise",
+    "definition_version": 1,
+    "avatar_id": "feet.demo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 2,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 0.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 12,
+        "minimum": 3,
+        "maximum": 18,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.5/publication-summary.json",
+      "artifacts/stages/05.5/visual-review.json",
+      "docs/contracts/ankles-feet-toes-v1.md",
+      "artifacts/maintenance/jobs/stage-05.5-raised-entry/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "acceleration_deg_s2",
+        "value": 100.81440792655113
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 1.7012074181460276e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 0.0020000000949949026
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "speed_deg_s",
+        "value": 26.960071607795054
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 3.4065461496091986e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "toe.raise",
+    "definition_version": 1,
+    "avatar_id": "feet.demo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 2,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 0.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry",
+          "preserve_end"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 10,
+        "minimum": 3,
+        "maximum": 15,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.5/publication-summary.json",
+      "artifacts/stages/05.5/visual-review.json",
+      "docs/contracts/ankles-feet-toes-v1.md",
+      "artifacts/maintenance/jobs/stage-05.5-raised-entry/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "acceleration_deg_s2",
+        "value": 84.01955312265439
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 1.3196310443978428e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 0.0020000000949949026
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "speed_deg_s",
+        "value": 22.466603314124786
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 2.9178580924908168e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "foot.roll",
+    "definition_version": 1,
+    "avatar_id": "feet.demo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 2,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 0.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 9,
+        "minimum": 3,
+        "maximum": 15,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.5/publication-summary.json",
+      "artifacts/stages/05.5/visual-review.json",
+      "docs/contracts/ankles-feet-toes-v1.md",
+      "artifacts/maintenance/jobs/stage-05.5-raised-entry/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "acceleration_deg_s2",
+        "value": 84.01955312265439
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 2.0534934870047823e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 0.0020000000949949026
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "speed_deg_s",
+        "value": 22.46668100939732
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 3.871277472170378e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 0
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "foot.tap",
+    "definition_version": 1,
+    "avatar_id": "feet.demo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "side",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "left",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "left",
+          "right"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.8,
+        "maximum": 2,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.2,
+        "minimum": 0,
+        "maximum": 0.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "return_policy",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "return_to_entry",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "return_to_entry"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "clearance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.07,
+        "minimum": 0.045,
+        "maximum": 0.13,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "distance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0,
+        "minimum": -0.06,
+        "maximum": 0.09,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "target",
+        "type": "vector",
+        "unit": "metre",
+        "frame": "world",
+        "required": false,
+        "has_default": true,
+        "default": null,
+        "minimum": -20,
+        "maximum": 20,
+        "enum_values": [],
+        "dimensions": 3,
+        "capability": null,
+        "nullable": true,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.5/publication-summary.json",
+      "artifacts/stages/05.5/visual-review.json",
+      "docs/contracts/ankles-feet-toes-v1.md",
+      "artifacts/maintenance/jobs/stage-05.5-raised-entry/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "acceleration_deg_s2",
+        "value": 128.03337730164895
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 6.978235493850439e-08
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 0.0020000000949949026
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 0
+      },
+      {
+        "schema_version": 1,
+        "name": "speed_deg_s",
+        "value": 25.634653952950824
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 2.0059138823654082e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 1.888458148926976e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "toes.curl",
+    "definition_version": 1,
+    "avatar_id": "feet.demo",
+    "profile_version": 8,
+    "parameter_envelope": [],
+    "evidence": [
+      "artifacts/stages/05.5/publication-summary.json",
+      "artifacts/stages/05.5/visual-review.json",
+      "docs/contracts/ankles-feet-toes-v1.md",
+      "artifacts/maintenance/jobs/stage-05.5-raised-entry/report.json"
+    ],
+    "measured_maxima": [],
+    "status": "unavailable_on_rig"
+  }
+]
