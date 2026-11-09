@@ -612,6 +612,9 @@ def bake_candidate_frames(handle, plan, repair_floor, progress, profile=None):
                 bone.keyframe_insert('location', frame=frame, group=bone.name)
                 bone.keyframe_insert('rotation_quaternion', frame=frame, group=bone.name)
                 bone.keyframe_insert('scale', frame=frame, group=bone.name)
+            if typed and adapter.moves_root:
+                for channel in ('location', 'rotation_quaternion', 'scale'):
+                    rig.keyframe_insert(channel, frame=frame, group='Object Root')
             progress((i + 1) / (count + 1))
             handle._skin_cache_enabled = False
             yield (i + 1) / (count + 1)
@@ -628,8 +631,14 @@ def bake_candidate_frames(handle, plan, repair_floor, progress, profile=None):
 def build_action_frames(handle, plan, progress=lambda fraction: None, allow_experimental=False, *, profile=None):
     """Commit only reviewed motion. One measured repair attempt; restore everything on failure."""
     typed = isinstance(plan, ExecutableMotion)
+    object_pose = {}
     if typed:
-        FragmentAdapter(handle, plan, profile)  # read-only preflight before opening the transaction
+        adapter = FragmentAdapter(handle, plan, profile)  # read-only preflight
+        if adapter.moves_root:
+            object_pose = {name: tuple(getattr(handle.rig, name))
+                           for name in ('location', 'scale', 'rotation_quaternion',
+                                        'rotation_euler', 'rotation_axis_angle')}
+            object_pose['rotation_mode'] = handle.rig.rotation_mode
     else:
         validate_action(plan)
     rig, scene = handle.rig, handle.scene
@@ -709,6 +718,8 @@ def build_action_frames(handle, plan, progress=lambda fraction: None, allow_expe
             scene.camera.matrix_world = camera
         scene.render.fps_base = fps_base
         scene.frame_set(frame, subframe=subframe)
+        for name, value in object_pose.items():
+            setattr(rig, name, value)
         for bone in rig.pose.bones:
             bone.rotation_mode = modes[bone.name]
             bone.matrix_basis = basis[bone.name]

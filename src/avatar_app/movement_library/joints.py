@@ -190,7 +190,8 @@ def catalog_for_profile(profile):
     from .fingers import BUILDERS as FINGER_BUILDERS,register_fingers
     from .legs import BUILDERS as LEG_BUILDERS,register_legs
     from .feet import BUILDERS as FOOT_BUILDERS,register_feet
-    catalog=register_head_neck(Catalog({**BUILDERS,**BODY_BUILDERS,**ARM_BUILDERS,**HAND_BUILDERS,**FINGER_BUILDERS,**LEG_BUILDERS,**FOOT_BUILDERS}),head_only='anatomy.neck' not in profile.capabilities)
-    for register in (register_body,register_arms,register_hands,register_fingers,register_legs,register_feet):
+    from .root_motion import BUILDER_ID, build as build_root, register_root
+    catalog=register_head_neck(Catalog({**BUILDERS,**BODY_BUILDERS,**ARM_BUILDERS,**HAND_BUILDERS,**FINGER_BUILDERS,**LEG_BUILDERS,**FOOT_BUILDERS,BUILDER_ID:build_root}),head_only='anatomy.neck' not in profile.capabilities)
+    for register in (register_body,register_arms,register_hands,register_fingers,register_legs,register_feet,register_root):
         register(catalog,profile)
     return catalog

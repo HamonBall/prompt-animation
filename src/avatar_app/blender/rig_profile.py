@@ -100,19 +100,51 @@ def _tuple(vector):
     return tuple(float(x) for x in vector)
 
 
-def _fingerprint(handle):
-    scale = handle.rig.matrix_world.to_scale()
+def _fingerprint(handle, scale=None):
+    if scale is None:
+        scale = handle.rig.matrix_world.to_scale()
     data = [(b.name, [round(float(x),6) for row in b.matrix_local for x in row])
             for b in handle.rig.data.bones]
     text = json.dumps([data,[round(float(x),7) for x in scale]],separators=(',',':'))
     return hashlib.sha256(text.encode()).hexdigest()
 
 
+def object_parent_frame(rig):
+    """The static parent frame for a regular object, or identity at scene root."""
+    return rig.parent.matrix_world @ rig.matrix_parent_inverse if rig.parent else Matrix.Identity(4)
+
+
+def uniform_parent_scale(frame):
+    columns = tuple(frame.to_3x3().col)
+    lengths = tuple(math.sqrt(math.fsum(component ** 2 for component in col)) for col in columns)
+    scale = math.fsum(lengths) / 3
+    if scale <= 0 or frame.to_3x3().determinant() <= 0:
+        return None
+    if any(abs(length / scale - 1) > 1e-6 for length in lengths):
+        return None
+    if any(abs(a.dot(b)) > scale * scale * 1e-6 for i, a in enumerate(columns) for b in columns[:i]):
+        return None
+    return scale
+
+
+def _rotation_invariant_fingerprint(handle):
+    rig = handle.rig
+    if rig.parent and rig.parent_type != 'OBJECT':
+        return None
+    parent_scale = uniform_parent_scale(object_parent_frame(rig))
+    if parent_scale is None:
+        return None
+    # Keep the existing hash format and precision. Rotation of an object under
+    # a uniform parent must not change its calibrated scale by a float32 ulp.
+    return _fingerprint(handle, tuple(abs(a * b) * parent_scale for a, b in zip(rig.scale, rig.delta_scale)))
+
+
 def _binding(handle, profile):
     if _MEASUREMENT_BINDING.get()==(id(handle),id(profile)):return
     if type(profile) is not c.AvatarProfile: c.fail('INVALID_PARAMETER','Expected an AvatarProfile')
     evidence = 'rig_sha256:'+_fingerprint(handle)
-    if evidence not in profile.calibration_provenance.evidence:
+    if (evidence not in profile.calibration_provenance.evidence
+            and 'rig_sha256:'+str(_rotation_invariant_fingerprint(handle)) not in profile.calibration_provenance.evidence):
         c.fail('ENTRY_MISMATCH','Profile belongs to a different skeleton or scale; recalibrate explicitly')
     head_aim=profile.version==2 and 'head_aim_v1:world_position_world_and_torso_orientation' in profile.calibration_provenance.evidence
     pelvis=profile.version==3 and 'pelvis_v1:bone_world_transform_not_object_root' in profile.calibration_provenance.evidence
@@ -302,12 +334,15 @@ def calibrate_joint_frames(handle, *, avatar_id=None, source_revision='unversion
         vector = [0,0,0]; vector[index] = .1
         landmarks.append(c.Landmark('character.'+axis,'pelvis',tuple(vector),'joint:pelvis','metre'))
     fingerprint = _fingerprint(handle)
+    stable_fingerprint = _rotation_invariant_fingerprint(handle)
     evidence = ('rig_sha256:'+fingerprint,
                 'angles_tolerance_deg:0.1','position_tolerance_m:0.0001',
                 'software_ranges:engineering_bounds_not_medical_or_collision_certification',
                 'optional_bones:detected_not_created',
                 'poles:parent_relative_fallback_below_0.5deg_smooth_blend_to_5deg',
                 'palm_reference:'+('procedural_convention' if _procedural(handle) else 'index_pinky_plane_or_unavailable'))
+    if stable_fingerprint and stable_fingerprint != fingerprint:
+        evidence += ('rig_sha256:'+stable_fingerprint,)
     profile=c.AvatarProfile(avatar_id or 'rig.'+fingerprint[:16],CALIBRATION_VERSION,height,
         ('world','entry_body','current_root','current_torso','current_pelvis')+tuple('joint:'+j for j in mapped),
         tuple(joint_records),tuple(lengths),tuple(landmarks),tuple(limits),tuple(controls),

@@ -6,6 +6,7 @@ from mathutils import Matrix, Quaternion, Vector
 from ..movement_library import contracts as c
 from ..movement_library.compiler import ExecutionCursor, sample_motion, value_error, supporting_chains, check_goal_coverage
 from ..movement_library.registry import validate_fragment, validate_snapshot
+from ..movement_library.root_motion import CONTROLS as ROOT_CONTROLS, ORIENTATION, POSITION
 from ..motion import ContactConstraint
 from . import rig_profile as rp
 from .pose import position_hand, axes
@@ -33,11 +34,44 @@ class FragmentAdapter:
         fragment=c.MotionFragment('execution.preflight',tuple(sorted({s for t in (*motion.tracks,*motion.contact_events) for s in t.source_instance_ids})) or ('empty',),
             (),motion.duration_s,motion.tracks,motion.contact_events,(),(),motion.goal_checks)
         validate_fragment(fragment,profile,resolved_surface_ids=tuple(surfaces))
+        track_ids = {track.control_id for track in motion.tracks}
+        self.moves_root = bool(track_ids & ROOT_CONTROLS)
+        if self.moves_root:
+            if profile.version != 8 or track_ids != ROOT_CONTROLS:
+                c.fail('CONSTRAINT_CONFLICT', 'Root fragments require both object controls and preserve the local pose')
+            rig = handle.rig
+            if (rig.constraints or rig.animation_data and rig.animation_data.drivers
+                    or rig.parent and rig.parent_type != 'OBJECT'
+                    or rig.delta_location.length_squared or rig.delta_rotation_euler.to_quaternion().angle
+                    or abs(rig.delta_rotation_quaternion.w) != 1 or tuple(rig.delta_scale) != (1, 1, 1)
+                    or min(rig.scale) <= 0):
+                c.fail('MISSING_CAPABILITY', 'Root baking requires ordinary positive armature transforms without constraints or drivers')
+            parent = rig.parent
+            while parent:
+                animation = parent.animation_data
+                if (parent.constraints or animation and (animation.action or animation.drivers or animation.nla_tracks)
+                        or parent.parent and parent.parent_type != 'OBJECT'):
+                    c.fail('MISSING_CAPABILITY', 'Root baking requires a static object parent hierarchy')
+                parent = parent.parent
+            parent_frame = rp.object_parent_frame(rig)
+            if rp.uniform_parent_scale(parent_frame) is None:
+                c.fail('MISSING_CAPABILITY', 'Root baking requires an orthogonal uniformly scaled parent frame')
+            self.root_parent_inverse = parent_frame.inverted()
+            self.root_parent_rotation_inverse = parent_frame.to_quaternion().conjugated()
+            self.root_scale = rig.scale.copy()
+            self.root_entry = rig.matrix_world.copy()
+            if any(not any(event.anchor_id == anchor and event.interval.start_s == 0 for event in motion.contact_events)
+                   for anchor in motion.entry_snapshot.active_contacts):
+                c.fail('CONSTRAINT_CONFLICT', 'Root fragments need explicit continuation or release of every captured sole')
+            for event in motion.contact_events:
+                if event.anchor_id not in motion.entry_snapshot.active_contacts or not event.anchor_id.endswith('.sole'):
+                    c.fail('CONSTRAINT_CONFLICT', 'Root motion can only retain or release captured soles')
         head_modes={t.control_id for t in motion.tracks if t.control_id in ('head.orientation','head.torso_orientation')}
         if len(head_modes)>1 or head_modes and any(t.control_id in ('head.pitch','head.yaw','head.roll') for t in motion.tracks):
             c.fail('CONSTRAINT_CONFLICT','Head orientation and individual head angles cannot own the same fragment')
         for track in motion.tracks:
             control=self.controls[track.control_id]
+            if self.moves_root: continue
             if profile.version in (7,8) and track.control_id.endswith(('.hip.flexion','.hip.abduction','.hip.rotation','.knee.flexion','.knee.plane','.foot.position','.foot.orientation')):continue
             if profile.version==8 and track.control_id.endswith(('.ankle.flexion','.ankle.tilt','.toe.flexion')):continue
             if track.control_id in ('pelvis.position','pelvis.orientation'): continue
@@ -244,6 +278,15 @@ class FragmentAdapter:
         bpy.context.view_layer.update()
         targets=sample_motion(self.motion,time_s,self.measured,self.cursor)
         requested={v.control_id:v.value for v in targets.controls}
+        if self.moves_root:
+            if not ROOT_CONTROLS <= requested.keys():
+                c.fail('ENTRY_MISMATCH', 'Object root tracks must begin at the measured entry')
+            root = h.rig
+            root.rotation_mode = 'QUATERNION'
+            root.location = self.root_parent_inverse @ Vector(requested[POSITION])
+            root.rotation_quaternion = self.root_parent_rotation_inverse @ Quaternion(requested[ORIENTATION])
+            root.scale = self.root_scale
+            bpy.context.view_layer.update()
         if p.version in (7,8) and any(id in requested for id in ('pelvis.position','pelvis.orientation')):
             pelvis=h.rig.pose.bones[self.joints['pelvis'].source_bones[0]]
             pelvis.matrix_basis=self.arm_entry_basis[pelvis.name]
@@ -333,10 +376,15 @@ class FragmentAdapter:
                 active.append(event.anchor_id)
                 delta=(anchor-position)*weight
                 if delta.length>1e-6:
-                    foot=h.bones[side.title()+'Foot']
-                    target=foot.head+h.rig.matrix_world.inverted().to_3x3() @ delta
-                    orientation=foot.matrix.to_quaternion() if p.version==8 and event.anchor_id.endswith(('.heel','.forefoot')) else self.foot_orientations[side]
-                    set_contact(h,ContactConstraint(side+'_foot'),target,orientation,leg_pole=self._leg_pole(side))
+                    if self.moves_root:
+                        if delta.length > .001:
+                            c.fail('CONSTRAINT_CONFLICT', 'Root trajectory moves a locked sole',
+                                   details={'anchor_id': event.anchor_id, 'drift_m': delta.length})
+                    else:
+                        foot=h.bones[side.title()+'Foot']
+                        target=foot.head+h.rig.matrix_world.inverted().to_3x3() @ delta
+                        orientation=foot.matrix.to_quaternion() if p.version==8 and event.anchor_id.endswith(('.heel','.forefoot')) else self.foot_orientations[side]
+                        set_contact(h,ContactConstraint(side+'_foot'),target,orientation,leg_pole=self._leg_pole(side))
                 residual=(Vector(rp.measure_endpoint(h,p,event.anchor_id))-anchor).length*weight
                 errors[side+'_foot']=max(errors.get(side+'_foot',0),residual) if p.version==8 else residual
         anchors=tuple(c.ContactAnchor(id,'floor',tuple(self.anchors[id]),'world','metre') for id in active)
@@ -376,10 +424,23 @@ class FragmentAdapter:
                 error=abs(measured[id].value-entry[id].value)
                 if error>.5:violations.append(('unrequested_elbow_change',id,error,.5))
         unrelated=0
+        if self.moves_root:
+            delta_world = h.rig.matrix_world @ self.root_entry.inverted()
+            delta_rotation = delta_world.to_quaternion()
         for id,value in measured.items():
             control=self.controls[id]
-            if any(control.chain==owned or owned in tuple(self._parents(control.chain)) for owned in self.owned): continue
-            error=value_error(value.value,entry[id].value,control.value_shape)
+            expected = entry[id].value
+            if self.moves_root:
+                if id in ROOT_CONTROLS:
+                    continue
+                if value.frame == 'world':
+                    if control.value_shape == 'quaternion':
+                        expected = tuple(delta_rotation @ Quaternion(expected))
+                    elif control.value_shape == 'vector':
+                        expected = tuple((delta_world if control.unit == 'metre' else delta_rotation) @ Vector(expected))
+            elif any(control.chain==owned or owned in tuple(self._parents(control.chain)) for owned in self.owned):
+                continue
+            error=value_error(value.value,expected,control.value_shape)
             tolerance=.002 if control.unit=='metre' else .5 if control.unit=='degree' or control.value_shape=='quaternion' else .008726535
             unrelated=max(unrelated,error)
             if error>tolerance: violations.append(('unrelated_change',id,error,tolerance))
@@ -391,6 +452,11 @@ class FragmentAdapter:
             error=value_error(value.value,entry[id].value,self.controls[id].value_shape)
             if error>.5: violations.append(('unrelated_change',id,error,.5))
         sample=capture_sample(h,frame,','.join(targets.source_instance_ids),errors)
+        if self.moves_root:
+            from .geometry import seat_penetration
+            sample['rotations']['object_root'] = h.rig.matrix_world.to_quaternion()
+            sample['surfaces'] = {surface.name: seat_penetration(h, surface)
+                                  for surface in h.surfaces if surface.name != 'floor' and surface.size}
         if p.version in (6,7,8) and 'finger_v1:bind_palm_axes_three_joint_digits' in p.calibration_provenance.evidence:
             # Extend the existing whole-motion speed/acceleration reviewer with
             # actual digit rotations; the core avatar map deliberately omits them.
@@ -419,6 +485,9 @@ class FragmentAdapter:
                 for part in ('UpLeg','Leg','Foot')] for side in ('left','right')}
         if p.version==8:
             details['active_foot_anchors']={id:tuple(self.anchors[id]) for id in active}
+        if self.moves_root:
+            details['root_support'] = 'grounded' if active else 'airborne'
+            details['unrelated_error_max'] = unrelated
         self.diagnostics.append(details)
         sample['semantic_details']=details
         sample['snapshot']=solved
