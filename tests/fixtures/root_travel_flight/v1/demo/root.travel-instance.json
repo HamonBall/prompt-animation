@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "instance_id": "root.test",
+  "definition_id": "root.travel",
+  "definition_version": 1,
+  "parameters": [
+    {
+      "schema_version": 1,
+      "name": "arc_deg",
+      "value": 60
+    },
+    {
+      "schema_version": 1,
+      "name": "distance_m",
+      "value": 1
+    },
+    {
+      "schema_version": 1,
+      "name": "duration_s",
+      "value": 2
+    },
+    {
+      "schema_version": 1,
+      "name": "frame",
+      "value": "entry_body"
+    },
+    {
+      "schema_version": 1,
+      "name": "heading_deg",
+      "value": 0
+    },
+    {
+      "schema_version": 1,
+      "name": "path",
+      "value": "line"
+    }
+  ],
+  "clause_ids": [],
+  "explicit_parameters": []
+}

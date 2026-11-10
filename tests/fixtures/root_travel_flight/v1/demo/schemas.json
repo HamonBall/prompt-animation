@@ -1,0 +1,212 @@
+{
+  "root.travel": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3.5,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 2
+      },
+      "frame": {
+        "type": "string",
+        "enum": [
+          "world",
+          "entry_body"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "entry_body"
+      },
+      "path": {
+        "type": "string",
+        "enum": [
+          "line",
+          "arc"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "line"
+      },
+      "distance_m": {
+        "type": "number",
+        "minimum": 0.1,
+        "maximum": 2,
+        "x-unit": "metre",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 1
+      },
+      "heading_deg": {
+        "type": "number",
+        "minimum": -180,
+        "maximum": 180,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0
+      },
+      "arc_deg": {
+        "type": "number",
+        "minimum": -90,
+        "maximum": 90,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 60
+      }
+    },
+    "required": []
+  },
+  "root.turn": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3.5,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 2
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "airborne",
+          "grounded_pivot"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "airborne"
+      },
+      "angle_deg": {
+        "type": "number",
+        "minimum": -120,
+        "maximum": 120,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 45
+      }
+    },
+    "required": []
+  },
+  "root.orient": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3.5,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 2
+      },
+      "frame": {
+        "type": "string",
+        "enum": [
+          "world",
+          "entry_body"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "entry_body"
+      },
+      "axis": {
+        "type": "string",
+        "enum": [
+          "pitch",
+          "roll"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "pitch"
+      },
+      "angle_deg": {
+        "type": "number",
+        "minimum": -90,
+        "maximum": 90,
+        "x-unit": "degree",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 45
+      }
+    },
+    "required": []
+  },
+  "root.hover": {
+    "type": "object",
+    "additionalProperties": false,
+    "properties": {
+      "duration_s": {
+        "type": "number",
+        "minimum": 1.5,
+        "maximum": 3.5,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 2
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "takeoff",
+          "airborne"
+        ],
+        "x-unit": "unitless",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": "takeoff"
+      },
+      "elevation_m": {
+        "type": "number",
+        "minimum": 0.2,
+        "maximum": 2.5,
+        "x-unit": "metre",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.8
+      },
+      "hold_s": {
+        "type": "number",
+        "minimum": 0.2,
+        "maximum": 1.5,
+        "x-unit": "second",
+        "x-frame": null,
+        "x-capability": null,
+        "x-control-id": null,
+        "default": 0.5
+      }
+    },
+    "required": []
+  }
+}

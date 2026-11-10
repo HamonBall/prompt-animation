@@ -1,0 +1,3536 @@
+{
+  "schema_version": 1,
+  "fragment_id": "root.test.fragment",
+  "source_instance_ids": [
+    "root.test"
+  ],
+  "entry_requirements": [
+    {
+      "schema_version": 1,
+      "requirement_id": "root.test.r0",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "tolerance": 0.05
+    },
+    {
+      "schema_version": 1,
+      "requirement_id": "root.test.r1",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.70710688829422,
+          0.0,
+          0.0,
+          0.7071066498756409
+        ]
+      },
+      "tolerance": 0.05
+    }
+  ],
+  "duration_s": 2.0,
+  "tracks": [
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t0",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "duration_s": 0.03333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.0,
+        "end_s": 0.03333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t1",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.03333333333333333,
+        "end_s": 0.06666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t2",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333334,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.06666666666666667,
+        "end_s": 0.1
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t3",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999996
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.1,
+        "end_s": 0.13333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t4",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999996
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.13333333333333333,
+        "end_s": 0.16666666666666666
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t5",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333354,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.16666666666666666,
+        "end_s": 0.2
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t6",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000004
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 0.23333333333333334
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t7",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000004
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.23333333333333334,
+        "end_s": 0.26666666666666666
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t8",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.26666666666666666,
+        "end_s": 0.3
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t9",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.3,
+        "end_s": 0.3333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t10",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.3333333333333333,
+        "end_s": 0.36666666666666664
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t11",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333338,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.36666666666666664,
+        "end_s": 0.4
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t12",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.4,
+        "end_s": 0.43333333333333335
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t13",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.43333333333333335,
+        "end_s": 0.4666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t14",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.4666666666666667,
+        "end_s": 0.5
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t15",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.5,
+        "end_s": 0.5333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t16",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999996
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.5333333333333333,
+        "end_s": 0.5666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t17",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999996
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.5666666666666667,
+        "end_s": 0.6
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t18",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.6,
+        "end_s": 0.6333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t19",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.6333333333333333,
+        "end_s": 0.6666666666666666
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t20",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.6666666666666666,
+        "end_s": 0.7
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t21",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.7,
+        "end_s": 0.7333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t22",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.7333333333333333,
+        "end_s": 0.7666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t23",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.7666666666666667,
+        "end_s": 0.8
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t24",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.8,
+        "end_s": 0.8333333333333334
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t25",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.8333333333333334,
+        "end_s": 0.8666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t26",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.8666666666666667,
+        "end_s": 0.9
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t27",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.9,
+        "end_s": 0.9333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t28",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.9333333333333333,
+        "end_s": 0.9666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t29",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333326,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.9666666666666667,
+        "end_s": 1.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t30",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.0,
+        "end_s": 1.0333333333333334
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t31",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.0333333333333334,
+        "end_s": 1.0666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t32",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.0666666666666667,
+        "end_s": 1.1
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t33",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.1,
+        "end_s": 1.1333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t34",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.1333333333333333,
+        "end_s": 1.1666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t35",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.1666666666666667,
+        "end_s": 1.2
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t36",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000004
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.2,
+        "end_s": 1.2333333333333334
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t37",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000004
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.2333333333333334,
+        "end_s": 1.2666666666666666
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t38",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.2666666666666666,
+        "end_s": 1.3
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t39",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.3,
+        "end_s": 1.3333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t40",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999996
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.3333333333333333,
+        "end_s": 1.3666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t41",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999996
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.3666666666666667,
+        "end_s": 1.4
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t42",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.4,
+        "end_s": 1.4333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t43",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.4333333333333333,
+        "end_s": 1.4666666666666666
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t44",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.4666666666666666,
+        "end_s": 1.5
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t45",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.5,
+        "end_s": 1.5333333333333334
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t46",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.5333333333333334,
+        "end_s": 1.5666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t47",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.5666666666666667,
+        "end_s": 1.6
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t48",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6,
+        "end_s": 1.6333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t49",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6333333333333333,
+        "end_s": 1.6666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t50",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6666666666666667,
+        "end_s": 1.7
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t51",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.7,
+        "end_s": 1.7333333333333334
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t52",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.7333333333333334,
+        "end_s": 1.7666666666666666
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t53",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.7666666666666666,
+        "end_s": 1.8
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t54",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8,
+        "end_s": 1.8333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t55",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8333333333333333,
+        "end_s": 1.8666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t56",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8666666666666667,
+        "end_s": 1.9
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t57",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.9,
+        "end_s": 1.9333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t58",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.033333333333333215,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.9333333333333333,
+        "end_s": 1.9666666666666666
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t59",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "end_value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ],
+        "duration_s": 0.03333333333333344,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.9666666666666666,
+        "end_s": 2.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t60",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.orientation",
+      "unit": "unitless",
+      "frame": "world",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.70710688829422,
+          0.0,
+          0.0,
+          0.7071066498756409
+        ],
+        "end_value": [
+          -0.25881887783010354,
+          0.0,
+          0.0,
+          0.9659258533915802
+        ],
+        "duration_s": 2.0,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 2.0
+      }
+    }
+  ],
+  "contact_events": [],
+  "phase_landmarks": [
+    {
+      "schema_version": 1,
+      "name": "end",
+      "time_s": 2.0
+    }
+  ],
+  "exit_expectations": [],
+  "goals": [
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g0",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.03333333333333333,
+        "end_s": 0.03333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g1",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.06666666666666667,
+        "end_s": 0.06666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g2",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.1,
+        "end_s": 0.1
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g3",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999996
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.13333333333333333,
+        "end_s": 0.13333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g4",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.16666666666666666,
+        "end_s": 0.16666666666666666
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g5",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 0.2
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g6",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000004
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.23333333333333334,
+        "end_s": 0.23333333333333334
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g7",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.26666666666666666,
+        "end_s": 0.26666666666666666
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g8",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.3,
+        "end_s": 0.3
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g9",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.3333333333333333,
+        "end_s": 0.3333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g10",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.36666666666666664,
+        "end_s": 0.36666666666666664
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g11",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.4,
+        "end_s": 0.4
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g12",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.43333333333333335,
+        "end_s": 0.43333333333333335
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g13",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.4666666666666667,
+        "end_s": 0.4666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g14",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.5,
+        "end_s": 0.5
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g15",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.5333333333333333,
+        "end_s": 0.5333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g16",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999996
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.5666666666666667,
+        "end_s": 0.5666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g17",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.6,
+        "end_s": 0.6
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g18",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.6333333333333333,
+        "end_s": 0.6333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g19",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.6666666666666666,
+        "end_s": 0.6666666666666666
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g20",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.7,
+        "end_s": 0.7
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g21",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.7333333333333333,
+        "end_s": 0.7333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g22",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.7666666666666667,
+        "end_s": 0.7666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g23",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.8,
+        "end_s": 0.8
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g24",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.8333333333333334,
+        "end_s": 0.8333333333333334
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g25",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.8666666666666667,
+        "end_s": 0.8666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g26",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.9,
+        "end_s": 0.9
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g27",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.9333333333333333,
+        "end_s": 0.9333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g28",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.9666666666666667,
+        "end_s": 0.9666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g29",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.0,
+        "end_s": 1.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g30",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.0333333333333334,
+        "end_s": 1.0333333333333334
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g31",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.0666666666666667,
+        "end_s": 1.0666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g32",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.1,
+        "end_s": 1.1
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g33",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.1333333333333333,
+        "end_s": 1.1333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g34",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.1666666666666667,
+        "end_s": 1.1666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g35",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.2,
+        "end_s": 1.2
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g36",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000004
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.2333333333333334,
+        "end_s": 1.2333333333333334
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g37",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.2666666666666666,
+        "end_s": 1.2666666666666666
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g38",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.3,
+        "end_s": 1.3
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g39",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.3333333333333333,
+        "end_s": 1.3333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g40",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999996
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.3666666666666667,
+        "end_s": 1.3666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g41",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2500000000000002
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.4,
+        "end_s": 1.4
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g42",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.4333333333333333,
+        "end_s": 1.4333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g43",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.4666666666666666,
+        "end_s": 1.4666666666666666
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g44",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.5,
+        "end_s": 1.5
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g45",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.5333333333333334,
+        "end_s": 1.5333333333333334
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g46",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.5666666666666667,
+        "end_s": 1.5666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g47",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6,
+        "end_s": 1.6
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g48",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6333333333333333,
+        "end_s": 1.6333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g49",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.2499999999999998
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6666666666666667,
+        "end_s": 1.6666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g50",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.7,
+        "end_s": 1.7
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g51",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.7333333333333334,
+        "end_s": 1.7333333333333334
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g52",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.7666666666666666,
+        "end_s": 1.7666666666666666
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g53",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8,
+        "end_s": 1.8
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g54",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8333333333333333,
+        "end_s": 1.8333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g55",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8666666666666667,
+        "end_s": 1.8666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g56",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.9,
+        "end_s": 1.9
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g57",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.9333333333333333,
+        "end_s": 1.9333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g58",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.9666666666666666,
+        "end_s": 1.9666666666666666
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g59",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.20000000298023224,
+          1.25
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.0,
+        "end_s": 2.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g60",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          -0.25881887783010354,
+          0.0,
+          0.0,
+          0.9659258533915802
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.0,
+        "end_s": 2.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    }
+  ]
+}

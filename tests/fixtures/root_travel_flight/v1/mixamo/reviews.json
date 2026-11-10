@@ -1,0 +1,621 @@
+[
+  {
+    "schema_version": 1,
+    "definition_id": "root.travel",
+    "definition_version": 1,
+    "avatar_id": "root.mixamo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 2,
+        "minimum": 1.5,
+        "maximum": 3.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "entry_body",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "world",
+          "entry_body"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "path",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "line",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "line",
+          "arc"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "distance_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 1,
+        "minimum": 0.1,
+        "maximum": 2,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "heading_deg",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0,
+        "minimum": -180,
+        "maximum": 180,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "arc_deg",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 60,
+        "minimum": -90,
+        "maximum": 90,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.6a/publication-summary.json",
+      "artifacts/stages/05.6a/visual-review.json",
+      "docs/contracts/root-travel-flight-v1.md",
+      "artifacts/maintenance/jobs/stage-05.6a-smoke-scale/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 106
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 3.0449930155107498e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 2.6749555872404934e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0555119371537454
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 1.601821346280157e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 2.9495916592803114e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "root.turn",
+    "definition_version": 1,
+    "avatar_id": "root.mixamo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 2,
+        "minimum": 1.5,
+        "maximum": 3.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "mode",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "airborne",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "airborne",
+          "grounded_pivot"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle_deg",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 45,
+        "minimum": -120,
+        "maximum": 120,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.6a/publication-summary.json",
+      "artifacts/stages/05.6a/visual-review.json",
+      "docs/contracts/root-travel-flight-v1.md",
+      "artifacts/maintenance/jobs/stage-05.6a-smoke-scale/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 7.866652854066917e-08
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 7.866652854066917e-08
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 3.7944332120787294e-08
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 61
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 305.7777601876221
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 119.9802940462224
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 4.632459679819529e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 4.137630479442927e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.0013886265618399689
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 2.1121193543184324e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 1.2568039893254202e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "root.orient",
+    "definition_version": 1,
+    "avatar_id": "root.mixamo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 2,
+        "minimum": 1.5,
+        "maximum": 3.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "frame",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "entry_body",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "world",
+          "entry_body"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "axis",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "pitch",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "pitch",
+          "roll"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "angle_deg",
+        "type": "number",
+        "unit": "degree",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 45,
+        "minimum": -90,
+        "maximum": 90,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.6a/publication-summary.json",
+      "artifacts/stages/05.6a/visual-review.json",
+      "docs/contracts/root-travel-flight-v1.md",
+      "artifacts/maintenance/jobs/stage-05.6a-smoke-scale/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 61
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 197.2172300177902
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 67.47490576160075
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 5.128330543201934e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 7.543633806530472e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 4.890215123123508e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 3.7720952599236896e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 5.633444459705986e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  },
+  {
+    "schema_version": 1,
+    "definition_id": "root.hover",
+    "definition_version": 1,
+    "avatar_id": "root.mixamo",
+    "profile_version": 8,
+    "parameter_envelope": [
+      {
+        "schema_version": 1,
+        "name": "duration_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 2,
+        "minimum": 1.5,
+        "maximum": 3.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "mode",
+        "type": "enum",
+        "unit": "unitless",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": "takeoff",
+        "minimum": null,
+        "maximum": null,
+        "enum_values": [
+          "takeoff",
+          "airborne"
+        ],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "elevation_m",
+        "type": "number",
+        "unit": "metre",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.8,
+        "minimum": 0.2,
+        "maximum": 2.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      },
+      {
+        "schema_version": 1,
+        "name": "hold_s",
+        "type": "number",
+        "unit": "second",
+        "frame": null,
+        "required": false,
+        "has_default": true,
+        "default": 0.5,
+        "minimum": 0.2,
+        "maximum": 1.5,
+        "enum_values": [],
+        "dimensions": null,
+        "capability": null,
+        "nullable": false,
+        "control_id": null
+      }
+    ],
+    "evidence": [
+      "artifacts/stages/05.6a/publication-summary.json",
+      "artifacts/stages/05.6a/visual-review.json",
+      "docs/contracts/root-travel-flight-v1.md",
+      "artifacts/maintenance/jobs/stage-05.6a-smoke-scale/report.json"
+    ],
+    "measured_maxima": [
+      {
+        "schema_version": 1,
+        "name": "contact_error_m",
+        "value": 4.6412790116548954e-08
+      },
+      {
+        "schema_version": 1,
+        "name": "contact_m",
+        "value": 4.6412790116548954e-08
+      },
+      {
+        "schema_version": 1,
+        "name": "floor_penetration_m",
+        "value": 3.4629657363893784e-08
+      },
+      {
+        "schema_version": 1,
+        "name": "frames",
+        "value": 157
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_acceleration_deg_s2",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "joint_speed_deg_s",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_deg",
+        "value": 3.0449930155107498e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "playback_m",
+        "value": 1.9259753094795002e-07
+      },
+      {
+        "schema_version": 1,
+        "name": "root_step_m",
+        "value": 0.03568577829417151
+      },
+      {
+        "schema_version": 1,
+        "name": "surface_penetration_m",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_deg",
+        "value": 1.601821346280157e-05
+      },
+      {
+        "schema_version": 1,
+        "name": "tracking_m",
+        "value": 3.441991973904524e-07
+      }
+    ],
+    "status": "reviewed_for_envelope"
+  }
+]

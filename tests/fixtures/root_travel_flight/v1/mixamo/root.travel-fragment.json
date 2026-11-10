@@ -1,0 +1,173 @@
+{
+  "schema_version": 1,
+  "fragment_id": "root.test.fragment",
+  "source_instance_ids": [
+    "root.test"
+  ],
+  "entry_requirements": [
+    {
+      "schema_version": 1,
+      "requirement_id": "root.test.r0",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3499999940395355,
+          0.19999998807907104,
+          1.2519084215164185
+        ]
+      },
+      "tolerance": 0.05
+    },
+    {
+      "schema_version": 1,
+      "requirement_id": "root.test.r1",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.4953291714191437,
+          0.5046278834342957,
+          0.5046276450157166,
+          0.49532899260520935
+        ]
+      },
+      "tolerance": 0.05
+    }
+  ],
+  "duration_s": 2.0,
+  "tracks": [
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t0",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.3499999940395355,
+          0.19999998807907104,
+          1.2519084215164185
+        ],
+        "end_value": [
+          1.3499999088150427,
+          0.19954834245816275,
+          1.2519086029011839
+        ],
+        "duration_s": 2.0,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 2.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "root.test.t1",
+      "source_instance_ids": [
+        "root.test"
+      ],
+      "control_id": "object_root.orientation",
+      "unit": "unitless",
+      "frame": "world",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.4953291714191437,
+          0.5046278834342957,
+          0.5046276450157166,
+          0.49532899260520935
+        ],
+        "end_value": [
+          0.4953291714191437,
+          0.5046278834342957,
+          0.5046276450157166,
+          0.49532899260520935
+        ],
+        "duration_s": 2.0,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 2.0
+      }
+    }
+  ],
+  "contact_events": [],
+  "phase_landmarks": [
+    {
+      "schema_version": 1,
+      "name": "end",
+      "time_s": 2.0
+    }
+  ],
+  "exit_expectations": [],
+  "goals": [
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g0",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          1.3499999088150427,
+          0.19954834245816275,
+          1.2519086029011839
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.0,
+        "end_s": 2.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "root.test.g1",
+      "clause_id": "root.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "object_root.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.4953291714191437,
+          0.5046278834342957,
+          0.5046276450157166,
+          0.49532899260520935
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.0,
+        "end_s": 2.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    }
+  ]
+}

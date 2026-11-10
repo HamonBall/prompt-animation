@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "instance_id": "root.test",
+  "definition_id": "root.hover",
+  "definition_version": 1,
+  "parameters": [
+    {
+      "schema_version": 1,
+      "name": "duration_s",
+      "value": 2
+    },
+    {
+      "schema_version": 1,
+      "name": "elevation_m",
+      "value": 0.8
+    },
+    {
+      "schema_version": 1,
+      "name": "hold_s",
+      "value": 0.5
+    },
+    {
+      "schema_version": 1,
+      "name": "mode",
+      "value": "takeoff"
+    }
+  ],
+  "clause_ids": [],
+  "explicit_parameters": []
+}

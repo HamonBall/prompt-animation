@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "instance_id": "root.test",
+  "definition_id": "root.orient",
+  "definition_version": 1,
+  "parameters": [
+    {
+      "schema_version": 1,
+      "name": "angle_deg",
+      "value": 90
+    },
+    {
+      "schema_version": 1,
+      "name": "axis",
+      "value": "pitch"
+    },
+    {
+      "schema_version": 1,
+      "name": "duration_s",
+      "value": 2
+    },
+    {
+      "schema_version": 1,
+      "name": "frame",
+      "value": "entry_body"
+    }
+  ],
+  "clause_ids": [],
+  "explicit_parameters": [
+    "angle_deg"
+  ]
+}

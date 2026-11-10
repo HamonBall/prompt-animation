@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "instance_id": "root.test",
+  "definition_id": "root.turn",
+  "definition_version": 1,
+  "parameters": [
+    {
+      "schema_version": 1,
+      "name": "angle_deg",
+      "value": 120
+    },
+    {
+      "schema_version": 1,
+      "name": "duration_s",
+      "value": 2
+    },
+    {
+      "schema_version": 1,
+      "name": "mode",
+      "value": "airborne"
+    }
+  ],
+  "clause_ids": [],
+  "explicit_parameters": [
+    "angle_deg"
+  ]
+}

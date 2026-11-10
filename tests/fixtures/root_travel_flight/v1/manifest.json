@@ -1,0 +1,90 @@
+{
+  "profile_version": 8,
+  "definition_version": 1,
+  "rigs": {
+    "demo": {
+      "root.travel": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/root.travel-entry.json",
+          "instance": "demo/root.travel-instance.json",
+          "fragment": "demo/root.travel-fragment.json",
+          "executable": "demo/root.travel-executable.json"
+        },
+        "example_case": "demo/line"
+      },
+      "root.turn": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/root.turn-entry.json",
+          "instance": "demo/root.turn-instance.json",
+          "fragment": "demo/root.turn-fragment.json",
+          "executable": "demo/root.turn-executable.json"
+        },
+        "example_case": "demo/turn-left"
+      },
+      "root.orient": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/root.orient-entry.json",
+          "instance": "demo/root.orient-instance.json",
+          "fragment": "demo/root.orient-fragment.json",
+          "executable": "demo/root.orient-executable.json"
+        },
+        "example_case": "demo/pitch"
+      },
+      "root.hover": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "demo/root.hover-entry.json",
+          "instance": "demo/root.hover-instance.json",
+          "fragment": "demo/root.hover-fragment.json",
+          "executable": "demo/root.hover-executable.json"
+        },
+        "example_case": "demo/hover"
+      }
+    },
+    "mixamo": {
+      "root.travel": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/root.travel-entry.json",
+          "instance": "mixamo/root.travel-instance.json",
+          "fragment": "mixamo/root.travel-fragment.json",
+          "executable": "mixamo/root.travel-executable.json"
+        },
+        "example_case": "mixamo/line"
+      },
+      "root.turn": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/root.turn-entry.json",
+          "instance": "mixamo/root.turn-instance.json",
+          "fragment": "mixamo/root.turn-fragment.json",
+          "executable": "mixamo/root.turn-executable.json"
+        },
+        "example_case": "mixamo/turn-left"
+      },
+      "root.orient": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/root.orient-entry.json",
+          "instance": "mixamo/root.orient-instance.json",
+          "fragment": "mixamo/root.orient-fragment.json",
+          "executable": "mixamo/root.orient-executable.json"
+        },
+        "example_case": "mixamo/pitch"
+      },
+      "root.hover": {
+        "status": "reviewed_for_envelope",
+        "records": {
+          "entry": "mixamo/root.hover-entry.json",
+          "instance": "mixamo/root.hover-instance.json",
+          "fragment": "mixamo/root.hover-fragment.json",
+          "executable": "mixamo/root.hover-executable.json"
+        },
+        "example_case": "mixamo/hover"
+      }
+    }
+  }
+}
