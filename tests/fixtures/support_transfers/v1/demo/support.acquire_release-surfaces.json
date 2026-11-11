@@ -1,0 +1,20 @@
+[
+  {
+    "name": "floor",
+    "height": 0.0,
+    "center": null,
+    "size": null
+  },
+  {
+    "name": "back-pad",
+    "height": 0.5749999046325683,
+    "center": [
+      0.0,
+      -0.28999993205070496
+    ],
+    "size": [
+      0.24,
+      0.24
+    ]
+  }
+]

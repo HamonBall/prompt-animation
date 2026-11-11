@@ -21,10 +21,10 @@ from tools.root_motion_playback import verify
 from tools.storage_policy import enforce
 
 
-def render_view(handle, profile, out, label, bounds):
+def render_view(handle, profile, out, label, bounds, *, view_basis=None):
     scene = handle.scene
     scene.frame_set(1)
-    body = rp.semantic_frame(handle, profile, 'pelvis').to_3x3()
+    body = view_basis if view_basis is not None else rp.semantic_frame(handle, profile, 'pelvis').to_3x3()
     direction = (body.col[1] if label == 'front' else body.col[0]).copy()
     direction.z = 0
     direction.normalize()

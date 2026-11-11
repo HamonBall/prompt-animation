@@ -445,9 +445,9 @@ def measure_endpoint(handle,profile,endpoint_id):
     """Actual solved bone-head or calibrated sole position, in world metres."""
     _binding(handle,profile)
     c.check_type(endpoint_id,c.ID,'endpoint_id')
-    if endpoint_id.endswith('.sole') or (profile.version==8 and endpoint_id.endswith(('.heel','.forefoot'))):
+    if endpoint_id.endswith('.sole') or (profile.version==8 and endpoint_id.endswith(('.heel','.forefoot','.palm','.support'))):
         landmark = next((v for v in profile.landmarks if v.id==endpoint_id),None)
-        if landmark is None: c.fail('MISSING_CAPABILITY','Foot contact reference unavailable')
+        if landmark is None: c.fail('MISSING_CAPABILITY','Calibrated contact reference unavailable')
         return _tuple(semantic_frame(handle,profile,landmark.joint_id) @ Vector(landmark.position))
     key,part = endpoint_id.split('.') if endpoint_id.count('.')==1 else ('','')
     joint = {'hand':'wrist','foot':'ankle'}.get(part)
@@ -522,7 +522,7 @@ def capture_motion_state(handle,profile,*,revision,captured_time_s=None,contact_
         elif control.id.startswith('object_root.'):
             world=handle.rig.matrix_world
             value=_tuple(world.translation) if control.id.endswith('.position') else _tuple(_rotation(world))
-        elif control.id.startswith(('root.','pelvis.')):
+        elif control.id.startswith(('root.','pelvis.')) and control.id != 'pelvis.support.position':
             value = _tuple(root.translation) if control.id.endswith('.position') else _tuple(_rotation(root))
         elif control.id.endswith('.upper_arm.orientation'):
             value=_tuple(_rotation(semantic_frame(handle,profile,control.chain)))

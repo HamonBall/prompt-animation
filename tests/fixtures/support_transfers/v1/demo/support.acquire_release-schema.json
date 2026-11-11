@@ -1,0 +1,110 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "anchor": {
+      "type": "string",
+      "enum": [
+        "left.sole",
+        "left.heel",
+        "left.forefoot",
+        "right.sole",
+        "right.heel",
+        "right.forefoot",
+        "left.palm",
+        "right.palm",
+        "pelvis.support",
+        "back.support",
+        "left.knee.support",
+        "right.knee.support"
+      ],
+      "x-unit": "unitless",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": "left.sole"
+    },
+    "surface": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "x-unit": "unitless",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": "floor"
+    },
+    "target": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "x-unit": "metre",
+      "x-frame": "world",
+      "x-capability": null,
+      "x-control-id": null,
+      "default": null
+    },
+    "acquire_s": {
+      "type": "number",
+      "minimum": 0.5,
+      "maximum": 2,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.8
+    },
+    "hold_s": {
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 1,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.2
+    },
+    "release_s": {
+      "type": "number",
+      "minimum": 0.5,
+      "maximum": 2,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.8
+    },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "acquire",
+        "release",
+        "cycle"
+      ],
+      "x-unit": "unitless",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": "cycle"
+    },
+    "allow_airborne": {
+      "type": "boolean",
+      "x-unit": "unitless",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": false
+    }
+  },
+  "required": []
+}

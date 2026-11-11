@@ -557,12 +557,16 @@ class ContactEvent(Record):
     acquire_s: Seconds
     release_s: Seconds
     clearance_m: Annotated[float, Rule(minimum=0, maximum=.2)]
+    target_world_v1: Vector3 | None = None
 
     def _validate(self):
         distinct(self.source_instance_ids,None)
         duration = self.interval.end_s-self.interval.start_s
-        if duration <= 0 or self.acquire_s+self.release_s > duration:
+        ramp_tolerance = 1e-9 if self.target_world_v1 is not None else 0
+        if duration <= 0 or self.acquire_s+self.release_s > duration + ramp_tolerance:
             fail('INVALID_PARAMETER', 'Contact interval must fit its acquisition/release ramps')
+        if self.target_world_v1 is not None:
+            position_budget(self.target_world_v1, 'world', 'metre')
 
 
 @dataclass(frozen=True)
@@ -609,11 +613,23 @@ class MotionFragment(Record):
                     fail('CONSTRAINT_CONFLICT', 'Overlapping tracks own the same control', control_id=first.control_id)
         for index, first in enumerate(self.contact_events):
             for second in self.contact_events[index+1:]:
-                if first.anchor_id == second.anchor_id and overlaps(first.interval,second.interval):
+                if contact_overlap(first, second):
                     fail('CONSTRAINT_CONFLICT', 'Overlapping contacts own the same anchor')
 
 
 def overlaps(a,b): return max(a.start_s,b.start_s) < min(a.end_s,b.end_s)
+
+
+def contact_overlap(first, second):
+    if first.anchor_id != second.anchor_id:
+        return False
+    if overlaps(first.interval, second.interval):
+        return True
+    if first.target_world_v1 is None and second.target_world_v1 is None:
+        return False
+    earlier, later = sorted((first, second), key=lambda event: event.interval.start_s)
+    return (earlier.interval.end_s == later.interval.start_s
+            and earlier.release_s == 0 and later.acquire_s == 0)
 
 
 @dataclass(frozen=True)
@@ -876,7 +892,7 @@ class ExecutableMotion(Record):
                     fail('CONSTRAINT_CONFLICT', 'Executable tracks overlap on a control',control_id=first.control_id)
         for index, first in enumerate(self.contact_events):
             for second in self.contact_events[index+1:]:
-                if first.anchor_id == second.anchor_id and overlaps(first.interval,second.interval):
+                if contact_overlap(first, second):
                     fail('CONSTRAINT_CONFLICT', 'Executable contacts overlap on an anchor')
 
 
@@ -904,13 +920,15 @@ class FrameTargets(Record):
 RECORD_TYPES = {name:value for name,value in tuple(globals().items())
                 if isinstance(value,type) and issubclass(value,Record) and value is not Record}
 
+OPTIONAL_EXTENSIONS = {CurveSpec: 'look_at_world_v1', ContactEvent: 'target_world_v1'}
+
 
 def to_dict(record):
     if type(record) not in RECORD_TYPES.values(): fail('INVALID_SCHEMA', 'Unknown record type')
     def encode(value):
         if isinstance(value,Record):
             return {f.name:encode(getattr(value,f.name)) for f in fields(value)
-                    if not (isinstance(value,CurveSpec) and f.name=='look_at_world_v1' and value.look_at_world_v1 is None)}
+                    if not (OPTIONAL_EXTENSIONS.get(type(value)) == f.name and getattr(value, f.name) is None)}
         if type(value) is tuple: return [encode(item) for item in value]
         return value
     return encode(record)
@@ -951,7 +969,7 @@ def from_dict(record_type, data):
     if type(data['schema_version']) is not int or data['schema_version'] != SCHEMA_VERSION:
         fail('VERSION_MISMATCH', 'Unsupported schema version; migrate explicitly')
     missing=names-set(data)
-    if record_type is CurveSpec: missing.discard('look_at_world_v1')
+    missing.discard(OPTIONAL_EXTENSIONS.get(record_type))
     if missing: fail('INVALID_SCHEMA', 'Canonical saved records require every field, with null for unknown optional information',
                      details={'missing':sorted(missing)})
     try:
@@ -1012,7 +1030,7 @@ def json_schema(record_type):
                 definitions[name] = {}
                 definitions[name] = {'type':'object','additionalProperties':False,
                     'properties':{f.name:schema(hints(annotation)[f.name]) for f in fields(annotation)},
-                    'required':[f.name for f in fields(annotation) if not (annotation is CurveSpec and f.name=='look_at_world_v1')]}
+                    'required':[f.name for f in fields(annotation) if f.name != OPTIONAL_EXTENSIONS.get(annotation)]}
             return {'$ref':'#/$defs/'+name}
         return {'type':{float:'number',int:'integer',bool:'boolean',str:'string',type(None):'null'}[annotation]}
     reference = schema(record_type)

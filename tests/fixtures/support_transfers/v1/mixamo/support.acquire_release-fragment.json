@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "fragment_id": "support.test.fragment",
+  "source_instance_ids": [
+    "support.test"
+  ],
+  "entry_requirements": [],
+  "duration_s": 2.7,
+  "tracks": [],
+  "contact_events": [
+    {
+      "schema_version": 1,
+      "event_id": "support.test.back.support",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "back.support",
+      "surface_id": "back-pad",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 2.7
+      },
+      "acquire_s": 1.2,
+      "release_s": 1.2,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.008170687593519688,
+        0.2664923071861267,
+        0.6493977887741604
+      ]
+    }
+  ],
+  "phase_landmarks": [
+    {
+      "schema_version": 1,
+      "name": "end",
+      "time_s": 2.7
+    }
+  ],
+  "exit_expectations": [],
+  "goals": []
+}

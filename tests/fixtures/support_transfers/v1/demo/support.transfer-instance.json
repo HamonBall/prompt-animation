@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "instance_id": "support.test",
+  "definition_id": "support.transfer",
+  "definition_version": 1,
+  "parameters": [
+    {
+      "schema_version": 1,
+      "name": "acquire_s",
+      "value": 1.2
+    },
+    {
+      "schema_version": 1,
+      "name": "anchor",
+      "value": "left.knee.support"
+    },
+    {
+      "schema_version": 1,
+      "name": "from_anchor",
+      "value": "right.sole"
+    },
+    {
+      "schema_version": 1,
+      "name": "hold_s",
+      "value": 0.3
+    },
+    {
+      "schema_version": 1,
+      "name": "release_s",
+      "value": 1.2
+    },
+    {
+      "schema_version": 1,
+      "name": "surface",
+      "value": "knee-pad"
+    },
+    {
+      "schema_version": 1,
+      "name": "target",
+      "value": null
+    }
+  ],
+  "clause_ids": [],
+  "explicit_parameters": [
+    "acquire_s",
+    "anchor",
+    "from_anchor",
+    "hold_s",
+    "release_s",
+    "surface"
+  ]
+}

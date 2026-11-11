@@ -1,0 +1,94 @@
+{
+  "profile_version": 8,
+  "definition_version": 1,
+  "rigs": {
+    "demo": {
+      "support.acquire_release": {
+        "example_case": "demo/back-cycle",
+        "status": "reviewed_for_envelope",
+        "records": {
+          "profile": "demo/support.acquire_release-profile.json",
+          "entry": "demo/support.acquire_release-entry.json",
+          "instance": "demo/support.acquire_release-instance.json",
+          "fragment": "demo/support.acquire_release-fragment.json",
+          "executable": "demo/support.acquire_release-executable.json",
+          "surfaces": "demo/support.acquire_release-surfaces.json",
+          "review": "demo/support.acquire_release-review.json",
+          "schema": "demo/support.acquire_release-schema.json"
+        }
+      },
+      "support.transfer": {
+        "example_case": "demo/knee-transfer",
+        "status": "reviewed_for_envelope",
+        "records": {
+          "profile": "demo/support.transfer-profile.json",
+          "entry": "demo/support.transfer-entry.json",
+          "instance": "demo/support.transfer-instance.json",
+          "fragment": "demo/support.transfer-fragment.json",
+          "executable": "demo/support.transfer-executable.json",
+          "surfaces": "demo/support.transfer-surfaces.json",
+          "review": "demo/support.transfer-review.json",
+          "schema": "demo/support.transfer-schema.json"
+        }
+      },
+      "body.balance": {
+        "example_case": "demo/balance-fast",
+        "status": "reviewed_for_envelope",
+        "records": {
+          "profile": "demo/body.balance-profile.json",
+          "entry": "demo/body.balance-entry.json",
+          "instance": "demo/body.balance-instance.json",
+          "fragment": "demo/body.balance-fragment.json",
+          "executable": "demo/body.balance-executable.json",
+          "surfaces": "demo/body.balance-surfaces.json",
+          "review": "demo/body.balance-review.json",
+          "schema": "demo/body.balance-schema.json"
+        }
+      }
+    },
+    "mixamo": {
+      "support.acquire_release": {
+        "example_case": "mixamo/back-cycle",
+        "status": "reviewed_for_envelope",
+        "records": {
+          "profile": "mixamo/support.acquire_release-profile.json",
+          "entry": "mixamo/support.acquire_release-entry.json",
+          "instance": "mixamo/support.acquire_release-instance.json",
+          "fragment": "mixamo/support.acquire_release-fragment.json",
+          "executable": "mixamo/support.acquire_release-executable.json",
+          "surfaces": "mixamo/support.acquire_release-surfaces.json",
+          "review": "mixamo/support.acquire_release-review.json",
+          "schema": "mixamo/support.acquire_release-schema.json"
+        }
+      },
+      "support.transfer": {
+        "example_case": "mixamo/knee-transfer",
+        "status": "reviewed_for_envelope",
+        "records": {
+          "profile": "mixamo/support.transfer-profile.json",
+          "entry": "mixamo/support.transfer-entry.json",
+          "instance": "mixamo/support.transfer-instance.json",
+          "fragment": "mixamo/support.transfer-fragment.json",
+          "executable": "mixamo/support.transfer-executable.json",
+          "surfaces": "mixamo/support.transfer-surfaces.json",
+          "review": "mixamo/support.transfer-review.json",
+          "schema": "mixamo/support.transfer-schema.json"
+        }
+      },
+      "body.balance": {
+        "example_case": "mixamo/balance-fast",
+        "status": "reviewed_for_envelope",
+        "records": {
+          "profile": "mixamo/body.balance-profile.json",
+          "entry": "mixamo/body.balance-entry.json",
+          "instance": "mixamo/body.balance-instance.json",
+          "fragment": "mixamo/body.balance-fragment.json",
+          "executable": "mixamo/body.balance-executable.json",
+          "surfaces": "mixamo/body.balance-surfaces.json",
+          "review": "mixamo/body.balance-review.json",
+          "schema": "mixamo/body.balance-schema.json"
+        }
+      }
+    }
+  }
+}

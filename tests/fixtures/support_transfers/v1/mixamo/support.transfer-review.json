@@ -1,0 +1,187 @@
+{
+  "schema_version": 1,
+  "definition_id": "support.transfer",
+  "definition_version": 1,
+  "avatar_id": "root.mixamo",
+  "profile_version": 8,
+  "parameter_envelope": [
+    {
+      "schema_version": 1,
+      "name": "anchor",
+      "type": "enum",
+      "unit": "unitless",
+      "frame": null,
+      "required": false,
+      "has_default": true,
+      "default": "left.sole",
+      "minimum": null,
+      "maximum": null,
+      "enum_values": [
+        "left.sole",
+        "left.heel",
+        "left.forefoot",
+        "right.sole",
+        "right.heel",
+        "right.forefoot",
+        "left.palm",
+        "right.palm",
+        "pelvis.support",
+        "back.support",
+        "left.knee.support",
+        "right.knee.support"
+      ],
+      "dimensions": null,
+      "capability": null,
+      "nullable": false,
+      "control_id": null
+    },
+    {
+      "schema_version": 1,
+      "name": "surface",
+      "type": "string",
+      "unit": "unitless",
+      "frame": null,
+      "required": false,
+      "has_default": true,
+      "default": "floor",
+      "minimum": null,
+      "maximum": null,
+      "enum_values": [],
+      "dimensions": null,
+      "capability": null,
+      "nullable": false,
+      "control_id": null
+    },
+    {
+      "schema_version": 1,
+      "name": "target",
+      "type": "vector",
+      "unit": "metre",
+      "frame": "world",
+      "required": false,
+      "has_default": true,
+      "default": null,
+      "minimum": null,
+      "maximum": null,
+      "enum_values": [],
+      "dimensions": 3,
+      "capability": null,
+      "nullable": true,
+      "control_id": null
+    },
+    {
+      "schema_version": 1,
+      "name": "acquire_s",
+      "type": "number",
+      "unit": "second",
+      "frame": null,
+      "required": false,
+      "has_default": true,
+      "default": 0.8,
+      "minimum": 0.5,
+      "maximum": 2,
+      "enum_values": [],
+      "dimensions": null,
+      "capability": null,
+      "nullable": false,
+      "control_id": null
+    },
+    {
+      "schema_version": 1,
+      "name": "hold_s",
+      "type": "number",
+      "unit": "second",
+      "frame": null,
+      "required": false,
+      "has_default": true,
+      "default": 0.2,
+      "minimum": 0.1,
+      "maximum": 1,
+      "enum_values": [],
+      "dimensions": null,
+      "capability": null,
+      "nullable": false,
+      "control_id": null
+    },
+    {
+      "schema_version": 1,
+      "name": "release_s",
+      "type": "number",
+      "unit": "second",
+      "frame": null,
+      "required": false,
+      "has_default": true,
+      "default": 0.8,
+      "minimum": 0.5,
+      "maximum": 2,
+      "enum_values": [],
+      "dimensions": null,
+      "capability": null,
+      "nullable": false,
+      "control_id": null
+    },
+    {
+      "schema_version": 1,
+      "name": "from_anchor",
+      "type": "enum",
+      "unit": "unitless",
+      "frame": null,
+      "required": false,
+      "has_default": true,
+      "default": "right.sole",
+      "minimum": null,
+      "maximum": null,
+      "enum_values": [
+        "left.sole",
+        "left.heel",
+        "left.forefoot",
+        "right.sole",
+        "right.heel",
+        "right.forefoot",
+        "left.palm",
+        "right.palm",
+        "pelvis.support",
+        "back.support",
+        "left.knee.support",
+        "right.knee.support"
+      ],
+      "dimensions": null,
+      "capability": null,
+      "nullable": false,
+      "control_id": null
+    }
+  ],
+  "evidence": [
+    "artifacts/stages/05.6b/publication-summary.json",
+    "artifacts/stages/05.6b/visual-review.json",
+    "docs/contracts/support-transfers-v1.md"
+  ],
+  "measured_maxima": [
+    {
+      "schema_version": 1,
+      "name": "angle_deg",
+      "value": 2.248266325466375e-05
+    },
+    {
+      "schema_version": 1,
+      "name": "contact_m",
+      "value": 0.0001566314712433228
+    },
+    {
+      "schema_version": 1,
+      "name": "position_m",
+      "value": 6.664001874625056e-08
+    },
+    {
+      "schema_version": 1,
+      "name": "skin_gap_m",
+      "value": 0.0001566347133677981
+    },
+    {
+      "schema_version": 1,
+      "name": "surface_penetration_m",
+      "value": 1.6809419323138286e-07
+    }
+  ],
+  "status": "reviewed_for_envelope"
+}

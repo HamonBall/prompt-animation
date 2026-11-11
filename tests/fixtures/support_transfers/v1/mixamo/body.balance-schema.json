@@ -1,0 +1,59 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "anchor": {
+      "type": "string",
+      "enum": [
+        "left.sole",
+        "right.sole"
+      ],
+      "x-unit": "unitless",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": "left.sole"
+    },
+    "target": {
+      "anyOf": [
+        {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 3,
+          "maxItems": 3
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "x-unit": "metre",
+      "x-frame": "world",
+      "x-capability": null,
+      "x-control-id": null,
+      "default": null
+    },
+    "duration_s": {
+      "type": "number",
+      "minimum": 1.2,
+      "maximum": 3,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 1.5
+    },
+    "hold_s": {
+      "type": "number",
+      "minimum": 0.2,
+      "maximum": 1,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.5
+    }
+  },
+  "required": []
+}

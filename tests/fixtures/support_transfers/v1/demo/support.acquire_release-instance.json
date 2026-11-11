@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "instance_id": "support.test",
+  "definition_id": "support.acquire_release",
+  "definition_version": 1,
+  "parameters": [
+    {
+      "schema_version": 1,
+      "name": "acquire_s",
+      "value": 1.2
+    },
+    {
+      "schema_version": 1,
+      "name": "allow_airborne",
+      "value": true
+    },
+    {
+      "schema_version": 1,
+      "name": "anchor",
+      "value": "back.support"
+    },
+    {
+      "schema_version": 1,
+      "name": "hold_s",
+      "value": 0.3
+    },
+    {
+      "schema_version": 1,
+      "name": "operation",
+      "value": "cycle"
+    },
+    {
+      "schema_version": 1,
+      "name": "release_s",
+      "value": 1.2
+    },
+    {
+      "schema_version": 1,
+      "name": "surface",
+      "value": "back-pad"
+    },
+    {
+      "schema_version": 1,
+      "name": "target",
+      "value": null
+    }
+  ],
+  "clause_ids": [],
+  "explicit_parameters": [
+    "acquire_s",
+    "allow_airborne",
+    "anchor",
+    "hold_s",
+    "release_s",
+    "surface"
+  ]
+}

@@ -100,13 +100,16 @@ def support_floor(handle):
 def support_skin_height(handle, part, surface=None, offset_xy=(0, 0)):
     hand = part in ('left_hand', 'right_hand')
     foot = part in ('left_foot', 'right_foot')
-    names = ((part.split('_')[0].title()+('Hand' if hand else 'Foot'),) if hand or foot else
+    knee = part in ('left_knee', 'right_knee')
+    side = part.split('_')[0].title()
+    names = ((side + 'Leg', side + 'UpLeg') if knee else
+             (side+('Hand' if hand else 'Foot'),) if hand or foot else
              ('Hips', 'LeftUpLeg', 'RightUpLeg') if part == 'pelvis' else ('Spine', 'Spine1', 'Spine2', 'Hips'))
     accepted = {handle.bones[n].name for n in names if n in handle.bones}
     if foot:
         accepted.update(b.name for b in handle.rig.pose.bones
                         if b.name.endswith(part.split('_')[0].title()+'ToeBase'))
-    anchor_name = names[0] if hand or foot else 'Hips' if part == 'pelvis' else 'Spine'
+    anchor_name = names[0] if hand or foot or knee else 'Hips' if part == 'pelvis' else 'Spine'
     anchor = np.asarray(handle.rig.matrix_world @ handle.bones[anchor_name].head)
     height = (handle.rig.matrix_world.to_3x3() @ (handle.up * handle.height)).length
     cache = getattr(handle, '_part_masks', {})
@@ -122,7 +125,7 @@ def support_skin_height(handle, part, surface=None, offset_xy=(0, 0)):
         mask = cache[key]
         if len(mask) != len(p):
             continue
-        local = mask & (np.linalg.norm(p-anchor, axis=1) < height*.20)
+        local = mask & (np.linalg.norm(p-anchor, axis=1) < height*(.055 if knee else .20))
         if surface is not None and surface.center is not None:
             local &= ((abs(p[:,0]+offset_xy[0]-surface.center[0]) <= surface.size[0]/2)
                       & (abs(p[:,1]+offset_xy[1]-surface.center[1]) <= surface.size[1]/2))

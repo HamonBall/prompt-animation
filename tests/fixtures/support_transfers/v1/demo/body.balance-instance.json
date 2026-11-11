@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "instance_id": "support.test",
+  "definition_id": "body.balance",
+  "definition_version": 1,
+  "parameters": [
+    {
+      "schema_version": 1,
+      "name": "anchor",
+      "value": "left.sole"
+    },
+    {
+      "schema_version": 1,
+      "name": "duration_s",
+      "value": 1.2
+    },
+    {
+      "schema_version": 1,
+      "name": "hold_s",
+      "value": 0.2
+    },
+    {
+      "schema_version": 1,
+      "name": "target",
+      "value": null
+    }
+  ],
+  "clause_ids": [],
+  "explicit_parameters": [
+    "anchor",
+    "duration_s",
+    "hold_s"
+  ]
+}
