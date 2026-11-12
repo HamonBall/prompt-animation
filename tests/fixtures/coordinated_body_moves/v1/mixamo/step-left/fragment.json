@@ -1,0 +1,551 @@
+{
+  "schema_version": 1,
+  "fragment_id": "support.test.fragment",
+  "source_instance_ids": [
+    "support.test"
+  ],
+  "entry_requirements": [
+    {
+      "schema_version": 1,
+      "requirement_id": "support.test.r0",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.foot.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.0426483191549778,
+          0.14918282628059387,
+          0.10329516977071762
+        ]
+      },
+      "tolerance": 0.05
+    },
+    {
+      "schema_version": 1,
+      "requirement_id": "support.test.r1",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.foot.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          1.2877529798061005e-07,
+          -0.6974123120307922,
+          -0.7166701555252075,
+          -2.7419133630246506e-07
+        ]
+      },
+      "tolerance": 0.05
+    },
+    {
+      "schema_version": 1,
+      "requirement_id": "support.test.r2",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0313655249774456,
+          4.162320237810491e-06,
+          0.9663734436035156
+        ]
+      },
+      "tolerance": 0.05
+    }
+  ],
+  "duration_s": 2.0,
+  "tracks": [
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t0",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.foot.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          -0.0426483191549778,
+          0.14918282628059387,
+          0.10329516977071762
+        ],
+        "end_value": [
+          -0.0426483191549778,
+          0.14918282628059387,
+          0.10329516977071762
+        ],
+        "duration_s": 0.2,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 0.2
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t1",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.foot.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          -0.0426483191549778,
+          0.14918282628059387,
+          0.10329516977071762
+        ],
+        "end_value": [
+          0.0073516757454279436,
+          0.14916024399992694,
+          0.16173885512631386
+        ],
+        "duration_s": 0.8,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 1.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t2",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.foot.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.0073516757454279436,
+          0.14916024399992694,
+          0.16173885512631386
+        ],
+        "end_value": [
+          0.057351670645833686,
+          0.14913766171926002,
+          0.10173885512631387
+        ],
+        "duration_s": 0.8,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.0,
+        "end_s": 1.8
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t3",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.foot.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.057351670645833686,
+          0.14913766171926002,
+          0.10173885512631387
+        ],
+        "end_value": [
+          0.057351670645833686,
+          0.14913766171926002,
+          0.10173885512631387
+        ],
+        "duration_s": 0.19999999999999996,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8,
+        "end_s": 2.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t4",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.foot.orientation",
+      "unit": "unitless",
+      "frame": "world",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          1.2877529798061005e-07,
+          -0.6974123120307922,
+          -0.7166701555252075,
+          -2.7419133630246506e-07
+        ],
+        "end_value": [
+          1.2877529798061005e-07,
+          -0.6974123120307922,
+          -0.7166701555252075,
+          -2.7419133630246506e-07
+        ],
+        "duration_s": 2.0,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 2.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t5",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.0313655249774456,
+          4.162320237810491e-06,
+          0.9663734436035156
+        ],
+        "end_value": [
+          0.0313655249774456,
+          4.162320237810491e-06,
+          0.9663734436035156
+        ],
+        "duration_s": 0.2,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 0.2
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t6",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.0313655249774456,
+          4.162320237810491e-06,
+          0.9663734436035156
+        ],
+        "end_value": [
+          0.08136551987785134,
+          -1.8419960429118516e-05,
+          0.9663734436035156
+        ],
+        "duration_s": 1.6,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 1.8
+      }
+    }
+  ],
+  "contact_events": [
+    {
+      "schema_version": 1,
+      "event_id": "support.test.right.sole",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "right.sole",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 2.0
+      },
+      "acquire_s": 0,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.04311198368668556,
+        -0.1587350219488144,
+        0.0015561396721750498
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.left.sole",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "left.sole",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 0.2
+      },
+      "acquire_s": 0,
+      "release_s": 0.2,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.04311203211545944,
+        0.15873488783836365,
+        0.0015563146444037557
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.left.sole.landing",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "left.sole",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8,
+        "end_s": 2.0
+      },
+      "acquire_s": 0.19999999999999996,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.14311202191627093,
+        0.1586897232770298,
+        0
+      ]
+    }
+  ],
+  "phase_landmarks": [
+    {
+      "schema_version": 1,
+      "name": "swing",
+      "time_s": 1.0
+    },
+    {
+      "schema_version": 1,
+      "name": "touchdown",
+      "time_s": 1.8
+    },
+    {
+      "schema_version": 1,
+      "name": "end",
+      "time_s": 2.0
+    }
+  ],
+  "exit_expectations": [],
+  "goals": [
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g0",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.foot.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.0426483191549778,
+          0.14918282628059387,
+          0.10329516977071762
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 0.2
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g1",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.foot.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0073516757454279436,
+          0.14916024399992694,
+          0.16173885512631386
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.0,
+        "end_s": 1.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g2",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.foot.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.057351670645833686,
+          0.14913766171926002,
+          0.10173885512631387
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8,
+        "end_s": 1.8
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g3",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.foot.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.057351670645833686,
+          0.14913766171926002,
+          0.10173885512631387
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.0,
+        "end_s": 2.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g4",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.foot.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          1.2877529798061005e-07,
+          -0.6974123120307922,
+          -0.7166701555252075,
+          -2.7419133630246506e-07
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.0,
+        "end_s": 2.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g5",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0313655249774456,
+          4.162320237810491e-06,
+          0.9663734436035156
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 0.2
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g6",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.08136551987785134,
+          -1.8419960429118516e-05,
+          0.9663734436035156
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8,
+        "end_s": 1.8
+      },
+      "tolerance": 0.1,
+      "locked": true
+    }
+  ]
+}

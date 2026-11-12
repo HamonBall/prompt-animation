@@ -1,0 +1,1333 @@
+{
+  "schema_version": 1,
+  "fragment_id": "support.test.fragment",
+  "source_instance_ids": [
+    "support.test"
+  ],
+  "entry_requirements": [
+    {
+      "schema_version": 1,
+      "requirement_id": "support.test.r0",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ]
+      },
+      "tolerance": 0.05
+    },
+    {
+      "schema_version": 1,
+      "requirement_id": "support.test.r1",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hip.flexion",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 0.0
+      },
+      "tolerance": 0.05
+    },
+    {
+      "schema_version": 1,
+      "requirement_id": "support.test.r2",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.knee.flexion",
+        "unit": "degree",
+        "frame": "joint:left.thigh",
+        "value": 0.0
+      },
+      "tolerance": 0.05
+    }
+  ],
+  "duration_s": 8.6,
+  "tracks": [
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t0",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ],
+        "end_value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ],
+        "duration_s": 0.2,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 0.2
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t1",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ],
+        "end_value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ],
+        "duration_s": 0.7,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 0.9
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t2",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ],
+        "end_value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ],
+        "duration_s": 0.7000000000000001,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.9,
+        "end_s": 1.6
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t3",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ],
+        "end_value": [
+          0.0,
+          -0.2365000004421833,
+          0.5700000349588172
+        ],
+        "duration_s": 1.4,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6,
+        "end_s": 3.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t4",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.0,
+          -0.2365000004421833,
+          0.5700000349588172
+        ],
+        "end_value": [
+          0.0,
+          -0.2365000004421833,
+          0.5700000349588172
+        ],
+        "duration_s": 2.5999999999999996,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.0,
+        "end_s": 5.6
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t5",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.0,
+          -0.2365000004421833,
+          0.5700000349588172
+        ],
+        "end_value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ],
+        "duration_s": 1.4000000000000004,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 5.6,
+        "end_s": 7.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t6",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ],
+        "end_value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ],
+        "duration_s": 0.7000000000000002,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 7.0,
+        "end_s": 7.7
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t7",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ],
+        "end_value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ],
+        "duration_s": 0.7000000000000002,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 7.7,
+        "end_s": 8.4
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t8",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.hip.flexion",
+      "unit": "degree",
+      "frame": "joint:pelvis",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": 0.0,
+        "end_value": 0.0,
+        "duration_s": 0.2,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 0.2
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t9",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.hip.flexion",
+      "unit": "degree",
+      "frame": "joint:pelvis",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": 0.0,
+        "end_value": 34.0,
+        "duration_s": 0.7,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 0.9
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t10",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.hip.flexion",
+      "unit": "degree",
+      "frame": "joint:pelvis",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": 34.0,
+        "end_value": 24.0,
+        "duration_s": 0.7000000000000001,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.9,
+        "end_s": 1.6
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t11",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.hip.flexion",
+      "unit": "degree",
+      "frame": "joint:pelvis",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": 24.0,
+        "end_value": 0.0,
+        "duration_s": 1.4,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6,
+        "end_s": 3.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t12",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.hip.flexion",
+      "unit": "degree",
+      "frame": "joint:pelvis",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": 0.0,
+        "end_value": 0.0,
+        "duration_s": 2.5999999999999996,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.0,
+        "end_s": 5.6
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t13",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.hip.flexion",
+      "unit": "degree",
+      "frame": "joint:pelvis",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": 0.0,
+        "end_value": 24.0,
+        "duration_s": 1.4000000000000004,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 5.6,
+        "end_s": 7.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t14",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.hip.flexion",
+      "unit": "degree",
+      "frame": "joint:pelvis",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": 24.0,
+        "end_value": 34.0,
+        "duration_s": 0.7000000000000002,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 7.0,
+        "end_s": 7.7
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t15",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.hip.flexion",
+      "unit": "degree",
+      "frame": "joint:pelvis",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": 34.0,
+        "end_value": 0.0,
+        "duration_s": 0.7000000000000002,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 7.7,
+        "end_s": 8.4
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t16",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.knee.flexion",
+      "unit": "degree",
+      "frame": "joint:left.thigh",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": 0.0,
+        "end_value": 0.0,
+        "duration_s": 0.2,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 0.2
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t17",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.knee.flexion",
+      "unit": "degree",
+      "frame": "joint:left.thigh",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": 0.0,
+        "end_value": 34.0,
+        "duration_s": 0.7,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 0.9
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t18",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.knee.flexion",
+      "unit": "degree",
+      "frame": "joint:left.thigh",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": 34.0,
+        "end_value": 85.0,
+        "duration_s": 0.7000000000000001,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.9,
+        "end_s": 1.6
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t19",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.knee.flexion",
+      "unit": "degree",
+      "frame": "joint:left.thigh",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": 85.0,
+        "end_value": 115.0,
+        "duration_s": 1.4,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6,
+        "end_s": 3.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t20",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.knee.flexion",
+      "unit": "degree",
+      "frame": "joint:left.thigh",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": 115.0,
+        "end_value": 115.0,
+        "duration_s": 2.5999999999999996,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.0,
+        "end_s": 5.6
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t21",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.knee.flexion",
+      "unit": "degree",
+      "frame": "joint:left.thigh",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": 115.0,
+        "end_value": 85.0,
+        "duration_s": 1.4000000000000004,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 5.6,
+        "end_s": 7.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t22",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.knee.flexion",
+      "unit": "degree",
+      "frame": "joint:left.thigh",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": 85.0,
+        "end_value": 34.0,
+        "duration_s": 0.7000000000000002,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 7.0,
+        "end_s": 7.7
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t23",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.knee.flexion",
+      "unit": "degree",
+      "frame": "joint:left.thigh",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": 34.0,
+        "end_value": 0.0,
+        "duration_s": 0.7000000000000002,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 7.7,
+        "end_s": 8.4
+      }
+    }
+  ],
+  "contact_events": [
+    {
+      "schema_version": 1,
+      "event_id": "support.test.right.sole",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "right.sole",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 8.6
+      },
+      "acquire_s": 0,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.10000000149011612,
+        0.07500000298023224,
+        0.0
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.left.sole",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "left.sole",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 0.2
+      },
+      "acquire_s": 0,
+      "release_s": 0.2,
+      "clearance_m": 0,
+      "target_world_v1": [
+        -0.10000000149011612,
+        0.07500000298023224,
+        0.0
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.left.knee.support",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "left.knee.support",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.0,
+        "end_s": 5.6
+      },
+      "acquire_s": 1.2,
+      "release_s": 1.2,
+      "clearance_m": 0,
+      "target_world_v1": [
+        -0.10000000149011612,
+        -0.2365000004421833,
+        0
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.left.sole.land",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "left.sole",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 8.4,
+        "end_s": 8.6
+      },
+      "acquire_s": 0.2,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        -0.10000000149011612,
+        0.07500000298023224,
+        0.0
+      ]
+    }
+  ],
+  "phase_landmarks": [
+    {
+      "schema_version": 1,
+      "name": "supported",
+      "time_s": 4.2
+    },
+    {
+      "schema_version": 1,
+      "name": "end",
+      "time_s": 8.6
+    }
+  ],
+  "exit_expectations": [],
+  "goals": [
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g0",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 0.2
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g1",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.9,
+        "end_s": 0.9
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g2",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6,
+        "end_s": 1.6
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g3",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0,
+          -0.2365000004421833,
+          0.5700000349588172
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.0,
+        "end_s": 3.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g4",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0,
+          -0.2365000004421833,
+          0.5700000349588172
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 5.6,
+        "end_s": 5.6
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g5",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 7.0,
+        "end_s": 7.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g6",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 7.7,
+        "end_s": 7.7
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g7",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0,
+          0.0,
+          0.9800000190734863
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 8.4,
+        "end_s": 8.4
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g8",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hip.flexion",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 0.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 0.2
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g9",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hip.flexion",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 34.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.9,
+        "end_s": 0.9
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g10",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hip.flexion",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 24.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6,
+        "end_s": 1.6
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g11",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hip.flexion",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 0.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.0,
+        "end_s": 3.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g12",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hip.flexion",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 0.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 5.6,
+        "end_s": 5.6
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g13",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hip.flexion",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 24.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 7.0,
+        "end_s": 7.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g14",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hip.flexion",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 34.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 7.7,
+        "end_s": 7.7
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g15",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hip.flexion",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 0.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 8.4,
+        "end_s": 8.4
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g16",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.knee.flexion",
+        "unit": "degree",
+        "frame": "joint:left.thigh",
+        "value": 0.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 0.2
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g17",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.knee.flexion",
+        "unit": "degree",
+        "frame": "joint:left.thigh",
+        "value": 34.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.9,
+        "end_s": 0.9
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g18",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.knee.flexion",
+        "unit": "degree",
+        "frame": "joint:left.thigh",
+        "value": 85.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6,
+        "end_s": 1.6
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g19",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.knee.flexion",
+        "unit": "degree",
+        "frame": "joint:left.thigh",
+        "value": 115.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.0,
+        "end_s": 3.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g20",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.knee.flexion",
+        "unit": "degree",
+        "frame": "joint:left.thigh",
+        "value": 115.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 5.6,
+        "end_s": 5.6
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g21",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.knee.flexion",
+        "unit": "degree",
+        "frame": "joint:left.thigh",
+        "value": 85.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 7.0,
+        "end_s": 7.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g22",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.knee.flexion",
+        "unit": "degree",
+        "frame": "joint:left.thigh",
+        "value": 34.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 7.7,
+        "end_s": 7.7
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g23",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.knee.flexion",
+        "unit": "degree",
+        "frame": "joint:left.thigh",
+        "value": 0.0
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 8.4,
+        "end_s": 8.4
+      },
+      "tolerance": 0.1,
+      "locked": true
+    }
+  ]
+}

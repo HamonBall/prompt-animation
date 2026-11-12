@@ -1,0 +1,92 @@
+{
+  "schema_version": 1,
+  "fragment_id": "support.test.fragment",
+  "source_instance_ids": [
+    "support.test"
+  ],
+  "entry_requirements": [],
+  "duration_s": 1.4,
+  "tracks": [],
+  "contact_events": [
+    {
+      "schema_version": 1,
+      "event_id": "support.test.left.sole",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "left.sole",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 1.4
+      },
+      "acquire_s": 0,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        -0.09999999403953552,
+        0.5049999952316284,
+        5.79282648516255e-08
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.right.sole",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "right.sole",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 1.4
+      },
+      "acquire_s": 0,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.09999999403953552,
+        0.5049999952316284,
+        5.79282648516255e-08
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.pelvis.support",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "pelvis.support",
+      "surface_id": "pelvis-pad",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 1.4
+      },
+      "acquire_s": 1.2,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        1.6556845894299954e-09,
+        -7.657541267747092e-09,
+        0.40500000715255735
+      ]
+    }
+  ],
+  "phase_landmarks": [
+    {
+      "schema_version": 1,
+      "name": "supported",
+      "time_s": 1.2
+    },
+    {
+      "schema_version": 1,
+      "name": "end",
+      "time_s": 1.4
+    }
+  ],
+  "exit_expectations": [],
+  "goals": []
+}

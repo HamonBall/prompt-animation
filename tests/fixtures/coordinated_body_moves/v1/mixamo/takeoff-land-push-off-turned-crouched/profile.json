@@ -1,0 +1,5663 @@
+{
+  "schema_version": 1,
+  "avatar_id": "root.mixamo",
+  "version": 8,
+  "height_m": 1.7999999514013032,
+  "canonical_frames": [
+    "world",
+    "entry_body",
+    "current_root",
+    "current_torso",
+    "current_pelvis",
+    "joint:pelvis",
+    "joint:torso",
+    "joint:head",
+    "joint:spine.mid",
+    "joint:spine.upper",
+    "joint:neck",
+    "joint:left.clavicle",
+    "joint:left.upper_arm",
+    "joint:left.forearm",
+    "joint:left.wrist",
+    "joint:left.thigh",
+    "joint:left.shin",
+    "joint:left.ankle",
+    "joint:left.toe",
+    "joint:left.finger.thumb.1",
+    "joint:left.finger.thumb.2",
+    "joint:left.finger.thumb.3",
+    "joint:left.finger.thumb.4",
+    "joint:left.finger.index.1",
+    "joint:left.finger.index.2",
+    "joint:left.finger.index.3",
+    "joint:left.finger.index.4",
+    "joint:left.finger.middle.1",
+    "joint:left.finger.middle.2",
+    "joint:left.finger.middle.3",
+    "joint:left.finger.middle.4",
+    "joint:left.finger.ring.1",
+    "joint:left.finger.ring.2",
+    "joint:left.finger.ring.3",
+    "joint:left.finger.ring.4",
+    "joint:left.finger.pinky.1",
+    "joint:left.finger.pinky.2",
+    "joint:left.finger.pinky.3",
+    "joint:left.finger.pinky.4",
+    "joint:right.clavicle",
+    "joint:right.upper_arm",
+    "joint:right.forearm",
+    "joint:right.wrist",
+    "joint:right.thigh",
+    "joint:right.shin",
+    "joint:right.ankle",
+    "joint:right.toe",
+    "joint:right.finger.thumb.1",
+    "joint:right.finger.thumb.2",
+    "joint:right.finger.thumb.3",
+    "joint:right.finger.thumb.4",
+    "joint:right.finger.index.1",
+    "joint:right.finger.index.2",
+    "joint:right.finger.index.3",
+    "joint:right.finger.index.4",
+    "joint:right.finger.middle.1",
+    "joint:right.finger.middle.2",
+    "joint:right.finger.middle.3",
+    "joint:right.finger.middle.4",
+    "joint:right.finger.ring.1",
+    "joint:right.finger.ring.2",
+    "joint:right.finger.ring.3",
+    "joint:right.finger.ring.4",
+    "joint:right.finger.pinky.1",
+    "joint:right.finger.pinky.2",
+    "joint:right.finger.pinky.3",
+    "joint:right.finger.pinky.4"
+  ],
+  "rest_to_semantic_mappings": [
+    {
+      "schema_version": 1,
+      "semantic_id": "pelvis",
+      "parent_id": null,
+      "source_bones": [
+        "mixamorig2:Hips"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "orientation": [
+          0.00015794327191542834,
+          0.0001609083410585299,
+          -0.7136514782905579,
+          -0.700501024723053
+        ],
+        "frame": "entry_body",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "torso",
+      "parent_id": "pelvis",
+      "source_bones": [
+        "mixamorig2:Spine"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          5.563648528550402e-07,
+          -0.0012337788939476013,
+          0.09197115898132324
+        ],
+        "orientation": [
+          0.00016049841360654682,
+          0.00015835979138500988,
+          -0.7023483514785767,
+          -0.7118334174156189
+        ],
+        "frame": "joint:pelvis",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "head",
+      "parent_id": "neck",
+      "source_bones": [
+        "mixamorig2:Head"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -2.7818327907880303e-06,
+          0.006168912164866924,
+          0.08696544170379639
+        ],
+        "orientation": [
+          0.00015794324281159788,
+          0.0001609083410585299,
+          -0.7136514782905579,
+          -0.7005009055137634
+        ],
+        "frame": "joint:neck",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "spine.mid",
+      "parent_id": "torso",
+      "source_bones": [
+        "mixamorig2:Spine1"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          6.490951136584044e-07,
+          -0.001439414918422699,
+          0.1072993278503418
+        ],
+        "orientation": [
+          0.00016049841360654682,
+          0.00015835979138500988,
+          -0.7023483514785767,
+          -0.7118334174156189
+        ],
+        "frame": "joint:torso",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "spine.upper",
+      "parent_id": "spine.mid",
+      "source_bones": [
+        "mixamorig2:Spine2"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          7.418208269882598e-07,
+          -0.0016450396506115794,
+          0.12262797355651855
+        ],
+        "orientation": [
+          0.00016049841360654682,
+          0.00015835979138500988,
+          -0.7023483514785767,
+          -0.7118334174156189
+        ],
+        "frame": "joint:spine.mid",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "neck",
+      "parent_id": "spine.upper",
+      "source_bones": [
+        "mixamorig2:Neck"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          8.34550689887692e-07,
+          -0.001850675791501999,
+          0.1379563808441162
+        ],
+        "orientation": [
+          0.00015794324281159788,
+          0.0001609083410585299,
+          -0.7136514782905579,
+          -0.7005009055137634
+        ],
+        "frame": "joint:spine.upper",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.clavicle",
+      "parent_id": "spine.upper",
+      "source_bones": [
+        "mixamorig2:LeftShoulder"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.05366472527384758,
+          -0.002143141580745578,
+          0.12223601341247559
+        ],
+        "orientation": [
+          0.10451405495405197,
+          -0.7026513814926147,
+          0.697488009929657,
+          -0.0941721647977829
+        ],
+        "frame": "joint:spine.upper",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.upper_arm",
+      "parent_id": "left.clavicle",
+      "source_bones": [
+        "mixamorig2:LeftArm"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.10686840116977692,
+          -0.0005757262697443366,
+          -0.030958175659179688
+        ],
+        "orientation": [
+          0.028987405821681023,
+          -0.7366803884506226,
+          0.6748251914978027,
+          -0.032752785831689835
+        ],
+        "frame": "joint:left.clavicle",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.forearm",
+      "parent_id": "left.upper_arm",
+      "source_bones": [
+        "mixamorig2:LeftForeArm"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.26000070571899414,
+          -0.022936055436730385,
+          -0.022771596908569336
+        ],
+        "orientation": [
+          0.020389195531606674,
+          0.6938353180885315,
+          -0.7194976806640625,
+          -0.022359710186719894
+        ],
+        "frame": "joint:left.upper_arm",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.wrist",
+      "parent_id": "left.forearm",
+      "source_bones": [
+        "mixamorig2:LeftHand"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.2510633170604706,
+          0.009107458405196667,
+          0.015219449996948242
+        ],
+        "orientation": [
+          0.01909048482775688,
+          -0.6865127682685852,
+          0.7266337275505066,
+          -0.018421828746795654
+        ],
+        "frame": "joint:left.forearm",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.thigh",
+      "parent_id": "pelvis",
+      "source_bones": [
+        "mixamorig2:LeftUpLeg"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.09139922261238098,
+          -0.009016146883368492,
+          -0.05088299512863159
+        ],
+        "orientation": [
+          -0.6942325234413147,
+          0.7188628315925598,
+          -0.025553299114108086,
+          -0.024992365390062332
+        ],
+        "frame": "joint:pelvis",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.shin",
+      "parent_id": "left.thigh",
+      "source_bones": [
+        "mixamorig2:LeftLeg"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.031450171023607254,
+          -0.015310159884393215,
+          -0.43884986639022827
+        ],
+        "orientation": [
+          -0.6656061410903931,
+          0.7456996440887451,
+          -0.020587893202900887,
+          -0.02183457836508751
+        ],
+        "frame": "joint:left.thigh",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.ankle",
+      "parent_id": "left.shin",
+      "source_bones": [
+        "mixamorig2:LeftFoot"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.0262963455170393,
+          -0.04975476861000061,
+          -0.43634557723999023
+        ],
+        "orientation": [
+          -0.9562644362449646,
+          0.2909611165523529,
+          -0.029857924208045006,
+          -0.002942724386230111
+        ],
+        "frame": "joint:left.shin",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.toe",
+      "parent_id": "left.ankle",
+      "source_bones": [
+        "mixamorig2:LeftToeBase"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.003734663361683488,
+          0.1348540037870407,
+          -0.0903114527463913
+        ],
+        "orientation": [
+          -0.9995925426483154,
+          -0.003670457284897566,
+          0.01501370593905449,
+          -0.023998292163014412
+        ],
+        "frame": "joint:left.ankle",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.thumb.1",
+      "parent_id": "left.wrist",
+      "source_bones": [
+        "mixamorig2:LeftHandThumb1"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.028538724407553673,
+          0.03176186978816986,
+          -0.014305830001831055
+        ],
+        "orientation": [
+          0.09001287817955017,
+          -0.44925203919410706,
+          0.8774398565292358,
+          -0.1420198678970337
+        ],
+        "frame": "joint:left.wrist",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.thumb.2",
+      "parent_id": "left.finger.thumb.1",
+      "source_bones": [
+        "mixamorig2:LeftHandThumb2"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.022830860689282417,
+          0.025409506633877754,
+          -0.01144421100616455
+        ],
+        "orientation": [
+          0.11162370443344116,
+          -0.44437599182128906,
+          0.8695492148399353,
+          -0.1842670738697052
+        ],
+        "frame": "joint:left.finger.thumb.1",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.thumb.3",
+      "parent_id": "left.finger.thumb.2",
+      "source_bones": [
+        "mixamorig2:LeftHandThumb3"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.024033118039369583,
+          0.01570243015885353,
+          -0.01331174373626709
+        ],
+        "orientation": [
+          0.06935200095176697,
+          -0.45290207862854004,
+          0.8830214738845825,
+          -0.10170145332813263
+        ],
+        "frame": "joint:left.finger.thumb.2",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.thumb.4",
+      "parent_id": "left.finger.thumb.3",
+      "source_bones": [
+        "mixamorig2:LeftHandThumb4"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.021043764427304268,
+          0.008423913270235062,
+          -0.005671501159667969
+        ],
+        "orientation": [
+          0.0693519115447998,
+          -0.45290207862854004,
+          0.8830214738845825,
+          -0.10170150548219681
+        ],
+        "frame": "joint:left.finger.thumb.3",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.index.1",
+      "parent_id": "left.wrist",
+      "source_bones": [
+        "mixamorig2:LeftHandIndex1"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.09154411405324936,
+          0.03953968733549118,
+          -0.006095290184020996
+        ],
+        "orientation": [
+          0.025552403181791306,
+          -0.6794100403785706,
+          0.7328867316246033,
+          -0.025024347007274628
+        ],
+        "frame": "joint:left.wrist",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.index.2",
+      "parent_id": "left.finger.index.1",
+      "source_bones": [
+        "mixamorig2:LeftHandIndex2"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.031426869332790375,
+          0.002294182311743498,
+          -0.002255558967590332
+        ],
+        "orientation": [
+          0.08288105577230453,
+          -0.6748197078704834,
+          0.7281497716903687,
+          -0.08687448501586914
+        ],
+        "frame": "joint:left.finger.index.1",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.index.3",
+      "parent_id": "left.finger.index.2",
+      "source_bones": [
+        "mixamorig2:LeftHandIndex3"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.027844877913594246,
+          0.002182228257879615,
+          -0.00685572624206543
+        ],
+        "orientation": [
+          0.08266256749629974,
+          -0.6748464107513428,
+          0.7281778454780579,
+          -0.08663889765739441
+        ],
+        "frame": "joint:left.finger.index.2",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.index.4",
+      "parent_id": "left.finger.index.3",
+      "source_bones": [
+        "mixamorig2:LeftHandIndex4"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.02432342991232872,
+          0.0019051645649597049,
+          -0.005971550941467285
+        ],
+        "orientation": [
+          0.08266263455152512,
+          -0.6748465299606323,
+          0.7281778454780579,
+          -0.08663888275623322
+        ],
+        "frame": "joint:left.finger.index.3",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.middle.1",
+      "parent_id": "left.wrist",
+      "source_bones": [
+        "mixamorig2:LeftHandMiddle1"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.0920364186167717,
+          0.014898923225700855,
+          -0.0031311511993408203
+        ],
+        "orientation": [
+          0.025141220539808273,
+          -0.6919503808021545,
+          0.7210730314254761,
+          -0.02502521313726902
+        ],
+        "frame": "joint:left.wrist",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.middle.2",
+      "parent_id": "left.finger.middle.1",
+      "source_bones": [
+        "mixamorig2:LeftHandMiddle2"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.03385811671614647,
+          0.0013090335996821523,
+          -0.002407670021057129
+        ],
+        "orientation": [
+          0.09021037071943283,
+          -0.6865053176879883,
+          0.7155093550682068,
+          -0.09283827990293503
+        ],
+        "frame": "joint:left.finger.middle.1",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.middle.3",
+      "parent_id": "left.finger.middle.2",
+      "source_bones": [
+        "mixamorig2:LeftHandMiddle3"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.03079659305512905,
+          0.0013303053565323353,
+          -0.008187651634216309
+        ],
+        "orientation": [
+          0.08876778185367584,
+          -0.6866933703422546,
+          0.7157028317451477,
+          -0.09133477509021759
+        ],
+        "frame": "joint:left.finger.middle.2",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.middle.4",
+      "parent_id": "left.finger.middle.3",
+      "source_bones": [
+        "mixamorig2:LeftHandMiddle4"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.027144186198711395,
+          0.0011697066947817802,
+          -0.0070945024490356445
+        ],
+        "orientation": [
+          0.08876778185367584,
+          -0.6866933703422546,
+          0.7157028317451477,
+          -0.09133477509021759
+        ],
+        "frame": "joint:left.finger.middle.3",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.ring.1",
+      "parent_id": "left.wrist",
+      "source_bones": [
+        "mixamorig2:LeftHandRing1"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.09315094351768494,
+          -0.006172433495521545,
+          -0.003519296646118164
+        ],
+        "orientation": [
+          0.02964656613767147,
+          -0.7090405225753784,
+          0.7039010524749756,
+          -0.030098197981715202
+        ],
+        "frame": "joint:left.wrist",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.ring.2",
+      "parent_id": "left.finger.ring.1",
+      "source_bones": [
+        "mixamorig2:LeftHandRing2"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.028153423219919205,
+          -0.00026099366368725896,
+          -0.0023851394653320312
+        ],
+        "orientation": [
+          0.10854624956846237,
+          -0.7013095617294312,
+          0.696151852607727,
+          -0.10842190682888031
+        ],
+        "frame": "joint:left.finger.ring.1",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.ring.3",
+      "parent_id": "left.finger.ring.2",
+      "source_bones": [
+        "mixamorig2:LeftHandRing3"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.027298135682940483,
+          -0.00017212674720212817,
+          -0.008685946464538574
+        ],
+        "orientation": [
+          0.09709181636571884,
+          -0.7029869556427002,
+          0.6978278160095215,
+          -0.09705162048339844
+        ],
+        "frame": "joint:left.finger.ring.2",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.ring.4",
+      "parent_id": "left.finger.ring.3",
+      "source_bones": [
+        "mixamorig2:LeftHandRing4"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.02354769967496395,
+          -0.0001551804452901706,
+          -0.0066547393798828125
+        ],
+        "orientation": [
+          0.09709176421165466,
+          -0.7029868960380554,
+          0.6978277564048767,
+          -0.09705165028572083
+        ],
+        "frame": "joint:left.finger.ring.3",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.pinky.1",
+      "parent_id": "left.wrist",
+      "source_bones": [
+        "mixamorig2:LeftHandPinky1"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.08890756219625473,
+          -0.027467168867588043,
+          -0.005268454551696777
+        ],
+        "orientation": [
+          0.04539733752608299,
+          -0.7033255696296692,
+          0.7079339623451233,
+          -0.045846469700336456
+        ],
+        "frame": "joint:left.wrist",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.pinky.2",
+      "parent_id": "left.finger.pinky.1",
+      "source_bones": [
+        "mixamorig2:LeftHandPinky2"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.02525884471833706,
+          0.00013994962500873953,
+          -0.0032796859741210938
+        ],
+        "orientation": [
+          0.0798526406288147,
+          -0.7002509236335754,
+          0.7048317193984985,
+          -0.08052738010883331
+        ],
+        "frame": "joint:left.finger.pinky.1",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.pinky.3",
+      "parent_id": "left.finger.pinky.2",
+      "source_bones": [
+        "mixamorig2:LeftHandPinky3"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.02081180550158024,
+          0.00014950057084206492,
+          -0.0048139095306396484
+        ],
+        "orientation": [
+          0.07620692253112793,
+          -0.7006570100784302,
+          0.7052412033081055,
+          -0.07685792446136475
+        ],
+        "frame": "joint:left.finger.pinky.2",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "left.finger.pinky.4",
+      "parent_id": "left.finger.pinky.3",
+      "source_bones": [
+        "mixamorig2:LeftHandPinky4"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          -0.01848071999847889,
+          0.00013041468628216535,
+          -0.004072308540344238
+        ],
+        "orientation": [
+          0.07620692253112793,
+          -0.7006570100784302,
+          0.7052412033081055,
+          -0.07685792446136475
+        ],
+        "frame": "joint:left.finger.pinky.3",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.clavicle",
+      "parent_id": "spine.upper",
+      "source_bones": [
+        "mixamorig2:RightShoulder"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.053666651248931885,
+          -0.0021429986227303743,
+          0.12223684787750244
+        ],
+        "orientation": [
+          -0.10450766235589981,
+          0.7026525139808655,
+          0.69748854637146,
+          -0.09416671842336655
+        ],
+        "frame": "joint:spine.upper",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.upper_arm",
+      "parent_id": "right.clavicle",
+      "source_bones": [
+        "mixamorig2:RightArm"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.10686899721622467,
+          -0.000575870624743402,
+          -0.030955910682678223
+        ],
+        "orientation": [
+          -0.029117083176970482,
+          0.7361626625061035,
+          0.675390899181366,
+          -0.03261875733733177
+        ],
+        "frame": "joint:right.clavicle",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.forearm",
+      "parent_id": "right.upper_arm",
+      "source_bones": [
+        "mixamorig2:RightForeArm"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.2600211799144745,
+          -0.022530581802129745,
+          -0.022774815559387207
+        ],
+        "orientation": [
+          -0.020181085914373398,
+          -0.6930882930755615,
+          -0.7202175855636597,
+          -0.022541232407093048
+        ],
+        "frame": "joint:right.upper_arm",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.wrist",
+      "parent_id": "right.forearm",
+      "source_bones": [
+        "mixamorig2:RightHand"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.2510548532009125,
+          0.009625306352972984,
+          0.015213727951049805
+        ],
+        "orientation": [
+          -0.02617960423231125,
+          0.6862684488296509,
+          0.7267813086509705,
+          -0.01179761067032814
+        ],
+        "frame": "joint:right.forearm",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.thigh",
+      "parent_id": "pelvis",
+      "source_bones": [
+        "mixamorig2:RightUpLeg"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.09140810370445251,
+          -0.010703286156058311,
+          -0.0508500337600708
+        ],
+        "orientation": [
+          0.6953375339508057,
+          -0.7177931666374207,
+          -0.025840427726507187,
+          -0.02471918985247612
+        ],
+        "frame": "joint:pelvis",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.shin",
+      "parent_id": "right.thigh",
+      "source_bones": [
+        "mixamorig2:RightLeg"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.031463373452425,
+          -0.013944514095783234,
+          -0.43887484073638916
+        ],
+        "orientation": [
+          0.6659248471260071,
+          -0.745414137840271,
+          -0.020874449983239174,
+          -0.02159172296524048
+        ],
+        "frame": "joint:right.thigh",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.ankle",
+      "parent_id": "right.shin",
+      "source_bones": [
+        "mixamorig2:RightFoot"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.026341000571846962,
+          -0.04936690628528595,
+          -0.4363519251346588
+        ],
+        "orientation": [
+          0.9564663171768188,
+          -0.290286660194397,
+          -0.029992761090397835,
+          -0.002505277516320348
+        ],
+        "frame": "joint:right.shin",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.toe",
+      "parent_id": "right.ankle",
+      "source_bones": [
+        "mixamorig2:RightToeBase"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0036128954961895943,
+          0.13527381420135498,
+          -0.09032010287046432
+        ],
+        "orientation": [
+          0.9996174573898315,
+          0.003466661786660552,
+          0.014634593389928341,
+          -0.023213965818285942
+        ],
+        "frame": "joint:right.ankle",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.thumb.1",
+      "parent_id": "right.wrist",
+      "source_bones": [
+        "mixamorig2:RightHandThumb1"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.02564156800508499,
+          0.02972775511443615,
+          -0.0130387544631958
+        ],
+        "orientation": [
+          -0.09466338157653809,
+          0.43019065260887146,
+          0.8868960738182068,
+          -0.1392495185136795
+        ],
+        "frame": "joint:right.wrist",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.thumb.2",
+      "parent_id": "right.finger.thumb.1",
+      "source_bones": [
+        "mixamorig2:RightHandThumb2"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.020513303577899933,
+          0.023782240226864815,
+          -0.01043081283569336
+        ],
+        "orientation": [
+          -0.11170727759599686,
+          0.4260825216770172,
+          0.8806523084640503,
+          -0.17443278431892395
+        ],
+        "frame": "joint:right.finger.thumb.1",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.thumb.3",
+      "parent_id": "right.finger.thumb.2",
+      "source_bones": [
+        "mixamorig2:RightHandThumb3"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.025041654706001282,
+          0.017549967393279076,
+          -0.013531804084777832
+        ],
+        "orientation": [
+          -0.11643105745315552,
+          0.4248160719871521,
+          0.8786613345146179,
+          -0.1841994673013687
+        ],
+        "frame": "joint:right.finger.thumb.2",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.thumb.4",
+      "parent_id": "right.finger.thumb.3",
+      "source_bones": [
+        "mixamorig2:RightHandThumb4"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.022471074014902115,
+          0.013612666167318821,
+          -0.012346625328063965
+        ],
+        "orientation": [
+          -0.11643102765083313,
+          0.4248160123825073,
+          0.8786613941192627,
+          -0.18419945240020752
+        ],
+        "frame": "joint:right.finger.thumb.3",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.index.1",
+      "parent_id": "right.wrist",
+      "source_bones": [
+        "mixamorig2:RightHandIndex1"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.09194870293140411,
+          0.039108939468860626,
+          -0.004383444786071777
+        ],
+        "orientation": [
+          -0.04925449192523956,
+          0.6722752451896667,
+          0.7377620339393616,
+          -0.03643384575843811
+        ],
+        "frame": "joint:right.wrist",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.index.2",
+      "parent_id": "right.finger.index.1",
+      "source_bones": [
+        "mixamorig2:RightHandIndex2"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.030889276415109634,
+          0.0029071280732750893,
+          -0.0037500858306884766
+        ],
+        "orientation": [
+          -0.09648662805557251,
+          0.6671357750892639,
+          0.7333630919456482,
+          -0.08831069618463516
+        ],
+        "frame": "joint:right.finger.index.1",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.index.3",
+      "parent_id": "right.finger.index.2",
+      "source_bones": [
+        "mixamorig2:RightHandIndex3"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0282857958227396,
+          0.0027932117227464914,
+          -0.007598519325256348
+        ],
+        "orientation": [
+          -0.055823180824518204,
+          0.6717616319656372,
+          0.7373706102371216,
+          -0.04364325851202011
+        ],
+        "frame": "joint:right.finger.index.2",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.index.4",
+      "parent_id": "right.finger.index.3",
+      "source_bones": [
+        "mixamorig2:RightHandIndex4"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.02462705224752426,
+          0.0023328703828155994,
+          -0.003481745719909668
+        ],
+        "orientation": [
+          -0.055823199450969696,
+          0.6717616319656372,
+          0.7373706102371216,
+          -0.043643273413181305
+        ],
+        "frame": "joint:right.finger.index.3",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.middle.1",
+      "parent_id": "right.wrist",
+      "source_bones": [
+        "mixamorig2:RightHandMiddle1"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.09132061898708344,
+          0.015119054354727268,
+          -0.004933595657348633
+        ],
+        "orientation": [
+          0.00806689914315939,
+          -0.7001461386680603,
+          -0.7139292359352112,
+          -0.005960745271295309
+        ],
+        "frame": "joint:right.wrist",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.middle.2",
+      "parent_id": "right.finger.middle.1",
+      "source_bones": [
+        "mixamorig2:RightHandMiddle2"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.032821714878082275,
+          0.00066589773632586,
+          -9.119510650634766e-05
+        ],
+        "orientation": [
+          -0.09580708295106888,
+          0.693606972694397,
+          0.7090404033660889,
+          -0.08361853659152985
+        ],
+        "frame": "joint:right.finger.middle.1",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.middle.3",
+      "parent_id": "right.finger.middle.2",
+      "source_bones": [
+        "mixamorig2:RightHandMiddle3"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.03166646882891655,
+          0.0007735629333183169,
+          -0.008230447769165039
+        ],
+        "orientation": [
+          -0.13766631484031677,
+          0.686525821685791,
+          0.7026695013046265,
+          -0.1264357566833496
+        ],
+        "frame": "joint:right.finger.middle.2",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.middle.4",
+      "parent_id": "right.finger.middle.3",
+      "source_bones": [
+        "mixamorig2:RightHandMiddle4"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.026313109323382378,
+          0.0006998524186201394,
+          -0.010375618934631348
+        ],
+        "orientation": [
+          -0.13766641914844513,
+          0.6865258812904358,
+          0.7026694416999817,
+          -0.12643568217754364
+        ],
+        "frame": "joint:right.finger.middle.3",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.ring.1",
+      "parent_id": "right.wrist",
+      "source_bones": [
+        "mixamorig2:RightHandRing1"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.09374434500932693,
+          -0.006468959618359804,
+          -0.0028139352798461914
+        ],
+        "orientation": [
+          -0.04626651853322983,
+          0.7106465101242065,
+          0.7012518644332886,
+          -0.03296786546707153
+        ],
+        "frame": "joint:right.wrist",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.ring.2",
+      "parent_id": "right.finger.ring.1",
+      "source_bones": [
+        "mixamorig2:RightHandRing2"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.029284927994012833,
+          -0.0003334995126351714,
+          -0.0033004283905029297
+        ],
+        "orientation": [
+          -0.1172017902135849,
+          0.7024406790733337,
+          0.6944249868392944,
+          -0.10302913188934326
+        ],
+        "frame": "joint:right.finger.ring.1",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.ring.3",
+      "parent_id": "right.finger.ring.2",
+      "source_bones": [
+        "mixamorig2:RightHandRing3"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.026342567056417465,
+          -0.000250802404480055,
+          -0.008521199226379395
+        ],
+        "orientation": [
+          -0.07981870323419571,
+          0.7076637148857117,
+          0.6989085674285889,
+          -0.0660906583070755
+        ],
+        "frame": "joint:right.finger.ring.2",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.ring.4",
+      "parent_id": "right.finger.ring.3",
+      "source_bones": [
+        "mixamorig2:RightHandRing4"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.022990219295024872,
+          -0.00024139901506714523,
+          -0.004824280738830566
+        ],
+        "orientation": [
+          -0.0798187181353569,
+          0.7076637148857117,
+          0.6989086270332336,
+          -0.0660906583070755
+        ],
+        "frame": "joint:right.finger.ring.3",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.pinky.1",
+      "parent_id": "right.wrist",
+      "source_bones": [
+        "mixamorig2:RightHandPinky1"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.08745811879634857,
+          -0.026639705523848534,
+          -0.006835460662841797
+        ],
+        "orientation": [
+          -0.024605050683021545,
+          0.7171074151992798,
+          0.696426510810852,
+          -0.011909585446119308
+        ],
+        "frame": "joint:right.wrist",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.pinky.2",
+      "parent_id": "right.finger.pinky.1",
+      "source_bones": [
+        "mixamorig2:RightHandPinky2"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.026025261729955673,
+          -0.0007172792684286833,
+          -0.001352071762084961
+        ],
+        "orientation": [
+          -0.09128262102603912,
+          0.7116993069648743,
+          0.6922906041145325,
+          -0.07671631872653961
+        ],
+        "frame": "joint:right.finger.pinky.1",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.pinky.3",
+      "parent_id": "right.finger.pinky.2",
+      "source_bones": [
+        "mixamorig2:RightHandPinky3"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.0214056558907032,
+          -0.0005658580921590328,
+          -0.005204200744628906
+        ],
+        "orientation": [
+          -0.08620909601449966,
+          0.7123315930366516,
+          0.6928197741508484,
+          -0.07178167998790741
+        ],
+        "frame": "joint:right.finger.pinky.2",
+        "unit": "metre"
+      }
+    },
+    {
+      "schema_version": 1,
+      "semantic_id": "right.finger.pinky.4",
+      "parent_id": "right.finger.pinky.3",
+      "source_bones": [
+        "mixamorig2:RightHandPinky4"
+      ],
+      "rest_to_semantic": {
+        "schema_version": 1,
+        "position": [
+          0.019513484090566635,
+          -0.0005167328636161983,
+          -0.004450559616088867
+        ],
+        "orientation": [
+          -0.08620911091566086,
+          0.7123315930366516,
+          0.6928198337554932,
+          -0.07178167998790741
+        ],
+        "frame": "joint:right.finger.pinky.3",
+        "unit": "metre"
+      }
+    }
+  ],
+  "lengths": [
+    {
+      "schema_version": 1,
+      "id": "rig.unit",
+      "value_m": 0.01027041394263506
+    },
+    {
+      "schema_version": 1,
+      "id": "pelvis",
+      "value_m": 0.10070721312027817
+    },
+    {
+      "schema_version": 1,
+      "id": "torso",
+      "value_m": 0.10730907715634716
+    },
+    {
+      "schema_version": 1,
+      "id": "head",
+      "value_m": 0.2191279730796083
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.mid",
+      "value_m": 0.12263878533921102
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.upper",
+      "value_m": 0.13499998016638617
+    },
+    {
+      "schema_version": 1,
+      "id": "neck",
+      "value_m": 0.08718396506759396
+    },
+    {
+      "schema_version": 1,
+      "id": "left.clavicle",
+      "value_m": 0.11126356183509176
+    },
+    {
+      "schema_version": 1,
+      "id": "left.upper_arm",
+      "value_m": 0.26200181806482575
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forearm",
+      "value_m": 0.2516890199151411
+    },
+    {
+      "schema_version": 1,
+      "id": "left.wrist",
+      "value_m": 0.0849696119201735
+    },
+    {
+      "schema_version": 1,
+      "id": "left.thigh",
+      "value_m": 0.4402417154788854
+    },
+    {
+      "schema_version": 1,
+      "id": "left.shin",
+      "value_m": 0.4399595959413981
+    },
+    {
+      "schema_version": 1,
+      "id": "left.ankle",
+      "value_m": 0.16234438724474307
+    },
+    {
+      "schema_version": 1,
+      "id": "left.toe",
+      "value_m": 0.06609321591778472
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.thumb.1",
+      "value_m": 0.03602595149533252
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.thumb.2",
+      "value_m": 0.031644206282218826
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.thumb.3",
+      "value_m": 0.023366116478587322
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.thumb.4",
+      "value_m": 0.023366116478587322
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.index.1",
+      "value_m": 0.03159121191465589
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.index.2",
+      "value_m": 0.028759210530200578
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.index.3",
+      "value_m": 0.02511810912312677
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.index.4",
+      "value_m": 0.025118108951135323
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.middle.1",
+      "value_m": 0.03396885727847935
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.middle.2",
+      "value_m": 0.03189416069074052
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.middle.3",
+      "value_m": 0.028080369890431667
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.middle.4",
+      "value_m": 0.028080369886383044
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.ring.1",
+      "value_m": 0.028255430588198124
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.ring.2",
+      "value_m": 0.028647191337996872
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.ring.3",
+      "value_m": 0.024470451310923107
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.ring.4",
+      "value_m": 0.024470451310923107
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.pinky.1",
+      "value_m": 0.025471224947739585
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.pinky.2",
+      "value_m": 0.0213616798249836
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.pinky.3",
+      "value_m": 0.01892449667696542
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.pinky.4",
+      "value_m": 0.01892449667696542
+    },
+    {
+      "schema_version": 1,
+      "id": "right.clavicle",
+      "value_m": 0.11126358264107693
+    },
+    {
+      "schema_version": 1,
+      "id": "right.upper_arm",
+      "value_m": 0.2619872588478527
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forearm",
+      "value_m": 0.2516994587828361
+    },
+    {
+      "schema_version": 1,
+      "id": "right.wrist",
+      "value_m": 0.08395377098317898
+    },
+    {
+      "schema_version": 1,
+      "id": "right.thigh",
+      "value_m": 0.4402220935011999
+    },
+    {
+      "schema_version": 1,
+      "id": "right.shin",
+      "value_m": 0.43992492449621773
+    },
+    {
+      "schema_version": 1,
+      "id": "right.ankle",
+      "value_m": 0.1626953484655943
+    },
+    {
+      "schema_version": 1,
+      "id": "right.toe",
+      "value_m": 0.06704384770580663
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.thumb.1",
+      "value_m": 0.03309379311264749
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.thumb.2",
+      "value_m": 0.03343949741105812
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.thumb.3",
+      "value_m": 0.02902925969457488
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.thumb.4",
+      "value_m": 0.029029262200996806
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.index.1",
+      "value_m": 0.03125161628308223
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.index.2",
+      "value_m": 0.02942146929708326
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.index.3",
+      "value_m": 0.024981170709666125
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.index.4",
+      "value_m": 0.024981170709666125
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.middle.1",
+      "value_m": 0.03282860842859965
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.middle.2",
+      "value_m": 0.032727734237707896
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.middle.3",
+      "value_m": 0.02829352194585212
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.middle.4",
+      "value_m": 0.028293521954892896
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.ring.1",
+      "value_m": 0.029472250638755356
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.ring.2",
+      "value_m": 0.02768763254099414
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.ring.3",
+      "value_m": 0.02349224268774415
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.ring.4",
+      "value_m": 0.02349224268774415
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.pinky.1",
+      "value_m": 0.026070348529442434
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.pinky.2",
+      "value_m": 0.022036548397430997
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.pinky.3",
+      "value_m": 0.020021329476466242
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.pinky.4",
+      "value_m": 0.020021329476466242
+    }
+  ],
+  "landmarks": [
+    {
+      "schema_version": 1,
+      "id": "pelvis.origin",
+      "joint_id": "pelvis",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:pelvis",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "pelvis.tip",
+      "joint_id": "pelvis",
+      "position": [
+        -8.445399544143584e-07,
+        0.0018728277646005154,
+        0.10068979859352112
+      ],
+      "frame": "joint:pelvis",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso.origin",
+      "joint_id": "torso",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:torso",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso.tip",
+      "joint_id": "torso",
+      "position": [
+        6.490943746939593e-07,
+        -0.0014394132886081934,
+        0.10729942470788956
+      ],
+      "frame": "joint:torso",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.origin",
+      "joint_id": "head",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:head",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.tip",
+      "joint_id": "head",
+      "position": [
+        -1.8376290427113418e-06,
+        0.004075073637068272,
+        0.219090074300766
+      ],
+      "frame": "joint:head",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.mid.origin",
+      "joint_id": "spine.mid",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:spine.mid",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.mid.tip",
+      "joint_id": "spine.mid",
+      "position": [
+        7.41823612315784e-07,
+        -0.0016450461698696017,
+        0.12262775003910065
+      ],
+      "frame": "joint:spine.mid",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.upper.origin",
+      "joint_id": "spine.upper",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:spine.upper",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.upper.tip",
+      "joint_id": "spine.upper",
+      "position": [
+        8.165917506630649e-07,
+        -0.0018108505755662918,
+        0.13498783111572266
+      ],
+      "frame": "joint:spine.upper",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "neck.origin",
+      "joint_id": "neck",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:neck",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "neck.tip",
+      "joint_id": "neck",
+      "position": [
+        -7.311335821214016e-07,
+        0.0016213409835472703,
+        0.08716888725757599
+      ],
+      "frame": "joint:neck",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.clavicle.origin",
+      "joint_id": "left.clavicle",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.clavicle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.clavicle.tip",
+      "joint_id": "left.clavicle",
+      "position": [
+        -0.10686832666397095,
+        -0.0005757384933531284,
+        -0.03095817193388939
+      ],
+      "frame": "joint:left.clavicle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.upper_arm.origin",
+      "joint_id": "left.upper_arm",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.upper_arm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.upper_arm.tip",
+      "joint_id": "left.upper_arm",
+      "position": [
+        -0.26000067591667175,
+        -0.022936055436730385,
+        -0.022771542891860008
+      ],
+      "frame": "joint:left.upper_arm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forearm.origin",
+      "joint_id": "left.forearm",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.forearm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forearm.tip",
+      "joint_id": "left.forearm",
+      "position": [
+        -0.2510633170604706,
+        0.009107459336519241,
+        0.01521938294172287
+      ],
+      "frame": "joint:left.forearm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.wrist.origin",
+      "joint_id": "left.wrist",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.wrist.tip",
+      "joint_id": "left.wrist",
+      "position": [
+        -0.08471327275037766,
+        0.004819629713892937,
+        -0.004501992836594582
+      ],
+      "frame": "joint:left.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.thigh.origin",
+      "joint_id": "left.thigh",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.thigh",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.thigh.tip",
+      "joint_id": "left.thigh",
+      "position": [
+        -0.03145017847418785,
+        -0.01531016081571579,
+        -0.43884992599487305
+      ],
+      "frame": "joint:left.thigh",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.shin.origin",
+      "joint_id": "left.shin",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.shin",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.shin.tip",
+      "joint_id": "left.shin",
+      "position": [
+        -0.026296341791749,
+        -0.04975476488471031,
+        -0.43634551763534546
+      ],
+      "frame": "joint:left.shin",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.ankle.origin",
+      "joint_id": "left.ankle",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.ankle.tip",
+      "joint_id": "left.ankle",
+      "position": [
+        -0.0037346601020544767,
+        0.13485395908355713,
+        -0.09031147509813309
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.toe.origin",
+      "joint_id": "left.toe",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.toe",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.toe.tip",
+      "joint_id": "left.toe",
+      "position": [
+        -0.0031783608719706535,
+        0.06601529568433762,
+        0.00043736511725001037
+      ],
+      "frame": "joint:left.toe",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.thumb.1.origin",
+      "joint_id": "left.finger.thumb.1",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.thumb.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.thumb.1.tip",
+      "joint_id": "left.finger.thumb.1",
+      "position": [
+        -0.027481168508529663,
+        0.02003064565360546,
+        -0.01189233735203743
+      ],
+      "frame": "joint:left.finger.thumb.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.thumb.2.origin",
+      "joint_id": "left.finger.thumb.2",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.thumb.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.thumb.2.tip",
+      "joint_id": "left.finger.thumb.2",
+      "position": [
+        -0.02315331995487213,
+        0.016997724771499634,
+        -0.013279944658279419
+      ],
+      "frame": "joint:left.finger.thumb.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.thumb.3.origin",
+      "joint_id": "left.finger.thumb.3",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.thumb.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.thumb.3.tip",
+      "joint_id": "left.finger.thumb.3",
+      "position": [
+        -0.018359646201133728,
+        0.01329702790826559,
+        -0.005664610769599676
+      ],
+      "frame": "joint:left.finger.thumb.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.thumb.4.origin",
+      "joint_id": "left.finger.thumb.4",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.thumb.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.thumb.4.tip",
+      "joint_id": "left.finger.thumb.4",
+      "position": [
+        -0.018359646201133728,
+        0.01329702790826559,
+        -0.005664610769599676
+      ],
+      "frame": "joint:left.finger.thumb.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.index.1.origin",
+      "joint_id": "left.finger.index.1",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.index.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.index.1.tip",
+      "joint_id": "left.finger.index.1",
+      "position": [
+        -0.031420059502124786,
+        0.002386768814176321,
+        -0.0022556486073881388
+      ],
+      "frame": "joint:left.finger.index.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.index.2.origin",
+      "joint_id": "left.finger.index.2",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.index.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.index.2.tip",
+      "joint_id": "left.finger.index.2",
+      "position": [
+        -0.027848662808537483,
+        0.0021322809625416994,
+        -0.006855470594018698
+      ],
+      "frame": "joint:left.finger.index.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.index.3.origin",
+      "joint_id": "left.finger.index.3",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.index.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.index.3.tip",
+      "joint_id": "left.finger.index.3",
+      "position": [
+        -0.024326706305146217,
+        0.001862559001892805,
+        -0.00597173348069191
+      ],
+      "frame": "joint:left.finger.index.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.index.4.origin",
+      "joint_id": "left.finger.index.4",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.index.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.index.4.tip",
+      "joint_id": "left.finger.index.4",
+      "position": [
+        -0.024326706305146217,
+        0.0018625566735863686,
+        -0.00597173348069191
+      ],
+      "frame": "joint:left.finger.index.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.middle.1.origin",
+      "joint_id": "left.finger.middle.1",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.middle.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.middle.1.tip",
+      "joint_id": "left.finger.middle.1",
+      "position": [
+        -0.03385455906391144,
+        0.0013980497606098652,
+        -0.002407813211902976
+      ],
+      "frame": "joint:left.finger.middle.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.middle.2.origin",
+      "joint_id": "left.finger.middle.2",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.middle.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.middle.2.tip",
+      "joint_id": "left.finger.middle.2",
+      "position": [
+        -0.03079865872859955,
+        0.0012816059170290828,
+        -0.00818764790892601
+      ],
+      "frame": "joint:left.finger.middle.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.middle.3.origin",
+      "joint_id": "left.finger.middle.3",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.middle.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.middle.3.tip",
+      "joint_id": "left.finger.middle.3",
+      "position": [
+        -0.02714589610695839,
+        0.0011294075520709157,
+        -0.007094494067132473
+      ],
+      "frame": "joint:left.finger.middle.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.middle.4.origin",
+      "joint_id": "left.finger.middle.4",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.middle.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.middle.4.tip",
+      "joint_id": "left.finger.middle.4",
+      "position": [
+        -0.02714589610695839,
+        0.0011294074356555939,
+        -0.007094494067132473
+      ],
+      "frame": "joint:left.finger.middle.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.ring.1.origin",
+      "joint_id": "left.finger.ring.1",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.ring.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.ring.1.tip",
+      "joint_id": "left.finger.ring.1",
+      "position": [
+        -0.028153827413916588,
+        -0.00020594391389749944,
+        -0.0023851413279771805
+      ],
+      "frame": "joint:left.finger.ring.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.ring.2.origin",
+      "joint_id": "left.finger.ring.2",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.ring.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.ring.2.tip",
+      "joint_id": "left.finger.ring.2",
+      "position": [
+        -0.0272978562861681,
+        -0.00020570684864651412,
+        -0.008685977198183537
+      ],
+      "frame": "joint:left.finger.ring.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.ring.3.origin",
+      "joint_id": "left.finger.ring.3",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.ring.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.ring.3.tip",
+      "joint_id": "left.finger.ring.3",
+      "position": [
+        -0.023547466844320297,
+        -0.0001766547648003325,
+        -0.006654963828623295
+      ],
+      "frame": "joint:left.finger.ring.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.ring.4.origin",
+      "joint_id": "left.finger.ring.4",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.ring.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.ring.4.tip",
+      "joint_id": "left.finger.ring.4",
+      "position": [
+        -0.023547466844320297,
+        -0.0001766547648003325,
+        -0.006654963828623295
+      ],
+      "frame": "joint:left.finger.ring.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.pinky.1.origin",
+      "joint_id": "left.finger.pinky.1",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.pinky.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.pinky.1.tip",
+      "joint_id": "left.finger.pinky.1",
+      "position": [
+        -0.02525862492620945,
+        0.00016461021732538939,
+        -0.003279948141425848
+      ],
+      "frame": "joint:left.finger.pinky.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.pinky.2.origin",
+      "joint_id": "left.finger.pinky.2",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.pinky.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.pinky.2.tip",
+      "joint_id": "left.finger.pinky.2",
+      "position": [
+        -0.020811771973967552,
+        0.00013518014748115093,
+        -0.0048138597048819065
+      ],
+      "frame": "joint:left.finger.pinky.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.pinky.3.origin",
+      "joint_id": "left.finger.pinky.3",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.pinky.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.pinky.3.tip",
+      "joint_id": "left.finger.pinky.3",
+      "position": [
+        -0.01848071999847889,
+        0.00012008326302748173,
+        -0.004072486888617277
+      ],
+      "frame": "joint:left.finger.pinky.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.pinky.4.origin",
+      "joint_id": "left.finger.pinky.4",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:left.finger.pinky.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.finger.pinky.4.tip",
+      "joint_id": "left.finger.pinky.4",
+      "position": [
+        -0.01848071999847889,
+        0.00012008326302748173,
+        -0.004072486888617277
+      ],
+      "frame": "joint:left.finger.pinky.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.clavicle.origin",
+      "joint_id": "right.clavicle",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.clavicle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.clavicle.tip",
+      "joint_id": "right.clavicle",
+      "position": [
+        0.10686887055635452,
+        -0.000575871963519603,
+        -0.03095637634396553
+      ],
+      "frame": "joint:right.clavicle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.upper_arm.origin",
+      "joint_id": "right.upper_arm",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.upper_arm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.upper_arm.tip",
+      "joint_id": "right.upper_arm",
+      "position": [
+        0.2600211799144745,
+        -0.022530579939484596,
+        -0.022774722427129745
+      ],
+      "frame": "joint:right.upper_arm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forearm.origin",
+      "joint_id": "right.forearm",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.forearm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forearm.tip",
+      "joint_id": "right.forearm",
+      "position": [
+        0.2510547935962677,
+        0.00962530542165041,
+        0.015213649719953537
+      ],
+      "frame": "joint:right.forearm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.wrist.origin",
+      "joint_id": "right.wrist",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.wrist.tip",
+      "joint_id": "right.wrist",
+      "position": [
+        0.08369489759206772,
+        0.004851921461522579,
+        -0.00445635337382555
+      ],
+      "frame": "joint:right.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.thigh.origin",
+      "joint_id": "right.thigh",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.thigh",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.thigh.tip",
+      "joint_id": "right.thigh",
+      "position": [
+        0.031463373452425,
+        -0.013944515027105808,
+        -0.4388748109340668
+      ],
+      "frame": "joint:right.thigh",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.shin.origin",
+      "joint_id": "right.shin",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.shin",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.shin.tip",
+      "joint_id": "right.shin",
+      "position": [
+        0.026340993121266365,
+        -0.04936690628528595,
+        -0.4363519251346588
+      ],
+      "frame": "joint:right.shin",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.ankle.origin",
+      "joint_id": "right.ankle",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.ankle.tip",
+      "joint_id": "right.ankle",
+      "position": [
+        0.003612915985286236,
+        0.13527382910251617,
+        -0.09032006561756134
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.toe.origin",
+      "joint_id": "right.toe",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.toe",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.toe.tip",
+      "joint_id": "right.toe",
+      "position": [
+        0.0031184214167296886,
+        0.06696997582912445,
+        0.0004191086336504668
+      ],
+      "frame": "joint:right.toe",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.thumb.1.origin",
+      "joint_id": "right.finger.thumb.1",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.thumb.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.thumb.1.tip",
+      "joint_id": "right.finger.thumb.1",
+      "position": [
+        0.024380357936024666,
+        0.01956145651638508,
+        -0.010869530029594898
+      ],
+      "frame": "joint:right.finger.thumb.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.thumb.2.origin",
+      "joint_id": "right.finger.thumb.2",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.thumb.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.thumb.2.tip",
+      "joint_id": "right.finger.thumb.2",
+      "position": [
+        0.023791873827576637,
+        0.019262950867414474,
+        -0.013456795364618301
+      ],
+      "frame": "joint:right.finger.thumb.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.thumb.3.origin",
+      "joint_id": "right.finger.thumb.3",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.thumb.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.thumb.3.tip",
+      "joint_id": "right.finger.thumb.3",
+      "position": [
+        0.020426318049430847,
+        0.016581624746322632,
+        -0.012268382124602795
+      ],
+      "frame": "joint:right.finger.thumb.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.thumb.4.origin",
+      "joint_id": "right.finger.thumb.4",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.thumb.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.thumb.4.tip",
+      "joint_id": "right.finger.thumb.4",
+      "position": [
+        0.020426318049430847,
+        0.01658162847161293,
+        -0.01226838305592537
+      ],
+      "frame": "joint:right.finger.thumb.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.index.1.origin",
+      "joint_id": "right.finger.index.1",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.index.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.index.1.tip",
+      "joint_id": "right.finger.index.1",
+      "position": [
+        0.03088812716305256,
+        0.002920072991400957,
+        -0.0037496977020055056
+      ],
+      "frame": "joint:right.finger.index.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.index.2.origin",
+      "joint_id": "right.finger.index.2",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.index.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.index.2.tip",
+      "joint_id": "right.finger.index.2",
+      "position": [
+        0.028287680819630623,
+        0.0027733317110687494,
+        -0.00759859150275588
+      ],
+      "frame": "joint:right.finger.index.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.index.3.origin",
+      "joint_id": "right.finger.index.3",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.index.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.index.3.tip",
+      "joint_id": "right.finger.index.3",
+      "position": [
+        0.024626484140753746,
+        0.002339818049222231,
+        -0.0034814318642020226
+      ],
+      "frame": "joint:right.finger.index.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.index.4.origin",
+      "joint_id": "right.finger.index.4",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.index.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.index.4.tip",
+      "joint_id": "right.finger.index.4",
+      "position": [
+        0.024626484140753746,
+        0.002339818049222231,
+        -0.0034814318642020226
+      ],
+      "frame": "joint:right.finger.index.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.middle.1.origin",
+      "joint_id": "right.finger.middle.1",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.middle.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.middle.1.tip",
+      "joint_id": "right.finger.middle.1",
+      "position": [
+        0.032822225242853165,
+        0.0006408116896636784,
+        -9.14250485948287e-05
+      ],
+      "frame": "joint:right.finger.middle.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.middle.2.origin",
+      "joint_id": "right.finger.middle.2",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.middle.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.middle.2.tip",
+      "joint_id": "right.finger.middle.2",
+      "position": [
+        0.03166631609201431,
+        0.0007800496532581747,
+        -0.008230459876358509
+      ],
+      "frame": "joint:right.finger.middle.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.middle.3.origin",
+      "joint_id": "right.finger.middle.3",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.middle.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.middle.3.tip",
+      "joint_id": "right.finger.middle.3",
+      "position": [
+        0.026312677189707756,
+        0.0007184508722275496,
+        -0.010375459678471088
+      ],
+      "frame": "joint:right.finger.middle.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.middle.4.origin",
+      "joint_id": "right.finger.middle.4",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.middle.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.middle.4.tip",
+      "joint_id": "right.finger.middle.4",
+      "position": [
+        0.026312677189707756,
+        0.000718451221473515,
+        -0.010375459678471088
+      ],
+      "frame": "joint:right.finger.middle.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.ring.1.origin",
+      "joint_id": "right.finger.ring.1",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.ring.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.ring.1.tip",
+      "joint_id": "right.finger.ring.1",
+      "position": [
+        0.02928461879491806,
+        -0.0003598708426579833,
+        -0.00330076995305717
+      ],
+      "frame": "joint:right.finger.ring.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.ring.2.origin",
+      "joint_id": "right.finger.ring.2",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.ring.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.ring.2.tip",
+      "joint_id": "right.finger.ring.2",
+      "position": [
+        0.026342956349253654,
+        -0.00022358899877872318,
+        -0.008520773611962795
+      ],
+      "frame": "joint:right.finger.ring.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.ring.3.origin",
+      "joint_id": "right.finger.ring.3",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.ring.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.ring.3.tip",
+      "joint_id": "right.finger.ring.3",
+      "position": [
+        0.022990303114056587,
+        -0.0002422458928776905,
+        -0.004824183881282806
+      ],
+      "frame": "joint:right.finger.ring.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.ring.4.origin",
+      "joint_id": "right.finger.ring.4",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.ring.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.ring.4.tip",
+      "joint_id": "right.finger.ring.4",
+      "position": [
+        0.022990303114056587,
+        -0.0002422458928776905,
+        -0.004824183881282806
+      ],
+      "frame": "joint:right.finger.ring.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.pinky.1.origin",
+      "joint_id": "right.finger.pinky.1",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.pinky.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.pinky.1.tip",
+      "joint_id": "right.finger.pinky.1",
+      "position": [
+        0.026024436578154564,
+        -0.000750030274502933,
+        -0.0013524576788768172
+      ],
+      "frame": "joint:right.finger.pinky.1",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.pinky.2.origin",
+      "joint_id": "right.finger.pinky.2",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.pinky.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.pinky.2.tip",
+      "joint_id": "right.finger.pinky.2",
+      "position": [
+        0.021406296640634537,
+        -0.0005465588183142245,
+        -0.005203963723033667
+      ],
+      "frame": "joint:right.finger.pinky.2",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.pinky.3.origin",
+      "joint_id": "right.finger.pinky.3",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.pinky.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.pinky.3.tip",
+      "joint_id": "right.finger.pinky.3",
+      "position": [
+        0.01951395347714424,
+        -0.0005032867193222046,
+        -0.0044503891840577126
+      ],
+      "frame": "joint:right.finger.pinky.3",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.pinky.4.origin",
+      "joint_id": "right.finger.pinky.4",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "frame": "joint:right.finger.pinky.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.finger.pinky.4.tip",
+      "joint_id": "right.finger.pinky.4",
+      "position": [
+        0.01951395347714424,
+        -0.0005032867193222046,
+        -0.0044503891840577126
+      ],
+      "frame": "joint:right.finger.pinky.4",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.palm.forward",
+      "joint_id": "left.wrist",
+      "position": [
+        -0.049790289252996445,
+        0.0033310502767562866,
+        -0.00313548743724823
+      ],
+      "frame": "joint:left.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.palm.radial",
+      "joint_id": "left.wrist",
+      "position": [
+        0.003355381777510047,
+        0.04988647624850273,
+        -0.000284182489849627
+      ],
+      "frame": "joint:left.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.palm.normal",
+      "joint_id": "left.wrist",
+      "position": [
+        0.003109436249360442,
+        -0.0004934056778438389,
+        -0.049900781363248825
+      ],
+      "frame": "joint:left.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.sole.normal",
+      "joint_id": "left.ankle",
+      "position": [
+        -2.645136298784121e-15,
+        0.0,
+        -0.05000000074505806
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.sole.forward",
+      "joint_id": "left.ankle",
+      "position": [
+        -0.0013841746840626001,
+        0.04998083412647247,
+        7.081758096605384e-11
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.sole",
+      "joint_id": "left.ankle",
+      "position": [
+        -0.00959070399403572,
+        0.08575600385665894,
+        -0.10173887759447098
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forearm.pole",
+      "joint_id": "left.upper_arm",
+      "position": [
+        4.411100155668492e-22,
+        -0.44999995827674866,
+        0.0
+      ],
+      "frame": "joint:left.upper_arm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.shin.pole",
+      "joint_id": "left.thigh",
+      "position": [
+        -4.411100155668492e-22,
+        0.44999995827674866,
+        0.0
+      ],
+      "frame": "joint:left.thigh",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.palm.forward",
+      "joint_id": "right.wrist",
+      "position": [
+        0.049782898277044296,
+        0.0034600391518324614,
+        -0.0031130581628531218
+      ],
+      "frame": "joint:right.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.palm.radial",
+      "joint_id": "right.wrist",
+      "position": [
+        -0.0033200399484485388,
+        0.049836672842502594,
+        0.0022985783871263266
+      ],
+      "frame": "joint:right.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.palm.normal",
+      "joint_id": "right.wrist",
+      "position": [
+        -0.0032619533594697714,
+        0.002081888495013118,
+        -0.04985003173351288
+      ],
+      "frame": "joint:right.wrist",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.sole.normal",
+      "joint_id": "right.ankle",
+      "position": [
+        -2.645136298784121e-15,
+        0.0,
+        -0.05000000074505806
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.sole.forward",
+      "joint_id": "right.ankle",
+      "position": [
+        0.0013349323999136686,
+        0.04998217523097992,
+        7.081774749950753e-11
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.sole",
+      "joint_id": "right.ankle",
+      "position": [
+        0.009521611966192722,
+        0.08583280444145203,
+        -0.10174049437046051
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forearm.pole",
+      "joint_id": "right.upper_arm",
+      "position": [
+        4.411100155668492e-22,
+        -0.44999995827674866,
+        0.0
+      ],
+      "frame": "joint:right.upper_arm",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.shin.pole",
+      "joint_id": "right.thigh",
+      "position": [
+        -4.411100155668492e-22,
+        0.44999995827674866,
+        0.0
+      ],
+      "frame": "joint:right.thigh",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "character.right",
+      "joint_id": "pelvis",
+      "position": [
+        0.1,
+        0,
+        0
+      ],
+      "frame": "joint:pelvis",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "character.forward",
+      "joint_id": "pelvis",
+      "position": [
+        0,
+        0.1,
+        0
+      ],
+      "frame": "joint:pelvis",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "character.up",
+      "joint_id": "pelvis",
+      "position": [
+        0,
+        0,
+        0.1
+      ],
+      "frame": "joint:pelvis",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.heel",
+      "joint_id": "left.ankle",
+      "position": [
+        -0.0058183325454592705,
+        -0.05045965313911438,
+        -0.10173887759447098
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forefoot",
+      "joint_id": "left.ankle",
+      "position": [
+        -0.012193987146019936,
+        0.17975732684135437,
+        -0.10173887759447098
+      ],
+      "frame": "joint:left.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.heel",
+      "joint_id": "right.ankle",
+      "position": [
+        0.005883455276489258,
+        -0.050386056303977966,
+        -0.10174049437046051
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forefoot",
+      "joint_id": "right.ankle",
+      "position": [
+        0.012032204307615757,
+        0.17983372509479523,
+        -0.10174049437046051
+      ],
+      "frame": "joint:right.ankle",
+      "unit": "metre"
+    }
+  ],
+  "joint_limits": [
+    {
+      "schema_version": 1,
+      "control_id": "head.yaw",
+      "minimum": -80,
+      "maximum": 80,
+      "zero": 0,
+      "positive_axis": [
+        5.2902723434583576e-14,
+        0.0,
+        1.0
+      ],
+      "mirror_control_id": "head.yaw",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "head.pitch",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        -0.9999999403953552,
+        9.802444678180876e-22,
+        -5.2902723434583576e-14
+      ],
+      "mirror_control_id": "head.pitch",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "head.roll",
+      "minimum": -45,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        -9.802444678180876e-22,
+        0.9999999403953552,
+        0.0
+      ],
+      "mirror_control_id": "head.roll",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "torso.yaw",
+      "minimum": -80,
+      "maximum": 80,
+      "zero": 0,
+      "positive_axis": [
+        5.2902723434583576e-14,
+        0.0,
+        1.0
+      ],
+      "mirror_control_id": "torso.yaw",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "torso.pitch",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        -0.9999999403953552,
+        9.802444678180876e-22,
+        -5.2902723434583576e-14
+      ],
+      "mirror_control_id": "torso.pitch",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "torso.roll",
+      "minimum": -45,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        -9.802444678180876e-22,
+        0.9999999403953552,
+        0.0
+      ],
+      "mirror_control_id": "torso.roll",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "spine.mid.yaw",
+      "minimum": -80,
+      "maximum": 80,
+      "zero": 0,
+      "positive_axis": [
+        5.2902723434583576e-14,
+        0.0,
+        1.0
+      ],
+      "mirror_control_id": "spine.mid.yaw",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "spine.mid.pitch",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        -0.9999999403953552,
+        9.802444678180876e-22,
+        -5.2902723434583576e-14
+      ],
+      "mirror_control_id": "spine.mid.pitch",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "spine.mid.roll",
+      "minimum": -45,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        -9.802444678180876e-22,
+        0.9999999403953552,
+        0.0
+      ],
+      "mirror_control_id": "spine.mid.roll",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "spine.upper.yaw",
+      "minimum": -80,
+      "maximum": 80,
+      "zero": 0,
+      "positive_axis": [
+        5.2902723434583576e-14,
+        0.0,
+        1.0
+      ],
+      "mirror_control_id": "spine.upper.yaw",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "spine.upper.pitch",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        -0.9999999403953552,
+        9.802444678180876e-22,
+        -5.2902723434583576e-14
+      ],
+      "mirror_control_id": "spine.upper.pitch",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "spine.upper.roll",
+      "minimum": -45,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        -9.802444678180876e-22,
+        0.9999999403953552,
+        0.0
+      ],
+      "mirror_control_id": "spine.upper.roll",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "neck.yaw",
+      "minimum": -80,
+      "maximum": 80,
+      "zero": 0,
+      "positive_axis": [
+        5.2902723434583576e-14,
+        0.0,
+        1.0
+      ],
+      "mirror_control_id": "neck.yaw",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "neck.pitch",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        -0.9999999403953552,
+        9.802444678180876e-22,
+        -5.2902723434583576e-14
+      ],
+      "mirror_control_id": "neck.pitch",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "neck.roll",
+      "minimum": -45,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        -9.802444678180876e-22,
+        0.9999999403953552,
+        0.0
+      ],
+      "mirror_control_id": "neck.roll",
+      "mirror_sign": -1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.elbow.flexion",
+      "minimum": 0,
+      "maximum": 145,
+      "zero": 0,
+      "positive_axis": [
+        0.08724864572286606,
+        5.0869641832207435e-11,
+        -0.9961865544319153
+      ],
+      "mirror_control_id": "right.elbow.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "geometric unsigned segment angle; straight=0",
+      "preferred_minimum": 0,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.knee.flexion",
+      "minimum": 0,
+      "maximum": 150,
+      "zero": 0,
+      "positive_axis": [
+        -0.997441828250885,
+        -1.3038456425640277e-10,
+        0.07148166745901108
+      ],
+      "mirror_control_id": "right.knee.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "geometric unsigned thigh/shin segment angle; straight=0",
+      "preferred_minimum": 0,
+      "preferred_maximum": 100
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.hip.flexion",
+      "minimum": -90,
+      "maximum": 120,
+      "zero": 0,
+      "positive_axis": [
+        0.9999999403953552,
+        -9.802444678180876e-22,
+        5.2902723434583576e-14
+      ],
+      "mirror_control_id": "right.hip.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.forearm.twist",
+      "minimum": -180,
+      "maximum": 180,
+      "zero": 0,
+      "positive_axis": [
+        0.9975139498710632,
+        -0.0361853688955307,
+        -0.06046900153160095
+      ],
+      "mirror_control_id": "right.forearm.twist",
+      "mirror_sign": 1,
+      "measurement_method": "parent-relative axial swing/twist; positive supination convention",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.ankle.flexion",
+      "minimum": -50,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        0.9999999403953552,
+        -9.802444678180876e-22,
+        5.2902723434583576e-14
+      ],
+      "mirror_control_id": "right.ankle.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.toe.flexion",
+      "minimum": -40,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        0.9999999403953552,
+        -9.802444678180876e-22,
+        5.2902723434583576e-14
+      ],
+      "mirror_control_id": "right.toe.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.wrist.flexion",
+      "minimum": -70,
+      "maximum": 70,
+      "zero": 0,
+      "positive_axis": [
+        -0.06710763275623322,
+        -0.997729480266571,
+        0.0056836484000086784
+      ],
+      "mirror_control_id": "right.wrist.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.wrist.deviation",
+      "minimum": -30,
+      "maximum": 30,
+      "zero": 0,
+      "positive_axis": [
+        0.06218872219324112,
+        -0.009868113324046135,
+        -0.9980156421661377
+      ],
+      "mirror_control_id": "right.wrist.deviation",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.elbow.flexion",
+      "minimum": 0,
+      "maximum": 145,
+      "zero": 0,
+      "positive_axis": [
+        0.08725389838218689,
+        6.554634612854215e-11,
+        0.9961860775947571
+      ],
+      "mirror_control_id": "left.elbow.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "geometric unsigned segment angle; straight=0",
+      "preferred_minimum": 0,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.knee.flexion",
+      "minimum": 0,
+      "maximum": 150,
+      "zero": 0,
+      "positive_axis": [
+        -0.997439980506897,
+        -1.509804087307387e-11,
+        -0.07150746881961823
+      ],
+      "mirror_control_id": "left.knee.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "geometric unsigned thigh/shin segment angle; straight=0",
+      "preferred_minimum": 0,
+      "preferred_maximum": 100
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.hip.flexion",
+      "minimum": -90,
+      "maximum": 120,
+      "zero": 0,
+      "positive_axis": [
+        0.9999999403953552,
+        -9.802444678180876e-22,
+        5.2902723434583576e-14
+      ],
+      "mirror_control_id": "left.hip.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.forearm.twist",
+      "minimum": -180,
+      "maximum": 180,
+      "zero": 0,
+      "positive_axis": [
+        0.9974387884140015,
+        0.03824126347899437,
+        0.06044371426105499
+      ],
+      "mirror_control_id": "left.forearm.twist",
+      "mirror_sign": 1,
+      "measurement_method": "parent-relative axial swing/twist; positive supination convention",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.ankle.flexion",
+      "minimum": -50,
+      "maximum": 45,
+      "zero": 0,
+      "positive_axis": [
+        0.9999999403953552,
+        -9.802444678180876e-22,
+        5.2902723434583576e-14
+      ],
+      "mirror_control_id": "left.ankle.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.toe.flexion",
+      "minimum": -40,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        0.9999999403953552,
+        -9.802444678180876e-22,
+        5.2902723434583576e-14
+      ],
+      "mirror_control_id": "left.toe.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.wrist.flexion",
+      "minimum": -70,
+      "maximum": 70,
+      "zero": 0,
+      "positive_axis": [
+        -0.06640081107616425,
+        0.9967334270477295,
+        0.04597156494855881
+      ],
+      "mirror_control_id": "left.wrist.flexion",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.wrist.deviation",
+      "minimum": -30,
+      "maximum": 30,
+      "zero": 0,
+      "positive_axis": [
+        0.0652390643954277,
+        -0.04163777083158493,
+        0.9970006346702576
+      ],
+      "mirror_control_id": "left.wrist.deviation",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -30,
+      "preferred_maximum": 30
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.clavicle.elevation",
+      "minimum": -12,
+      "maximum": 12,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": "right.clavicle.elevation",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative calibrated swing/twist; mirrored elevation/protraction",
+      "preferred_minimum": -12,
+      "preferred_maximum": 12
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.clavicle.protraction",
+      "minimum": -12,
+      "maximum": 12,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        0,
+        -1
+      ],
+      "mirror_control_id": "right.clavicle.protraction",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative calibrated swing/twist; mirrored elevation/protraction",
+      "preferred_minimum": -12,
+      "preferred_maximum": 12
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.clavicle.twist",
+      "minimum": -12,
+      "maximum": 12,
+      "zero": 0,
+      "positive_axis": [
+        -1,
+        0,
+        0
+      ],
+      "mirror_control_id": "right.clavicle.twist",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative calibrated swing/twist; mirrored elevation/protraction",
+      "preferred_minimum": -12,
+      "preferred_maximum": 12
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.clavicle.elevation",
+      "minimum": -12,
+      "maximum": 12,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        -1,
+        0
+      ],
+      "mirror_control_id": "left.clavicle.elevation",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative calibrated swing/twist; mirrored elevation/protraction",
+      "preferred_minimum": -12,
+      "preferred_maximum": 12
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.clavicle.protraction",
+      "minimum": -12,
+      "maximum": 12,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        0,
+        1
+      ],
+      "mirror_control_id": "left.clavicle.protraction",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative calibrated swing/twist; mirrored elevation/protraction",
+      "preferred_minimum": -12,
+      "preferred_maximum": 12
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.clavicle.twist",
+      "minimum": -12,
+      "maximum": 12,
+      "zero": 0,
+      "positive_axis": [
+        1,
+        0,
+        0
+      ],
+      "mirror_control_id": "left.clavicle.twist",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative calibrated swing/twist; mirrored elevation/protraction",
+      "preferred_minimum": -12,
+      "preferred_maximum": 12
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.elbow.plane",
+      "minimum": -180,
+      "maximum": 180,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": null,
+      "mirror_sign": 1,
+      "measurement_method": "signed geometric pole angle about shoulder-to-wrist, root backward reference",
+      "preferred_minimum": -60,
+      "preferred_maximum": 60
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.elbow.plane",
+      "minimum": -180,
+      "maximum": 180,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": null,
+      "mirror_sign": 1,
+      "measurement_method": "signed geometric pole angle about shoulder-to-wrist, root backward reference",
+      "preferred_minimum": -60,
+      "preferred_maximum": 60
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.hip.abduction",
+      "minimum": -25,
+      "maximum": 40,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": "right.hip.abduction",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative swing/twist",
+      "preferred_minimum": -25,
+      "preferred_maximum": 40
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.hip.rotation",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        0,
+        1
+      ],
+      "mirror_control_id": "right.hip.rotation",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative swing/twist",
+      "preferred_minimum": -60,
+      "preferred_maximum": 60
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.knee.plane",
+      "minimum": -180,
+      "maximum": 180,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": "right.knee.plane",
+      "mirror_sign": 1,
+      "measurement_method": "signed geometric pole about hip-to-ankle; pelvis-forward reference; undefined below 3 degrees",
+      "preferred_minimum": -180,
+      "preferred_maximum": 180
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.hip.abduction",
+      "minimum": -25,
+      "maximum": 40,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        -1,
+        0
+      ],
+      "mirror_control_id": "left.hip.abduction",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative swing/twist",
+      "preferred_minimum": -25,
+      "preferred_maximum": 40
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.hip.rotation",
+      "minimum": -60,
+      "maximum": 60,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        0,
+        -1
+      ],
+      "mirror_control_id": "left.hip.rotation",
+      "mirror_sign": 1,
+      "measurement_method": "signed parent-relative swing/twist",
+      "preferred_minimum": -60,
+      "preferred_maximum": 60
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.knee.plane",
+      "minimum": -180,
+      "maximum": 180,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": "left.knee.plane",
+      "mirror_sign": 1,
+      "measurement_method": "signed geometric pole about hip-to-ankle; pelvis-forward reference; undefined below 3 degrees",
+      "preferred_minimum": -180,
+      "preferred_maximum": 180
+    },
+    {
+      "schema_version": 1,
+      "control_id": "left.ankle.tilt",
+      "minimum": -25,
+      "maximum": 25,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        1,
+        0
+      ],
+      "mirror_control_id": "right.ankle.tilt",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -15,
+      "preferred_maximum": 15
+    },
+    {
+      "schema_version": 1,
+      "control_id": "right.ankle.tilt",
+      "minimum": -25,
+      "maximum": 25,
+      "zero": 0,
+      "positive_axis": [
+        0,
+        -1,
+        0
+      ],
+      "mirror_control_id": "left.ankle.tilt",
+      "mirror_sign": 1,
+      "measurement_method": "signed calibrated parent-relative swing/twist",
+      "preferred_minimum": -15,
+      "preferred_maximum": 15
+    }
+  ],
+  "controls": [
+    {
+      "schema_version": 1,
+      "id": "head.yaw",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:neck"
+      ],
+      "chain": "head",
+      "capability": "measure.head.yaw"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.pitch",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:neck"
+      ],
+      "chain": "head",
+      "capability": "measure.head.pitch"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.roll",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:neck"
+      ],
+      "chain": "head",
+      "capability": "measure.head.roll"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso.yaw",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "torso",
+      "capability": "measure.torso.yaw"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso.pitch",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "torso",
+      "capability": "measure.torso.pitch"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso.roll",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "torso",
+      "capability": "measure.torso.roll"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.mid.yaw",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:torso"
+      ],
+      "chain": "spine.mid",
+      "capability": "measure.spine.mid.yaw"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.mid.pitch",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:torso"
+      ],
+      "chain": "spine.mid",
+      "capability": "measure.spine.mid.pitch"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.mid.roll",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:torso"
+      ],
+      "chain": "spine.mid",
+      "capability": "measure.spine.mid.roll"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.upper.yaw",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.mid"
+      ],
+      "chain": "spine.upper",
+      "capability": "measure.spine.upper.yaw"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.upper.pitch",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.mid"
+      ],
+      "chain": "spine.upper",
+      "capability": "measure.spine.upper.pitch"
+    },
+    {
+      "schema_version": 1,
+      "id": "spine.upper.roll",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.mid"
+      ],
+      "chain": "spine.upper",
+      "capability": "measure.spine.upper.roll"
+    },
+    {
+      "schema_version": 1,
+      "id": "neck.yaw",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.upper"
+      ],
+      "chain": "neck",
+      "capability": "measure.neck.yaw"
+    },
+    {
+      "schema_version": 1,
+      "id": "neck.pitch",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.upper"
+      ],
+      "chain": "neck",
+      "capability": "measure.neck.pitch"
+    },
+    {
+      "schema_version": 1,
+      "id": "neck.roll",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.upper"
+      ],
+      "chain": "neck",
+      "capability": "measure.neck.roll"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.elbow.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.upper_arm"
+      ],
+      "chain": "left.forearm",
+      "capability": "measure.left.elbow.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.knee.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.thigh"
+      ],
+      "chain": "left.shin",
+      "capability": "measure.left.knee.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hip.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "left.thigh",
+      "capability": "measure.left.hip.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forearm.twist",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.upper_arm"
+      ],
+      "chain": "left.forearm",
+      "capability": "measure.left.forearm.twist"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.ankle.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.shin"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.ankle.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.toe.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.ankle"
+      ],
+      "chain": "left.toe",
+      "capability": "measure.left.toe.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.wrist.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.forearm"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.wrist.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.wrist.deviation",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.forearm"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.wrist.deviation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.upper_arm.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.upper_arm",
+      "capability": "measure.left.upper_arm.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forearm.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.forearm",
+      "capability": "measure.left.forearm.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.thigh.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.thigh",
+      "capability": "measure.left.thigh.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.shin.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.shin",
+      "capability": "measure.left.shin.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hand.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.hand.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hand.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.hand.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hand.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.hand.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.foot.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.foot.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.foot.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.foot.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.foot.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.foot.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.elbow.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.upper_arm"
+      ],
+      "chain": "right.forearm",
+      "capability": "measure.right.elbow.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.knee.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.thigh"
+      ],
+      "chain": "right.shin",
+      "capability": "measure.right.knee.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hip.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "right.thigh",
+      "capability": "measure.right.hip.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forearm.twist",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.upper_arm"
+      ],
+      "chain": "right.forearm",
+      "capability": "measure.right.forearm.twist"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.ankle.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.shin"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.ankle.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.toe.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.ankle"
+      ],
+      "chain": "right.toe",
+      "capability": "measure.right.toe.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.wrist.flexion",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.forearm"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.wrist.flexion"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.wrist.deviation",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.forearm"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.wrist.deviation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.upper_arm.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.upper_arm",
+      "capability": "measure.right.upper_arm.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forearm.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.forearm",
+      "capability": "measure.right.forearm.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.thigh.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.thigh",
+      "capability": "measure.right.thigh.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.shin.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.shin",
+      "capability": "measure.right.shin.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hand.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.hand.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hand.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.hand.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hand.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.hand.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.foot.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.foot.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.foot.direction",
+      "unit": "unitless",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.foot.direction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.foot.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.foot.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "root.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "pelvis",
+      "capability": "measure.root.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "root.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "pelvis",
+      "capability": "measure.root.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "head",
+      "capability": "measure.head.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "head",
+      "capability": "measure.head.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "head.torso_orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "current_torso"
+      ],
+      "chain": "head",
+      "capability": "measure.head.torso_orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "pelvis.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "pelvis",
+      "capability": "measure.pelvis.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "pelvis.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "pelvis",
+      "capability": "measure.pelvis.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "object_root.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "pelvis",
+      "capability": "measure.object_root.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "object_root.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "pelvis",
+      "capability": "measure.object_root.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.upper_arm.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.upper_arm",
+      "capability": "measure.left.upper_arm.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.clavicle.elevation",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.upper"
+      ],
+      "chain": "left.clavicle",
+      "capability": "measure.left.clavicle.elevation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.clavicle.protraction",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.upper"
+      ],
+      "chain": "left.clavicle",
+      "capability": "measure.left.clavicle.protraction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.clavicle.twist",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.upper"
+      ],
+      "chain": "left.clavicle",
+      "capability": "measure.left.clavicle.twist"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.upper_arm.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.upper_arm",
+      "capability": "measure.right.upper_arm.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.clavicle.elevation",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.upper"
+      ],
+      "chain": "right.clavicle",
+      "capability": "measure.right.clavicle.elevation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.clavicle.protraction",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.upper"
+      ],
+      "chain": "right.clavicle",
+      "capability": "measure.right.clavicle.protraction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.clavicle.twist",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:spine.upper"
+      ],
+      "chain": "right.clavicle",
+      "capability": "measure.right.clavicle.twist"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.elbow.plane",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "current_root"
+      ],
+      "chain": "left.forearm",
+      "capability": "measure.left.elbow.plane"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hand.torso_position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "current_torso"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.hand.torso_position"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hand.torso_orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "current_torso"
+      ],
+      "chain": "left.wrist",
+      "capability": "measure.left.hand.torso_orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.elbow.plane",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "current_root"
+      ],
+      "chain": "right.forearm",
+      "capability": "measure.right.elbow.plane"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hand.torso_position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "current_torso"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.hand.torso_position"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hand.torso_orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "current_torso"
+      ],
+      "chain": "right.wrist",
+      "capability": "measure.right.hand.torso_orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso_frame.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "torso",
+      "capability": "measure.torso_frame.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "torso_frame.orientation",
+      "unit": "unitless",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "frames": [
+        "world"
+      ],
+      "chain": "torso",
+      "capability": "measure.torso_frame.orientation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hip.abduction",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "left.thigh",
+      "capability": "measure.left.hip.abduction"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.hip.rotation",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "left.thigh",
+      "capability": "measure.left.hip.rotation"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.knee.plane",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "current_pelvis"
+      ],
+      "chain": "left.shin",
+      "capability": "measure.left.knee.plane"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hip.abduction",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "right.thigh",
+      "capability": "measure.right.hip.abduction"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.hip.rotation",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:pelvis"
+      ],
+      "chain": "right.thigh",
+      "capability": "measure.right.hip.rotation"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.knee.plane",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "current_pelvis"
+      ],
+      "chain": "right.shin",
+      "capability": "measure.right.knee.plane"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.sole.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.sole.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.heel.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.heel.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.forefoot.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.forefoot.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "left.ankle.tilt",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:left.shin"
+      ],
+      "chain": "left.ankle",
+      "capability": "measure.left.ankle.tilt"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.sole.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.sole.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.heel.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.heel.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.forefoot.position",
+      "unit": "metre",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "frames": [
+        "world"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.forefoot.position"
+    },
+    {
+      "schema_version": 1,
+      "id": "right.ankle.tilt",
+      "unit": "degree",
+      "value_shape": "scalar",
+      "dimensions": 1,
+      "frames": [
+        "joint:right.shin"
+      ],
+      "chain": "right.ankle",
+      "capability": "measure.right.ankle.tilt"
+    }
+  ],
+  "capabilities": [
+    "anatomy.left.clavicle",
+    "anatomy.left.finger.index",
+    "anatomy.left.finger.middle",
+    "anatomy.left.finger.pinky",
+    "anatomy.left.finger.ring",
+    "anatomy.left.finger.thumb",
+    "anatomy.left.toe",
+    "anatomy.neck",
+    "anatomy.right.clavicle",
+    "anatomy.right.finger.index",
+    "anatomy.right.finger.middle",
+    "anatomy.right.finger.pinky",
+    "anatomy.right.finger.ring",
+    "anatomy.right.finger.thumb",
+    "anatomy.right.toe",
+    "anatomy.spine.mid",
+    "anatomy.spine.upper",
+    "measure.head.orientation",
+    "measure.head.pitch",
+    "measure.head.position",
+    "measure.head.roll",
+    "measure.head.torso_orientation",
+    "measure.head.yaw",
+    "measure.left.ankle.flexion",
+    "measure.left.ankle.tilt",
+    "measure.left.clavicle.elevation",
+    "measure.left.clavicle.protraction",
+    "measure.left.clavicle.twist",
+    "measure.left.elbow.flexion",
+    "measure.left.elbow.plane",
+    "measure.left.foot.direction",
+    "measure.left.foot.orientation",
+    "measure.left.foot.position",
+    "measure.left.forearm.direction",
+    "measure.left.forearm.twist",
+    "measure.left.forefoot.position",
+    "measure.left.hand.direction",
+    "measure.left.hand.orientation",
+    "measure.left.hand.position",
+    "measure.left.hand.torso_orientation",
+    "measure.left.hand.torso_position",
+    "measure.left.heel.position",
+    "measure.left.hip.abduction",
+    "measure.left.hip.flexion",
+    "measure.left.hip.rotation",
+    "measure.left.knee.flexion",
+    "measure.left.knee.plane",
+    "measure.left.shin.direction",
+    "measure.left.sole.position",
+    "measure.left.thigh.direction",
+    "measure.left.toe.flexion",
+    "measure.left.upper_arm.direction",
+    "measure.left.upper_arm.orientation",
+    "measure.left.wrist.deviation",
+    "measure.left.wrist.flexion",
+    "measure.neck.pitch",
+    "measure.neck.roll",
+    "measure.neck.yaw",
+    "measure.object_root.orientation",
+    "measure.object_root.position",
+    "measure.pelvis.orientation",
+    "measure.pelvis.position",
+    "measure.right.ankle.flexion",
+    "measure.right.ankle.tilt",
+    "measure.right.clavicle.elevation",
+    "measure.right.clavicle.protraction",
+    "measure.right.clavicle.twist",
+    "measure.right.elbow.flexion",
+    "measure.right.elbow.plane",
+    "measure.right.foot.direction",
+    "measure.right.foot.orientation",
+    "measure.right.foot.position",
+    "measure.right.forearm.direction",
+    "measure.right.forearm.twist",
+    "measure.right.forefoot.position",
+    "measure.right.hand.direction",
+    "measure.right.hand.orientation",
+    "measure.right.hand.position",
+    "measure.right.hand.torso_orientation",
+    "measure.right.hand.torso_position",
+    "measure.right.heel.position",
+    "measure.right.hip.abduction",
+    "measure.right.hip.flexion",
+    "measure.right.hip.rotation",
+    "measure.right.knee.flexion",
+    "measure.right.knee.plane",
+    "measure.right.shin.direction",
+    "measure.right.sole.position",
+    "measure.right.thigh.direction",
+    "measure.right.toe.flexion",
+    "measure.right.upper_arm.direction",
+    "measure.right.upper_arm.orientation",
+    "measure.right.wrist.deviation",
+    "measure.right.wrist.flexion",
+    "measure.root.orientation",
+    "measure.root.position",
+    "measure.spine.mid.pitch",
+    "measure.spine.mid.roll",
+    "measure.spine.mid.yaw",
+    "measure.spine.upper.pitch",
+    "measure.spine.upper.roll",
+    "measure.spine.upper.yaw",
+    "measure.torso.pitch",
+    "measure.torso.roll",
+    "measure.torso.yaw",
+    "measure.torso_frame.orientation",
+    "measure.torso_frame.position",
+    "reference.left.palm",
+    "reference.right.palm"
+  ],
+  "calibration_provenance": {
+    "schema_version": 1,
+    "method": "rest-skeleton and weighted-skin calibration v1; no anatomy edits",
+    "source_revision": "unversioned",
+    "evidence": [
+      "rig_sha256:35fabac0f0c10c8591f5b943350193c2f676fa4c64dfdbec63807732db6a0430",
+      "angles_tolerance_deg:0.1",
+      "position_tolerance_m:0.0001",
+      "software_ranges:engineering_bounds_not_medical_or_collision_certification",
+      "optional_bones:detected_not_created",
+      "poles:parent_relative_fallback_below_0.5deg_smooth_blend_to_5deg",
+      "palm_reference:index_pinky_plane_or_unavailable",
+      "head_aim_v1:world_position_world_and_torso_orientation",
+      "pelvis_v1:bone_world_transform_not_object_root",
+      "shoulder_arm_v1:optional_clavicle_and_world_upper_arm_orientation",
+      "hand_v1:geometric_elbow_and_root_referenced_plane",
+      "leg_v1:geometric_knee_parent_hip_and_reachable_bend_plane",
+      "foot_v1:rigid_heel_forefoot_contacts"
+    ],
+    "recorded_at": "2026-11-09"
+  }
+}

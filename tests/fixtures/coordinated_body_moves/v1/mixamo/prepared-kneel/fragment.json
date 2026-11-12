@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "fragment_id": "support.test.fragment",
+  "source_instance_ids": [
+    "support.test"
+  ],
+  "entry_requirements": [],
+  "duration_s": 2.6,
+  "tracks": [],
+  "contact_events": [
+    {
+      "schema_version": 1,
+      "event_id": "support.test.right.sole",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "right.sole",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 2.6
+      },
+      "acquire_s": 0,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.04311198368668556,
+        -0.1587350219488144,
+        0.0015561396721750498
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.left.knee.support",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "left.knee.support",
+      "surface_id": "knee-pad",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 2.6
+      },
+      "acquire_s": 1.2,
+      "release_s": 1.2,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.4257282614707947,
+        0.1221986711025238,
+        0.523373358906116
+      ]
+    }
+  ],
+  "phase_landmarks": [
+    {
+      "schema_version": 1,
+      "name": "supported",
+      "time_s": 1.2
+    },
+    {
+      "schema_version": 1,
+      "name": "end",
+      "time_s": 2.6
+    }
+  ],
+  "exit_expectations": [],
+  "goals": []
+}

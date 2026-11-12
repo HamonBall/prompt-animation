@@ -1,0 +1,61 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "lead": {
+      "type": "string",
+      "enum": [
+        "left",
+        "right"
+      ],
+      "x-unit": "unitless",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": "left"
+    },
+    "distance_m": {
+      "type": "number",
+      "minimum": 0.04,
+      "maximum": 0.1,
+      "x-unit": "metre",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.06
+    },
+    "clearance_m": {
+      "type": "number",
+      "minimum": 0.03,
+      "maximum": 0.06,
+      "x-unit": "metre",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.04
+    },
+    "swing_s": {
+      "type": "number",
+      "minimum": 0.5,
+      "maximum": 0.9,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.6
+    },
+    "support": {
+      "type": "string",
+      "enum": [
+        "hands_feet",
+        "hands_knees"
+      ],
+      "x-unit": "unitless",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": "hands_feet"
+    }
+  },
+  "required": []
+}

@@ -1,0 +1,389 @@
+{
+  "schema_version": 1,
+  "fragment_id": "support.test.fragment",
+  "source_instance_ids": [
+    "support.test"
+  ],
+  "entry_requirements": [
+    {
+      "schema_version": 1,
+      "requirement_id": "support.test.r0",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.6111418008804321,
+          0.0002944522420875728,
+          0.11301678419113159
+        ]
+      },
+      "tolerance": 0.05
+    },
+    {
+      "schema_version": 1,
+      "requirement_id": "support.test.r1",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.6859478950500488,
+          0.1710260808467865,
+          -0.1711035668849945,
+          -0.6862574219703674
+        ]
+      },
+      "tolerance": 0.05
+    }
+  ],
+  "duration_s": 4.233333333333333,
+  "tracks": [
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t0",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          -0.6111418008804321,
+          0.0002944522420875728,
+          0.11301678419113159
+        ],
+        "end_value": [
+          -0.6111418008804321,
+          0.0002944522420875728,
+          0.11301678419113159
+        ],
+        "duration_s": 0.2,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 0.2
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t1",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          -0.6111418008804321,
+          0.0002944522420875728,
+          0.11301678419113159
+        ],
+        "end_value": [
+          -0.5661418054572981,
+          0.0002741564810885943,
+          0.12523602798295796
+        ],
+        "duration_s": 2.5999999999999996,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 2.8
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t2",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.orientation",
+      "unit": "unitless",
+      "frame": "world",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.6859478950500488,
+          0.1710260808467865,
+          -0.1711035668849945,
+          -0.6862574219703674
+        ],
+        "end_value": [
+          0.6859478950500488,
+          0.1710260808467865,
+          -0.1711035668849945,
+          -0.6862574219703674
+        ],
+        "duration_s": 0.2,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 0.2
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t3",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.orientation",
+      "unit": "unitless",
+      "frame": "world",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.6859478950500488,
+          0.1710260808467865,
+          -0.1711035668849945,
+          -0.6862574219703674
+        ],
+        "end_value": [
+          0.545497998693099,
+          0.44967362439354636,
+          -0.44987681684412306,
+          -0.5457440146042667
+        ],
+        "duration_s": 2.5999999999999996,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 2.8
+      }
+    }
+  ],
+  "contact_events": [
+    {
+      "schema_version": 1,
+      "event_id": "support.test.left.sole",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "left.sole",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 4.233333333333333
+      },
+      "acquire_s": 0,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.043127890676259995,
+        0.19373473525047302,
+        0.0015565298963338137
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.right.sole",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "right.sole",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 4.233333333333333
+      },
+      "acquire_s": 0,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.04309617727994919,
+        -0.19373492896556854,
+        0.0015562539920210838
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.pelvis.support",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "pelvis.support",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 0.2
+      },
+      "acquire_s": 0,
+      "release_s": 0.2,
+      "clearance_m": 0,
+      "target_world_v1": [
+        -0.4996683789561569,
+        0.03130849936027362,
+        0
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.back.support",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "back.support",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.8333333333333335,
+        "end_s": 4.233333333333333
+      },
+      "acquire_s": 1.2,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        -0.8709820877063785,
+        0.008444001550675578,
+        0
+      ]
+    }
+  ],
+  "phase_landmarks": [
+    {
+      "schema_version": 1,
+      "name": "approached",
+      "time_s": 2.8
+    },
+    {
+      "schema_version": 1,
+      "name": "supported",
+      "time_s": 4.033333333333333
+    },
+    {
+      "schema_version": 1,
+      "name": "end",
+      "time_s": 4.233333333333333
+    }
+  ],
+  "exit_expectations": [],
+  "goals": [
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g0",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.6111418008804321,
+          0.0002944522420875728,
+          0.11301678419113159
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 0.2
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g1",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.5661418054572981,
+          0.0002741564810885943,
+          0.12523602798295796
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.8,
+        "end_s": 2.8
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g2",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.6859478950500488,
+          0.1710260808467865,
+          -0.1711035668849945,
+          -0.6862574219703674
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.2,
+        "end_s": 0.2
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g3",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.545497998693099,
+          0.44967362439354636,
+          -0.44987681684412306,
+          -0.5457440146042667
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.8,
+        "end_s": 2.8
+      },
+      "tolerance": 0.1,
+      "locked": true
+    }
+  ]
+}

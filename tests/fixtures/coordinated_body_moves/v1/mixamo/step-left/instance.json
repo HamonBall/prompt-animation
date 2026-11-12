@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "instance_id": "support.test",
+  "definition_id": "body.step",
+  "definition_version": 1,
+  "parameters": [
+    {
+      "schema_version": 1,
+      "name": "clearance_m",
+      "value": 0.06
+    },
+    {
+      "schema_version": 1,
+      "name": "distance_m",
+      "value": 0.1
+    },
+    {
+      "schema_version": 1,
+      "name": "phase_s",
+      "value": 0.8
+    },
+    {
+      "schema_version": 1,
+      "name": "side",
+      "value": "left"
+    }
+  ],
+  "clause_ids": [],
+  "explicit_parameters": [
+    "side"
+  ]
+}

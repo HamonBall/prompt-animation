@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "instance_id": "support.test",
+  "definition_id": "body.lunge",
+  "definition_version": 1,
+  "parameters": [
+    {
+      "schema_version": 1,
+      "name": "advance_m",
+      "value": 0.06
+    },
+    {
+      "schema_version": 1,
+      "name": "depth_m",
+      "value": 0.06
+    },
+    {
+      "schema_version": 1,
+      "name": "hold_s",
+      "value": 0.2
+    },
+    {
+      "schema_version": 1,
+      "name": "lead",
+      "value": "left"
+    },
+    {
+      "schema_version": 1,
+      "name": "phase_s",
+      "value": 1.2
+    }
+  ],
+  "clause_ids": [],
+  "explicit_parameters": [
+    "lead"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "depth_m": {
+      "type": "number",
+      "minimum": 0.03,
+      "maximum": 0.1,
+      "x-unit": "metre",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.06
+    },
+    "phase_s": {
+      "type": "number",
+      "minimum": 0.9,
+      "maximum": 2,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 1.2
+    },
+    "hold_s": {
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 0.6,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.2
+    }
+  },
+  "required": []
+}

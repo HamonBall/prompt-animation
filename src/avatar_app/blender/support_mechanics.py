@@ -3,7 +3,7 @@ from dataclasses import replace
 import math
 
 import bpy
-from mathutils import Quaternion, Vector
+from mathutils import Matrix, Quaternion, Vector
 
 from . import rig_profile as rp
 from .hand_mechanics import rotate_bone
@@ -122,3 +122,84 @@ def apply_palm(adapter, side, target, weight):
             c.fail('INVALID_PARAMETER', 'Palm support exceeds a calibrated wrist limit', control_id=control,
                    details={'actual_deg': measured, 'weight': weight, 'bounds_deg': (limit.minimum, limit.maximum)})
     return goal
+
+
+def place_crawl_knees(handle, profile, targets, floor):
+    """Fit pelvis height and roll to two knee points while keeping both shanks oriented."""
+    from .kinematics import aim
+
+    world = handle.rig.matrix_world
+    inverse = world.inverted()
+    hips = handle.bones['Hips']
+    base = world @ hips.matrix
+    pivot = base.translation
+    heading = rp.semantic_frame(handle, profile, 'pelvis').to_3x3().col[2].copy()
+    heading.z = 0
+    heading.normalize()
+    legs = []
+    for anchor, goal in targets:
+        side = anchor.split('.')[0].title()
+        upper, lower = (handle.bones[side + part] for part in ('UpLeg', 'Leg'))
+        hip, knee = world @ upper.head, world @ lower.head
+        skin = body_contact_point(handle, profile, anchor, floor)
+        legs.append((anchor, upper, lower, hip - pivot, (knee - hip).length,
+                     lower.matrix.to_quaternion().copy(), Vector(goal), Vector(goal) + knee - skin))
+
+    height, roll = 0., 0.
+    for _ in range(7):
+        for _ in range(8):
+            rotation = Quaternion(heading, roll)
+            equations = []
+            for _, _, _, offset, length, _, _, knee in legs:
+                offset = rotation @ offset
+                delta = pivot + offset + Vector((0, 0, height)) - knee
+                unit = delta.normalized()
+                equations.append((delta.length - length, unit.z, unit.dot(heading.cross(offset))))
+            left, right = equations
+            if max(abs(left[0]), abs(right[0])) < 1e-6:
+                break
+            determinant = left[1] * right[2] - right[1] * left[2]
+            if abs(determinant) < 1e-6:
+                c.fail('ENTRY_MISMATCH', 'Kneeling hips cannot resolve two independent knee heights')
+            height -= (left[0] * right[2] - right[0] * left[2]) / determinant
+            roll -= (left[1] * right[0] - right[1] * left[0]) / determinant
+            if abs(height) > .12 or abs(roll) > .35:
+                c.fail('INVALID_PARAMETER', 'Knee crawl needs an unreachable pelvis adjustment',
+                       details={'height_m': height, 'roll_deg': math.degrees(roll)})
+        rotation = Quaternion(heading, roll)
+        hips.matrix = (inverse @ Matrix.Translation(pivot + Vector((0, 0, height)))
+                       @ rotation.to_matrix().to_4x4() @ Matrix.Translation(-pivot) @ base)
+        bpy.context.view_layer.update()
+        worst = 0.
+        for anchor, upper, lower, _, _, orientation, goal, knee in legs:
+            aim(upper, inverse @ knee - upper.head)
+            lower.matrix = Matrix.Translation(lower.head) @ orientation.to_matrix().to_4x4()
+            bpy.context.view_layer.update()
+            error = goal - body_contact_point(handle, profile, anchor, floor)
+            worst = max(worst, error.length)
+            knee += error
+        if worst < .0005:
+            return
+    c.fail('INVALID_PARAMETER', 'Knee crawl could not settle the knee contact points',
+           details={'error_m': worst})
+
+
+def apply_crawl_knees(adapter, requested, events, time_s):
+    """Resolve both knee contacts before the hand tracks are applied."""
+    from .motion import contact_ease
+    from ..movement_library.coordinated import KNEE_CRAWL_ANCHORS
+
+    handle, profile = adapter.handle, adapter.profile
+    floor = adapter.fixed_surfaces['floor']
+    targets = []
+    for anchor in KNEE_CRAWL_ANCHORS[2:]:
+        reference = Vector(rp.measure_endpoint(handle, profile, anchor))
+        skin = body_contact_point(handle, profile, anchor, floor)
+        nominal = Vector(requested[anchor + '.position']) + skin - reference
+        event = next((event for event in events if event.anchor_id == anchor), None)
+        if event is not None:
+            acquire = (time_s - event.interval.start_s) / event.acquire_s if event.acquire_s else 1.
+            release = (event.interval.end_s - time_s) / event.release_s if event.release_s else 1.
+            nominal = nominal.lerp(Vector(event.target_world_v1), contact_ease(min(1., acquire, release)))
+        targets.append((anchor, nominal))
+    place_crawl_knees(handle, profile, targets, floor)

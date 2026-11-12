@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "instance_id": "support.test",
+  "definition_id": "body.crawl",
+  "definition_version": 1,
+  "parameters": [
+    {
+      "schema_version": 1,
+      "name": "clearance_m",
+      "value": 0.03
+    },
+    {
+      "schema_version": 1,
+      "name": "distance_m",
+      "value": 0.06
+    },
+    {
+      "schema_version": 1,
+      "name": "lead",
+      "value": "left"
+    },
+    {
+      "schema_version": 1,
+      "name": "support",
+      "value": "hands_knees"
+    },
+    {
+      "schema_version": 1,
+      "name": "swing_s",
+      "value": 0.6
+    }
+  ],
+  "clause_ids": [],
+  "explicit_parameters": [
+    "clearance_m",
+    "distance_m",
+    "lead",
+    "support",
+    "swing_s"
+  ]
+}

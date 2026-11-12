@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "instance_id": "support.test",
+  "definition_id": "body.takeoff_land",
+  "definition_version": 1,
+  "parameters": [
+    {
+      "schema_version": 1,
+      "name": "height_m",
+      "value": 0.2
+    },
+    {
+      "schema_version": 1,
+      "name": "phase_s",
+      "value": 0.8
+    },
+    {
+      "schema_version": 1,
+      "name": "push_off_depth_m",
+      "value": 0.075
+    },
+    {
+      "schema_version": 1,
+      "name": "recovery_depth_m",
+      "value": 0.055
+    }
+  ],
+  "clause_ids": [],
+  "explicit_parameters": []
+}

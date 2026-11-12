@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "instance_id": "support.test",
+  "definition_id": "body.kneel_rise",
+  "definition_version": 1,
+  "parameters": [
+    {
+      "schema_version": 1,
+      "name": "approach_s",
+      "value": 2.8
+    },
+    {
+      "schema_version": 1,
+      "name": "hold_s",
+      "value": 0.2
+    },
+    {
+      "schema_version": 1,
+      "name": "phase_s",
+      "value": 1.2
+    },
+    {
+      "schema_version": 1,
+      "name": "route",
+      "value": "prepared_knee"
+    },
+    {
+      "schema_version": 1,
+      "name": "side",
+      "value": "left"
+    },
+    {
+      "schema_version": 1,
+      "name": "surface",
+      "value": "knee-pad"
+    }
+  ],
+  "clause_ids": [],
+  "explicit_parameters": [
+    "surface"
+  ]
+}

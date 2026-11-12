@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "side": {
+      "type": "string",
+      "enum": [
+        "left",
+        "right"
+      ],
+      "x-unit": "unitless",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": "left"
+    },
+    "distance_m": {
+      "type": "number",
+      "minimum": 0.06,
+      "maximum": 0.16,
+      "x-unit": "metre",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.1
+    },
+    "clearance_m": {
+      "type": "number",
+      "minimum": 0.04,
+      "maximum": 0.09,
+      "x-unit": "metre",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.06
+    },
+    "phase_s": {
+      "type": "number",
+      "minimum": 0.7,
+      "maximum": 1.4,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.8
+    }
+  },
+  "required": []
+}

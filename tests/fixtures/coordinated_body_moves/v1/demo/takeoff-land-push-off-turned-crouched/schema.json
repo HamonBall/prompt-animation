@@ -1,0 +1,47 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "height_m": {
+      "type": "number",
+      "minimum": 0.12,
+      "maximum": 0.35,
+      "x-unit": "metre",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.2
+    },
+    "phase_s": {
+      "type": "number",
+      "minimum": 0.7,
+      "maximum": 1.4,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.8
+    },
+    "push_off_depth_m": {
+      "type": "number",
+      "minimum": 0.04,
+      "maximum": 0.1,
+      "x-unit": "metre",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.075
+    },
+    "recovery_depth_m": {
+      "type": "number",
+      "minimum": 0.03,
+      "maximum": 0.08,
+      "x-unit": "metre",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.055
+    }
+  },
+  "required": []
+}

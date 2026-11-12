@@ -49,3 +49,6 @@ Desktop.ini
 
 *.md
 !README.md
+!/AGENTS.md
+!/docs/**/*.md
+!/to do/**/*.md

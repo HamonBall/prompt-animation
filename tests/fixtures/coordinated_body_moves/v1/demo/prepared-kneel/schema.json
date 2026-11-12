@@ -1,0 +1,71 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "side": {
+      "type": "string",
+      "enum": [
+        "left",
+        "right"
+      ],
+      "x-unit": "unitless",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": "left"
+    },
+    "route": {
+      "type": "string",
+      "enum": [
+        "prepared_knee",
+        "planted_to_knee"
+      ],
+      "x-unit": "unitless",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": "prepared_knee"
+    },
+    "approach_s": {
+      "type": "number",
+      "minimum": 2.2,
+      "maximum": 3.5,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 2.8
+    },
+    "surface": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "x-unit": "unitless",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": "floor"
+    },
+    "phase_s": {
+      "type": "number",
+      "minimum": 0.9,
+      "maximum": 2,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 1.2
+    },
+    "hold_s": {
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 0.6,
+      "x-unit": "second",
+      "x-frame": null,
+      "x-capability": null,
+      "x-control-id": null,
+      "default": 0.2
+    }
+  },
+  "required": []
+}

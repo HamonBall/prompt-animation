@@ -5,6 +5,11 @@ from mathutils import Matrix, Quaternion, Vector
 
 from ..movement_library import contracts as c
 from ..movement_library.compiler import ExecutionCursor, sample_motion, value_error, supporting_chains, check_goal_coverage
+from ..movement_library.coordinated import (
+    CRAWL_ANCHORS, CRAWL_ENDPOINTS, KNEE_CRAWL_ANCHORS, KNEE_CRAWL_ENDPOINTS, LEG_CHAINS,
+    grounded_root_windows, has_floor_body_transition, has_seated_approach, has_step_support,
+    validate_crawl_support,
+)
 from ..movement_library.registry import validate_fragment, validate_snapshot
 from ..movement_library.root_motion import CONTROLS as ROOT_CONTROLS, ORIENTATION, POSITION
 from ..movement_library.support import (
@@ -14,6 +19,7 @@ from ..movement_library.support import (
 from ..motion import ContactConstraint, Surface
 from . import rig_profile as rp
 from .pose import position_hand, axes
+from .support_mechanics import body_contact_point
 
 ANGULAR_CHAINS=('head','neck','torso','spine.mid','spine.upper','left.clavicle','right.clavicle')
 
@@ -39,10 +45,17 @@ class FragmentAdapter:
             (),motion.duration_s,motion.tracks,motion.contact_events,(),(),motion.goal_checks)
         validate_fragment(fragment,profile,resolved_surface_ids=tuple(surfaces))
         track_ids = {track.control_id for track in motion.tracks}
+        self.knee_crawl = (
+            profile.version == 8 and set(motion.entry_snapshot.active_contacts) == set(KNEE_CRAWL_ANCHORS)
+            and {event.anchor_id for event in motion.contact_events} == set(KNEE_CRAWL_ANCHORS)
+            and all(event.target_world_v1 is not None and event.surface_id == 'floor' for event in motion.contact_events)
+            and track_ids == {'pelvis.position', *KNEE_CRAWL_ENDPOINTS}
+        )
         self.moves_root = bool(track_ids & ROOT_CONTROLS)
+        self.root_leg_windows = grounded_root_windows(motion, track_ids) if self.moves_root else ()
         if self.moves_root:
-            if profile.version != 8 or track_ids != ROOT_CONTROLS:
-                c.fail('CONSTRAINT_CONFLICT', 'Root fragments require both object controls and preserve the local pose')
+            if profile.version != 8 or (track_ids != ROOT_CONTROLS and not self.root_leg_windows):
+                c.fail('CONSTRAINT_CONFLICT', 'Root fragments require both object controls and compatible planted articulation')
             rig = handle.rig
             if (rig.constraints or rig.animation_data and rig.animation_data.drivers
                     or rig.parent and rig.parent_type != 'OBJECT'
@@ -79,6 +92,7 @@ class FragmentAdapter:
             if profile.version in (7,8) and track.control_id.endswith(('.hip.flexion','.hip.abduction','.hip.rotation','.knee.flexion','.knee.plane','.foot.position','.foot.orientation')):continue
             if profile.version==8 and track.control_id.endswith(('.ankle.flexion','.ankle.tilt','.toe.flexion')):continue
             if track.control_id in ('pelvis.position','pelvis.orientation'): continue
+            if self.knee_crawl and track.control_id.endswith('.knee.support.position'): continue
             if track.control_id in head_modes: continue
             if track.control_id.endswith('.upper_arm.orientation'):continue
             if profile.version in (6,7,8) and '.finger.' in track.control_id and control.value_shape=='scalar':continue
@@ -97,10 +111,19 @@ class FragmentAdapter:
         self.fixed_surfaces = {}
         self.balance_track = None
         self.body_support = any(event.anchor_id in BODY_ANCHORS for event in motion.contact_events) and self.fixed_support
-        if self.fixed_support and (profile.version != 8 or track_ids - {'pelvis.position'}
-                                   or any(event.target_world_v1 is None for event in motion.contact_events)):
-            c.fail('CONSTRAINT_CONFLICT', 'Fixed foot support uses profile 8 and supports only a balance pelvis track')
-        if self.fixed_support and motion.tracks:
+        self.fixed_pelvis = self.fixed_support and 'pelvis.position' in track_ids
+        self.tracked_body_contact = self.fixed_support and (
+            has_seated_approach(motion, track_ids) or has_floor_body_transition(motion, track_ids))
+        four_point_support = (set(motion.entry_snapshot.active_contacts) == set(CRAWL_ANCHORS)
+                              and {event.anchor_id for event in motion.contact_events} == set(CRAWL_ANCHORS)
+                              and track_ids == {'pelvis.position', *CRAWL_ENDPOINTS})
+        coordinated_support = self.fixed_support and (four_point_support or self.knee_crawl or self.tracked_body_contact or has_step_support(
+            motion.entry_snapshot, motion.contact_events, track_ids, motion.duration_s))
+        if self.fixed_support and (profile.version != 8
+                                   or any(event.target_world_v1 is None for event in motion.contact_events)
+                                   or (track_ids - {'pelvis.position'} and not coordinated_support)):
+            c.fail('CONSTRAINT_CONFLICT', 'Fixed support needs profile 8 and a compatible set of tracked controls')
+        if self.fixed_support and motion.tracks and not coordinated_support:
             if len(motion.tracks) != 1 or len(motion.contact_events) != 1:
                 c.fail('CONSTRAINT_CONFLICT', 'Balance requires one pelvis approach and one held sole')
             event, = motion.contact_events
@@ -112,13 +135,16 @@ class FragmentAdapter:
                 c.fail('ENTRY_MISMATCH', 'Balance needs one captured floor sole through approach and hold')
             self.balance_track = track
         if self.fixed_support:
-            validate_support_drivers({event.anchor_id for event in motion.contact_events})
+            if four_point_support or self.knee_crawl:
+                validate_crawl_support(motion.contact_events, motion.duration_s)
             for index, first in enumerate(motion.contact_events):
                 for second in motion.contact_events[index + 1:]:
+                    if max(first.interval.start_s, second.interval.start_s) > min(first.interval.end_s, second.interval.end_s):
+                        continue
+                    if not self.knee_crawl:
+                        validate_support_drivers((first.anchor_id, second.anchor_id))
                     if (first.anchor_id in FOOT_ANCHORS and second.anchor_id in FOOT_ANCHORS
-                            and first.anchor_id.split('.')[0] == second.anchor_id.split('.')[0]
-                            and max(first.interval.start_s, second.interval.start_s) <=
-                            min(first.interval.end_s, second.interval.end_s)):
+                            and first.anchor_id.split('.')[0] == second.anchor_id.split('.')[0]):
                         c.fail('CONSTRAINT_CONFLICT', 'Fixed targets cannot compete for one leg')
         for event in motion.contact_events:
             if self.fixed_support:
@@ -127,16 +153,25 @@ class FragmentAdapter:
                     c.fail('MISSING_CAPABILITY', 'Fixed support needs a calibrated contact point')
                 anchor = c.ContactAnchor(event.anchor_id, event.surface_id, event.target_world_v1, 'world', 'metre')
                 self.fixed_surfaces[event.surface_id] = require_surface_point(anchor, surfaces.values())
-                if event.anchor_id in motion.entry_snapshot.active_contacts:
-                    if event.interval.start_s != 0 or event.acquire_s or anchor != captured[event.anchor_id]:
+                if event.interval.start_s == 0 and event.anchor_id in motion.entry_snapshot.active_contacts:
+                    if event.acquire_s or anchor != captured[event.anchor_id]:
                         c.fail('ENTRY_MISMATCH', 'Continuation must preserve the captured world anchor and surface',
                                details={'anchor_id': event.anchor_id})
                 elif event.acquire_s == 0:
                     c.fail('ENTRY_MISMATCH', 'New fixed support needs an explicit acquisition ramp',
                            details={'anchor_id': event.anchor_id})
+                elif event.anchor_id in motion.entry_snapshot.active_contacts:
+                    previous = max((item for item in motion.contact_events if item.anchor_id == event.anchor_id
+                                    and item.interval.start_s < event.interval.start_s),
+                                   key=lambda item: item.interval.start_s, default=None)
+                    if previous is None or not previous.release_s or previous.interval.end_s >= event.interval.start_s:
+                        c.fail('CONSTRAINT_CONFLICT', 'Reacquiring a captured anchor requires an earlier release',
+                               details={'anchor_id': event.anchor_id})
                 side = event.anchor_id.split('.')[0]
                 if event.anchor_id in BODY_ANCHORS:
                     self.owned.add('pelvis')
+                    if self.knee_crawl:
+                        self.owned.update((side + '.thigh', side + '.shin'))
                 else:
                     parts = ('upper_arm', 'forearm', 'wrist') if event.anchor_id in PALM_ANCHORS else ('thigh','shin','ankle')
                     self.owned.update(side+'.'+part for part in parts)
@@ -203,7 +238,11 @@ class FragmentAdapter:
         for anchor in motion.entry_snapshot.active_contacts:
             if anchor not in floor_anchors and not (self.fixed_support and anchor in PALM_ANCHORS + BODY_ANCHORS):
                 c.fail('MISSING_CAPABILITY','Entry support anchor has no Stage 04 adapter',details={'anchor_id':anchor})
-            if (Vector(rp.measure_endpoint(handle,profile,anchor))-self.anchors[anchor]).length>.025:
+            if self.fixed_support and anchor in BODY_ANCHORS:
+                point = body_contact_point(handle, profile, anchor, self.fixed_surfaces[captured[anchor].surface_id])
+            else:
+                point = Vector(rp.measure_endpoint(handle,profile,anchor))
+            if (point-self.anchors[anchor]).length>.025:
                 c.fail('ENTRY_MISMATCH','Captured active anchor differs from the solved support',details={'anchor_id':anchor})
         self.foot_orientations={s:handle.bones[s.title()+'Foot'].matrix.to_quaternion().copy() for s in ('left','right')}
         self.foot_heads={s:handle.bones[s.title()+'Foot'].head.copy() for s in ('left','right')}
@@ -217,11 +256,15 @@ class FragmentAdapter:
                 else Vector(rp.measure_bend_plane(handle,profile,side+'.shin')))
         pelvis_tracks=[t for t in motion.tracks if t.control_id.startswith('pelvis.')]
         if pelvis_tracks and not self.fixed_support:
-            if set(motion.entry_snapshot.active_contacts)!={'left.sole','right.sole'} or not all(
+            if not self.root_leg_windows and (set(motion.entry_snapshot.active_contacts)!={'left.sole','right.sole'} or not all(
                 any(e.anchor_id==side+'.sole' and e.interval.start_s==0 and e.interval.end_s==motion.duration_s
-                    and e.acquire_s==0 and e.release_s==0 for e in motion.contact_events) for side in ('left','right')):
+                    and e.acquire_s==0 and e.release_s==0 for e in motion.contact_events) for side in ('left','right'))):
                 c.fail('ENTRY_MISMATCH','Pelvis adapter requires both captured sole anchors held for the full fragment')
             for track in pelvis_tracks:
+                if self.root_leg_windows and not any(
+                        window.start_s - 1e-9 <= track.interval.start_s and track.interval.end_s <= window.end_s + 1e-9
+                        for window in self.root_leg_windows):
+                    continue
                 for value in (track.curve.start_value,track.curve.end_value):
                     if value is not None:self._check_pelvis_reach({track.control_id:value})
         self.diagnostics=[]
@@ -304,15 +347,18 @@ class FragmentAdapter:
 
         h, p = self.handle, self.profile
         side = event.anchor_id.split('.')[0]
-        point = Vector(rp.measure_endpoint(h, p, event.anchor_id))
-        delta = goal - point
-        if delta.length <= 1e-6:
-            return
         foot = h.bones[side.title() + 'Foot']
-        target = foot.head + h.rig.matrix_world.inverted().to_3x3() @ delta
+        inverse = h.rig.matrix_world.inverted()
+        point = inverse @ Vector(rp.measure_endpoint(h, p, event.anchor_id))
+        current = foot.matrix.to_quaternion()
+        orientation = self.foot_orientations[side]
+        if (inverse @ goal - point).length <= 1e-6 and value_error(tuple(current), tuple(orientation), 'quaternion') <= 1e-4:
+            return
+        offset = orientation @ current.conjugated() @ (point - foot.head)
+        target = inverse @ goal - offset
         try:
             set_contact(h, ContactConstraint(side + '_foot', event.surface_id), target,
-                        self.foot_orientations[side], leg_pole=self._leg_pole(side))
+                        orientation, leg_pole=self._leg_pole(side))
         except ValueError:
             c.fail('INVALID_PARAMETER', 'The fixed support point is unreachable',
                    details={'anchor_id': event.anchor_id, 'surface_id': event.surface_id})
@@ -363,6 +409,10 @@ class FragmentAdapter:
         bpy.context.view_layer.update()
         targets=sample_motion(self.motion,time_s,self.measured,self.cursor)
         requested={v.control_id:v.value for v in targets.controls}
+        grounded_articulation = 'pelvis.position' in requested and any(
+            window.start_s - 1e-9 <= time_s <= window.end_s + 1e-9 for window in self.root_leg_windows)
+        apply_pelvis = (any(key in requested for key in ('pelvis.position', 'pelvis.orientation'))
+                        and (not self.moves_root or grounded_articulation))
         if self.moves_root:
             if not ROOT_CONTROLS <= requested.keys():
                 c.fail('ENTRY_MISMATCH', 'Object root tracks must begin at the measured entry')
@@ -372,7 +422,7 @@ class FragmentAdapter:
             root.rotation_quaternion = self.root_parent_rotation_inverse @ Quaternion(requested[ORIENTATION])
             root.scale = self.root_scale
             bpy.context.view_layer.update()
-        if not self.fixed_support and p.version in (7,8) and any(id in requested for id in ('pelvis.position','pelvis.orientation')):
+        if not self.fixed_support and p.version in (7,8) and apply_pelvis:
             pelvis=h.rig.pose.bones[self.joints['pelvis'].source_bones[0]]
             pelvis.matrix_basis=self.arm_entry_basis[pelvis.name]
             for side in ('left','right'):
@@ -380,8 +430,8 @@ class FragmentAdapter:
                     bone=h.bones[side.title()+part]
                     bone.matrix_basis=self.arm_entry_basis[bone.name]
             bpy.context.view_layer.update()
-        if any(id in requested for id in ('pelvis.position','pelvis.orientation')):
-            if self.balance_track is not None:
+        if apply_pelvis:
+            if self.fixed_pelvis:
                 self._apply_pelvis_transform(requested)
             else:
                 self._pelvis(requested)
@@ -414,7 +464,10 @@ class FragmentAdapter:
                 rotation=desired @ rp.semantic_frame(h,p,'head').to_quaternion().conjugated() @ world.to_quaternion()
                 bone.matrix=h.rig.matrix_world.inverted() @ (Matrix.Translation(world.translation) @ rotation.to_matrix().to_4x4() @ Matrix.Diagonal((*world.to_scale(),1)))
                 bpy.context.view_layer.update()
-        if p.version in (7,8):
+        if self.knee_crawl:
+            from .support_mechanics import apply_crawl_knees
+            apply_crawl_knees(self, requested, targets.active_contacts, time_s)
+        elif p.version in (7,8):
             from .leg_mechanics import apply as apply_legs
             leg_targets=requested
             if p.version==8 and not self.fixed_support:
@@ -450,7 +503,7 @@ class FragmentAdapter:
         body_goal = None
         events = targets.active_contacts
         if self.fixed_support:
-            events = sorted(events, key=lambda event: event.anchor_id not in BODY_ANCHORS)
+            events = sorted(events, key=lambda event: (event.anchor_id in BODY_ANCHORS) == self.tracked_body_contact)
         for event in events:
             side=event.anchor_id.split('.')[0]
             position=Vector(rp.measure_endpoint(h,p,event.anchor_id))
@@ -459,12 +512,11 @@ class FragmentAdapter:
                 release = min(1, (event.interval.end_s - time_s) / event.release_s) if event.release_s else 1
                 weight = contact_ease(min(acquire, release))
                 if event.anchor_id in BODY_ANCHORS:
-                    from .support_mechanics import body_contact_point
                     surface = self.fixed_surfaces[event.surface_id]
                     shift = Vector(event.target_world_v1) - position
                     position = body_contact_point(h, p, event.anchor_id, surface, offset_xy=tuple(shift[:2]))
                 goal = position.lerp(Vector(event.target_world_v1), weight)
-                if self.body_support and event.anchor_id in FOOT_ANCHORS and release < 1:
+                if self.body_support and not self.tracked_body_contact and event.anchor_id in FOOT_ANCHORS and release < 1:
                     # The new body contact lowers the pelvis. Author a small
                     # released-foot lift instead of dragging its rest pose
                     # through the old surface as the constraint fades.
@@ -472,10 +524,15 @@ class FragmentAdapter:
                 if event.anchor_id in PALM_ANCHORS and weight > 1e-8:
                     from .support_mechanics import apply_palm
                     goal = apply_palm(self, side, event.target_world_v1, weight)
+                elif self.knee_crawl and event.anchor_id in BODY_ANCHORS:
+                    if min(acquire, release) >= 1 - 1e-9:
+                        errors[event.anchor_id] = (Vector(event.target_world_v1) - position).length
                 elif event.anchor_id in BODY_ANCHORS and weight > 1e-8:
                     self._translate_pelvis(goal - position)
+                    for foot_event, foot_goal in foot_goals:
+                        self._fixed_foot(foot_event, foot_goal)
                     body_goal = (event, goal)
-                elif event.anchor_id in FOOT_ANCHORS:
+                elif event.anchor_id in FOOT_ANCHORS and (weight > 1e-8 or not self.tracked_body_contact):
                     self._fixed_foot(event, goal)
                     foot_goals.append((event, goal))
                 if event.anchor_id not in BODY_ANCHORS:
@@ -531,8 +588,15 @@ class FragmentAdapter:
         anchors = tuple(fixed_anchors) if self.fixed_support else tuple(
             c.ContactAnchor(id,'floor',tuple(self.anchors[id]),'world','metre') for id in active)
         active = [anchor.anchor_id for anchor in anchors]
-        solved=rp.capture_motion_state(h,p,revision=self.motion.entry_snapshot.revision,captured_time_s=time_s,
-                                      contact_anchors=anchors,active_contacts=tuple(active))
+        try:
+            solved=rp.capture_motion_state(h,p,revision=self.motion.entry_snapshot.revision,captured_time_s=time_s,
+                                          contact_anchors=anchors,active_contacts=tuple(active))
+        except c.MotionContractError as error:
+            limit = self.limits.get(error.control_id)
+            if limit is not None:
+                error.details.update(time_s=time_s, measured_deg=rp.measure_joint_angle(h,p,error.control_id),
+                                     bounds_deg=(limit.minimum, limit.maximum))
+            raise
         measured={v.control_id:v for v in solved.measured_controls}
         violations=[]
         skin_gaps = {}
@@ -558,7 +622,12 @@ class FragmentAdapter:
                     violations.append(('elbow_pole_flip',side,math.degrees(previous.angle(pole)),90))
                 self.previous_arm_poles[side]=pole.copy()
         tracking={}
-        for target in targets.controls:
+        review_controls = targets.controls
+        if self.tracked_body_contact and body_goal is not None:
+            # The approach endpoint remains the deterministic base pose. After
+            # acquisition starts, the measured skin contact owns the correction.
+            review_controls = tuple(target for target in review_controls if target.control_id != 'pelvis.position')
+        for target in review_controls:
             control=self.controls[target.control_id]
             error=value_error(measured[control.id].value,target.value,control.value_shape)
             tracking[control.id]=error
@@ -581,17 +650,24 @@ class FragmentAdapter:
         if self.moves_root:
             delta_world = h.rig.matrix_world @ self.root_entry.inverted()
             delta_rotation = delta_world.to_quaternion()
+            if grounded_articulation:
+                pelvis_shift = Vector(measured['pelvis.position'].value) - delta_world @ Vector(entry['pelvis.position'].value)
         for id,value in measured.items():
             control=self.controls[id]
             expected = entry[id].value
             if self.moves_root:
                 if id in ROOT_CONTROLS:
                     continue
+                if grounded_articulation and (control.chain in LEG_CHAINS or any(parent in LEG_CHAINS for parent in self._parents(control.chain))):
+                    continue
                 if value.frame == 'world':
                     if control.value_shape == 'quaternion':
                         expected = tuple(delta_rotation @ Quaternion(expected))
                     elif control.value_shape == 'vector':
-                        expected = tuple((delta_world if control.unit == 'metre' else delta_rotation) @ Vector(expected))
+                        point = (delta_world if control.unit == 'metre' else delta_rotation) @ Vector(expected)
+                        if grounded_articulation and control.unit == 'metre':
+                            point += pelvis_shift
+                        expected = tuple(point)
             elif any(control.chain==owned or owned in tuple(self._parents(control.chain)) for owned in self.owned):
                 continue
             error=value_error(value.value,expected,control.value_shape)
@@ -626,7 +702,7 @@ class FragmentAdapter:
             if leg_clearance<-.003:violations.append(('leg_clearance','legs',-leg_clearance,.003))
         sample['semantic_violations']=violations
         details={'frame':frame,'time_s':time_s,'source_instance_ids':list(targets.source_instance_ids),
-            'targets':{v.control_id:v.value for v in targets.controls},'measured':sample['controls'],
+            'targets':{v.control_id:v.value for v in review_controls},'measured':sample['controls'],
             'checked_goal_ids':[g.goal_id for g in targets.expected_goals],
             'tracking_errors':tracking,'contacts':dict(errors),'floor_m':sample['floor'],'violations':violations}
         if p.version in (6,7,8) and 'finger_v1:bind_palm_axes_three_joint_digits' in p.calibration_provenance.evidence:

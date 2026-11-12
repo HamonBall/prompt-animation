@@ -1,0 +1,4152 @@
+{
+  "schema_version": 1,
+  "entry_snapshot": {
+    "schema_version": 1,
+    "avatar_id": "root.mixamo",
+    "profile_version": 8,
+    "revision": 1,
+    "captured_time_s": 0.0,
+    "root_transform": {
+      "schema_version": 1,
+      "position": [
+        0.0313655287027359,
+        4.1625448830018286e-06,
+        0.46355926990509033
+      ],
+      "orientation": [
+        0.47660672664642334,
+        -0.5221304893493652,
+        0.5288094878196716,
+        -0.46966633200645447
+      ],
+      "frame": "world",
+      "unit": "metre"
+    },
+    "measured_controls": [
+      {
+        "schema_version": 1,
+        "control_id": "head.yaw",
+        "unit": "degree",
+        "frame": "joint:neck",
+        "value": -5.41612527710311e-06
+      },
+      {
+        "schema_version": 1,
+        "control_id": "head.pitch",
+        "unit": "degree",
+        "frame": "joint:neck",
+        "value": -1.0245280498131594e-05
+      },
+      {
+        "schema_version": 1,
+        "control_id": "head.roll",
+        "unit": "degree",
+        "frame": "joint:neck",
+        "value": -4.594868189274293e-06
+      },
+      {
+        "schema_version": 1,
+        "control_id": "torso.yaw",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": -1.8598756305250645e-05
+      },
+      {
+        "schema_version": 1,
+        "control_id": "torso.pitch",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": -2.7320751794718096e-05
+      },
+      {
+        "schema_version": 1,
+        "control_id": "torso.roll",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": -7.237064301690483e-07
+      },
+      {
+        "schema_version": 1,
+        "control_id": "spine.mid.yaw",
+        "unit": "degree",
+        "frame": "joint:torso",
+        "value": -1.1141579330917257e-05
+      },
+      {
+        "schema_version": 1,
+        "control_id": "spine.mid.pitch",
+        "unit": "degree",
+        "frame": "joint:torso",
+        "value": -1.3660377525802849e-05
+      },
+      {
+        "schema_version": 1,
+        "control_id": "spine.mid.roll",
+        "unit": "degree",
+        "frame": "joint:torso",
+        "value": -2.9656959485118035e-06
+      },
+      {
+        "schema_version": 1,
+        "control_id": "spine.upper.yaw",
+        "unit": "degree",
+        "frame": "joint:spine.mid",
+        "value": -1.4026400440322385e-05
+      },
+      {
+        "schema_version": 1,
+        "control_id": "spine.upper.pitch",
+        "unit": "degree",
+        "frame": "joint:spine.mid",
+        "value": -6.830188762901001e-06
+      },
+      {
+        "schema_version": 1,
+        "control_id": "spine.upper.roll",
+        "unit": "degree",
+        "frame": "joint:spine.mid",
+        "value": -5.815498794651561e-06
+      },
+      {
+        "schema_version": 1,
+        "control_id": "neck.yaw",
+        "unit": "degree",
+        "frame": "joint:spine.upper",
+        "value": -1.0244448770458498e-05
+      },
+      {
+        "schema_version": 1,
+        "control_id": "neck.pitch",
+        "unit": "degree",
+        "frame": "joint:spine.upper",
+        "value": -1.3660375897359192e-05
+      },
+      {
+        "schema_version": 1,
+        "control_id": "neck.roll",
+        "unit": "degree",
+        "frame": "joint:spine.upper",
+        "value": -4.6390581880575395e-06
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.elbow.flexion",
+        "unit": "degree",
+        "frame": "joint:left.upper_arm",
+        "value": 65.94339322877626
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.knee.flexion",
+        "unit": "degree",
+        "frame": "joint:left.thigh",
+        "value": 113.36572448525494
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.hip.flexion",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 103.5809652439893
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.forearm.twist",
+        "unit": "degree",
+        "frame": "joint:left.upper_arm",
+        "value": 4.581136431595506
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.ankle.flexion",
+        "unit": "degree",
+        "frame": "joint:left.shin",
+        "value": -19.999955959037223
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.toe.flexion",
+        "unit": "degree",
+        "frame": "joint:left.ankle",
+        "value": -3.1139385746055454e-05
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.wrist.flexion",
+        "unit": "degree",
+        "frame": "joint:left.forearm",
+        "value": -44.08856064276753
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.wrist.deviation",
+        "unit": "degree",
+        "frame": "joint:left.forearm",
+        "value": 17.149538092544237
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.upper_arm.direction",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.022550232708454132,
+          0.5030862092971802,
+          -0.8639419078826904
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.forearm.direction",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.7315340638160706,
+          -0.28565147519111633,
+          -0.6190810203552246
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.thigh.direction",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.11836131662130356,
+          0.1187155693769455,
+          -0.9858484268188477
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.shin.direction",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          -0.9578266739845276,
+          0.0004284667666070163,
+          0.28734639286994934
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.hand.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.6331138014793396,
+          0.22074131667613983,
+          0.04738755151629448
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.hand.direction",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.9321340918540955,
+          -0.36198389530181885,
+          0.009682596661150455
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.hand.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          1.0459137556040332e-08,
+          -0.8280443549156189,
+          -0.560662567615509,
+          -3.853896402006285e-08
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.foot.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.38755255937576294,
+          0.14367489516735077,
+          0.17149695754051208
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.foot.direction",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          -0.8978847861289978,
+          -0.06409888714551926,
+          -0.4355390667915344
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.foot.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.5906789302825928,
+          -0.3470403850078583,
+          -0.35607659816741943,
+          0.6355084180831909
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.elbow.flexion",
+        "unit": "degree",
+        "frame": "joint:right.upper_arm",
+        "value": 68.88310664754974
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.knee.flexion",
+        "unit": "degree",
+        "frame": "joint:right.thigh",
+        "value": 113.36774622124928
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.hip.flexion",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 103.24400734906759
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.forearm.twist",
+        "unit": "degree",
+        "frame": "joint:right.upper_arm",
+        "value": 4.85093079856216
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.ankle.flexion",
+        "unit": "degree",
+        "frame": "joint:right.shin",
+        "value": -19.999978510400158
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.toe.flexion",
+        "unit": "degree",
+        "frame": "joint:right.ankle",
+        "value": -2.8284580456713408e-05
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.wrist.flexion",
+        "unit": "degree",
+        "frame": "joint:right.forearm",
+        "value": -42.568248540121495
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.wrist.deviation",
+        "unit": "degree",
+        "frame": "joint:right.forearm",
+        "value": 16.4319370193771
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.upper_arm.direction",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.006856111343950033,
+          -0.5154586434364319,
+          -0.8568869829177856
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.forearm.direction",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.7476245760917664,
+          0.2978072762489319,
+          -0.5936061143875122
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.thigh.direction",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.11825447529554367,
+          -0.11788757145404816,
+          -0.9859606027603149
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.shin.direction",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          -0.957826554775238,
+          0.00043651569285430014,
+          0.28734663128852844
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.hand.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.6329177021980286,
+          -0.2202974110841751,
+          0.05128249526023865
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.hand.direction",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.9312971234321594,
+          0.3641310930252075,
+          0.009709847159683704
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.hand.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          1.2452562714315718e-07,
+          0.5592846870422363,
+          0.8289756774902344,
+          1.941459615295571e-08
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.foot.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.38744214177131653,
+          -0.1432950645685196,
+          0.1706426590681076
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.foot.direction",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          -0.8975777626037598,
+          0.06495920568704605,
+          -0.43604427576065063
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.foot.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.6359309554100037,
+          -0.3561156690120697,
+          -0.3464865982532501,
+          0.5905256271362305
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0313655287027359,
+          4.1625448830018286e-06,
+          0.46355926990509033
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "root.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.47660672664642334,
+          -0.5221304893493652,
+          0.5288094878196716,
+          -0.46966633200645447
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "head.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.5751904249191284,
+          0.0005366475670598447,
+          0.4064062237739563
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "head.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.4766067564487457,
+          -0.5221304893493652,
+          0.5288093686103821,
+          -0.469666451215744
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "head.torso_orientation",
+        "unit": "unitless",
+        "frame": "current_torso",
+        "value": [
+          1.0000001192092896,
+          1.4901161193847656e-08,
+          -4.470348358154297e-08,
+          -2.9802322387695312e-08
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0313655287027359,
+          4.1625448830018286e-06,
+          0.46355926990509033
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "pelvis.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.47660672664642334,
+          -0.5221304893493652,
+          0.5288094878196716,
+          -0.46966633200645447
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "object_root.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.0,
+          0.0,
+          0.0019085225649178028
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "object_root.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.4953291118144989,
+          0.5046278834342957,
+          0.5046277046203613,
+          0.49532899260520935
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.upper_arm.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.4398873448371887,
+          -0.4839949309825897,
+          -0.14506247639656067,
+          -0.7424317598342896
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.clavicle.elevation",
+        "unit": "degree",
+        "frame": "joint:spine.upper",
+        "value": 0.0
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.clavicle.protraction",
+        "unit": "degree",
+        "frame": "joint:spine.upper",
+        "value": 1.02452837550191e-05
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.clavicle.twist",
+        "unit": "degree",
+        "frame": "joint:spine.upper",
+        "value": -5.976415523761152e-06
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.upper_arm.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.7402304410934448,
+          0.12725746631622314,
+          0.4937257468700409,
+          -0.4382914900779724
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.clavicle.elevation",
+        "unit": "degree",
+        "frame": "joint:spine.upper",
+        "value": 3.4150945850063742e-06
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.clavicle.protraction",
+        "unit": "degree",
+        "frame": "joint:spine.upper",
+        "value": -6.8301891700127425e-06
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.clavicle.twist",
+        "unit": "degree",
+        "frame": "joint:spine.upper",
+        "value": 2.561320938754781e-06
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.elbow.plane",
+        "unit": "degree",
+        "frame": "current_root",
+        "value": -122.15576512611663
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.hand.torso_position",
+        "unit": "metre",
+        "frame": "current_torso",
+        "value": [
+          -0.2153232991695404,
+          0.3551900088787079,
+          0.5501939058303833
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.hand.torso_orientation",
+        "unit": "unitless",
+        "frame": "current_torso",
+        "value": [
+          0.1358635574579239,
+          -0.1313270926475525,
+          -0.6561201810836792,
+          -0.730616569519043
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.elbow.plane",
+        "unit": "degree",
+        "frame": "current_root",
+        "value": 119.88445208026307
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.hand.torso_position",
+        "unit": "metre",
+        "frame": "current_torso",
+        "value": [
+          0.2256215214729309,
+          0.34534502029418945,
+          0.5491623282432556
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.hand.torso_orientation",
+        "unit": "unitless",
+        "frame": "current_torso",
+        "value": [
+          0.14635060727596283,
+          -0.1227831244468689,
+          0.6577725410461426,
+          0.7285884618759155
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "torso_frame.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.12296170741319656,
+          7.64035212341696e-05,
+          0.45517343282699585
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "torso_frame.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          0.47660672664642334,
+          -0.5221304297447205,
+          0.5288093686103821,
+          -0.46966642141342163
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.hip.abduction",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 19.366128832027858
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.hip.rotation",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": -12.030654652637434
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.knee.plane",
+        "unit": "degree",
+        "frame": "current_pelvis",
+        "value": -9.345054357927365
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.hip.abduction",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": 20.734948457695857
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.hip.rotation",
+        "unit": "degree",
+        "frame": "joint:pelvis",
+        "value": -10.058329300159508
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.knee.plane",
+        "unit": "degree",
+        "frame": "current_pelvis",
+        "value": 11.449548279817286
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.sole.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.5189735293388367,
+          0.14235827326774597,
+          0.1486128866672516
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.heel.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.4503467082977295,
+          0.14898306131362915,
+          0.26615190505981445
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.forefoot.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.5663323402404785,
+          0.13778655230998993,
+          0.06750015914440155
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.ankle.tilt",
+        "unit": "degree",
+        "frame": "joint:left.shin",
+        "value": 0.0005192589611935156
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.sole.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.5189172029495239,
+          -0.14184877276420593,
+          0.1478109061717987
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.heel.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.45019909739494324,
+          -0.14851529896259308,
+          0.2652937173843384
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.forefoot.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.5663376450538635,
+          -0.13724839687347412,
+          0.06673925369977951
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.ankle.tilt",
+        "unit": "degree",
+        "frame": "joint:right.shin",
+        "value": 0.00016022215157928082
+      },
+      {
+        "schema_version": 1,
+        "control_id": "pelvis.support.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          -0.19806231558322906,
+          0.030892806127667427,
+          0.48429661989212036
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "back.support.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.3344217538833618,
+          0.007438874337822199,
+          0.49744680523872375
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.knee.support.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.06318996101617813,
+          0.1402442455291748,
+          -0.032651763409376144
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "left.palm.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.6933873891830444,
+          0.11705644428730011,
+          -4.417961463332176e-08
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.knee.support.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.07323531061410904,
+          -0.14289365708827972,
+          -0.03707287088036537
+        ]
+      },
+      {
+        "schema_version": 1,
+        "control_id": "right.palm.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.6943314671516418,
+          -0.11805269122123718,
+          -4.0745362639427185e-08
+        ]
+      }
+    ],
+    "contact_anchors": [
+      {
+        "schema_version": 1,
+        "anchor_id": "left.knee.support",
+        "surface_id": "floor",
+        "position": [
+          0.06318990886211395,
+          0.1402442306280136,
+          0.0
+        ],
+        "frame": "world",
+        "unit": "metre"
+      },
+      {
+        "schema_version": 1,
+        "anchor_id": "right.knee.support",
+        "surface_id": "floor",
+        "position": [
+          0.07323519140481949,
+          -0.14289356768131256,
+          0.0
+        ],
+        "frame": "world",
+        "unit": "metre"
+      },
+      {
+        "schema_version": 1,
+        "anchor_id": "left.palm",
+        "surface_id": "floor",
+        "position": [
+          0.6933873891830444,
+          0.11705657839775085,
+          0.0
+        ],
+        "frame": "world",
+        "unit": "metre"
+      },
+      {
+        "schema_version": 1,
+        "anchor_id": "right.palm",
+        "surface_id": "floor",
+        "position": [
+          0.6943314075469971,
+          -0.11805282533168793,
+          0.0
+        ],
+        "frame": "world",
+        "unit": "metre"
+      }
+    ],
+    "active_contacts": [
+      "left.palm",
+      "right.palm",
+      "left.knee.support",
+      "right.knee.support"
+    ],
+    "velocities": null,
+    "phase": null
+  },
+  "duration_s": 3.466666666666667,
+  "fps": 30,
+  "tracks": [
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t0",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "right.hand.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.6329177021980286,
+          -0.2202974110841751,
+          0.05128249526023865
+        ],
+        "end_value": [
+          0.6329177021980286,
+          -0.2202974110841751,
+          0.05128249526023865
+        ],
+        "duration_s": 0.13333333333333333,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 0.13333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t1",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "right.hand.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.6329177021980286,
+          -0.2202974110841751,
+          0.05128249526023865
+        ],
+        "end_value": [
+          0.662917687817162,
+          -0.22026803674526063,
+          0.08128249526023865
+        ],
+        "duration_s": 0.30000000000000004,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.13333333333333333,
+        "end_s": 0.43333333333333335
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t2",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "right.hand.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.662917687817162,
+          -0.22026803674526063,
+          0.08128249526023865
+        ],
+        "end_value": [
+          0.6929176734362954,
+          -0.22023866240634615,
+          0.05128249526023865
+        ],
+        "duration_s": 0.29999999999999993,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.43333333333333335,
+        "end_s": 0.7333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t3",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "right.hand.orientation",
+      "unit": "unitless",
+      "frame": "world",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          1.2452562714315718e-07,
+          0.5592846870422363,
+          0.8289756774902344,
+          1.941459615295571e-08
+        ],
+        "end_value": [
+          1.2452562714315718e-07,
+          0.5592846870422363,
+          0.8289756774902344,
+          1.941459615295571e-08
+        ],
+        "duration_s": 3.466666666666667,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 3.466666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t4",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.knee.support.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.06318996101617813,
+          0.1402442455291748,
+          -0.032651763409376144
+        ],
+        "end_value": [
+          0.06318996101617813,
+          0.1402442455291748,
+          -0.032651763409376144
+        ],
+        "duration_s": 1.0,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 1.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t5",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.knee.support.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.06318996101617813,
+          0.1402442455291748,
+          -0.032651763409376144
+        ],
+        "end_value": [
+          0.09318994663531158,
+          0.14027361986808928,
+          -0.0026517634093761455
+        ],
+        "duration_s": 0.30000000000000004,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.0,
+        "end_s": 1.3
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t6",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.knee.support.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.09318994663531158,
+          0.14027361986808928,
+          -0.0026517634093761455
+        ],
+        "end_value": [
+          0.12318993225444502,
+          0.14030299420700376,
+          -0.032651763409376144
+        ],
+        "duration_s": 0.30000000000000004,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.3,
+        "end_s": 1.6
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t7",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.hand.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.6331138014793396,
+          0.22074131667613983,
+          0.04738755151629448
+        ],
+        "end_value": [
+          0.6331138014793396,
+          0.22074131667613983,
+          0.04738755151629448
+        ],
+        "duration_s": 1.8666666666666667,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 1.8666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t8",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.hand.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.6331138014793396,
+          0.22074131667613983,
+          0.04738755151629448
+        ],
+        "end_value": [
+          0.663113787098473,
+          0.2207706910150543,
+          0.07738755151629448
+        ],
+        "duration_s": 0.2999999999999998,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8666666666666667,
+        "end_s": 2.1666666666666665
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t9",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.hand.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.663113787098473,
+          0.2207706910150543,
+          0.07738755151629448
+        ],
+        "end_value": [
+          0.6931137727176064,
+          0.2208000653539688,
+          0.04738755151629448
+        ],
+        "duration_s": 0.30000000000000027,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.1666666666666665,
+        "end_s": 2.466666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t10",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "left.hand.orientation",
+      "unit": "unitless",
+      "frame": "world",
+      "value_shape": "quaternion",
+      "dimensions": 4,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          1.0459137556040332e-08,
+          -0.8280443549156189,
+          -0.560662567615509,
+          -3.853896402006285e-08
+        ],
+        "end_value": [
+          1.0459137556040332e-08,
+          -0.8280443549156189,
+          -0.560662567615509,
+          -3.853896402006285e-08
+        ],
+        "duration_s": 3.466666666666667,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 3.466666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t11",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "right.knee.support.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "hold",
+        "start_value": [
+          0.07323531061410904,
+          -0.14289365708827972,
+          -0.03707287088036537
+        ],
+        "end_value": [
+          0.07323531061410904,
+          -0.14289365708827972,
+          -0.03707287088036537
+        ],
+        "duration_s": 2.7333333333333334,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 2.7333333333333334
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t12",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "right.knee.support.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.07323531061410904,
+          -0.14289365708827972,
+          -0.03707287088036537
+        ],
+        "end_value": [
+          0.10323529623324249,
+          -0.14286428274936525,
+          -0.007072870880365373
+        ],
+        "duration_s": 0.2999999999999998,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.7333333333333334,
+        "end_s": 3.033333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t13",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "right.knee.support.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.10323529623324249,
+          -0.14286428274936525,
+          -0.007072870880365373
+        ],
+        "end_value": [
+          0.13323528185237593,
+          -0.14283490841045077,
+          -0.03707287088036537
+        ],
+        "duration_s": 0.30000000000000027,
+        "easing": "smooth"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.033333333333333,
+        "end_s": 3.3333333333333335
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t14",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.0313655287027359,
+          4.1625448830018286e-06,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.031623549225514365,
+          0.0014587977203267153,
+          0.46355926990509033
+        ],
+        "duration_s": 0.13333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.0,
+        "end_s": 0.13333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t15",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.031623549225514365,
+          0.0014587977203267153,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.03263115567533707,
+          0.004709484999302199,
+          0.46355926990509033
+        ],
+        "duration_s": 0.16666666666666666,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.13333333333333333,
+        "end_s": 0.3
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t16",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.03263115567533707,
+          0.004709484999302199,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.03393711971856111,
+          0.006678576819251179,
+          0.46355926990509033
+        ],
+        "duration_s": 0.13333333333333336,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.3,
+        "end_s": 0.43333333333333335
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t17",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.03393711971856111,
+          0.006678576819251179,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.03564452644487813,
+          0.006570134259172163,
+          0.46355926990509033
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.43333333333333335,
+        "end_s": 0.5666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t18",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.03564452644487813,
+          0.006570134259172163,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.038281836038363236,
+          0.0025632536805440496,
+          0.46355926990509033
+        ],
+        "duration_s": 0.16666666666666663,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.5666666666666667,
+        "end_s": 0.7333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t19",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.038281836038363236,
+          0.0025632536805440496,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.04074362350060052,
+          -0.0031519619581605127,
+          0.46355926990509033
+        ],
+        "duration_s": 0.13333333333333341,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.7333333333333333,
+        "end_s": 0.8666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t20",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.04074362350060052,
+          -0.0031519619581605127,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.04347228533289652,
+          -0.009482053848418574,
+          0.46355926990509033
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.8666666666666667,
+        "end_s": 1.0
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t21",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.04347228533289652,
+          -0.009482053848418574,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.04719303940083666,
+          -0.01523861042850727,
+          0.4723616312375923
+        ],
+        "duration_s": 0.16666666666666674,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.0,
+        "end_s": 1.1666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t22",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.04719303940083666,
+          -0.01523861042850727,
+          0.4723616312375923
+        ],
+        "end_value": [
+          0.05036566605193525,
+          -0.016084616130838576,
+          0.47855926990509035
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.1666666666666667,
+        "end_s": 1.3
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t23",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.05036566605193525,
+          -0.016084616130838576,
+          0.47855926990509035
+        ],
+        "end_value": [
+          0.05366742413012855,
+          -0.012840593296134946,
+          0.4723616312375923
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.3,
+        "end_s": 1.4333333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t24",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.05366742413012855,
+          -0.012840593296134946,
+          0.4723616312375923
+        ],
+        "end_value": [
+          0.05791482769567128,
+          -0.004078212605777676,
+          0.46355926990509033
+        ],
+        "duration_s": 0.16666666666666674,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.4333333333333333,
+        "end_s": 1.6
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t25",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.05791482769567128,
+          -0.004078212605777676,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.061361131261251235,
+          0.004509952706939211,
+          0.46355926990509033
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6,
+        "end_s": 1.7333333333333334
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t26",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.061361131261251235,
+          0.004509952706939211,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.06480849552702485,
+          0.012014825876500872,
+          0.46355926990509033
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.7333333333333334,
+        "end_s": 1.8666666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t27",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.06480849552702485,
+          0.012014825876500872,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.06905968032207577,
+          0.016915440308947226,
+          0.46355926990509033
+        ],
+        "duration_s": 0.16666666666666652,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8666666666666667,
+        "end_s": 2.033333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t28",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.06905968032207577,
+          0.016915440308947226,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.07236536259180344,
+          0.01615168989843352,
+          0.46355926990509033
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.033333333333333,
+        "end_s": 2.1666666666666665
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t29",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.07236536259180344,
+          0.01615168989843352,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.07554153760509492,
+          0.01168174511552635,
+          0.46355926990509033
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.1666666666666665,
+        "end_s": 2.3
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t30",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.07554153760509492,
+          0.01168174511552635,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.07926485344072423,
+          0.003308857524249406,
+          0.46355926990509033
+        ],
+        "duration_s": 0.16666666666666696,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.3,
+        "end_s": 2.466666666666667
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t31",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.07926485344072423,
+          0.003308857524249406,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.081993603726909,
+          -0.003111572242153113,
+          0.46355926990509033
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.466666666666667,
+        "end_s": 2.6
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t32",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.081993603726909,
+          -0.003111572242153113,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.08445397958643554,
+          -0.007385119316139786,
+          0.46355926990509033
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.6,
+        "end_s": 2.7333333333333334
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t33",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.08445397958643554,
+          -0.007385119316139786,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.08708850348155689,
+          -0.00854696868930374,
+          0.4723616312375923
+        ],
+        "duration_s": 0.16666666666666652,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.7333333333333334,
+        "end_s": 2.9
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t34",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.08708850348155689,
+          -0.00854696868930374,
+          0.4723616312375923
+        ],
+        "end_value": [
+          0.08879390892517756,
+          -0.006611503051656238,
+          0.47855926990509035
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.9,
+        "end_s": 3.033333333333333
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t35",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.08879390892517756,
+          -0.006611503051656238,
+          0.47855926990509035
+        ],
+        "end_value": [
+          0.09009877901799858,
+          -0.0035251606799603197,
+          0.4723616312375923
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.033333333333333,
+        "end_s": 3.1666666666666665
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t36",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.09009877901799858,
+          -0.0035251606799603197,
+          0.4723616312375923
+        ],
+        "end_value": [
+          0.09110654381071977,
+          -0.00043618885921601583,
+          0.46355926990509033
+        ],
+        "duration_s": 0.16666666666666696,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.1666666666666665,
+        "end_s": 3.3333333333333335
+      }
+    },
+    {
+      "schema_version": 1,
+      "track_id": "support.test.t37",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "control_id": "pelvis.position",
+      "unit": "metre",
+      "frame": "world",
+      "value_shape": "vector",
+      "dimensions": 3,
+      "curve": {
+        "schema_version": 1,
+        "kind": "transition",
+        "start_value": [
+          0.09110654381071977,
+          -0.00043618885921601583,
+          0.46355926990509033
+        ],
+        "end_value": [
+          0.09136549994100279,
+          6.291122271194247e-05,
+          0.46355926990509033
+        ],
+        "duration_s": 0.1333333333333333,
+        "easing": "linear"
+      },
+      "start_source": "explicit",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.3333333333333335,
+        "end_s": 3.466666666666667
+      }
+    }
+  ],
+  "contact_events": [
+    {
+      "schema_version": 1,
+      "event_id": "support.test.right.palm",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "right.palm",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 0.13333333333333333
+      },
+      "acquire_s": 0,
+      "release_s": 0.13333333333333333,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.6943314075469971,
+        -0.11805282533168793,
+        0.0
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.right.palm.land",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "right.palm",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.7333333333333333,
+        "end_s": 3.466666666666667
+      },
+      "acquire_s": 0.13333333333333333,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.7543313787852639,
+        -0.11799407665385898,
+        0.0
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.left.knee.support",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "left.knee.support",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 1.0
+      },
+      "acquire_s": 0,
+      "release_s": 0.13333333333333333,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.06318990886211395,
+        0.1402442306280136,
+        0.0
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.left.knee.support.land",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "left.knee.support",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6,
+        "end_s": 3.466666666666667
+      },
+      "acquire_s": 0.13333333333333333,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.12318988010038084,
+        0.14030297930584254,
+        0.0
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.left.palm",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "left.palm",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 1.8666666666666667
+      },
+      "acquire_s": 0,
+      "release_s": 0.13333333333333333,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.6933873891830444,
+        0.11705657839775085,
+        0.0
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.left.palm.land",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "left.palm",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.466666666666667,
+        "end_s": 3.466666666666667
+      },
+      "acquire_s": 0.13333333333333333,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.7533873604213113,
+        0.1171153270755798,
+        0.0
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.right.knee.support",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "right.knee.support",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0,
+        "end_s": 2.7333333333333334
+      },
+      "acquire_s": 0,
+      "release_s": 0.13333333333333333,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.07323519140481949,
+        -0.14289356768131256,
+        0.0
+      ]
+    },
+    {
+      "schema_version": 1,
+      "event_id": "support.test.right.knee.support.land",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "anchor_id": "right.knee.support",
+      "surface_id": "floor",
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.3333333333333335,
+        "end_s": 3.466666666666667
+      },
+      "acquire_s": 0.13333333333333333,
+      "release_s": 0,
+      "clearance_m": 0,
+      "target_world_v1": [
+        0.13323516264308638,
+        -0.14283481900348363,
+        0.0
+      ]
+    }
+  ],
+  "runtime_entry_bindings": [],
+  "source_map": [
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t0",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t10",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t11",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t14",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t3",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t4",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t7",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t1",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t15",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t16",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t17",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t2",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t18",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t19",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t20",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t21",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t5",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t22",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t23",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t6",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t24",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t25",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t26",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t27",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t8",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t28",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t29",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t9",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t30",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t31",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t32",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t12",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t33",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t34",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t13",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t35",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t36",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.t37",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.right.palm",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": []
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.right.palm.land",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": []
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.left.knee.support",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": []
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.left.knee.support.land",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": []
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.left.palm",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": []
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.left.palm.land",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": []
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.right.knee.support",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": []
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.right.knee.support.land",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": []
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g0",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g1",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g2",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g3",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g4",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g5",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g6",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g7",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g8",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g9",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g10",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g11",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g12",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g13",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g14",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g15",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g16",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g17",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g18",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g19",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g20",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g21",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g22",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g23",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g24",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g25",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g26",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g27",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g28",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g29",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g30",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g31",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g32",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g33",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g34",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g35",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g36",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    },
+    {
+      "schema_version": 1,
+      "output_id": "support.test.g37",
+      "source_instance_ids": [
+        "support.test"
+      ],
+      "clause_ids": [
+        "support.test"
+      ]
+    }
+  ],
+  "loop": null,
+  "goal_checks": [
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g0",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "right.hand.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.6329177021980286,
+          -0.2202974110841751,
+          0.05128249526023865
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.13333333333333333,
+        "end_s": 0.13333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g1",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "right.hand.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.662917687817162,
+          -0.22026803674526063,
+          0.08128249526023865
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.43333333333333335,
+        "end_s": 0.43333333333333335
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g2",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "right.hand.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.6929176734362954,
+          -0.22023866240634615,
+          0.05128249526023865
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.7333333333333333,
+        "end_s": 0.7333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g3",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "right.hand.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          1.2452562714315718e-07,
+          0.5592846870422363,
+          0.8289756774902344,
+          1.941459615295571e-08
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.466666666666667,
+        "end_s": 3.466666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g4",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.knee.support.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.06318996101617813,
+          0.1402442455291748,
+          -0.032651763409376144
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.0,
+        "end_s": 1.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g5",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.knee.support.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.09318994663531158,
+          0.14027361986808928,
+          -0.0026517634093761455
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.3,
+        "end_s": 1.3
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g6",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.knee.support.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.12318993225444502,
+          0.14030299420700376,
+          -0.032651763409376144
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6,
+        "end_s": 1.6
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g7",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hand.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.6331138014793396,
+          0.22074131667613983,
+          0.04738755151629448
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8666666666666667,
+        "end_s": 1.8666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g8",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hand.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.663113787098473,
+          0.2207706910150543,
+          0.07738755151629448
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.1666666666666665,
+        "end_s": 2.1666666666666665
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g9",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hand.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.6931137727176064,
+          0.2208000653539688,
+          0.04738755151629448
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.466666666666667,
+        "end_s": 2.466666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g10",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "left.hand.orientation",
+        "unit": "unitless",
+        "frame": "world",
+        "value": [
+          1.0459137556040332e-08,
+          -0.8280443549156189,
+          -0.560662567615509,
+          -3.853896402006285e-08
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.466666666666667,
+        "end_s": 3.466666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g11",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "right.knee.support.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.07323531061410904,
+          -0.14289365708827972,
+          -0.03707287088036537
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.7333333333333334,
+        "end_s": 2.7333333333333334
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g12",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "right.knee.support.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.10323529623324249,
+          -0.14286428274936525,
+          -0.007072870880365373
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.033333333333333,
+        "end_s": 3.033333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g13",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "right.knee.support.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.13323528185237593,
+          -0.14283490841045077,
+          -0.03707287088036537
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.3333333333333335,
+        "end_s": 3.3333333333333335
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g14",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.031623549225514365,
+          0.0014587977203267153,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.13333333333333333,
+        "end_s": 0.13333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g15",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.03263115567533707,
+          0.004709484999302199,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.3,
+        "end_s": 0.3
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g16",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.03393711971856111,
+          0.006678576819251179,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.43333333333333335,
+        "end_s": 0.43333333333333335
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g17",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.03564452644487813,
+          0.006570134259172163,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.5666666666666667,
+        "end_s": 0.5666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g18",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.038281836038363236,
+          0.0025632536805440496,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.7333333333333333,
+        "end_s": 0.7333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g19",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.04074362350060052,
+          -0.0031519619581605127,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 0.8666666666666667,
+        "end_s": 0.8666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g20",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.04347228533289652,
+          -0.009482053848418574,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.0,
+        "end_s": 1.0
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g21",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.04719303940083666,
+          -0.01523861042850727,
+          0.4723616312375923
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.1666666666666667,
+        "end_s": 1.1666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g22",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.05036566605193525,
+          -0.016084616130838576,
+          0.47855926990509035
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.3,
+        "end_s": 1.3
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g23",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.05366742413012855,
+          -0.012840593296134946,
+          0.4723616312375923
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.4333333333333333,
+        "end_s": 1.4333333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g24",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.05791482769567128,
+          -0.004078212605777676,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.6,
+        "end_s": 1.6
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g25",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.061361131261251235,
+          0.004509952706939211,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.7333333333333334,
+        "end_s": 1.7333333333333334
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g26",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.06480849552702485,
+          0.012014825876500872,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 1.8666666666666667,
+        "end_s": 1.8666666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g27",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.06905968032207577,
+          0.016915440308947226,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.033333333333333,
+        "end_s": 2.033333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g28",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.07236536259180344,
+          0.01615168989843352,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.1666666666666665,
+        "end_s": 2.1666666666666665
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g29",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.07554153760509492,
+          0.01168174511552635,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.3,
+        "end_s": 2.3
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g30",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.07926485344072423,
+          0.003308857524249406,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.466666666666667,
+        "end_s": 2.466666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g31",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.081993603726909,
+          -0.003111572242153113,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.6,
+        "end_s": 2.6
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g32",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.08445397958643554,
+          -0.007385119316139786,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.7333333333333334,
+        "end_s": 2.7333333333333334
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g33",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.08708850348155689,
+          -0.00854696868930374,
+          0.4723616312375923
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 2.9,
+        "end_s": 2.9
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g34",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.08879390892517756,
+          -0.006611503051656238,
+          0.47855926990509035
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.033333333333333,
+        "end_s": 3.033333333333333
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g35",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.09009877901799858,
+          -0.0035251606799603197,
+          0.4723616312375923
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.1666666666666665,
+        "end_s": 3.1666666666666665
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g36",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.09110654381071977,
+          -0.00043618885921601583,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.3333333333333335,
+        "end_s": 3.3333333333333335
+      },
+      "tolerance": 0.1,
+      "locked": true
+    },
+    {
+      "schema_version": 1,
+      "goal_id": "support.test.g37",
+      "clause_id": "support.test",
+      "target": {
+        "schema_version": 1,
+        "control_id": "pelvis.position",
+        "unit": "metre",
+        "frame": "world",
+        "value": [
+          0.09136549994100279,
+          6.291122271194247e-05,
+          0.46355926990509033
+        ]
+      },
+      "interval": {
+        "schema_version": 1,
+        "start_s": 3.466666666666667,
+        "end_s": 3.466666666666667
+      },
+      "tolerance": 0.1,
+      "locked": true
+    }
+  ]
+}

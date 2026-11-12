@@ -1,0 +1,1286 @@
+{
+  "profile_version": 8,
+  "definition_version": 1,
+  "cases": {
+    "demo/lower-rise-neutral": {
+      "movement": "body.lower_rise",
+      "parameters": {
+        "depth_m": 0.06
+      },
+      "entry_pose": "neutral",
+      "frames": 79,
+      "motion_sha256": "fa1bb1be9985bbb6e6b5e4df4c5b0dbe9c1c5961edc039ad0e5dd3e5febb02ab",
+      "views": {
+        "front": [
+          "3ec57809ced8f231278b3bcbbb721a24b84b582e91c66dc64c991aa28b822a3a",
+          "133b23e3ba9fc954220bf55c02da29884633af534b3560b1c93a1eab1a865df7"
+        ],
+        "side": [
+          "6d7709c4611cecc40d81781f2d4744044a78c3063e133eb3090bce44671035d7",
+          "d4a62f1ba52efa78c65c9d8bc3179c095af7d5956e46d611f324b7f1d59eaca6"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "demo/lower-rise-neutral/profile.json",
+        "entry": "demo/lower-rise-neutral/entry.json",
+        "instance": "demo/lower-rise-neutral/instance.json",
+        "fragment": "demo/lower-rise-neutral/fragment.json",
+        "executable": "demo/lower-rise-neutral/executable.json",
+        "surfaces": "demo/lower-rise-neutral/surfaces.json",
+        "schema": "demo/lower-rise-neutral/schema.json"
+      }
+    },
+    "demo/takeoff-land-push-off-neutral": {
+      "movement": "body.takeoff_land",
+      "parameters": {},
+      "entry_pose": "neutral",
+      "frames": 131,
+      "motion_sha256": "0c82e604b56c9757dcbf6f534c2836062cfc38261d5ff3e097af9a30d541c1b1",
+      "views": {
+        "front": [
+          "5503d72b1f98a46e42f8074900831aad66196bb3e75be240b6fc084d7adbaff1",
+          "ee0bc683c77b9c200d13fa2770e8fe3daeeedfac574412a16379604760826444"
+        ],
+        "side": [
+          "332ba7b661fa50b23006c13980d21610903eef38eed4853f576fc2c2fc5377a2",
+          "c7e29d5f06dc02b0a5dd85b83cf68a05b7acbea7cebfba660fa009e9a5ed515e"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "demo/takeoff-land-push-off-neutral/profile.json",
+        "entry": "demo/takeoff-land-push-off-neutral/entry.json",
+        "instance": "demo/takeoff-land-push-off-neutral/instance.json",
+        "fragment": "demo/takeoff-land-push-off-neutral/fragment.json",
+        "executable": "demo/takeoff-land-push-off-neutral/executable.json",
+        "surfaces": "demo/takeoff-land-push-off-neutral/surfaces.json",
+        "schema": "demo/takeoff-land-push-off-neutral/schema.json"
+      }
+    },
+    "demo/lower-rise-turned-crouched": {
+      "movement": "body.lower_rise",
+      "parameters": {
+        "depth_m": 0.1
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 79,
+      "motion_sha256": "0b5ce8cfafc08744e9b61f7842c5f059b0b74771a10b529bf2e973043891c047",
+      "views": {
+        "front": [
+          "a92f64e87532f93064d792090554f1676c7a44bc4d7245bdcc499f409448e1f1",
+          "82ec536efac37397e9adeeb495d4f2c768bb8162bd5c49b248057ec07dae9925"
+        ],
+        "side": [
+          "662d9b558c5d9d6df2b200a5d559947192df9db2ddeb3b8e2f04202270cdb2fc",
+          "e1dac8c2eb110a13b8e442be772b30b3229903380725d6456711fcd2e690eb77"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "demo/lower-rise-turned-crouched/profile.json",
+        "entry": "demo/lower-rise-turned-crouched/entry.json",
+        "instance": "demo/lower-rise-turned-crouched/instance.json",
+        "fragment": "demo/lower-rise-turned-crouched/fragment.json",
+        "executable": "demo/lower-rise-turned-crouched/executable.json",
+        "surfaces": "demo/lower-rise-turned-crouched/surfaces.json",
+        "schema": "demo/lower-rise-turned-crouched/schema.json"
+      }
+    },
+    "demo/takeoff-land-push-off-turned-crouched": {
+      "movement": "body.takeoff_land",
+      "parameters": {},
+      "entry_pose": "turned-crouched",
+      "frames": 131,
+      "motion_sha256": "ddf2a18051b5adbc2585b6ed8e0bff7f46527bdd959ffde73645c515b98c7905",
+      "views": {
+        "front": [
+          "f8987644c34b9638e79a3090cb67a484951df56c1e7013cf160579907a873c1d",
+          "7314f98393b111e20815520bb7ea491fabbc23530f77dfe4bbe137e72834bffc"
+        ],
+        "side": [
+          "547d32f0a3db50e5dcd3bdd207e5381e18d13115908fd076229dbe4a45ffc16f",
+          "dde4cfc2f029665973901c74023a42a402cabd7bb699a820bf7ec1b11267e4b7"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "demo/takeoff-land-push-off-turned-crouched/profile.json",
+        "entry": "demo/takeoff-land-push-off-turned-crouched/entry.json",
+        "instance": "demo/takeoff-land-push-off-turned-crouched/instance.json",
+        "fragment": "demo/takeoff-land-push-off-turned-crouched/fragment.json",
+        "executable": "demo/takeoff-land-push-off-turned-crouched/executable.json",
+        "surfaces": "demo/takeoff-land-push-off-turned-crouched/surfaces.json",
+        "schema": "demo/takeoff-land-push-off-turned-crouched/schema.json"
+      }
+    },
+    "demo/step-left": {
+      "movement": "body.step",
+      "parameters": {
+        "side": "left"
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 61,
+      "motion_sha256": "a342644dfd4b510fdaf84409735857a9b621083abad8bee1bf8b9c7b8b2a4c9c",
+      "views": {
+        "front": [
+          "84cc962d4a7c0594d4a8a7c337a473355ee3a0085f101f114441715172fd1063",
+          "d5c59153634864ecf5ae697ccf4a1f46900a667abde6554cb465679acff01f05"
+        ],
+        "side": [
+          "eec625aeaede5ac489f1695e1baa5aca4a2a0760bb007b7a1f28464b6cd06adc",
+          "57443461e48ad7fad9ba62fff5b8198b2f3b53e68113b94e67dc8a2d94108fe3"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "demo/step-left/profile.json",
+        "entry": "demo/step-left/entry.json",
+        "instance": "demo/step-left/instance.json",
+        "fragment": "demo/step-left/fragment.json",
+        "executable": "demo/step-left/executable.json",
+        "surfaces": "demo/step-left/surfaces.json",
+        "schema": "demo/step-left/schema.json"
+      }
+    },
+    "demo/step-right": {
+      "movement": "body.step",
+      "parameters": {
+        "side": "right"
+      },
+      "entry_pose": "crouched",
+      "frames": 61,
+      "motion_sha256": "f009b976d429f5fd3a4065cab2c35f134ca0ec005153681ab875ee277ecf9b14",
+      "views": {
+        "front": [
+          "d0ce7b0f7194a9a1b88d8d9b815910a18d526538f39bf05a937f0faa6ae1ed98",
+          "7b20a166c4a72af9177f383d4ab3f64f771f9f1577797625e4cda27b8b7c896d"
+        ],
+        "side": [
+          "547f381e5e976f96725ed9959e36e7cfbb30750277c42f0a97fab2a878e53543",
+          "890665933d2be0b9425d74f89ad4b2b873c70cc460e6034af1b1178435ee492b"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "demo/step-right/profile.json",
+        "entry": "demo/step-right/entry.json",
+        "instance": "demo/step-right/instance.json",
+        "fragment": "demo/step-right/fragment.json",
+        "executable": "demo/step-right/executable.json",
+        "surfaces": "demo/step-right/surfaces.json",
+        "schema": "demo/step-right/schema.json"
+      }
+    },
+    "demo/lunge-left": {
+      "movement": "body.lunge",
+      "parameters": {
+        "lead": "left"
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 79,
+      "motion_sha256": "a1881476c1015f3990b0681082063127d611bcf1b11327eabafde6ac4603dbde",
+      "views": {
+        "front": [
+          "5b6e8e0ffd4dff46fa4f5b782a5b56ef103562d09aa0000085398f905fa999e8",
+          "7eed48bd8afd59f4aeff4e356c952aca11b0857cabf241b4e0f2c98705ab33c2"
+        ],
+        "side": [
+          "901ed596ac95fa39174bb11fb89ac569239694412f615264f8c2605f2a25db6e",
+          "8e3a33aa4490187a24255169a889085c349969d0b9a9051c6ada816808a26c85"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "demo/lunge-left/profile.json",
+        "entry": "demo/lunge-left/entry.json",
+        "instance": "demo/lunge-left/instance.json",
+        "fragment": "demo/lunge-left/fragment.json",
+        "executable": "demo/lunge-left/executable.json",
+        "surfaces": "demo/lunge-left/surfaces.json",
+        "schema": "demo/lunge-left/schema.json"
+      }
+    },
+    "demo/prepared-seat": {
+      "movement": "body.floor_transfer",
+      "parameters": {
+        "surface": "pelvis-pad"
+      },
+      "entry_pose": "pelvis",
+      "frames": 43,
+      "motion_sha256": "81908847d37129ab704196c30731d50c64187f4ca7cab6d72437872c53c1471e",
+      "views": {
+        "front": [
+          "5b02ae41a4a2e8bc37fdb845607afdf1644a269b7c7470ed2e6fea0f66666cb9",
+          "3c7a2540be606c1a44fbb57aaa20d9205bc28c68b518cc0a037c59f737046a3a"
+        ],
+        "side": [
+          "06d2244c803ecddc30671cd016109e1b8f8e02a69d70796e4c62d5fc316ced16",
+          "7f5bcb9b9d507d503ab4457b4475e7901598d73369e9cccf6030a92a4c155a99"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "demo/prepared-seat/profile.json",
+        "entry": "demo/prepared-seat/entry.json",
+        "instance": "demo/prepared-seat/instance.json",
+        "fragment": "demo/prepared-seat/fragment.json",
+        "executable": "demo/prepared-seat/executable.json",
+        "surfaces": "demo/prepared-seat/surfaces.json",
+        "schema": "demo/prepared-seat/schema.json"
+      }
+    },
+    "demo/prepared-kneel": {
+      "movement": "body.kneel_rise",
+      "parameters": {
+        "surface": "knee-pad"
+      },
+      "entry_pose": "knee",
+      "frames": 79,
+      "motion_sha256": "48b6e6cc44b8e64cbd3f57f34917de6695cfc4d08d7cf90701a3d1c6ddf5a732",
+      "views": {
+        "front": [
+          "bd9b59cdabeeabc85fa2d3a91e434bf3ee42bec2c6def3fc1d4268046c050a79",
+          "c1f52546f5d4c5972619b4bede2e6c79a50ea4587fb2d355be9e117d56e14af2"
+        ],
+        "side": [
+          "6bbcfb38d5c74e73bfe3b604507c9cf831701d6cd0fc749a2aa4dd357eadfb9f",
+          "08b0280b9bf776cf141ab5d12c14de7fa7df41b456a6dd64fb98cf321a79f3dc"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "demo/prepared-kneel/profile.json",
+        "entry": "demo/prepared-kneel/entry.json",
+        "instance": "demo/prepared-kneel/instance.json",
+        "fragment": "demo/prepared-kneel/fragment.json",
+        "executable": "demo/prepared-kneel/executable.json",
+        "surfaces": "demo/prepared-kneel/surfaces.json",
+        "schema": "demo/prepared-kneel/schema.json"
+      }
+    },
+    "demo/standing-to-seated": {
+      "movement": "body.floor_transfer",
+      "parameters": {
+        "route": "standing_to_seated"
+      },
+      "entry_pose": "neutral",
+      "frames": 127,
+      "motion_sha256": "c6de88bb2825aa340eece8279361b206b874c82b715f76547bccdd2e59fed009",
+      "views": {
+        "front": [
+          "39e814a5e3f50090b4516bfeacc9b547846dd88b293621ab7d9dee0e69b8d50c",
+          "98223da56c68ef48ee4bd975043561b05dd4b69b84e0731ddc7134a584cfcf3b"
+        ],
+        "side": [
+          "15746264b517af1f990abb896a6f2e42f8d8bfebc0ad9ac7f5bbaf7792c0a738",
+          "417f747bcd015ffa7adb1b4edb78751056b3d1a83852915b2f6c4cb2acdaeea0"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "demo/standing-to-seated/profile.json",
+        "entry": "demo/standing-to-seated/entry.json",
+        "instance": "demo/standing-to-seated/instance.json",
+        "fragment": "demo/standing-to-seated/fragment.json",
+        "executable": "demo/standing-to-seated/executable.json",
+        "surfaces": "demo/standing-to-seated/surfaces.json",
+        "schema": "demo/standing-to-seated/schema.json"
+      }
+    },
+    "demo/seated-to-back": {
+      "movement": "body.floor_transfer",
+      "parameters": {
+        "route": "seated_to_back"
+      },
+      "entry_pose": "neutral",
+      "frames": 128,
+      "motion_sha256": "8e5b951fcec72a2f03cbdb66049bca7af6ff8bc955a59fb3edf635ec06daf46b",
+      "views": {
+        "front": [
+          "f3c6449031b15699c1df381a3c7dfbd71e5c875af91eb89c76d1428b42622d17",
+          "3f7bfcb411530fd174d81ee5f207b2051f5ed945c02c2513adb1ba4df15b4b44"
+        ],
+        "side": [
+          "cef810b666ad6b5659e156fc79ee709058cf925abd16190eda079b320a46b4e7",
+          "b170ebc00580bce48c0df9e10d2a12a1a1d6c7c6ed3c57df953647b17660a8ef"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "demo/seated-to-back/profile.json",
+        "entry": "demo/seated-to-back/entry.json",
+        "instance": "demo/seated-to-back/instance.json",
+        "fragment": "demo/seated-to-back/fragment.json",
+        "executable": "demo/seated-to-back/executable.json",
+        "surfaces": "demo/seated-to-back/surfaces.json",
+        "schema": "demo/seated-to-back/schema.json"
+      }
+    },
+    "demo/planted-kneel-left": {
+      "movement": "body.kneel_rise",
+      "parameters": {
+        "route": "planted_to_knee",
+        "side": "left"
+      },
+      "entry_pose": "neutral",
+      "frames": 259,
+      "motion_sha256": "76a4f8f0241497fd543ab75c402a4bb24a47fef43d22da3b1a43adf300474d43",
+      "views": {
+        "front": [
+          "dc43275fd7260a1a467ff2aa513e25872e8a4a52ae11a02e6608c0e79f06ac50",
+          "f244132840c7f1f210fa2064eb2e1ad7f8e80abb78265a9de58275452d75d0d4"
+        ],
+        "side": [
+          "0203ba37d050542a77f70b98dc63fccc96dd6df3b27e49e8a73e04e691e872a1",
+          "c830d20cea98fa3e27a480590bf2617e5a58e38ce6e08c06bde406a4a37eb84a"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "demo/planted-kneel-left/profile.json",
+        "entry": "demo/planted-kneel-left/entry.json",
+        "instance": "demo/planted-kneel-left/instance.json",
+        "fragment": "demo/planted-kneel-left/fragment.json",
+        "executable": "demo/planted-kneel-left/executable.json",
+        "surfaces": "demo/planted-kneel-left/surfaces.json",
+        "schema": "demo/planted-kneel-left/schema.json"
+      }
+    },
+    "mixamo/lower-rise-neutral": {
+      "movement": "body.lower_rise",
+      "parameters": {
+        "depth_m": 0.06
+      },
+      "entry_pose": "neutral",
+      "frames": 79,
+      "motion_sha256": "058ac422aa9be85f4db2a36858ff5367db3e692bbcaac9b5eac62400adff7167",
+      "views": {
+        "front": [
+          "e96d1149939fd533ef46cca083bdc21b3f1b846914b52f174c0433cdc289dfd1",
+          "e547197e606e6ff95ec021a041bdcd4349380ec01b26a1a445a71de884459a7a"
+        ],
+        "side": [
+          "05e1776f1a3220cf8b21d14aedad332373c04ffd3d9c4c7de61694b6d3729079",
+          "fd83f446ce216f9bf1710eb60b9dd094b0bca013a1d3ee347407d5173ae6edc6"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "mixamo/lower-rise-neutral/profile.json",
+        "entry": "mixamo/lower-rise-neutral/entry.json",
+        "instance": "mixamo/lower-rise-neutral/instance.json",
+        "fragment": "mixamo/lower-rise-neutral/fragment.json",
+        "executable": "mixamo/lower-rise-neutral/executable.json",
+        "surfaces": "mixamo/lower-rise-neutral/surfaces.json",
+        "schema": "mixamo/lower-rise-neutral/schema.json"
+      }
+    },
+    "mixamo/takeoff-land-push-off-neutral": {
+      "movement": "body.takeoff_land",
+      "parameters": {},
+      "entry_pose": "neutral",
+      "frames": 131,
+      "motion_sha256": "55af9a337a6b3bf43ef201bd10f5ba4d40c355af1804fddfb58f8417e25de90b",
+      "views": {
+        "front": [
+          "12995b36e83d17e543fb90f79e25c7b0e6fec39dc2daa9e5415cb2a282326e45",
+          "0b53270a73aca9bba2df7dc53544c51513a2d6845023fb32cda0c73df41be370"
+        ],
+        "side": [
+          "6bc2706311ecaa1cd80b08f06a5c3ce4176a43e990ed4e09be92423905ccd54d",
+          "97cd11c0e83382cf2be13385788f60a32a656d286186d0e35d87a252c6351bd0"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "mixamo/takeoff-land-push-off-neutral/profile.json",
+        "entry": "mixamo/takeoff-land-push-off-neutral/entry.json",
+        "instance": "mixamo/takeoff-land-push-off-neutral/instance.json",
+        "fragment": "mixamo/takeoff-land-push-off-neutral/fragment.json",
+        "executable": "mixamo/takeoff-land-push-off-neutral/executable.json",
+        "surfaces": "mixamo/takeoff-land-push-off-neutral/surfaces.json",
+        "schema": "mixamo/takeoff-land-push-off-neutral/schema.json"
+      }
+    },
+    "mixamo/lower-rise-turned-crouched": {
+      "movement": "body.lower_rise",
+      "parameters": {
+        "depth_m": 0.1
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 79,
+      "motion_sha256": "6f8ec40e33130668efec10158a3a99c46f0763c2bab7a4cf0ec898d720055d12",
+      "views": {
+        "front": [
+          "95f4ac793809a5281f70439016c77efd22c633c8a6a6a97ddf47b2d2a378f544",
+          "54c6f180279b05f33680e8f31d0ebf465c5583feff505d96eac672b4fe017ee1"
+        ],
+        "side": [
+          "363ae03fbf081e36382b9babaa871def02c2b91ca3516f90d1e0fd9298b9238c",
+          "4114ad7dff33de4ce4ce86ee5d61caf51e3bd2536f6911839b2ace17e6fda8d6"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "mixamo/lower-rise-turned-crouched/profile.json",
+        "entry": "mixamo/lower-rise-turned-crouched/entry.json",
+        "instance": "mixamo/lower-rise-turned-crouched/instance.json",
+        "fragment": "mixamo/lower-rise-turned-crouched/fragment.json",
+        "executable": "mixamo/lower-rise-turned-crouched/executable.json",
+        "surfaces": "mixamo/lower-rise-turned-crouched/surfaces.json",
+        "schema": "mixamo/lower-rise-turned-crouched/schema.json"
+      }
+    },
+    "mixamo/takeoff-land-push-off-turned-crouched": {
+      "movement": "body.takeoff_land",
+      "parameters": {},
+      "entry_pose": "turned-crouched",
+      "frames": 131,
+      "motion_sha256": "a9c00138086a6d952aa3d7a4a02c07b97002f8fc23c829226711e206d2c00195",
+      "views": {
+        "front": [
+          "38d3a3b9035b83a13a4636b00aa7d3ad8b8f73aa68abbf84250bea40ebc47a97",
+          "9af7aebfe86df9aa0d48ce397828289728237849928397c37ea10d388dc537cb"
+        ],
+        "side": [
+          "d5d136c240d6a56f84371f60bf83372415d62163895997d4f124fe681788ea29",
+          "2523ff823e3bba650f9ae031573369dc9f7f4f16b26a845fb4087ad56fb5615a"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "mixamo/takeoff-land-push-off-turned-crouched/profile.json",
+        "entry": "mixamo/takeoff-land-push-off-turned-crouched/entry.json",
+        "instance": "mixamo/takeoff-land-push-off-turned-crouched/instance.json",
+        "fragment": "mixamo/takeoff-land-push-off-turned-crouched/fragment.json",
+        "executable": "mixamo/takeoff-land-push-off-turned-crouched/executable.json",
+        "surfaces": "mixamo/takeoff-land-push-off-turned-crouched/surfaces.json",
+        "schema": "mixamo/takeoff-land-push-off-turned-crouched/schema.json"
+      }
+    },
+    "mixamo/step-left": {
+      "movement": "body.step",
+      "parameters": {
+        "side": "left"
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 61,
+      "motion_sha256": "6bb84121ca2ec77799e4343869d99a16a8bc80e6d069fa7a2fc7b9d6c269f08b",
+      "views": {
+        "front": [
+          "1e66d8f857a576c7e640749e00848c6130e4ff0abb103f5d8bfe674b5ff2cd1a",
+          "87d443048231c8fddca53602f04bceb11ab25f046444c7694dc5915a4fda57a4"
+        ],
+        "side": [
+          "22d3bf550fb9e46297034219fb674976d1545d9a4da8df15c2fe5ce5c208528b",
+          "17395cccf779639734ff75a1fd58edc2cd0fed2d40bd54db71e9a35af5f02804"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "mixamo/step-left/profile.json",
+        "entry": "mixamo/step-left/entry.json",
+        "instance": "mixamo/step-left/instance.json",
+        "fragment": "mixamo/step-left/fragment.json",
+        "executable": "mixamo/step-left/executable.json",
+        "surfaces": "mixamo/step-left/surfaces.json",
+        "schema": "mixamo/step-left/schema.json"
+      }
+    },
+    "mixamo/step-right": {
+      "movement": "body.step",
+      "parameters": {
+        "side": "right"
+      },
+      "entry_pose": "crouched",
+      "frames": 61,
+      "motion_sha256": "81936e964da4c81a1c734d32e93fc3878609741206c26b3c908c0b47d278070c",
+      "views": {
+        "front": [
+          "3fd593b388691e0afc265adca7cd47d10a3de1b77529825be712c138b2fd717f",
+          "b2df805f5363590532ffa71e1c8952cce6fa48867476bc54636ad6091f915cb7"
+        ],
+        "side": [
+          "5f0f64db4a2e7653cff57a41c4fb529f028dbf2aa2ba184aca3cc42267a976af",
+          "9aa15458508ad7f1337f38278f8f49c0252ebb3ba7a19ab43f65592542d6eb1b"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "mixamo/step-right/profile.json",
+        "entry": "mixamo/step-right/entry.json",
+        "instance": "mixamo/step-right/instance.json",
+        "fragment": "mixamo/step-right/fragment.json",
+        "executable": "mixamo/step-right/executable.json",
+        "surfaces": "mixamo/step-right/surfaces.json",
+        "schema": "mixamo/step-right/schema.json"
+      }
+    },
+    "mixamo/lunge-right": {
+      "movement": "body.lunge",
+      "parameters": {
+        "lead": "right"
+      },
+      "entry_pose": "crouched",
+      "frames": 79,
+      "motion_sha256": "80610f0696465bc76b2432bb3103ef12dd672ec88c7d0b1244c1d088b595de31",
+      "views": {
+        "front": [
+          "b5433a92412b26e08501996e4c305a3863053b47e94d108ecefcd9688a5d6b5a",
+          "b7b5bc9addc5312e094a06190ef376afd542857041e8d1a3381df45ef2b2e71c"
+        ],
+        "side": [
+          "5ee0b5a07b4dbf956a05bc2f1830305ccd40c7b511a0352adadb6899614ed76d",
+          "a6b2ac84883d1fe69f110cdbfbda31d48d39ca524ebf06407f71a1fe0709d653"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "mixamo/lunge-right/profile.json",
+        "entry": "mixamo/lunge-right/entry.json",
+        "instance": "mixamo/lunge-right/instance.json",
+        "fragment": "mixamo/lunge-right/fragment.json",
+        "executable": "mixamo/lunge-right/executable.json",
+        "surfaces": "mixamo/lunge-right/surfaces.json",
+        "schema": "mixamo/lunge-right/schema.json"
+      }
+    },
+    "mixamo/prepared-seat": {
+      "movement": "body.floor_transfer",
+      "parameters": {
+        "surface": "pelvis-pad"
+      },
+      "entry_pose": "pelvis",
+      "frames": 43,
+      "motion_sha256": "2baca8d460bc941337e52e7e75f7bc618c01cea316fe9e40d99c4266706deb99",
+      "views": {
+        "front": [
+          "94b601dba832baccaebc4811163facec0031b98e900a7eaeb5cf99322dbc4bb6",
+          "2a2218e72450b32397c3da5ed7ff4c11239a91f52b81bf36d1fa04b45e3ce74f"
+        ],
+        "side": [
+          "a5dbbda649559cc3f7bbb81d9f09c1cc889bb1c55208bc4dd95779202ab4fda5",
+          "7a51cab4e7dd0936310822afd7f4e87dec200c7ccc8d0790d18f14ee865adf41"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "mixamo/prepared-seat/profile.json",
+        "entry": "mixamo/prepared-seat/entry.json",
+        "instance": "mixamo/prepared-seat/instance.json",
+        "fragment": "mixamo/prepared-seat/fragment.json",
+        "executable": "mixamo/prepared-seat/executable.json",
+        "surfaces": "mixamo/prepared-seat/surfaces.json",
+        "schema": "mixamo/prepared-seat/schema.json"
+      }
+    },
+    "mixamo/prepared-kneel": {
+      "movement": "body.kneel_rise",
+      "parameters": {
+        "surface": "knee-pad"
+      },
+      "entry_pose": "knee",
+      "frames": 79,
+      "motion_sha256": "0816106fd35735055f60392708717e0c8ab71f0b09f08ffce8e185c0fcb081e1",
+      "views": {
+        "front": [
+          "9b5d7027e9dc98091e6f4241aa48e555403cd98d6c6c42c908c2e52f9fba1d2b",
+          "b1af23aeeba7a7857cb2082be0edbf7cb4125e6294e3dbe32fbe670a518ccf9a"
+        ],
+        "side": [
+          "32b8e9f70edaa181ff8f995817598e55e19d017e729b9121e9b558032c5930ff",
+          "67a79aa3d7cba31c6c3c0811ccf4ad2c6cbd60f17feca963457d9763a4cf15f3"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "mixamo/prepared-kneel/profile.json",
+        "entry": "mixamo/prepared-kneel/entry.json",
+        "instance": "mixamo/prepared-kneel/instance.json",
+        "fragment": "mixamo/prepared-kneel/fragment.json",
+        "executable": "mixamo/prepared-kneel/executable.json",
+        "surfaces": "mixamo/prepared-kneel/surfaces.json",
+        "schema": "mixamo/prepared-kneel/schema.json"
+      }
+    },
+    "mixamo/standing-to-seated": {
+      "movement": "body.floor_transfer",
+      "parameters": {
+        "route": "standing_to_seated"
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 127,
+      "motion_sha256": "cf2faa8bcce0bf6113fe1976ebdfea5ee5a776be2c37c2521bddeaadedb39a94",
+      "views": {
+        "front": [
+          "c39627c1c2524f41b8a9bbbe4edd670dabfd9fcdd960fee697163129e8c69c27",
+          "899242791b40d6c11ad0e5731167b9cd4501b4c34b6712013b5306f63d860cf7"
+        ],
+        "side": [
+          "ba408302db0facd4eb2d9354d104f3d4e7bc6e0730427b1eefc8330875538e20",
+          "85103fee3279560151765bc8ac47cd204fa6212704536f8866ea6b2c59bf7073"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "mixamo/standing-to-seated/profile.json",
+        "entry": "mixamo/standing-to-seated/entry.json",
+        "instance": "mixamo/standing-to-seated/instance.json",
+        "fragment": "mixamo/standing-to-seated/fragment.json",
+        "executable": "mixamo/standing-to-seated/executable.json",
+        "surfaces": "mixamo/standing-to-seated/surfaces.json",
+        "schema": "mixamo/standing-to-seated/schema.json"
+      }
+    },
+    "mixamo/seated-to-back": {
+      "movement": "body.floor_transfer",
+      "parameters": {
+        "route": "seated_to_back"
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 128,
+      "motion_sha256": "ddb7a613f46d05a333399488785904cd32914ee3e779f3f464d9a9807310b0f5",
+      "views": {
+        "front": [
+          "30b31fdf55ecd0cc5bc2fa0eadff1b06b99c82a6d1461536263487dc59d694da",
+          "824af4be22d2e50bde8d2a38600e91f8347e3016e8dde68bccaf0eceae75627c"
+        ],
+        "side": [
+          "09d3afdfbaff8dd49e95bbdaa9f3cce146502af65b508d086f6b29d7b4df095c",
+          "bc44756496385681ea0ab7a9155aa8fa22cff0c9a25916fecb79d1fa121abe97"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "mixamo/seated-to-back/profile.json",
+        "entry": "mixamo/seated-to-back/entry.json",
+        "instance": "mixamo/seated-to-back/instance.json",
+        "fragment": "mixamo/seated-to-back/fragment.json",
+        "executable": "mixamo/seated-to-back/executable.json",
+        "surfaces": "mixamo/seated-to-back/surfaces.json",
+        "schema": "mixamo/seated-to-back/schema.json"
+      }
+    },
+    "mixamo/planted-kneel-right": {
+      "movement": "body.kneel_rise",
+      "parameters": {
+        "route": "planted_to_knee",
+        "side": "right"
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 259,
+      "motion_sha256": "a1f38f78c2cd6fc1b55b371115df0aab05f8c9d3bb24b94f30bf546d4a62b98f",
+      "views": {
+        "front": [
+          "27fbdffbd82526a88a1ef8792fbf28924ffe6e7a1a57c334c7e7cb65d60b17d8",
+          "99bf7556831d33387297eb69a71154561b8f3407840c01514c550f8542b74a4c"
+        ],
+        "side": [
+          "a012118384ef5703302f0f620765e7594a8f1f9415aada0e9df37fb8be423bab",
+          "d1dcef4098aed0febce551c41e4e4a3cd336c162cbee8d5e32a9e2cdbde39ea5"
+        ]
+      },
+      "visual_reuse": true,
+      "records": {
+        "profile": "mixamo/planted-kneel-right/profile.json",
+        "entry": "mixamo/planted-kneel-right/entry.json",
+        "instance": "mixamo/planted-kneel-right/instance.json",
+        "fragment": "mixamo/planted-kneel-right/fragment.json",
+        "executable": "mixamo/planted-kneel-right/executable.json",
+        "surfaces": "mixamo/planted-kneel-right/surfaces.json",
+        "schema": "mixamo/planted-kneel-right/schema.json"
+      }
+    },
+    "demo/lower-rise-neutral-minimum": {
+      "movement": "body.lower_rise",
+      "parameters": {
+        "depth_m": 0.03,
+        "phase_s": 0.9,
+        "hold_s": 0.1
+      },
+      "entry_pose": "neutral",
+      "frames": 58,
+      "motion_sha256": "9f9a3423952de4107865a483f4b740c0d118874c78763abf74c92ee72de27312",
+      "views": {
+        "front": [
+          "144b7a20751adf888a6cd7530c69ad2994bd0601a6ab34dec6f2e60d7b80c0cd",
+          "c8c356c3b09f3c5beed332b3e29025da31d454be84cc4bd2f8b651e7e7de0af5"
+        ],
+        "side": [
+          "b5b6e2bcb34613d1ad663650648d3f3bf110df886dcc97dc77b0cfc814d495ec",
+          "40945d5edbe2c990bcaa1fc605c5eb339577779e1acd0fadc1574a4e261c5981"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "demo/takeoff-land-push-off-neutral-minimum": {
+      "movement": "body.takeoff_land",
+      "parameters": {
+        "height_m": 0.12,
+        "phase_s": 0.7,
+        "push_off_depth_m": 0.04,
+        "recovery_depth_m": 0.03
+      },
+      "entry_pose": "neutral",
+      "frames": 126,
+      "motion_sha256": "35368321080617d74ed78e918b4cd506a8c825e58cf87b3c29207f2faf53932d",
+      "views": {
+        "front": [
+          "eba797894afcec3cf830770b45ca7d9eda7b37c67bcbd4fc3a56b90388ac6ef4",
+          "287add3e5a26f48d21f80d566d3cb0445540db9346e18012ad2735423276bf74"
+        ],
+        "side": [
+          "d5a4bf5609a65ce3f776014c700e03cec802917c2ccc14c3eddec86cb40407c9",
+          "f5d93c9835dec04696faf64e91d958df257e0920e65f9807d69b658729b7b926"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "demo/step-left-minimum": {
+      "movement": "body.step",
+      "parameters": {
+        "side": "left",
+        "distance_m": 0.06,
+        "clearance_m": 0.04,
+        "phase_s": 0.7
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 55,
+      "motion_sha256": "33a1387d7d0e68aec464d90eb2735970e221f8524912639e2ae7eb022ef12daa",
+      "views": {
+        "front": [
+          "06304f49710c644ce223ecc5f66a5839109c0bd4ce39a7fe7bd75c6e2ea275e8",
+          "86435dc4f7aebf7a98163237edeac2ef5cb5ea9ba5b16f6ceef516bcc5a2e3b0"
+        ],
+        "side": [
+          "e1ed1b3386cecb9f2bb8fdc394634087f6a1266df70d28e428fbb0cd3ab550cb",
+          "9f1db75897a165e0f7562e3a703ffca777d7b287c8e382ca2de4fac1642e0555"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "demo/lunge-left-minimum": {
+      "movement": "body.lunge",
+      "parameters": {
+        "lead": "left",
+        "depth_m": 0.04,
+        "advance_m": 0.04,
+        "phase_s": 0.9,
+        "hold_s": 0.1
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 58,
+      "motion_sha256": "46da9d0f85e137312254e15fe4bb558d7c0eeb178ebb5b08022ff8f0e1d79d01",
+      "views": {
+        "front": [
+          "b8947b1a4c5d9d2c36586a8f3f869838cadc4069c2911753e217a97866df93ff",
+          "4aa819bf305ba7f20ab21b627abfcca78b148cbd73c7af88e8d8d6585c5e76d3"
+        ],
+        "side": [
+          "146ad5fd6d9b70060b293151a931eba7cd5a2f760594fc5fb52fdaa1fec861b4",
+          "33b193a73dba1a6dedf3b2287d537535ef3f38a67d962164f556525553d7ca60"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "demo/prepared-seat-minimum": {
+      "movement": "body.floor_transfer",
+      "parameters": {
+        "approach_s": 2.2,
+        "phase_s": 0.9,
+        "hold_s": 0.1,
+        "surface": "pelvis-pad"
+      },
+      "entry_pose": "pelvis",
+      "frames": 31,
+      "motion_sha256": "3ce01bf5f9f95e2c09f35ec7abb3974444b345a9b6a27474872a25733eb2d46d",
+      "views": {
+        "front": [
+          "450f60f2104ec8566d3522224ffdbea622abde98c1bd43bfcd31427f07bdf607",
+          "4b79cbe5e8e4bea24856a9497cdd72f326b389f4a3f68b0f69c35d133dbe85c3"
+        ],
+        "side": [
+          "83b106ea85c4b59baf8c6c9af62fb2299eb1296de61c2ecd928b3d0fba11072e",
+          "9fbfb0c99082da5395613c0a7a3bdbb01f22ac0b9fd8ee8de91a837a6e16db76"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "demo/prepared-kneel-minimum": {
+      "movement": "body.kneel_rise",
+      "parameters": {
+        "approach_s": 2.2,
+        "phase_s": 0.9,
+        "hold_s": 0.1,
+        "surface": "knee-pad"
+      },
+      "entry_pose": "knee",
+      "frames": 58,
+      "motion_sha256": "c1ade12bb787135636af020d95e090ea55e6a428fa211c1bb2355fdb53540de5",
+      "views": {
+        "front": [
+          "4817a1713219d70800f3eb30c293d33d74bcb41b9eb059756d2fa9cc46a4ea9e",
+          "6c3ac8b9da5baa0bd92f20497631869c47a0a135fe488879c80ba97cf6782974"
+        ],
+        "side": [
+          "cc204d037b96a349a688e0f7ea2640f7502c9f6c48ea54635dd75b8471d40c22",
+          "d6d4bbb4d091400444845c1f877996a0ef936aa7980de88de14116531ae5f5fa"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "demo/standing-to-seated-minimum": {
+      "movement": "body.floor_transfer",
+      "parameters": {
+        "route": "standing_to_seated",
+        "approach_s": 2.2,
+        "phase_s": 0.9,
+        "hold_s": 0.1
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 97,
+      "motion_sha256": "9a3d52aaef261acf9b93ac29492d77cdb7e41be8ec50ee37244a2723979a0baa",
+      "views": {
+        "front": [
+          "cacf60068145f84b23e5ce081b60a9fcc9575867ef932c16613d9c4c88c88e14",
+          "ceaa05f2808db450d6202f5ea117e7471f68e4f0d4c53b7fc237ac5084fc036a"
+        ],
+        "side": [
+          "824f22e0e59378bd4cf253fb78840f1af0b6e5a40128cf103c84e4f6c242dc21",
+          "8b6a360838f927f7914d08128e0c93c53137def3832164541e8e33639209613f"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "demo/seated-to-back-minimum": {
+      "movement": "body.floor_transfer",
+      "parameters": {
+        "route": "seated_to_back",
+        "approach_s": 2.2,
+        "phase_s": 0.9,
+        "hold_s": 0.1
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 98,
+      "motion_sha256": "7029316c7ef5caba1de6d89fb8b86f6ce5fde8669ea5bd100d52a983f8c2c82a",
+      "views": {
+        "front": [
+          "8b26a00f65244d5b110e944f932e59a9fc169ff0caa480bef9ce94f316680d93",
+          "59320a5f760e065661cb5479d8eedf5c6e299ec59fe1f2538f612dcff16f2c9a"
+        ],
+        "side": [
+          "01f24cb0337694e918936e5d4d9bda24b97b155648dbc417912dbd0b66be28f9",
+          "280faf912df2d5201cace36fdc8560e5b76bcb760b542a3cc4152470b3935cc5"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "demo/planted-kneel-left-minimum": {
+      "movement": "body.kneel_rise",
+      "parameters": {
+        "route": "planted_to_knee",
+        "side": "left",
+        "approach_s": 2.2,
+        "phase_s": 0.9,
+        "hold_s": 0.1
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 202,
+      "motion_sha256": "7c226d068dd067096cc797b2692ab94c2957e8206dc48a2b59d15d063affe6f4",
+      "views": {
+        "front": [
+          "c9107d64d57810ea953cc5d3785f5ce94958661aa9e2114abbe9cc4d18742a59",
+          "21e8c24a96d003983f95df64676ac2535accdb8b0d059bea27aca64b0edb8ba4"
+        ],
+        "side": [
+          "28305b1042f9f5dafee65a85461cbfd33deeba181c603b48db934d3951201678",
+          "f05ed8b561f6b5c92885a37e5f793c5cbcb6f065b69d577614b0e25d16ed3b5a"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "mixamo/lower-rise-neutral-maximum": {
+      "movement": "body.lower_rise",
+      "parameters": {
+        "depth_m": 0.1,
+        "phase_s": 2,
+        "hold_s": 0.6
+      },
+      "entry_pose": "neutral",
+      "frames": 139,
+      "motion_sha256": "1eb33d65a739f50fc491b6e80f926015f22499d4b6c7a711f255084a3ae0386d",
+      "views": {
+        "front": [
+          "11c8c4ece2c237b81338cf3e813b1c66a6ad774d0196aaa89e76641b79d7c7ef",
+          "5e5149adc666ec34b0636ff556612a3dceb13a09f41e0f80f89d8effcc840dd6"
+        ],
+        "side": [
+          "ec299989c5128c7feaa711dc32d29edd152707064287fe6697baaf3def844e87",
+          "f8705bbc4c2344db8ac5767e02f03d048e0c185ab378c2342d790ec96d0e08b4"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "mixamo/takeoff-land-push-off-neutral-maximum": {
+      "movement": "body.takeoff_land",
+      "parameters": {
+        "height_m": 0.35,
+        "phase_s": 1.4,
+        "push_off_depth_m": 0.1,
+        "recovery_depth_m": 0.08
+      },
+      "entry_pose": "neutral",
+      "frames": 167,
+      "motion_sha256": "6a8c0861b427d33cb289425cc91ce1a46685d8ca887769c847d7e5e0b0e05e9c",
+      "views": {
+        "front": [
+          "d687deb77ee0c6f90d15ac031225b1ec2271a83b489be4effdf1ebc47409dd23",
+          "872f54518723b6c2226d929e0ab762cae30bc5cf4f320a9089e34b2a65032a82"
+        ],
+        "side": [
+          "6185b053762efb5d655d819a0c11a0b9670bef8284a56ca7827f81a299214f0e",
+          "39b5eae0357d323fa0d0492ff11a3ad4c6c4a724f09d0cb8902d3c0af02492c6"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "mixamo/step-left-maximum": {
+      "movement": "body.step",
+      "parameters": {
+        "side": "left",
+        "distance_m": 0.16,
+        "clearance_m": 0.09,
+        "phase_s": 1.4
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 97,
+      "motion_sha256": "8759a465c7f64d1c909e23bde261d6a724bb98ed9882bc32f9fe81f2e37410ee",
+      "views": {
+        "front": [
+          "ca8a5444aedd7b5554dde1975e75125fbcf67f7ef6826deb3e9ea822caa71a24",
+          "4377ab7785d65682f16c347fd51df9d0c03229d06da7e09e04bb989198fdc18d"
+        ],
+        "side": [
+          "8d1e96141864d4e299a0ef0ebe928fd98979c7ad3f9e83714e4bea23ff1ec1b7",
+          "30eee74728ee5708d56de339a223aff67cb2ad01a51efe5bf5629e897ba553a7"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "mixamo/lunge-right-maximum": {
+      "movement": "body.lunge",
+      "parameters": {
+        "lead": "right",
+        "depth_m": 0.1,
+        "advance_m": 0.1,
+        "phase_s": 2,
+        "hold_s": 0.6
+      },
+      "entry_pose": "crouched",
+      "frames": 139,
+      "motion_sha256": "b17daec85654ed36d54347ad807ea7509f00a9ed522391bd78acfbe0684cbd8b",
+      "views": {
+        "front": [
+          "7c99ae8852d7c5745a4c939946680d65755078542433f7ab2561b87388780d0c",
+          "9a7d9f7c853d7aae301fc958af6e2f9f0320db56d8e827db357a3d0fbab4110e"
+        ],
+        "side": [
+          "94c7c40ddd6cffec275ea84eb32bc036a93c0479a57660121cc6a9684de8ba33",
+          "dce53f0beed5770920c0d7826dcbd770957b254a3111d611c0b5f410d4b14182"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "mixamo/prepared-seat-maximum": {
+      "movement": "body.floor_transfer",
+      "parameters": {
+        "approach_s": 3.5,
+        "phase_s": 2,
+        "hold_s": 0.6,
+        "surface": "pelvis-pad"
+      },
+      "entry_pose": "pelvis",
+      "frames": 79,
+      "motion_sha256": "deb70451a6dfd8e9580d88b2994cfc6070ddf9edb7b6e8db252160360ddb7605",
+      "views": {
+        "front": [
+          "e1ece22de5cab19607519d217e9f6cea81d71cef5dc145b9e72e89d4c2e6d37a",
+          "d5fdfabfdc2de64e625946be6d68637d59371029e8d86db89628e84701b3f512"
+        ],
+        "side": [
+          "41d9b64968473ee0057a6253fa239b193066020fdef1b886005eae7f2778e204",
+          "74d230365ecab55f7d3807226afdb94edc3f6e31e1c943e913f2d5d79fa36374"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "mixamo/prepared-kneel-maximum": {
+      "movement": "body.kneel_rise",
+      "parameters": {
+        "approach_s": 3.5,
+        "phase_s": 2,
+        "hold_s": 0.6,
+        "surface": "knee-pad"
+      },
+      "entry_pose": "knee",
+      "frames": 139,
+      "motion_sha256": "0b3828b1127062a2e43e23a8e6ec7aac0410dbf8d83f8ff7b3d2bad6fadd0542",
+      "views": {
+        "front": [
+          "67445cb0c24ece05a2611340892fbfd0c8106359e7082fdad2f9052c980fe872",
+          "78fdb274dea67ea9971d77c35955e2ee439c73c4e92b117eefd7bc0263745a40"
+        ],
+        "side": [
+          "bbaf7cf455594801968014bcc8eb34a59def56e8ae7d34a7389fdbd41e383a30",
+          "ed25d4dd81aacc9804bfa8e9014a1d805bbe7c6a9724cdad9798ea7b20ff63e2"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "mixamo/standing-to-seated-maximum": {
+      "movement": "body.floor_transfer",
+      "parameters": {
+        "route": "standing_to_seated",
+        "approach_s": 3.5,
+        "phase_s": 2,
+        "hold_s": 0.6
+      },
+      "entry_pose": "crouched",
+      "frames": 184,
+      "motion_sha256": "0c3f63f40078b4c7c008119659f20532a7765e77e62b0f8ff9da030656c43dc7",
+      "views": {
+        "front": [
+          "2146567da0e0e9a4c047f8f6871f3165375005f36a1dcdc81580219c4020a2de",
+          "d44ffcce2405e6b5814ab197a30c0bd5ffda687da713e6ca211327a1fd13619c"
+        ],
+        "side": [
+          "1da2b679d83dbe44d58a9b8879f2cef5fc5fcd0d28a8d39a3ec8435de8f54f9a",
+          "ae44e3e309b894fcad888e35563fc67587fe5bbaf0153c0d7840c95625bef801"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "mixamo/seated-to-back-maximum": {
+      "movement": "body.floor_transfer",
+      "parameters": {
+        "route": "seated_to_back",
+        "approach_s": 3.5,
+        "phase_s": 2,
+        "hold_s": 0.6
+      },
+      "entry_pose": "crouched",
+      "frames": 185,
+      "motion_sha256": "9357b978e2ed5a2d1db1bd671770c36b23f4a005cfa6b70b0ed4cf0a64f319d8",
+      "views": {
+        "front": [
+          "c8277b14470dbc842f23f718ea53e169fc4cc9664d90be839063660a366699fc",
+          "462a2dbcfc47357f1273306a97d62feebe5ed6d4c9047228aa40076b5a68f47e"
+        ],
+        "side": [
+          "22a66610f93d6f83ac6c4d73a544f8f3ecc5b20fec6ba8e2c1ea8b4596caa704",
+          "b01e049e5a53777191c395dc1f6d237a85fa8a3e06129ae15c8158d513df544e"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "mixamo/planted-kneel-right-maximum": {
+      "movement": "body.kneel_rise",
+      "parameters": {
+        "route": "planted_to_knee",
+        "side": "right",
+        "approach_s": 3.5,
+        "phase_s": 2,
+        "hold_s": 0.6
+      },
+      "entry_pose": "neutral",
+      "frames": 361,
+      "motion_sha256": "6617c0addb127e495e1b9f4173e75a2f65505d43ecc063e0280a6332cd5d4b69",
+      "views": {
+        "front": [
+          "617934a8a6150a6b4ebab0d54c7515a0758f612a393989e19c2084ef678b52ab",
+          "ba978942219187827b72a231ff3603207e724d777411105106ff924e02c3d79a"
+        ],
+        "side": [
+          "867882389ae3380b2e6048af16b250c3938acbcbdb38891406d25324fbfa08f2",
+          "6e29a2b00c57662398fbe7e40509eea765d480a617bea86c88480b32a9bb1738"
+        ]
+      },
+      "visual_reuse": true
+    },
+    "demo/low-crawl-left-revised": {
+      "movement": "body.crawl",
+      "parameters": {
+        "lead": "left",
+        "distance_m": 0.04,
+        "swing_s": 0.5
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 93,
+      "motion_sha256": "c8bbc9f6459ad1bde8ba8195ddff2f6ac794eeec0dbaf372c71be1ae1c43cb33",
+      "views": {
+        "front": [
+          "c88821c525b0fe1446f7ec376f75571e956f9c3933795821350efddd9c3c7f6d",
+          "b8240bfbf44e0ec7b57178f193aa816e48bcdde1972138d8534b05475c106a53"
+        ],
+        "side": [
+          "e45c945366a2cba3d2f947cbe59382aa64e3069a7fc7bc25efe7e0afc2e52fd7",
+          "4771e3ba6bf10eb8264057dc5e44189e3a4e124827ac27945ab3b98c45745812"
+        ]
+      },
+      "visual_reuse": false,
+      "records": {
+        "profile": "demo/low-crawl-left/profile.json",
+        "entry": "demo/low-crawl-left/entry.json",
+        "instance": "demo/low-crawl-left/instance.json",
+        "fragment": "demo/low-crawl-left/fragment.json",
+        "executable": "demo/low-crawl-left/executable.json",
+        "surfaces": "demo/low-crawl-left/surfaces.json",
+        "schema": "demo/low-crawl-left/schema.json"
+      }
+    },
+    "mixamo/low-crawl-right-revised": {
+      "movement": "body.crawl",
+      "parameters": {
+        "lead": "right",
+        "distance_m": 0.04,
+        "swing_s": 0.5
+      },
+      "entry_pose": "crouched",
+      "frames": 93,
+      "motion_sha256": "3a13b034e1ab8dfc91bd24b080f24db6155ed2930b48f1cf0ccda99274d8ec6a",
+      "views": {
+        "front": [
+          "8a3bd45381e6b33f842c0144d7db0c9dbc1eeda82a3f51a41b031c91455ea96b",
+          "850719ca465e5a464cbbd1d4557ba4eb7f0cd1cb1e420ffb5295b6bfafec0767"
+        ],
+        "side": [
+          "b1865c7162d557656b184878e7ccb3ecbe2f8007dbd0bd1d741389c70297e8da",
+          "69402db440403cbea98ec03ed3fb94efac589a3f7f3e3db45ded756c4a5980ab"
+        ]
+      },
+      "visual_reuse": false,
+      "records": {
+        "profile": "mixamo/low-crawl-right/profile.json",
+        "entry": "mixamo/low-crawl-right/entry.json",
+        "instance": "mixamo/low-crawl-right/instance.json",
+        "fragment": "mixamo/low-crawl-right/fragment.json",
+        "executable": "mixamo/low-crawl-right/executable.json",
+        "surfaces": "mixamo/low-crawl-right/surfaces.json",
+        "schema": "mixamo/low-crawl-right/schema.json"
+      }
+    },
+    "mixamo/low-crawl-right-maximum-revised": {
+      "movement": "body.crawl",
+      "parameters": {
+        "lead": "right",
+        "distance_m": 0.1,
+        "clearance_m": 0.06,
+        "swing_s": 0.9
+      },
+      "entry_pose": "crouched",
+      "frames": 141,
+      "motion_sha256": "15d43cb043e08abaedeac2f163e35f69f9b4df1f427d180bf20d43d0978d835a",
+      "views": {
+        "front": [
+          "2f7a74027a3967873134fa57f29b465fa943ff554195136976a3a879a7e7e757",
+          "f297d63e2d8745d23284ac9bfa2f5da25ab82da20d72925e97b9b77403bffdcb"
+        ],
+        "side": [
+          "b6f8146703ff3ac07bdbf208d242fe18314d13ec8629bdd2b744895ef3b907d0",
+          "fc488263232eb4eb2dc83f31f8d6ce6aff7677007ec746913156f2a54817f737"
+        ]
+      },
+      "visual_reuse": false
+    },
+    "demo/low-crawl-left-minimum-revised": {
+      "movement": "body.crawl",
+      "parameters": {
+        "lead": "left",
+        "distance_m": 0.04,
+        "swing_s": 0.5,
+        "clearance_m": 0.03
+      },
+      "entry_pose": "turned-crouched",
+      "frames": 93,
+      "motion_sha256": "dba634d3fe15f8ab8209142702fe9d68a9cad1dc02661350d7b8b88808da11c1",
+      "views": {
+        "front": [
+          "b1989cb73e9d4b27039e5dbd2234340b271d9943c1f6182c60c6ac098f7633eb",
+          "72b9fbca83c5a14b01c3346c846e3eead6fa045e7e38336145ee2689e6cecb66"
+        ],
+        "side": [
+          "b6c23125cb29901faa17c064ec3bad329d0deb21389d63c36e28e69d189ee62d",
+          "c21f14b8227ba9423e1535a5f3225b2adef395f7ee0c9d347a1f372317cf5084"
+        ]
+      },
+      "visual_reuse": false
+    },
+    "demo/hands-knees-crawl": {
+      "movement": "body.crawl",
+      "parameters": {
+        "support": "hands_knees",
+        "lead": "left",
+        "distance_m": 0.06,
+        "clearance_m": 0.03,
+        "swing_s": 0.6
+      },
+      "entry_pose": "neutral",
+      "frames": 105,
+      "motion_sha256": "38431ec23ea922b9c6cc67f336b5a162b146e6a5386afc57a3bba5413bc99c39",
+      "views": {
+        "front": [
+          "ea165a3b0c8df9f44f9e25125083a89443162ffbfbb011b95e2bfaf6ad0bc8c1",
+          "b2a89155380dee6bec220718fc07617a55447fa187a9ba7df0f0ef7ebe5ae7e4"
+        ],
+        "side": [
+          "5c444814ba89900ba34ffc516aa47bb5f1ecff9275c7daa8801cbfe94858c330",
+          "3d9c1615f95b545c903c28b083476cf5b48c433ac9a564091f03c5a2ec887222"
+        ]
+      },
+      "visual_reuse": false,
+      "records": {
+        "profile": "demo/hands-knees-crawl/profile.json",
+        "entry": "demo/hands-knees-crawl/entry.json",
+        "instance": "demo/hands-knees-crawl/instance.json",
+        "fragment": "demo/hands-knees-crawl/fragment.json",
+        "executable": "demo/hands-knees-crawl/executable.json",
+        "surfaces": "demo/hands-knees-crawl/surfaces.json",
+        "schema": "demo/hands-knees-crawl/schema.json"
+      }
+    },
+    "mixamo/hands-knees-crawl": {
+      "movement": "body.crawl",
+      "parameters": {
+        "support": "hands_knees",
+        "lead": "right",
+        "distance_m": 0.06,
+        "clearance_m": 0.03,
+        "swing_s": 0.6
+      },
+      "entry_pose": "turned",
+      "frames": 105,
+      "motion_sha256": "37547826438300e9292ac77c08820cd935196e4892d09e28a73efd5679c910c2",
+      "views": {
+        "front": [
+          "ac05f9abdf833f45f3f98395b11f5e5627246f88f28c93351bb476699e91efc9",
+          "e11a5e59d130807e7fa32ab48f4fc3309eb1fb2a0ba9098efa97bfa69b5270be"
+        ],
+        "side": [
+          "3ab7eebe88ed027e3fbfbb651b8ee5a9d0f873e015ef21a06943d9b6f654bd04",
+          "a2e6d852351467bbd470a895dca349871a2d2e6f65393bf5f31863d707ff60c1"
+        ]
+      },
+      "visual_reuse": false,
+      "records": {
+        "profile": "mixamo/hands-knees-crawl/profile.json",
+        "entry": "mixamo/hands-knees-crawl/entry.json",
+        "instance": "mixamo/hands-knees-crawl/instance.json",
+        "fragment": "mixamo/hands-knees-crawl/fragment.json",
+        "executable": "mixamo/hands-knees-crawl/executable.json",
+        "surfaces": "mixamo/hands-knees-crawl/surfaces.json",
+        "schema": "mixamo/hands-knees-crawl/schema.json"
+      }
+    }
+  }
+}
