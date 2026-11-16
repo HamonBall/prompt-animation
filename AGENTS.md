@@ -4,6 +4,10 @@
 
 Read `docs/context-continuity-policy.md` and `to do/CURRENT-WORK.md` at the start of project work and after context loss/compaction when the active state is unclear. Follow them for every stage and maintenance task without waiting for a reminder. Keep the current-work pointer and the assigned task's handoff current at meaningful checkpoints. A saved plan is not authorization to start it. Do not repeat completed work merely because a chat is new.
 
+## Token discipline
+
+Apply section 4 of `docs/context-continuity-policy.md`: reuse context already present, search narrowly before reading, bound tool output, and stop repeated investigation once the next action is supported. These are workflow guardrails, not a hard token cap. Required correctness and validation gates still apply.
+
 ## Generated artifacts and storage
 
 Before running tests, renders, benchmarks, preview generation, migration or maintenance that writes artifacts, read `docs/artifact-retention-policy.md` and follow it. It applies throughout this repository, including numbered movement stages and one-off diagnostics.
@@ -47,7 +51,7 @@ Keep implementation contracts, project policies, stage documents and completion 
 
 ## Current work checkpoint
 
-Stage 05.6c is complete as of 2026-11-12 in the working tree based on `d2f2e74`. Read `to do/stages/receipts/05.6c.md` and `to do/stages/handoffs/RESUME-05.6c.md` for the verified checkpoint. Stage 05.7a awaits explicit assignment. Preserve current changes and frozen README.md. Store numbered-stage handoffs in `to do/stages/handoffs/RESUME-<stage>.md`.
+Stage 05.7a is complete as of 2026-11-16 in the working tree based on `30b3083`. Follow `to do/CURRENT-WORK.md` and `to do/stages/handoffs/RESUME-05.7a.md`. Stage 05.7b awaits explicit assignment. Preserve current changes and frozen README.md. Store numbered-stage handoffs in `to do/stages/handoffs/RESUME-<stage>.md`.
 
 ## Maintenance and future handoffs
 

@@ -254,7 +254,8 @@
         "easing": {
           "enum": [
             "linear",
-            "smooth"
+            "smooth",
+            "smootherstep"
           ]
         },
         "end_value": {

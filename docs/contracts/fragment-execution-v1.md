@@ -42,12 +42,86 @@ There is no graph scheduling, owner arbitration, movement selection, style/patte
 generation, loop expansion or general recipe compilation in this module. Stages 06/07
 will consume the same ExecutableMotion/FrameTargets representation and sampler.
 
+## Stage 05.7a timing and finite repeat
+
+`patterns.repeat_fragment(fragment, count, entry=entry, profile=profile)`
+implements the initial `timing.repeat` transform. Pass an authored fragment
+and an explicit integer count. Count 1 returns the validated input. Counts
+up to 128 are subject to the tighter expanded instance, duration, sample,
+track, contact, phase, goal and source-map limits before copies are made.
+
+For multiple copies the authored controls must return to the measured
+entry at rest. The original unit and frame of each control are preserved.
+The held support set must match at the seam, and its anchors must remain in
+place. Consecutive held contact events are joined across the seam so the
+executor keeps the anchor. Time is measured in seconds. The total duration
+is the original duration times the requested count.
+
+Later copies retain original instance IDs in track and contact provenance
+alongside deterministic occurrence IDs. Phase landmarks and goals move with
+each copy. The result is prepared through the same single-fragment bridge
+and has finite playback with empty loop metadata. This first version covers
+zero net root displacement and resting seams.
+
+- `hold_fragment` appends a bounded time interval to the terminal targets,
+  terminal goals and contacts still held at the end. `transition_fragment`
+  builds a smooth curve from measured entry controls to explicit targets in
+  the same semantic frame while continuing the captured contacts.
+- Overlap accepts disjoint owned chains with a shared contact schedule.
+  Synchronization aligns named landmarks by delaying one operand. Finite
+  phase offsets use a signed fraction of the second fragment's duration.
+  Positive offsets delay the second operand. Alternation schedules one
+  compatible pair in turn and optionally applies finite repeat to the pair.
+- The initial mirror supports calibrated scalar controls and mirrored
+  side-specific anchors. Explicit world anchors reflect through the entry
+  body's sagittal plane. Other track representations require calibration
+  and evidence before support is added.
+- Bilateral strokes reuse the calibrated `arm.stroke` path on each arm.
+  The alternating form rounds its half-cycle phase to a frame and holds
+  the delayed endpoint at its measured entry before the stroke. The shared
+  `smootherstep` curve adds a quintic ramp with zero endpoint acceleration.
+- `torso_pattern` reuses the calibrated supported sway and spine-wave paths.
+  Both start with two captured floor soles and return to the entry pose.
+  Undulation can add a phased 5° swing for the selected arm or both arms.
+- `step_pattern` authors one to four alternating floor steps from two captured
+  soles using the calibrated `body.step` parameters. Each swing carries the
+  authoring foot frame and anchor forward by one stride. The body advances
+  half a stride per step. The bridge only admits the multi-step schedule when
+  the release/acquisition windows alternate and at least one sole stays held.
+- `verify_translation_loop` attaches `LoopSpec` after checking the baked
+  cycle's measured root, pose, support anchors and angular velocities at the
+  seam. Translation uses the fixed entry-body frame. Passing a finite step
+  fragment to the ordinary bridge still gives finite playback. Loop checks
+  currently cover translation with unchanged heading.
+
+The [05.7a receipt](../../to%20do/stages/receipts/05.7a.md) records the
+measured seam, native checks and saved-motion visual evidence.
+
+| Stage ID | Arguments and authored bounds | Entry, ownership and exit |
+| --- | --- | --- |
+| `timing.hold` | Explicit positive duration with total motion limited to 60 s | Extends the first fragment's terminal targets, goals and contacts. Inherits its frames and chains. |
+| `timing.transition` | Explicit framed targets and duration from 1 ns to 60 s | Each target starts at the measured value in the same unit and frame. Owns the target's chain and requires normal numeric checks. Ends at the requested targets. |
+| `timing.repeat` | Explicit count 1–128 subject to the expanded budgets | For multiple copies, the input returns to the measured stance at rest with matching support. Ownership and frames come from the input. |
+| `timing.alternate` | Two explicit compatible fragments and pair count subject to repeat budgets | The second starts after the first. Foot support continues across the pair. Additional pairs require a returning seam. |
+| `timing.mirror` | One fragment with calibrated scalar mirror rules | Reflects its scalar tracks and goal targets and changes side-specific contact IDs. Explicit world anchors reflect in the entry sagittal plane. An incompatible explicit start fails preparation. |
+| `timing.synchronize` | One named landmark per operand | Delays one compatible operand to align both landmarks. Preserves the independently authored frames and exit states. |
+| `timing.phase_offset` | Signed offset from −1 to +1 second-operand cycles | Positive values delay the second operand. Its phase is authored against the shared entry and the complete support schedule must match. |
+| `timing.overlap` | Two explicit fragments and a common entry | Requires disjoint owned chains and compatible support. Each fragment retains its authored duration and endpoint. |
+| `pattern.steps` | Lead left or right, count 1–4, phase 0.7–1.4 s with default 0.8 s, distance 60–160 mm with default 100 mm, clearance 40–90 mm with default 60 mm | Profile-8 floor soles. Owns pelvis and the swinging leg's foot position and orientation during each step. Uses world targets and leaves the stance translated. |
+| `pattern.strokes_synchronized` and `pattern.strokes_alternating` | Phase 1–3 s with default 1.5 s, hold 0–1 s with default 0.1 s, stroke amplitude 0–160 mm with default 80 mm. Count is explicit and bounded by expansion. | Both arms approach and recover at measured world wrist endpoints. Owns upper arm, forearm and wrist on each side. Alternating mode offsets the right arm by half a cycle rounded to the frame grid. |
+| `pattern.sway` and `pattern.undulation` | Angle −20° to +20° with default 10°, phase 0.8–3 s with default 1 s, hold 0–1 s with default 0.1 s. Count is explicit. Undulation accepts optional left, right or both arms with a 5° swing. | Both floor soles start held. Uses calibrated torso or spine controls and a fixed world head aim. Follow-through adds upper-arm ownership. Returns to measured entry. |
+
+Authored bounds are checked before execution. The reviewed rig and entry
+envelopes are recorded in the Stage 05.7a receipt. All cases still pass through
+the same contact, joint, speed, acceleration and preservation gates.
+
 ## Sampling and entry binding
 
-Curves use the existing hold/transition descriptor. Smooth easing is `3u²-2u³`; linear
-easing uses u. Scalars/vectors interpolate their values and quaternions use normalized
-shortest-arc slerp, treating q and -q as equivalent rotations. No new curve enum/schema
-or per-family sampler was introduced.
+Curves use the hold/transition descriptor. Linear easing uses `u`, smooth easing
+uses `3u²-2u³`, and Stage 05.7a adds quintic smootherstep `6u⁵-15u⁴+10u³`
+to the shared sampler and schema-v1 easing enum. Scalars and vectors interpolate
+their values. Quaternions use normalized shortest-arc slerp and treat q and -q
+as equivalent rotations.
 
 Start a fresh cursor at time zero, call chronologically at intervals no larger than
 1/30 second, and pass the previous solved MotionStateSnapshot. The cursor rejects a

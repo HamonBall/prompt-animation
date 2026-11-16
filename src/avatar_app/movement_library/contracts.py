@@ -494,7 +494,7 @@ class CurveSpec(Record):
     start_value: Value | None
     end_value: Value | None
     duration_s: Annotated[float, Rule(minimum=1e-9, maximum=MAX_SECONDS)]
-    easing: Literal['linear', 'smooth'] = 'linear'
+    easing: Literal['linear', 'smooth', 'smootherstep'] = 'linear'
     look_at_world_v1: Vector3 | None = None
 
     def _validate(self):

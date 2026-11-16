@@ -6,8 +6,10 @@ task state belongs in the handoff, not an expanding conversation transcript.
 
 ## 1. Recover the current task before acting
 
-1. Read AGENTS.md and to do/CURRENT-WORK.md. Follow the pointer to the active
-   handoff, then read the assigned specification and only relevant contracts.
+1. Read AGENTS.md and to do/CURRENT-WORK.md. Text already supplied in the active
+   context counts as read; fetch it again only for missing details or likely changes.
+   For stage work, follow the active handoff; for a separate task, use the pointer
+   to preserve the stage boundary and read only that task's specification/contracts.
    Do not read every historical receipt or rescan the entire repository by default.
 2. Apply the user's current request. A pending task, next-stage link or saved
    plan is not permission to execute it. Preserve explicit pauses and stop boundaries.
@@ -80,6 +82,43 @@ current pointer, AGENTS checkpoint when changed, stage index and latest handoff;
 keep historical receipts intact and README frozen.
 
 ## 4. Prevent repeated work and wasted context
+
+These defaults apply to Sol and other agents. They limit avoidable context, not
+the work required for correctness. Expand when needed for a concrete decision;
+briefly state the reason rather than asking permission for ordinary investigation.
+
+- Before retrieval, identify the missing fact and smallest likely source. Start
+  with named files or directories: `rg --files <path>` for discovery, `rg -n`
+  for symbols/headings, then a focused range. Use `rg -l` when only filenames
+  are needed. Exclude artifacts, assets, logs and historical receipts from routine
+  source searches; include them explicitly when the task needs their evidence.
+- Default source excerpts to at most 120 lines per file and tool output to about
+  2,000 tokens per call. These are local starting limits, not measured optimal
+  settings. Read complete small files when useful and expand to full functions,
+  callers or contracts when needed. Never infer missing content from truncation.
+  After truncation, narrow the query or request the missing range; do not repeat
+  the same oversized dump with a larger cap by default.
+- Batch independent, bounded reads/searches into one call where supported.
+  Keep dependent reads and mutations sequential. Do not batch whole documents
+  merely to reduce call count. Parse large JSON/logs locally and return the fields,
+  counts and failure excerpts needed for the decision, retaining the source path.
+- Reuse facts and file ranges already in this chat. Reread only after an edit,
+  possible concurrent change, missing context or a specific verification need.
+  Do not reopen historical handoffs or broad memory/session logs for routine work.
+  After compaction recover the missing next action and constraints, not all history.
+- After two searches/reads that add no actionable information, change the query,
+  inspect the direct caller/test, or state the precise blocker. Do not keep looping
+  through the same files. Once evidence supports a fix, implement and validate it;
+  expand exploration only for an unresolved risk or failed check.
+- Use short plans for multi-step work and concise updates with new findings.
+  Keep detailed logs on disk; do not restate the plan or narrate every command.
+  Use existing runners for repetitive work. Do not spawn agents unless explicitly
+  assigned; when authorized, give bounded scope and request findings/paths rather
+  than duplicate repository exploration or full transcripts.
+- Validation follows `validation-efficiency-policy.md`: targeted checks while
+  developing, required full coverage at its gate, and no rerun after a pass without
+  a relevant change/failure. Documentation-only work needs diff/link/consistency
+  checks, not native renders or a new benchmark suite.
 
 - Start from the first unfinished action. Reinvestigate a completed item only for
   a relevant change, failed integrity check or specific unresolved concern.

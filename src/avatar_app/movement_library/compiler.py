@@ -5,6 +5,7 @@ No graph scheduler, rig handles, model calls or scene mutation belong here.
 from dataclasses import dataclass, field, replace
 import math
 from . import contracts as c
+from .curves import ease_weight
 from .registry import (get_movement, validate_instance, validate_fragment,
                        validate_snapshot, validate_control_value)
 from ..motion import Surface
@@ -219,7 +220,7 @@ def sample_motion(executable, time_s, measured_state, execution_cursor):
         if time_s+1e-9<track.interval.start_s: continue
         start=track.curve.start_value if track.start_source=='explicit' else bindings[track.track_id]
         weight=min(1,max(0,(time_s-track.interval.start_s)/track.curve.duration_s))
-        if track.curve.easing=='smooth': weight=weight*weight*(3-2*weight)
+        weight=ease_weight(weight,track.curve.easing)
         end=track.curve.end_value
         if track.curve.look_at_world_v1 is not None:
             position=_measured(measured_state,c.ControlValue('head.position','metre','world',0))

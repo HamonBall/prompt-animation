@@ -95,19 +95,19 @@ General composition is unavailable before 06: early preservation tests use an au
 | 05.6c | body.floor_transfer | Upright to floor sitting and floor sitting to back | Floor sit and seated-to-back reviewed on both rigs. [Verified envelope](receipts/05.6c.md) |
 | 05.6c | body.kneel_rise | Feet/knee support transition and return | Prepared free-knee and planted-foot entry reviewed on both rigs. [Verified envelope](receipts/05.6c.md) |
 | 05.6c | body.crawl | One supported cycle with two palms and a measured pair of knees or soles | Reviewed hands-and-knees cycles at 60 mm on both rigs with two-cycle continuation. Reviewed prepared hands-and-feet cases at 40 mm and 100 mm. [Verified envelope](receipts/05.6c.md#bodycrawl) |
-| 05.7a | timing.hold | Preserve state for bounded duration | Planned |
-| 05.7a | timing.transition | Connect compatible explicit fragment states | Planned |
-| 05.7a | timing.repeat | Finite one two and four cycles | Planned |
-| 05.7a | timing.alternate | Left/right alternation with support preserved | Planned |
-| 05.7a | timing.mirror | Reflect parameters paths and anchors anatomically | Planned |
-| 05.7a | timing.synchronize | Align named phases | Planned |
-| 05.7a | timing.phase_offset | Shift one fragment cycle relative to another | Planned |
-| 05.7a | timing.overlap | Pre-resolved compatible fragments only | Planned |
-| 05.7a | pattern.steps | Alternate finite steps | Planned |
-| 05.7a | pattern.strokes_synchronized | Both arm strokes in phase | Planned |
-| 05.7a | pattern.strokes_alternating | Opposed stroke phases | Planned |
-| 05.7a | pattern.sway | Bounded supported sway | Planned |
-| 05.7a | pattern.undulation | Torso phase progression with optional limb follow-through | Planned |
+| 05.7a | timing.hold | Preserve state for bounded duration | Both rigs reviewed 0.1, 0.4 and 1 s holds of calibrated head yaw. Terminal targets and sole contacts carry through the hold. [Range evidence](receipts/05.7a.md#current-source-range-bakes) |
+| 05.7a | timing.transition | Connect compatible explicit fragment states | Both rigs reviewed 2°, 5° and 10° head yaw from measured entry over 0.4, 1 and 3 s. Authored duration limits checked separately. [Range evidence](receipts/05.7a.md#current-source-range-bakes) |
+| 05.7a | timing.repeat | Finite one two and four cycles | One, two and four lower/rise cycles reviewed on both rigs. [Baseline review](receipts/05.7a.md#baseline-review) |
+| 05.7a | timing.alternate | Left/right alternation with support preserved | Sequential elbow pulses reviewed on both rigs. [Baseline review](receipts/05.7a.md#baseline-review) |
+| 05.7a | timing.mirror | Reflect calibrated scalar paths and swap applicable support anchors | Reflected yaw reviewed on both rigs. Numeric checks cover anchor IDs, calibrated frame/sign mapping and rejection of incompatible explicit entries. [Baseline review](receipts/05.7a.md#baseline-review) |
+| 05.7a | timing.synchronize | Align named phases | Shared elbow arrival reviewed on both rigs. [Baseline review](receipts/05.7a.md#baseline-review) |
+| 05.7a | timing.phase_offset | Shift one fragment cycle relative to another | Half-cycle baselines and signed one-cycle bounds reviewed. The delayed elbow holds its measured entry before moving. [Range evidence](receipts/05.7a.md#current-source-range-bakes) |
+| 05.7a | timing.overlap | Pre-resolved compatible fragments only | Concurrent independent elbow bends reviewed on both rigs. [Baseline review](receipts/05.7a.md#baseline-review) |
+| 05.7a | pattern.steps | Alternate finite steps | Both rigs reviewed one, two and four steps over 60–160 mm stride and 40–90 mm clearance from prepared crouches. The two-step translation seam supports a second measured cycle. [Range evidence](receipts/05.7a.md#current-source-range-bakes) |
+| 05.7a | pattern.strokes_synchronized | Both arm strokes in phase | Both rigs reviewed 0–160 mm added sweep and 1–3 s phases with planted soles and a return to measured wrist endpoints. [Range evidence](receipts/05.7a.md#current-source-range-bakes) |
+| 05.7a | pattern.strokes_alternating | Opposed stroke phases | Both rigs reviewed 0–160 mm added sweep and 1–3 s phases, with a half-cycle delay and return to the measured wrist endpoints. [Range evidence](receipts/05.7a.md#current-source-range-bakes) |
+| 05.7a | pattern.sway | Bounded supported sway | Both rigs reviewed −20° to +20° and 0.8–3 s phases. Torso roll returns to entry with both soles and head facing held. [Range evidence](receipts/05.7a.md#current-source-range-bakes) |
+| 05.7a | pattern.undulation | Torso phase progression with optional limb follow-through | Both rigs reviewed −20° to +20° spine waves with no arm, unilateral and two-arm follow-through cases. Optional arm calibration is checked before execution. [Range evidence](receipts/05.7a.md#current-source-range-bakes) |
 | 05.7b | style.fluid | Smoother paths/continuity with hard goals preserved | Planned |
 | 05.7b | style.robotic | Bounded deliberate holds and articulated timing | Planned |
 | 05.7b | style.heavy | Longer preparation/recovery within timing locks | Planned |

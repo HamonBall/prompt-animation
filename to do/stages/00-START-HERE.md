@@ -39,7 +39,7 @@ Read top to bottom. Dependencies, not filename proximity, determine readiness. E
 | 05.6a | [Library 5.6 — root travel, turning and airborne motion](05.6a-root-travel-flight.md) | 05.5 | [Complete](receipts/05.6a.md) |
 | 05.6b | [Library 5.6 — support contacts and transfers](05.6b-support-transfers.md) | 05.6a | [Complete](receipts/05.6b.md) |
 | 05.6c | [Library 5.6 — coordinated body movements](05.6c-coordinated-body-moves.md) | 05.6b | Complete ([receipt](receipts/05.6c.md)) |
-| 05.7a | [Library 5.7 — timing, repetition and coordination patterns](05.7a-timing-patterns.md) | 05.6c | Planned |
+| 05.7a | [Library 5.7 — timing, repetition and coordination patterns](05.7a-timing-patterns.md) | 05.6c | Complete, [receipt](receipts/05.7a.md) |
 | 05.7b | [Library 5.7 — bounded motion style](05.7b-style.md) | 05.7a | Planned |
 | 06 | [Build action recipes and timeline stages](06-recipe-stage-builder.md) | 05.7b | Planned |
 | 07 | [Compile and execute composed animation](07-animation-compiler.md) | 06 | Planned |

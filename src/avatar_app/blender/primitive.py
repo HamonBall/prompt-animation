@@ -117,8 +117,10 @@ class FragmentAdapter:
         four_point_support = (set(motion.entry_snapshot.active_contacts) == set(CRAWL_ANCHORS)
                               and {event.anchor_id for event in motion.contact_events} == set(CRAWL_ANCHORS)
                               and track_ids == {'pelvis.position', *CRAWL_ENDPOINTS})
+        from ..movement_library.patterns import has_alternating_step_support
         coordinated_support = self.fixed_support and (four_point_support or self.knee_crawl or self.tracked_body_contact or has_step_support(
-            motion.entry_snapshot, motion.contact_events, track_ids, motion.duration_s))
+            motion.entry_snapshot, motion.contact_events, track_ids, motion.duration_s)
+            or has_alternating_step_support(motion, track_ids))
         if self.fixed_support and (profile.version != 8
                                    or any(event.target_world_v1 is None for event in motion.contact_events)
                                    or (track_ids - {'pelvis.position'} and not coordinated_support)):

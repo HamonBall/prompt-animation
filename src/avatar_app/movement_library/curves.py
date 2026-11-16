@@ -4,6 +4,15 @@ from . import contracts as c
 from .spatial import normalize
 
 
+def ease_weight(weight, easing):
+    """Ease a normalized track coordinate with the authored endpoint slopes."""
+    if easing == 'smooth':
+        return weight * weight * (3 - 2 * weight)
+    if easing == 'smootherstep':
+        return weight ** 3 * (10 + weight * (-15 + 6 * weight))
+    return weight
+
+
 def axis_rotation(axis,degrees):
     axis=normalize(axis)
     if not math.isfinite(degrees) or abs(degrees)>360:c.fail('INVALID_PARAMETER','Rotation exceeds one bounded cycle')
