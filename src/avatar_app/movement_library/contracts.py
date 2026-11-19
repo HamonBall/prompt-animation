@@ -725,14 +725,17 @@ class MotionRecipe(Record):
         incoming, graph = {}, {id:[] for id in ids}
         for relation in self.relations:
             if relation.source_instance_id not in ids or relation.target_instance_id not in ids:
-                fail('UNKNOWN_ID', 'Relation references an unknown instance')
+                fail('UNKNOWN_ID', 'Relation references an unknown instance', details={
+                    'relation_id': relation.relation_id,
+                    'instance_ids': [relation.source_instance_id, relation.target_instance_id]})
             if relation.target_instance_id in incoming:
                 fail('CONSTRAINT_CONFLICT', 'An instance has ambiguous multiple start constraints')
             incoming[relation.target_instance_id] = relation
             graph[relation.source_instance_id].append(relation.target_instance_id)
         visiting, visited = set(), set()
         def visit(id):
-            if id in visiting: fail('CONSTRAINT_CONFLICT', 'Recipe dependency cycle')
+            if id in visiting: fail('CONSTRAINT_CONFLICT', 'Recipe dependency cycle',
+                                   details={'instance_ids': sorted(visiting)})
             if id in visited: return
             visiting.add(id)
             for target in graph[id]: visit(target)
@@ -809,6 +812,26 @@ class SourceMapEntry(Record):
 
 
 @dataclass(frozen=True)
+class RecipeEntryBindingV1(Record):
+    instance_id: ID
+    time_s: Seconds
+    source: Literal['snapshot', 'measured_activation']
+    predecessor_ids: IDs
+
+
+@dataclass(frozen=True)
+class RecipeResolutionV1(Record):
+    entry_bindings: Annotated[tuple[RecipeEntryBindingV1, ...], Rule(max_length=MAX_INSTANCES)]
+    explanations: Annotated[tuple[Text, ...], Rule(max_length=MAX_TRACKS)]
+    rebuild_at_activation: bool = True
+
+    def _validate(self):
+        distinct(self.entry_bindings, 'instance_id')
+        if not self.rebuild_at_activation:
+            fail('INVALID_PARAMETER', 'Logical recipes require measured activation revalidation')
+
+
+@dataclass(frozen=True)
 class ResolvedRecipe(Record):
     recipe: MotionRecipe
     scheduled_instances: Annotated[tuple[ScheduledInstance, ...], Rule(max_length=MAX_INSTANCES)]
@@ -817,6 +840,7 @@ class ResolvedRecipe(Record):
     merged_contacts: Annotated[tuple[ContactEvent, ...], Rule(max_length=MAX_CONTACTS)]
     parameter_bindings: Annotated[tuple[ParameterBinding, ...], Rule(max_length=MAX_INSTANCES*MAX_PARAMETERS)]
     source_map: Annotated[tuple[SourceMapEntry, ...], Rule(max_length=MAX_TRACKS+MAX_CONTACTS)]
+    resolution_v1: RecipeResolutionV1 | None = None
 
     def _validate(self):
         distinct(self.scheduled_instances,'instance_id'); distinct(self.transitions,'instance_id')
@@ -824,6 +848,16 @@ class ResolvedRecipe(Record):
         distinct((*self.recipe.instances,*self.transitions),'instance_id')
         distinct(self.merged_contacts,'event_id')
         ids = {i.instance_id for i in (*self.recipe.instances,*self.transitions)}
+        if self.resolution_v1 is not None:
+            bindings = self.resolution_v1.entry_bindings
+            if {b.instance_id for b in bindings} != ids:
+                fail('UNKNOWN_ID', 'Runtime entry bindings must cover the schedule')
+            times = {s.instance_id:s.interval.start_s for s in self.scheduled_instances}
+            for binding in bindings:
+                if not set(binding.predecessor_ids) <= ids or binding.instance_id in binding.predecessor_ids:
+                    fail('UNKNOWN_ID', 'Runtime entry dependency is invalid')
+                if binding.time_s != times.get(binding.instance_id):
+                    fail('INVALID_PARAMETER', 'Runtime entry time must match activation')
         if len(ids) > MAX_INSTANCES: fail('RESOURCE_LIMIT', 'Transition expansion exceeds instance budget')
         if {s.instance_id for s in self.scheduled_instances} != ids:
             fail('UNKNOWN_ID', 'Resolved schedule must cover every instance/transition')
@@ -948,7 +982,8 @@ class StyledFragment(Record):
 RECORD_TYPES = {name:value for name,value in tuple(globals().items())
                 if isinstance(value,type) and issubclass(value,Record) and value is not Record}
 
-OPTIONAL_EXTENSIONS = {CurveSpec: ('look_at_world_v1', 'style_timing'), ContactEvent: ('target_world_v1',)}
+OPTIONAL_EXTENSIONS = {CurveSpec: ('look_at_world_v1', 'style_timing'), ContactEvent: ('target_world_v1',),
+                       ResolvedRecipe: ('resolution_v1',)}
 
 
 def to_dict(record):

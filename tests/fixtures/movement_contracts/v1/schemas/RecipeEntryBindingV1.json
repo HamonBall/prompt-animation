@@ -1,0 +1,48 @@
+{
+  "$defs": {
+    "RecipeEntryBindingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "instance_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "predecessor_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source": {
+          "enum": [
+            "snapshot",
+            "measured_activation"
+          ]
+        },
+        "time_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "instance_id",
+        "time_s",
+        "source",
+        "predecessor_ids"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:RecipeEntryBindingV1",
+  "$ref": "#/$defs/RecipeEntryBindingV1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

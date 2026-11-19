@@ -1,6 +1,7 @@
 # Stage 06 — Build action recipes and timeline stages
 
-Status: planned. Dependencies: [05.7b](05.7b-style.md).
+Status: complete, 2026-11-19. Dependencies: [05.7b](05.7b-style.md).
+See the [receipt](receipts/06.md) and [handoff](handoffs/RESUME-06.md).
 
 Read [00-START-HERE.md](00-START-HERE.md) and completed prerequisite receipts before execution. Its budgets, numeric tolerances, regression rules and receipt format apply here. Implement only this document.
 

@@ -64,7 +64,9 @@ class JobTests(unittest.TestCase):
         code = ('import subprocess,sys,time;from pathlib import Path;'
                 'p=subprocess.Popen([sys.executable,"-c","import time;time.sleep(30)"]);'
                 f'Path({str(pidfile)!r}).write_text(str(p.pid));time.sleep(30)')
-        result = job.execute(python(code), self.output, 'tree', 1)
+        # Leave time for Python to start its child and publish the PID on a
+        # loaded Windows host. The child must still be alive at the deadline.
+        result = job.execute(python(code), self.output, 'tree', 5)
         self.assertEqual(result['reason'], 'deadline_exceeded')
         self.assertTrue(pidfile.exists())
         pid = int(pidfile.read_text())
