@@ -1,8 +1,8 @@
 # Numbered execution stages — start here
 
-Stages 01–06 are complete, including optional 05.3b.
-The latest checkpoint is the [Stage 06 handoff](handoffs/RESUME-06.md).
-Stage 07 awaits explicit assignment. Historical prerequisite receipts remain under `receipts/`.
+Stages 01–07 are complete, including optional 05.3b.
+The latest checkpoint is the [Stage 07 handoff](handoffs/RESUME-07.md).
+Stage 08 awaits explicit assignment. Historical prerequisite receipts remain under `receipts/`.
 Prepared: 2026-10-14.
 
 Storage policy added 2026-10-26: every stage must read and follow [the project artifact-retention policy](../../docs/artifact-retention-policy.md). Complete [the storage-v2 maintenance assignment](../storage-reduction-and-retention-plan.md) before generating another large stage-05 evidence set. This maintenance requirement does not renumber movement stages or claim their implementation is complete.
@@ -44,7 +44,7 @@ Read top to bottom. Dependencies, not filename proximity, determine readiness. E
 | 05.7a | [Library 5.7 — timing, repetition and coordination patterns](05.7a-timing-patterns.md) | 05.6c | Complete, [receipt](receipts/05.7a.md) |
 | 05.7b | [Library 5.7 — bounded motion style](05.7b-style.md) | 05.7a | Complete, [receipt](receipts/05.7b.md) |
 | 06 | [Build action recipes and timeline stages](06-recipe-stage-builder.md) | 05.7b | [Complete](receipts/06.md) |
-| 07 | [Compile and execute composed animation](07-animation-compiler.md) | 06 | Planned |
+| 07 | [Compile and execute composed animation](07-animation-compiler.md) | 06 | [Complete](receipts/07.md) |
 | 08 | [Migrate existing animations to library recipes](08-migrate-foundations.md) | 07 | Planned |
 | 09 | [Retrieve the right movement capabilities](09-capability-retrieval.md) | 08 | Planned |
 | 10 | [Interpret open-ended prompts into movement recipes](10-ai-planner.md) | 09 | Planned |

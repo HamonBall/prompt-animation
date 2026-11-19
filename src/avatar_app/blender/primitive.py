@@ -4,7 +4,10 @@ import bpy
 from mathutils import Matrix, Quaternion, Vector
 
 from ..movement_library import contracts as c
-from ..movement_library.compiler import ExecutionCursor, sample_motion, value_error, supporting_chains, check_goal_coverage
+from ..movement_library.compiler import (
+    ExecutionCursor, activate_recipe_boundary, recipe_surface_snapshot, sample_motion, value_error,
+    supporting_chains, check_goal_coverage,
+)
 from ..movement_library.coordinated import (
     CRAWL_ANCHORS, CRAWL_ENDPOINTS, KNEE_CRAWL_ANCHORS, KNEE_CRAWL_ENDPOINTS, LEG_CHAINS,
     grounded_root_windows, has_floor_body_transition, has_seated_approach, has_step_support,
@@ -31,7 +34,8 @@ class FragmentAdapter:
         rp._binding(handle,profile)
         validate_snapshot(motion.entry_snapshot,profile)
         check_goal_coverage(motion.goal_checks,motion.duration_s,motion.fps)
-        if motion.loop is not None: c.fail('UNSUPPORTED_GOAL','Single-fragment execution does not expand loops')
+        if motion.loop is not None and motion.recipe_activation_v1 is None:
+            c.fail('UNSUPPORTED_GOAL','Single-fragment execution does not expand loops')
         self.handle,self.motion,self.profile=handle,motion,profile
         self.cursor=ExecutionCursor()
         self.controls={v.id:v for v in profile.controls}
@@ -41,6 +45,14 @@ class FragmentAdapter:
         self.owned.update(supporting_chains(t.control_id for t in motion.tracks))
         surfaces={s.name:s for s in handle.surfaces}
         surfaces.setdefault('floor',Surface())
+        self.activation_surfaces = tuple(surfaces.values())
+        if motion.recipe_surfaces_v1 is not None and motion.recipe_surfaces_v1 != recipe_surface_snapshot(self.activation_surfaces):
+            c.fail('STALE_REVISION', 'Resolved surfaces changed after recipe compilation')
+        self.activation_catalog = None
+        self.activation_frames = {round(item.time_s * motion.fps) for item in motion.recipe_activation_v1 or ()}
+        if self.activation_frames:
+            from ..movement_library.joints import catalog_for_profile
+            self.activation_catalog = catalog_for_profile(profile)
         fragment=c.MotionFragment('execution.preflight',tuple(sorted({s for t in (*motion.tracks,*motion.contact_events) for s in t.source_instance_ids})) or ('empty',),
             (),motion.duration_s,motion.tracks,motion.contact_events,(),(),motion.goal_checks)
         validate_fragment(fragment,profile,resolved_surface_ids=tuple(surfaces))
@@ -112,14 +124,34 @@ class FragmentAdapter:
         self.balance_track = None
         self.body_support = any(event.anchor_id in BODY_ANCHORS for event in motion.contact_events) and self.fixed_support
         self.fixed_pelvis = self.fixed_support and 'pelvis.position' in track_ids
+        support_motion, support_controls = motion, track_ids
+        self.defer_recipe_hands = False
+        if motion.recipe_activation_v1 is not None and self.fixed_support:
+            # Recognize the original tested support route independently of
+            # upper-body tracks that do not own its physical support chains.
+            owners = {id for track in motion.tracks if track.control_id == 'pelvis.position'
+                      for id in track.source_instance_ids}
+            if len(owners) == 1:
+                body_tracks = tuple(track for track in motion.tracks if owners.intersection(track.source_instance_ids))
+                accessory = tuple(track for track in motion.tracks if track not in body_tracks)
+                if all(self.controls[track.control_id].chain in ANGULAR_CHAINS[:2] or
+                       self.controls[track.control_id].chain.split('.')[-1] in ('upper_arm','forearm','wrist','clavicle')
+                       for track in accessory):
+                    support_controls = {track.control_id for track in body_tracks}
+                    self.defer_recipe_hands = bool(accessory) and not any(
+                        event.anchor_id in PALM_ANCHORS for event in motion.contact_events)
+                    from types import SimpleNamespace
+                    support_motion = SimpleNamespace(entry_snapshot=motion.entry_snapshot, tracks=body_tracks,
+                                                     contact_events=motion.contact_events, duration_s=motion.duration_s,
+                                                     goal_checks=())
         self.tracked_body_contact = self.fixed_support and (
-            has_seated_approach(motion, track_ids) or has_floor_body_transition(motion, track_ids))
+            has_seated_approach(support_motion, support_controls) or has_floor_body_transition(support_motion, support_controls))
         four_point_support = (set(motion.entry_snapshot.active_contacts) == set(CRAWL_ANCHORS)
                               and {event.anchor_id for event in motion.contact_events} == set(CRAWL_ANCHORS)
                               and track_ids == {'pelvis.position', *CRAWL_ENDPOINTS})
         from ..movement_library.patterns import has_alternating_step_support
         coordinated_support = self.fixed_support and (four_point_support or self.knee_crawl or self.tracked_body_contact or has_step_support(
-            motion.entry_snapshot, motion.contact_events, track_ids, motion.duration_s)
+            motion.entry_snapshot, motion.contact_events, support_controls, motion.duration_s)
             or has_alternating_step_support(motion, track_ids))
         if self.fixed_support and (profile.version != 8
                                    or any(event.target_world_v1 is None for event in motion.contact_events)
@@ -404,6 +436,18 @@ class FragmentAdapter:
         bpy.context.view_layer.update()
 
     def step(self,time_s,frame):
+        if frame - 1 in self.activation_frames:
+            self.cursor.defer_activation = True
+            try:
+                boundary = self._solve_step(time_s, frame)
+            finally:
+                self.cursor.defer_activation = False
+            activate_recipe_boundary(self.motion, time_s, boundary['snapshot'], self.cursor, self.profile,
+                                     self.activation_surfaces, self.activation_catalog)
+            self.diagnostics.pop()
+        return self._solve_step(time_s, frame)
+
+    def _solve_step(self,time_s,frame):
         from .motion import capture_sample, set_contact, contact_ease
         h,p=self.handle,self.profile
         for bone in h.rig.pose.bones:
@@ -477,7 +521,7 @@ class FragmentAdapter:
                 leg_targets=apply_pivots(self,requested,targets.active_contacts)
             apply_legs(self,leg_targets)
             if p.version==8 and not self.fixed_support: apply_local(self,requested)
-        if p.version in (5,6,7,8):
+        if p.version in (5,6,7,8) and not self.defer_recipe_hands:
             from .hand_mechanics import apply
             apply(self,requested)
         if p.version in (6,7,8) and 'finger_v1:bind_palm_axes_three_joint_digits' in p.calibration_provenance.evidence:
@@ -589,6 +633,9 @@ class FragmentAdapter:
                 errors[foot_event.anchor_id] = (foot_goal - point).length
         anchors = tuple(fixed_anchors) if self.fixed_support else tuple(
             c.ContactAnchor(id,'floor',tuple(self.anchors[id]),'world','metre') for id in active)
+        if self.defer_recipe_hands:
+            from .hand_mechanics import apply
+            apply(self, requested)
         active = [anchor.anchor_id for anchor in anchors]
         try:
             solved=rp.capture_motion_state(h,p,revision=self.motion.entry_snapshot.revision,captured_time_s=time_s,

@@ -1,6 +1,7 @@
 # Stage 07 — Compile and execute composed animation
 
-Status: planned. Dependencies: [06](06-recipe-stage-builder.md).
+Status: complete, 2026-11-19. Dependencies: [06](06-recipe-stage-builder.md).
+See the [receipt](receipts/07.md) and [handoff](handoffs/RESUME-07.md).
 
 Read [00-START-HERE.md](00-START-HERE.md) and completed prerequisite receipts before execution. Its budgets, numeric tolerances, regression rules and receipt format apply here. Implement only this document.
 

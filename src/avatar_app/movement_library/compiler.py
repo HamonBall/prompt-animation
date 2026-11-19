@@ -1,7 +1,4 @@
-"""Pure single-fragment preparation and hold/transition sampling (Stage 04).
-
-No graph scheduler, rig handles, model calls or scene mutation belong here.
-"""
+"""Pure fragment and recipe preparation for the shared motion sampler."""
 from dataclasses import dataclass, field, replace
 import math
 from . import contracts as c
@@ -168,12 +165,197 @@ def prepare_fragment(fragment, entry_state, profile):
                               tuple(bindings),tuple(sources),None,fragment.goals)
 
 
+def compile_recipe(resolved, entry_state, profile, *, surfaces=None, catalog=None):
+    """Compile recipe instances sharing the captured activation snapshot."""
+    from .composer import compose_recipe
+    from .joints import catalog_for_profile
+
+    if type(resolved) is not c.ResolvedRecipe:
+        c.fail('INVALID_PARAMETER', 'Expected a resolved recipe')
+    validate_snapshot(entry_state, profile)
+    recipe = resolved.recipe
+    if recipe.base_revision != entry_state.revision:
+        c.fail('STALE_REVISION', 'Resolved recipe belongs to a different measured revision')
+    if resolved.transitions or recipe.optional_styles:
+        c.fail('UNSUPPORTED_GOAL', 'Transition insertion and recipe-level styles are unavailable')
+    if surfaces is None:
+        surfaces = (Surface(),)
+    if catalog is None:
+        catalog = catalog_for_profile(profile)
+    expected = compose_recipe(recipe, entry_state, profile, surfaces, catalog)
+    if resolved != expected:
+        c.fail('ENTRY_MISMATCH', 'Resolved recipe no longer matches the measured entry and surfaces')
+    if recipe.operation == 'append':
+        origin = entry_state.captured_time_s
+        def local(item):
+            return replace(item, interval=c.TimeInterval(max(0, item.interval.start_s - origin),
+                                                         item.interval.end_s - origin))
+        local_recipe = replace(recipe, hard_goals=tuple(local(item) for item in recipe.hard_goals))
+        # Keep serialized Stage 06 timestamps intact; only the execution view
+        # uses local time. A saved activation refers to this local timeline.
+        resolved = replace(resolved, recipe=local_recipe, resolution_v1=None,
+                           scheduled_instances=tuple(local(item) for item in resolved.scheduled_instances),
+                           ownership=tuple(local(item) for item in resolved.ownership),
+                           merged_contacts=tuple(local(item) for item in resolved.merged_contacts))
+        recipe = local_recipe
+    if recipe.loop is not None and len(recipe.instances) != 1:
+        c.fail('UNSUPPORTED_GOAL', 'Finite recipe loops currently require one returning authored instance')
+    if len(recipe.instances) != 1:
+        executable = _compile_schedule(resolved, entry_state, profile, surfaces, catalog)
+        return replace(executable, recipe_surfaces_v1=recipe_surface_snapshot(surfaces))
+    instance = recipe.instances[0]
+    fragment = build_fragment(instance, entry_state, profile, surfaces, catalog)
+    if recipe.loop is not None:
+        from .patterns import repeat_fragment
+        transform = recipe.loop.per_cycle_root_transform
+        if transform.position != (0, 0, 0) or value_error(transform.orientation, (1, 0, 0, 0), 'quaternion') > 1e-6:
+            c.fail('UNSUPPORTED_GOAL', 'Finite recipe loops currently require stationary seams')
+        if abs(fragment.duration_s * c.FPS - round(fragment.duration_s * c.FPS)) > 1e-7:
+            c.fail('UNSUPPORTED_GOAL', 'A loop seam must land on a sample boundary')
+        fragment = repeat_fragment(replace(fragment, goals=fragment.goals + recipe.hard_goals),
+                                   recipe.loop.repetitions, entry=entry_state, profile=profile)
+    executable = prepare_fragment(fragment, entry_state, profile)
+    goals = executable.goal_checks if recipe.loop else executable.goal_checks + recipe.hard_goals
+    check_goal_coverage(goals, executable.duration_s, executable.fps)
+    sources = tuple(replace(source, clause_ids=tuple(sorted(set(source.clause_ids + instance.clause_ids))))
+                    for source in executable.source_map)
+    sources += tuple(c.SourceMapEntry(goal.goal_id, (instance.instance_id,), (goal.clause_id,))
+                     for goal in (() if recipe.loop else recipe.hard_goals))
+    return replace(executable, goal_checks=goals, source_map=sources, loop=recipe.loop,
+                   recipe_activation_v1=() if recipe.loop else None,
+                   recipe_surfaces_v1=recipe_surface_snapshot(surfaces))
+
+
+def recipe_surface_snapshot(surfaces):
+    return tuple(c.RecipeSurfaceV1(item.name, item.height, item.center, item.size)
+                 for item in sorted(surfaces, key=lambda surface: surface.name))
+
+
+def _compile_schedule(resolved, entry_state, profile, surfaces, catalog):
+    """Lay out tracks and retain descriptors for delayed measured activations."""
+    instances = {item.instance_id: item for item in resolved.recipe.instances}
+    controls = {item.id: item for item in profile.controls}
+    ownership = {}
+    for item in resolved.ownership:
+        for id in item.source_instance_ids:
+            ownership.setdefault((id, item.chain_id), []).append(item.interval)
+
+    tracks, goals, activations = [], list(resolved.recipe.hard_goals), []
+    goal_sources = {goal.goal_id: next(clause.source_instance_ids for clause in resolved.recipe.clause_coverage
+                                     if clause.clause_id == goal.clause_id) for goal in goals}
+    for scheduled in resolved.scheduled_instances:
+        id = scheduled.instance_id
+        fragment = build_fragment(instances[id], entry_state, profile, surfaces, catalog)
+        start = scheduled.interval.start_s
+        if start:
+            if any(event.target_world_v1 is not None or event.acquire_s or event.release_s
+                   for event in fragment.contact_events):
+                c.fail('UNSUPPORTED_GOAL', 'Delayed authored support changes require runtime contact rebinding',
+                       instance_id=id)
+            activations.append(c.RecipeActivationV1(instances[id], fragment, start))
+        accepted = set()
+        for track in fragment.tracks:
+            chains = {controls[track.control_id].chain, *supporting_chains((track.control_id,))}
+            total = []
+            for chain in chains:
+                span = shift_interval(track.interval, start)
+                intervals = ownership.get((id, chain), ())
+                total.append(sum(max(0, min(span.end_s, item.end_s) - max(span.start_s, item.start_s))
+                                 for item in intervals))
+            if all(abs(amount - track.curve.duration_s) <= 1e-9 for amount in total):
+                tracks.append(replace(track, interval=shift_interval(track.interval, start)))
+                accepted.add(track.control_id)
+            elif any(amount > 1e-9 for amount in total):
+                c.fail('UNSUPPORTED_GOAL', 'Optional track ownership changes inside the track',
+                       instance_id=id, control_id=track.control_id)
+        for goal in fragment.goals:
+            if goal.target.control_id in accepted or not any(
+                    track.control_id == goal.target.control_id for track in fragment.tracks):
+                goals.append(replace(goal, interval=shift_interval(goal.interval, start)))
+                goal_sources[goal.goal_id] = (id,)
+
+    contacts = resolved.merged_contacts
+    duration = max(item.interval.end_s for item in resolved.scheduled_instances)
+    contributing = tuple(sorted({id for item in (*tracks, *contacts) for id in item.source_instance_ids}))
+    if not contributing:
+        c.fail('UNSUPPORTED_GOAL', 'Resolved recipe has no tracks or contacts to execute')
+    fragment = c.MotionFragment('recipe.schedule', contributing, (), duration,
+                                tuple(tracks), contacts, (), (), tuple(goals))
+    first_tracks = tuple(track for track in tracks if not any(
+        activation.instance.instance_id in track.source_instance_ids for activation in activations))
+    executable = prepare_fragment(replace(fragment, tracks=first_tracks, goals=()), entry_state, profile)
+    sources = []
+    for item in (*tracks, *contacts):
+        clauses = {clause for id in item.source_instance_ids for clause in instances[id].clause_ids}
+        sources.append(c.SourceMapEntry(getattr(item, 'track_id', None) or item.event_id,
+                                        item.source_instance_ids, tuple(sorted(clauses))))
+    sources.extend(c.SourceMapEntry(goal.goal_id, goal_sources[goal.goal_id], (goal.clause_id,))
+                   for goal in goals)
+    check_goal_coverage(goals, duration, c.FPS)
+    bindings = tuple(c.RuntimeEntryBinding(track.track_id, track.source_instance_ids[0], track.interval.start_s, None)
+                     for track in tracks if track.start_source == 'measured_entry')
+    return replace(executable, tracks=tuple(tracks), goal_checks=tuple(goals), runtime_entry_bindings=bindings,
+                   source_map=tuple(sources), recipe_activation_v1=tuple(activations))
+
+
+def shift_interval(interval, offset):
+    return c.TimeInterval(interval.start_s + offset, interval.end_s + offset)
+
+
+def prepare_recipe_activation(instance, planned, measured, profile, surfaces, catalog, *, inherit_support=False):
+    """Rebuild an activation from the solved state and enforce planned topology.
+
+    Spatial values may follow the measured entry. Changes to track routing,
+    landmarks or contact timing require a new schedule before baking can proceed.
+    """
+    if type(planned) is not c.MotionFragment or planned.source_instance_ids != (instance.instance_id,):
+        c.fail('INVALID_PARAMETER', 'Activation descriptor belongs to another instance')
+    actual = build_fragment(instance, measured, profile, surfaces, catalog)
+
+    def topology(fragment):
+        return (
+            fragment.duration_s, fragment.phase_landmarks,
+            tuple((track.track_id, track.control_id, track.frame, track.unit, track.interval,
+                   track.start_source, track.curve.kind) for track in fragment.tracks),
+            () if inherit_support else tuple(
+                (event.anchor_id, event.surface_id, event.interval, event.acquire_s, event.release_s,
+                 event.target_world_v1 is not None) for event in fragment.contact_events),
+            tuple((goal.goal_id, goal.target.control_id, goal.target.frame, goal.interval)
+                  for goal in fragment.goals),
+        )
+
+    if topology(actual) != topology(planned):
+        c.fail('ENTRY_MISMATCH', 'Measured activation changed the planned fragment topology',
+               instance_id=instance.instance_id)
+    return prepare_fragment(actual, measured, profile)
+
+
 @dataclass
 class ExecutionCursor:
     """One run's activation state. Never share this object between runs/plans."""
     bindings: dict = field(default_factory=dict)
     last_time_s: float | None = None
     executable: object = None
+    activation_ready: set = field(default_factory=set)
+    activation_curves: dict = field(default_factory=dict)
+    activation_goals: dict = field(default_factory=dict)
+    defer_activation: bool = False
+
+
+def activate_recipe_boundary(executable, time_s, measured, cursor, profile, surfaces, catalog):
+    """Commit a group of same-frame descriptors only after every rebuild succeeds."""
+    if abs(measured.captured_time_s - time_s) > 1e-8:
+        c.fail('ENTRY_MISMATCH', 'Activation requires a solved snapshot from its boundary frame')
+    pending = []
+    for item in executable.recipe_activation_v1 or ():
+        if item.instance.instance_id not in cursor.activation_ready and abs(item.time_s - time_s) <= 1e-8:
+            motion = prepare_recipe_activation(item.instance, item.planned, measured, profile, surfaces,
+                                               catalog, inherit_support=True)
+            pending.append((item.instance.instance_id, motion))
+    for id, motion in pending:
+        cursor.activation_curves.update((track.track_id, track.curve) for track in motion.tracks)
+        cursor.activation_goals.update((goal.goal_id, goal.target) for goal in motion.goal_checks)
+        cursor.activation_ready.add(id)
 
 
 def interpolate(start,end,weight,shape):
@@ -192,7 +374,76 @@ def interpolate(start,end,weight,shape):
     return start+(end-start)*weight
 
 
+@dataclass
+class LegacySamplingCursor:
+    starting: dict
+    intervals: tuple
+    baselines: dict = field(default_factory=dict)
+
+
+def sample_legacy_frame(plan, time, starting, baselines, measured, *, intervals=None):
+    """Start each newly activated movement from the actual preceding solved state."""
+    from mathutils import Quaternion, Vector
+    from ..motion import blend_control, control_default, schedule
+    values = dict(starting)
+    intervals = schedule(plan) if intervals is None else intervals
+    for stage, start, end in sorted(intervals, key=lambda row: row[1]):
+        if time < start - 1e-8:
+            continue
+        if stage.id not in baselines:
+            baselines[stage.id] = dict(measured)
+        source = baselines[stage.id]
+        weight = min(1.0, max(0.0, (time - start) / stage.duration))
+        weight = weight * weight * (3 - 2 * weight)
+        for key, target in stage.targets:
+            before = source.get(key, control_default(source, key))
+            if target is None:
+                if '_target_' in key or time >= end:
+                    values.pop(key, None)
+            elif key == 'grounding':
+                values[key] = 0 if target == 0 else (target if time >= end else before)
+            else:
+                values[key] = blend_control(plan, stage, key, before, time)
+        # Direction interpolation avoids sweeping a shin sideways when changing
+        # from backward to forward through the azimuth wrap.
+        for side, sign in (('left', -1), ('right', 1)):
+            for part in ('arm', 'forearm', 'thigh', 'shin'):
+                e, a = side+'_'+part+'_elevation', side+'_'+part+'_azimuth'
+                targets = dict(stage.targets)
+                if e not in targets or a not in targets or targets[e] is None or targets[a] is None:
+                    continue
+                se, sa = source.get(e, 0), source.get(a, 0)
+                if abs(targets[a] - sa) < 45:
+                    continue
+                def vector(elev, az):
+                    elev, az = math.radians(elev), math.radians(az)
+                    return Vector((sign*math.sin(elev)*math.cos(az), math.sin(elev)*math.sin(az), -math.cos(elev)))
+                first, last = vector(se, sa), vector(targets[e], targets[a])
+                v = Quaternion().slerp(first.rotation_difference(last), weight) @ first
+                values[e] = math.degrees(math.acos(max(-1, min(1, -v.z))))
+                values[a] = math.degrees(math.atan2(v.y, sign*v.x))
+    # IK may have changed an unowned leg or pelvis. Carry that ending state
+    # when the next movement does not own it, rather than resetting to rest.
+    owned = {k for s, start, end in intervals if start <= time <= end for k, _ in s.targets}
+    explicit = set(starting) | {k for s, start, _ in intervals if start <= time
+                               for k, _ in s.targets}
+    for key in measured:
+        implicit_lower = next((key.replace('_'+lower+'_', '_'+upper+'_')
+                               for lower, upper in (('forearm', 'arm'), ('shin', 'thigh'))
+                               if '_'+lower+'_' in key and key not in explicit), None)
+        if implicit_lower in owned:
+            values.pop(key, None)
+            continue
+        if key not in owned and (key.startswith('pelvis_') or any('_'+p+'_' in key for p in ('thigh','shin','arm','forearm'))):
+            values[key] = measured[key]
+    return values
+
+
 def sample_motion(executable, time_s, measured_state, execution_cursor):
+    from ..motion import ActionPlan
+    if isinstance(executable, ActionPlan) and isinstance(execution_cursor, LegacySamplingCursor):
+        return sample_legacy_frame(executable, time_s, execution_cursor.starting, execution_cursor.baselines,
+                                   measured_state, intervals=execution_cursor.intervals)
     if type(executable) is not c.ExecutableMotion or type(execution_cursor) is not ExecutionCursor:
         c.fail('INVALID_PARAMETER','Expected executable motion and a per-run cursor')
     c.check_type(time_s,c.Seconds,'time_s')
@@ -209,14 +460,27 @@ def sample_motion(executable, time_s, measured_state, execution_cursor):
         c.fail('STALE_REVISION','Sampling must be chronological; use a new cursor to restart')
     if cursor.last_time_s is not None and time_s-cursor.last_time_s>1/executable.fps+1e-7:
         c.fail('ENTRY_MISMATCH','Sampling skipped an execution boundary')
+    blocked = set()
+    blocked_goals = set()
+    for item in executable.recipe_activation_v1 or ():
+        id = item.instance.instance_id
+        if id in cursor.activation_ready:
+            continue
+        if item.time_s <= time_s + 1e-9 and not (cursor.defer_activation and abs(item.time_s - time_s) <= 1e-9):
+            c.fail('ENTRY_MISMATCH', 'Delayed tracks require their solved activation before sampling', instance_id=id)
+        blocked.add(id)
+        blocked_goals.update(goal.goal_id for goal in item.planned.goals)
+    tracks = tuple(replace(track, curve=cursor.activation_curves[track.track_id])
+                   if track.track_id in cursor.activation_curves else track
+                   for track in executable.tracks if not blocked.intersection(track.source_instance_ids))
     pending={}
     # Resolve all activations from this same pre-application measured snapshot.
-    for track in executable.tracks:
+    for track in tracks:
         if track.start_source=='measured_entry' and track.track_id not in cursor.bindings and track.interval.start_s<=time_s+1e-9:
             pending[track.track_id]=_measured(measured_state,c.ControlValue(track.control_id,track.unit,track.frame,0))
     bindings={**cursor.bindings,**pending}
     selected={}
-    for track in sorted(executable.tracks,key=lambda t:(t.interval.start_s,t.track_id)):
+    for track in sorted(tracks,key=lambda t:(t.interval.start_s,t.track_id)):
         if time_s+1e-9<track.interval.start_s: continue
         start=track.curve.start_value if track.start_source=='explicit' else bindings[track.track_id]
         weight=min(1,max(0,(time_s-track.interval.start_s)/track.curve.duration_s))
@@ -228,9 +492,11 @@ def sample_motion(executable, time_s, measured_state, execution_cursor):
         value=(end if track.curve.look_at_world_v1 is not None else start) if track.curve.kind=='hold' else interpolate(start,end,weight,track.value_shape)
         selected[track.control_id]=(c.ControlValue(track.control_id,track.unit,track.frame,value),track.source_instance_ids)
     contacts=tuple(e for e in executable.contact_events if e.interval.start_s<=time_s<=e.interval.end_s)
-    goals=tuple(g for g in executable.goal_checks if g.interval.start_s-1e-9<=time_s<=g.interval.end_s+1e-9)
+    goals=tuple(replace(g, target=cursor.activation_goals[g.goal_id]) if g.goal_id in cursor.activation_goals else g
+                for g in executable.goal_checks if g.goal_id not in blocked_goals
+                and g.interval.start_s-1e-9<=time_s<=g.interval.end_s+1e-9)
     # World-point goals use the same versioned binding, then compare achieved rotation.
-    aim=next((t for t in reversed(sorted(executable.tracks,key=lambda t:(t.interval.start_s,t.track_id)))
+    aim=next((t for t in reversed(sorted(tracks,key=lambda t:(t.interval.start_s,t.track_id)))
               if t.control_id=='head.orientation' and t.interval.start_s<=time_s+1e-9),None)
     if aim is not None and aim.curve.look_at_world_v1 is not None:
         end=look_rotation(_measured(measured_state,c.ControlValue('head.position','metre','world',0)),aim.curve.look_at_world_v1)

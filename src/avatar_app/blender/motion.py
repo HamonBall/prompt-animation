@@ -1,10 +1,11 @@
 """Stage composition, contact solving, candidate review and transactional commit."""
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, replace
 import math
 import bpy
 from mathutils import Matrix, Quaternion, Vector
 from ..models import PlanError
 from ..movement_library.contracts import ExecutableMotion, to_dict
+from ..movement_library.compiler import LegacySamplingCursor, sample_motion, sample_legacy_frame as compose_frame
 from .primitive import FragmentAdapter
 from ..motion import ActionPlan, validate_action, sample_controls, schedule, blend_control
 from ..pose import LIMITS, PosePlan, validate_pose, serialize_pose
@@ -305,61 +306,6 @@ def observed_rotations(handle):
                for side in ('Left', 'Right') for part in ('Hand', 'Foot')}}
 
 
-def compose_frame(plan, time, starting, baselines, measured):
-    """Start each newly activated movement from the actual preceding solved state."""
-    from ..motion import control_default
-    values = dict(starting)
-    for stage, start, end in sorted(schedule(plan), key=lambda row: row[1]):
-        if time < start - 1e-8:
-            continue
-        if stage.id not in baselines:
-            baselines[stage.id] = dict(measured)
-        source = baselines[stage.id]
-        weight = min(1.0, max(0.0, (time - start) / stage.duration))
-        weight = weight * weight * (3 - 2 * weight)
-        for key, target in stage.targets:
-            before = source.get(key, control_default(source, key))
-            if target is None:
-                if '_target_' in key or time >= end:
-                    values.pop(key, None)
-            elif key == 'grounding':
-                values[key] = 0 if target == 0 else (target if time >= end else before)
-            else:
-                values[key] = blend_control(plan, stage, key, before, time)
-        # Direction interpolation avoids sweeping a shin sideways when changing
-        # from backward to forward through the azimuth wrap.
-        for side, sign in (('left', -1), ('right', 1)):
-            for part in ('arm', 'forearm', 'thigh', 'shin'):
-                e, a = side+'_'+part+'_elevation', side+'_'+part+'_azimuth'
-                targets = dict(stage.targets)
-                if e not in targets or a not in targets or targets[e] is None or targets[a] is None:
-                    continue
-                se, sa = source.get(e, 0), source.get(a, 0)
-                if abs(targets[a] - sa) < 45:
-                    continue
-                def vector(elev, az):
-                    elev, az = math.radians(elev), math.radians(az)
-                    return Vector((sign*math.sin(elev)*math.cos(az), math.sin(elev)*math.sin(az), -math.cos(elev)))
-                first, last = vector(se, sa), vector(targets[e], targets[a])
-                v = Quaternion().slerp(first.rotation_difference(last), weight) @ first
-                values[e] = math.degrees(math.acos(max(-1, min(1, -v.z))))
-                values[a] = math.degrees(math.atan2(v.y, sign*v.x))
-    # IK may have changed an unowned leg or pelvis. Carry that ending state
-    # when the next movement does not own it, rather than resetting to rest.
-    owned = {k for s, start, end in schedule(plan) if start <= time <= end for k, _ in s.targets}
-    explicit = set(starting) | {k for s, start, _ in schedule(plan) if start <= time
-                               for k, _ in s.targets}
-    for key in measured:
-        implicit_lower = next((key.replace('_'+lower+'_', '_'+upper+'_')
-                               for lower, upper in (('forearm', 'arm'), ('shin', 'thigh'))
-                               if '_'+lower+'_' in key and key not in explicit), None)
-        if implicit_lower in owned:
-            values.pop(key, None)
-            continue
-        if key not in owned and (key.startswith('pelvis_') or any('_'+p+'_' in key for p in ('thigh','shin','arm','forearm'))):
-            values[key] = measured[key]
-    return values
-
 
 def bake_candidate_frames(handle, plan, repair_floor, progress, profile=None):
     rig, scene = handle.rig, handle.scene
@@ -421,8 +367,7 @@ def bake_candidate_frames(handle, plan, repair_floor, progress, profile=None):
             # New wrist movement starts from measured coordinates at activation.
             # Future wrist targets must not constrain the preceding crouch.
             initial = dict(plan.initial.values)
-            sampling_plan = plan
-            baselines = {}
+            legacy_cursor = LegacySamplingCursor(initial, tuple(schedule(plan)))
             measured = measured_controls(handle, initial, control_origin)
             count = math.ceil(plan.duration * plan.fps)
         for i in range(count + 1):
@@ -434,7 +379,7 @@ def bake_candidate_frames(handle, plan, repair_floor, progress, profile=None):
                 samples.append(adapter.step(min(plan.duration_s, i / plan.fps), frame))
             else:
                 time = min(plan.duration, i / plan.fps)
-                values = compose_frame(sampling_plan, time, initial, baselines, measured)
+                values = sample_motion(plan, time, measured, legacy_cursor)
                 # At the first frame wrist chains may be exactly straight; use the rest pose.
                 if not i:
                     values = dict(measured)
@@ -671,6 +616,20 @@ def build_action_frames(handle, plan, progress=lambda fraction: None, allow_expe
         if typed: scene.render.fps_base = 1
         scene.frame_start, scene.frame_end = 1, len(samples)
         if typed:
+            loop_seams = []
+            if plan.loop is not None:
+                from ..movement_library.patterns import verify_translation_loop
+                cycle_duration = plan.duration_s / plan.loop.repetitions
+                cycle_frames = round(cycle_duration * plan.fps)
+                for start in range(0, len(samples) - 1, cycle_frames):
+                    finish = start + cycle_frames
+                    origin = samples[start]['snapshot'].captured_time_s
+                    seam = tuple(replace(samples[index]['snapshot'],
+                                         captured_time_s=samples[index]['snapshot'].captured_time_s - origin)
+                                 for index in (start, start + 1, finish - 1, finish))
+                    _, metrics = verify_translation_loop(plan, plan.loop, profile, *seam,
+                                                         cycle_duration_s=cycle_duration)
+                    loop_seams.append(metrics)
             frame_transition(handle, PosePlan(), [1, len(samples)//2+1, len(samples)])
             scene.frame_set(1)
             progress(1)
@@ -679,6 +638,8 @@ def build_action_frames(handle, plan, progress=lambda fraction: None, allow_expe
                       'ending_state':to_dict(samples[-1]['snapshot']),
                       'samples':[s['semantic_details'] for s in samples],
                       'source_map':[to_dict(s) for s in plan.source_map]}
+            if plan.loop is not None:
+                result.update(loop=to_dict(plan.loop), loop_seams=loop_seams)
             if report.passed and not allow_experimental and old_action and old_action.users == 0:
                 bpy.data.actions.remove(old_action)
             return result

@@ -890,6 +890,25 @@ class RuntimeEntryBinding(Record):
 
 
 @dataclass(frozen=True)
+class RecipeActivationV1(Record):
+    instance: MovementInstance
+    planned: MotionFragment
+    time_s: Seconds
+
+    def _validate(self):
+        if self.time_s <= 0 or self.planned.source_instance_ids != (self.instance.instance_id,):
+            fail('INVALID_PARAMETER', 'Delayed activation needs a matching fragment and positive time')
+
+
+@dataclass(frozen=True)
+class RecipeSurfaceV1(Record):
+    name: ID
+    height: Number
+    center: tuple[Number, Number] | None
+    size: tuple[Number, Number] | None
+
+
+@dataclass(frozen=True)
 class ExecutableMotion(Record):
     entry_snapshot: MotionStateSnapshot
     duration_s: Annotated[float, Rule(minimum=1e-9, maximum=MAX_SECONDS)]
@@ -900,6 +919,8 @@ class ExecutableMotion(Record):
     source_map: Annotated[tuple[SourceMapEntry, ...], Rule(max_length=MAX_TRACKS+MAX_CONTACTS)]
     loop: LoopSpec | None
     goal_checks: Annotated[tuple[GoalSpec, ...], Rule(max_length=MAX_TRACKS)]
+    recipe_activation_v1: Annotated[tuple[RecipeActivationV1, ...], Rule(max_length=MAX_INSTANCES)] | None = None
+    recipe_surfaces_v1: Annotated[tuple[RecipeSurfaceV1, ...], Rule(max_length=MAX_CONTACTS)] | None = None
 
     def _validate(self):
         distinct(self.tracks,'track_id'); distinct(self.contact_events,'event_id'); distinct(self.source_map,'output_id')
@@ -907,6 +928,25 @@ class ExecutableMotion(Record):
         for item in (*self.tracks,*self.contact_events):
             if item.interval.end_s > self.duration_s: fail('INVALID_PARAMETER', 'Executable interval exceeds duration')
         track_ids = {t.track_id for t in self.tracks}
+        if self.recipe_surfaces_v1 is not None:
+            distinct(self.recipe_surfaces_v1, 'name')
+        if self.recipe_activation_v1 is not None:
+            distinct(tuple(item.instance.instance_id for item in self.recipe_activation_v1), None)
+            for item in self.recipe_activation_v1:
+                if item.time_s + item.planned.duration_s > self.duration_s + 1e-9:
+                    fail('RESOURCE_LIMIT', 'Activation extends past the compiled timeline')
+                if abs(item.time_s * self.fps - round(item.time_s * self.fps)) > 1e-7:
+                    fail('UNSUPPORTED_GOAL', 'Delayed activation must occur on a sample boundary')
+                planned = {track.track_id: track for track in item.planned.tracks}
+                for track in self.tracks:
+                    if item.instance.instance_id not in track.source_instance_ids:
+                        continue
+                    local = planned.get(track.track_id)
+                    if (local is None or local.control_id != track.control_id or
+                            abs(local.interval.start_s + item.time_s - track.interval.start_s) > 1e-9 or
+                            abs(local.interval.end_s + item.time_s - track.interval.end_s) > 1e-9):
+                        fail('ENTRY_MISMATCH', 'Compiled track does not match its activation descriptor',
+                             instance_id=item.instance.instance_id, control_id=track.control_id)
         by_track = {t.track_id:t for t in self.tracks}
         distinct(self.goal_checks,'goal_id')
         if any(g.interval.end_s > self.duration_s for g in self.goal_checks):
@@ -983,7 +1023,8 @@ RECORD_TYPES = {name:value for name,value in tuple(globals().items())
                 if isinstance(value,type) and issubclass(value,Record) and value is not Record}
 
 OPTIONAL_EXTENSIONS = {CurveSpec: ('look_at_world_v1', 'style_timing'), ContactEvent: ('target_world_v1',),
-                       ResolvedRecipe: ('resolution_v1',)}
+                       ResolvedRecipe: ('resolution_v1',),
+                       ExecutableMotion: ('recipe_activation_v1', 'recipe_surfaces_v1')}
 
 
 def to_dict(record):

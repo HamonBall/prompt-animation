@@ -431,6 +431,34 @@
             }
           ]
         },
+        "recipe_activation_v1": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/RecipeActivationV1"
+              },
+              "maxItems": 128,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "recipe_surfaces_v1": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/RecipeSurfaceV1"
+              },
+              "maxItems": 256,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
         "runtime_entry_bindings": {
           "items": {
             "$ref": "#/$defs/RuntimeEntryBinding"
@@ -555,6 +583,89 @@
       ],
       "type": "object"
     },
+    "MotionFragment": {
+      "additionalProperties": false,
+      "properties": {
+        "contact_events": {
+          "items": {
+            "$ref": "#/$defs/ContactEvent"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "duration_s": {
+          "maximum": 60,
+          "minimum": 1e-09,
+          "type": "number"
+        },
+        "entry_requirements": {
+          "items": {
+            "$ref": "#/$defs/StateRequirement"
+          },
+          "maxItems": 64,
+          "type": "array"
+        },
+        "exit_expectations": {
+          "items": {
+            "$ref": "#/$defs/StateRequirement"
+          },
+          "maxItems": 64,
+          "type": "array"
+        },
+        "fragment_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "goals": {
+          "items": {
+            "$ref": "#/$defs/GoalSpec"
+          },
+          "maxItems": 256,
+          "type": "array"
+        },
+        "phase_landmarks": {
+          "items": {
+            "$ref": "#/$defs/PhaseLandmark"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "source_instance_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array"
+        },
+        "tracks": {
+          "items": {
+            "$ref": "#/$defs/TrackSpec"
+          },
+          "maxItems": 256,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "fragment_id",
+        "source_instance_ids",
+        "entry_requirements",
+        "duration_s",
+        "tracks",
+        "contact_events",
+        "phase_landmarks",
+        "exit_expectations",
+        "goals"
+      ],
+      "type": "object"
+    },
     "MotionStateSnapshot": {
       "additionalProperties": false,
       "properties": {
@@ -646,6 +757,277 @@
       ],
       "type": "object"
     },
+    "MovementInstance": {
+      "additionalProperties": false,
+      "properties": {
+        "clause_ids": {
+          "items": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+            "type": "string"
+          },
+          "maxItems": 128,
+          "type": "array"
+        },
+        "definition_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "definition_version": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "explicit_parameters": {
+          "anyOf": [
+            {
+              "items": {
+                "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+                "type": "string"
+              },
+              "maxItems": 128,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "instance_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "parameters": {
+          "items": {
+            "$ref": "#/$defs/ParameterValue"
+          },
+          "maxItems": 64,
+          "type": "array"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "instance_id",
+        "definition_id",
+        "definition_version",
+        "parameters",
+        "clause_ids",
+        "explicit_parameters"
+      ],
+      "type": "object"
+    },
+    "ParameterValue": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            },
+            {
+              "items": {
+                "anyOf": [
+                  {
+                    "type": "number"
+                  },
+                  {
+                    "type": "integer"
+                  }
+                ]
+              },
+              "maxItems": 16,
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "string"
+            },
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "name",
+        "value"
+      ],
+      "type": "object"
+    },
+    "PhaseLandmark": {
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "time_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "name",
+        "time_s"
+      ],
+      "type": "object"
+    },
+    "RecipeActivationV1": {
+      "additionalProperties": false,
+      "properties": {
+        "instance": {
+          "$ref": "#/$defs/MovementInstance"
+        },
+        "planned": {
+          "$ref": "#/$defs/MotionFragment"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "time_s": {
+          "maximum": 60,
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "instance",
+        "planned",
+        "time_s"
+      ],
+      "type": "object"
+    },
+    "RecipeSurfaceV1": {
+      "additionalProperties": false,
+      "properties": {
+        "center": {
+          "anyOf": [
+            {
+              "items": false,
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "integer"
+                    }
+                  ]
+                },
+                {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "integer"
+                    }
+                  ]
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "height": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "integer"
+            }
+          ]
+        },
+        "name": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "size": {
+          "anyOf": [
+            {
+              "items": false,
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "integer"
+                    }
+                  ]
+                },
+                {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "integer"
+                    }
+                  ]
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "name",
+        "height",
+        "center",
+        "size"
+      ],
+      "type": "object"
+    },
     "RuntimeEntryBinding": {
       "additionalProperties": false,
       "properties": {
@@ -723,6 +1105,34 @@
         "output_id",
         "source_instance_ids",
         "clause_ids"
+      ],
+      "type": "object"
+    },
+    "StateRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "requirement_id": {
+          "pattern": "[A-Za-z0-9][A-Za-z0-9_.:-]{0,95}",
+          "type": "string"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "target": {
+          "$ref": "#/$defs/ControlValue"
+        },
+        "tolerance": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "schema_version",
+        "requirement_id",
+        "target",
+        "tolerance"
       ],
       "type": "object"
     },

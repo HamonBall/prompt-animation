@@ -545,7 +545,7 @@ def has_alternating_step_support(motion, controls):
     )
 
 
-def verify_translation_loop(motion, loop, profile, start, following, preceding, end):
+def verify_translation_loop(motion, loop, profile, start, following, preceding, end, *, cycle_duration_s=None):
     """Check a baked cycle's measured seam before attaching translating loop metadata."""
     c.check_type(motion, c.ExecutableMotion, 'motion')
     c.check_type(loop, c.LoopSpec, 'loop')
@@ -557,8 +557,9 @@ def verify_translation_loop(motion, loop, profile, start, following, preceding, 
             start.avatar_id, start.profile_version, start.revision
         ):
             c.fail('STALE_REVISION', 'Loop samples must come from one measured bake')
+    duration = motion.duration_s if cycle_duration_s is None else cycle_duration_s
     if not (start.captured_time_s == 0 < following.captured_time_s <= preceding.captured_time_s
-            < end.captured_time_s == motion.duration_s):
+            < end.captured_time_s) or abs(end.captured_time_s - duration) > 1e-9:
         c.fail('INVALID_PARAMETER', 'Loop validation needs ordered seam and adjacent samples')
     if (following.captured_time_s > 1 / motion.fps + 1e-9
             or end.captured_time_s - preceding.captured_time_s > 1 / motion.fps + 1e-9):
