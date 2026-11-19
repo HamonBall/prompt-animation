@@ -4,8 +4,21 @@ from . import contracts as c
 from .spatial import normalize
 
 
-def ease_weight(weight, easing):
+def ease_weight(weight, easing, style_timing=None):
     """Ease a normalized track coordinate with the authored endpoint slopes."""
+    if style_timing is not None:
+        original = ease_weight(weight, easing)
+        if style_timing.style_id == 'style.fluid':
+            # Seventh-order smoothstep: zero velocity, acceleration and jerk
+            # at both ends, without changing duration or the geometric path.
+            styled = weight ** 4 * (35 + weight * (-84 + weight * (70 - 20 * weight)))
+        elif style_timing.style_id == 'style.heavy':
+            styled = ease_weight(weight * weight, 'smootherstep')
+        elif style_timing.style_id == 'style.playful':
+            styled = ease_weight(1 - (1 - weight) ** 2, 'smootherstep')
+        else:
+            c.fail('UNKNOWN_ID', 'Unknown versioned timing style')
+        return original + style_timing.intensity * (styled - original)
     if easing == 'smooth':
         return weight * weight * (3 - 2 * weight)
     if easing == 'smootherstep':

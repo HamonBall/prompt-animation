@@ -220,7 +220,7 @@ def sample_motion(executable, time_s, measured_state, execution_cursor):
         if time_s+1e-9<track.interval.start_s: continue
         start=track.curve.start_value if track.start_source=='explicit' else bindings[track.track_id]
         weight=min(1,max(0,(time_s-track.interval.start_s)/track.curve.duration_s))
-        weight=ease_weight(weight,track.curve.easing)
+        weight=ease_weight(weight,track.curve.easing,track.curve.style_timing)
         end=track.curve.end_value
         if track.curve.look_at_world_v1 is not None:
             position=_measured(measured_state,c.ControlValue('head.position','metre','world',0))

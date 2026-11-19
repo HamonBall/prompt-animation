@@ -108,12 +108,12 @@ General composition is unavailable before 06: early preservation tests use an au
 | 05.7a | pattern.strokes_alternating | Opposed stroke phases | Both rigs reviewed 0–160 mm added sweep and 1–3 s phases, with a half-cycle delay and return to the measured wrist endpoints. [Range evidence](receipts/05.7a.md#current-source-range-bakes) |
 | 05.7a | pattern.sway | Bounded supported sway | Both rigs reviewed −20° to +20° and 0.8–3 s phases. Torso roll returns to entry with both soles and head facing held. [Range evidence](receipts/05.7a.md#current-source-range-bakes) |
 | 05.7a | pattern.undulation | Torso phase progression with optional limb follow-through | Both rigs reviewed −20° to +20° spine waves with no arm, unilateral and two-arm follow-through cases. Optional arm calibration is checked before execution. [Range evidence](receipts/05.7a.md#current-source-range-bakes) |
-| 05.7b | style.fluid | Smoother paths/continuity with hard goals preserved | Planned |
-| 05.7b | style.robotic | Bounded deliberate holds and articulated timing | Planned |
-| 05.7b | style.heavy | Longer preparation/recovery within timing locks | Planned |
-| 05.7b | style.playful | Controlled light bounce/quick recovery where compatible | Planned |
-| 05.7b | style.exaggerated | Bounded amplitude change on selected channels | Planned |
-| 05.7b | style.tired | Scoped reduced amplitude/tempo or posture | Planned |
+| 05.7b | style.fluid | Smoother paths/continuity with hard goals preserved | Reviewed in the scoped [05.7b envelope](receipts/05.7b.md); final storage passed |
+| 05.7b | style.robotic | Bounded deliberate holds and articulated timing | Reviewed in the scoped [05.7b envelope](receipts/05.7b.md); final storage passed |
+| 05.7b | style.heavy | Longer preparation/recovery within timing locks | Reviewed in the scoped [05.7b envelope](receipts/05.7b.md); final storage passed |
+| 05.7b | style.playful | Controlled light bounce/quick recovery where compatible | Reviewed in the scoped [05.7b envelope](receipts/05.7b.md); final storage passed |
+| 05.7b | style.exaggerated | Bounded amplitude change on selected channels | Reviewed in the scoped [05.7b envelope](receipts/05.7b.md); final storage passed |
+| 05.7b | style.tired | Scoped reduced amplitude/tempo or posture | Reviewed in the scoped [05.7b envelope](receipts/05.7b.md); final storage passed |
 | 08 | recipe.jump | Existing finite jump contract migrated | Planned |
 | 08 | recipe.walk | Existing two/four-step supported travel migrated | Planned |
 | 08 | recipe.lie_back | Existing supported lying route migrated | Planned |

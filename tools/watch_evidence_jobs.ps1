@@ -17,7 +17,7 @@ param(
 $ErrorActionPreference = 'Stop'
 $artifactRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '../artifacts'))
 if (!$JobsRoot) { $JobsRoot = Join-Path $artifactRoot 'maintenance/jobs' }
-$JobsRoot = [IO.Path]::GetFullPath($JobsRoot)
+$JobsRoot = [IO.Path]::GetFullPath($JobsRoot).Replace('/', '\').TrimEnd('\')
 
 function Read-JobJson([string]$Path) {
     try {

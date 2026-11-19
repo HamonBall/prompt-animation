@@ -1,6 +1,8 @@
 # Numbered execution stages — start here
 
-Stages 01–04, 05.1a, 05.1b, 05.2, 05.3a, optional 05.3b, 05.4, 05.5, 05.6a and 05.6b are complete. The [05.6b handoff](handoffs/RESUME-05.6b.md) records the current checkpoint. See the [05.6a receipt](receipts/05.6a.md) for root travel, turns, and airborne motion. See the [05.5 receipt](receipts/05.5.md) for ankle, foot and toe validation and storage. See the [05.4 receipt](receipts/05.4.md) for the hip, thigh and knee validation and storage results, and the [05.3b receipt](receipts/05.3b.md) for the optional finger work. See [Stage 01's receipt](receipts/01.md) for cleanup and the preserved pre-existing test issue, [Stage 02's receipt](receipts/02.md) for the data contracts, [Stage 03's receipt](receipts/03.md) for calibration, [Stage 04's receipt](receipts/04.md) for the execution bridge, and [Stage 05.1a's receipt](receipts/05.1a.md) for the five head/neck movements and two-rig previews.
+Stages 01–04 and 05.1a–05.7b are complete, including optional 05.3b.
+The latest checkpoint is the [05.7b handoff](handoffs/RESUME-05.7b.md).
+Stage 06 awaits explicit assignment. See the [05.6a receipt](receipts/05.6a.md) for root travel, turns, and airborne motion. See the [05.5 receipt](receipts/05.5.md) for ankle, foot and toe validation and storage. See the [05.4 receipt](receipts/05.4.md) for the hip, thigh and knee validation and storage results, and the [05.3b receipt](receipts/05.3b.md) for the optional finger work. See [Stage 01's receipt](receipts/01.md) for cleanup and the preserved pre-existing test issue, [Stage 02's receipt](receipts/02.md) for the data contracts, [Stage 03's receipt](receipts/03.md) for calibration, [Stage 04's receipt](receipts/04.md) for the execution bridge, and [Stage 05.1a's receipt](receipts/05.1a.md) for the five head/neck movements and two-rig previews.
 Prepared: 2026-10-14.
 
 Storage policy added 2026-10-26: every stage must read and follow [the project artifact-retention policy](../../docs/artifact-retention-policy.md). Complete [the storage-v2 maintenance assignment](../storage-reduction-and-retention-plan.md) before generating another large stage-05 evidence set. This maintenance requirement does not renumber movement stages or claim their implementation is complete.
@@ -40,7 +42,7 @@ Read top to bottom. Dependencies, not filename proximity, determine readiness. E
 | 05.6b | [Library 5.6 — support contacts and transfers](05.6b-support-transfers.md) | 05.6a | [Complete](receipts/05.6b.md) |
 | 05.6c | [Library 5.6 — coordinated body movements](05.6c-coordinated-body-moves.md) | 05.6b | Complete ([receipt](receipts/05.6c.md)) |
 | 05.7a | [Library 5.7 — timing, repetition and coordination patterns](05.7a-timing-patterns.md) | 05.6c | Complete, [receipt](receipts/05.7a.md) |
-| 05.7b | [Library 5.7 — bounded motion style](05.7b-style.md) | 05.7a | Planned |
+| 05.7b | [Library 5.7 — bounded motion style](05.7b-style.md) | 05.7a | Complete, [receipt](receipts/05.7b.md) |
 | 06 | [Build action recipes and timeline stages](06-recipe-stage-builder.md) | 05.7b | Planned |
 | 07 | [Compile and execute composed animation](07-animation-compiler.md) | 06 | Planned |
 | 08 | [Migrate existing animations to library recipes](08-migrate-foundations.md) | 07 | Planned |

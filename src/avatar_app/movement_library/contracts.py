@@ -489,6 +489,12 @@ class VerificationRecord(Record):
 
 
 @dataclass(frozen=True)
+class StyleTimingV1(Record):
+    style_id: Literal['style.fluid', 'style.heavy', 'style.playful']
+    intensity: Annotated[float, Rule(minimum=0, maximum=1)]
+
+
+@dataclass(frozen=True)
 class CurveSpec(Record):
     kind: Literal['hold', 'transition']
     start_value: Value | None
@@ -496,8 +502,11 @@ class CurveSpec(Record):
     duration_s: Annotated[float, Rule(minimum=1e-9, maximum=MAX_SECONDS)]
     easing: Literal['linear', 'smooth', 'smootherstep'] = 'linear'
     look_at_world_v1: Vector3 | None = None
+    style_timing: StyleTimingV1 | None = None
 
     def _validate(self):
+        if self.style_timing is not None and (self.kind != 'transition' or self.look_at_world_v1 is not None):
+            fail('INVALID_PARAMETER', 'Style timing requires a fixed-path transition')
         if self.look_at_world_v1 is not None:
             position_budget(self.look_at_world_v1,'world','metre')
         if self.kind == 'transition' and self.end_value is None:
@@ -917,10 +926,29 @@ class FrameTargets(Record):
                 fail('INVALID_PARAMETER', 'Sampled active contact is outside its interval')
 
 
+@dataclass(frozen=True)
+class StyledFragment(Record):
+    fragment: MotionFragment
+    source_fragment_id: ID
+    source_instance_ids: IDs
+    style_id: Literal['style.fluid', 'style.robotic', 'style.heavy', 'style.playful', 'style.exaggerated', 'style.tired']
+    intensity: Annotated[float, Rule(minimum=0, maximum=1)]
+    control_ids: IDs
+    source_sha256: Annotated[str, Rule(pattern='[0-9a-f]{64}')]
+    amplitude_unlocked: bool = False
+
+    def _validate(self):
+        if not self.control_ids:
+            fail('INVALID_PARAMETER', 'Style record needs an explicit scope')
+        distinct(self.control_ids, None)
+        if self.source_instance_ids != self.fragment.source_instance_ids:
+            fail('INVALID_PARAMETER', 'Style record must preserve source instances')
+
+
 RECORD_TYPES = {name:value for name,value in tuple(globals().items())
                 if isinstance(value,type) and issubclass(value,Record) and value is not Record}
 
-OPTIONAL_EXTENSIONS = {CurveSpec: 'look_at_world_v1', ContactEvent: 'target_world_v1'}
+OPTIONAL_EXTENSIONS = {CurveSpec: ('look_at_world_v1', 'style_timing'), ContactEvent: ('target_world_v1',)}
 
 
 def to_dict(record):
@@ -928,7 +956,7 @@ def to_dict(record):
     def encode(value):
         if isinstance(value,Record):
             return {f.name:encode(getattr(value,f.name)) for f in fields(value)
-                    if not (OPTIONAL_EXTENSIONS.get(type(value)) == f.name and getattr(value, f.name) is None)}
+                    if not (f.name in OPTIONAL_EXTENSIONS.get(type(value), ()) and getattr(value, f.name) is None)}
         if type(value) is tuple: return [encode(item) for item in value]
         return value
     return encode(record)
@@ -969,7 +997,7 @@ def from_dict(record_type, data):
     if type(data['schema_version']) is not int or data['schema_version'] != SCHEMA_VERSION:
         fail('VERSION_MISMATCH', 'Unsupported schema version; migrate explicitly')
     missing=names-set(data)
-    missing.discard(OPTIONAL_EXTENSIONS.get(record_type))
+    missing.difference_update(OPTIONAL_EXTENSIONS.get(record_type, ()))
     if missing: fail('INVALID_SCHEMA', 'Canonical saved records require every field, with null for unknown optional information',
                      details={'missing':sorted(missing)})
     try:
@@ -1030,7 +1058,7 @@ def json_schema(record_type):
                 definitions[name] = {}
                 definitions[name] = {'type':'object','additionalProperties':False,
                     'properties':{f.name:schema(hints(annotation)[f.name]) for f in fields(annotation)},
-                    'required':[f.name for f in fields(annotation) if f.name != OPTIONAL_EXTENSIONS.get(annotation)]}
+                    'required':[f.name for f in fields(annotation) if f.name not in OPTIONAL_EXTENSIONS.get(annotation, ())]}
             return {'$ref':'#/$defs/'+name}
         return {'type':{float:'number',int:'integer',bool:'boolean',str:'string',type(None):'null'}[annotation]}
     reference = schema(record_type)

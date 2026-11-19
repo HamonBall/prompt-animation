@@ -1,0 +1,35 @@
+{
+  "$defs": {
+    "StyleTimingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "intensity": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "style_id": {
+          "enum": [
+            "style.fluid",
+            "style.heavy",
+            "style.playful"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "style_id",
+        "intensity"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "urn:avatar-animation:movement:v1:StyleTimingV1",
+  "$ref": "#/$defs/StyleTimingV1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

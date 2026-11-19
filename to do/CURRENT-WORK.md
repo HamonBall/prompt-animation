@@ -1,19 +1,20 @@
 # Current work pointer
 
-Updated: 2026-11-16.
+Updated: 2026-11-19.
 
-- Latest completed movement stage is [05.7a timing, repetition and coordination
-  patterns](stages/05.7a-timing-patterns.md), in the working tree based on
-  `30b3083`. See the [receipt](stages/receipts/05.7a.md) and
-  [handoff](stages/handoffs/RESUME-05.7a.md).
-- Final publication verified 58 reviewed cases across 13 IDs. The storage
-  audit passed with 1,184 bundles verified.
-- Standing policy: [context continuity](../docs/context-continuity-policy.md),
-  loaded through AGENTS.md at session start.
-- Completed separate task: [token guardrails](RESUME-token-guardrails.md)
-  (2026-11-16).
-- Separate pending maintenance assignment:
-  [validation, storage and handoffs](validation-storage-handoff-maintenance.md).
-- Stop after 05.7a. Stage 05.7b awaits explicit assignment.
-- README remains frozen. Inspect Git status before continuing and preserve
-  existing edits.
+- Latest completed stage is [05.7b bounded motion style](stages/05.7b-style.md),
+  in the working tree based on e7b1fa8. See its
+  [receipt](stages/receipts/05.7b.md) and
+  [handoff](stages/handoffs/RESUME-05.7b.md).
+- Six styles have 32 reviewed cases on Demo and Mixamo, with 3,812 samples.
+  Publication and strict audit passed, verifying 1,216 bundles.
+  Conservative accounting totals 3,965,897,323 bytes globally and 95,969,949
+  bytes for the stage. Final temporary bytes and active writer leases are zero.
+- Stop after 05.7b. Stage 06 awaits explicit assignment.
+- Enable the visualizer with every runner launch. Normalized folder identity
+  keeps one window across automatic and manual launches.
+- Standing [context continuity policy](../docs/context-continuity-policy.md)
+  applies at session start. Preserve all unstaged changes.
+- Separate pending [maintenance assignment](validation-storage-handoff-maintenance.md)
+  remains separate from movement-stage completion.
+- README remains frozen.

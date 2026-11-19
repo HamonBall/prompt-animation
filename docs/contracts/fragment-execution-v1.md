@@ -266,6 +266,11 @@ movement catalog is advertised by the test-only preview.
 
 ## Stage 05.1b body-content extension
 
+Stage 05.7b adds the optional [local style timing v1](motion-style-v1.md) curve
+extension and source-bound style records. Absent extensions preserve legacy
+serialized curves and sampled behavior; style evidence remains experimental
+until its native and visual gates pass.
+
 The production catalog now contains five head/neck and nine spine/pelvis IDs.
 `--test-catalog` still selects only the isolated Stage 04 fixtures. Production
 body IDs use the same `prepare_fragment`, sampler, adapter and transactional

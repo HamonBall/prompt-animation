@@ -51,7 +51,7 @@ Keep implementation contracts, project policies, stage documents and completion 
 
 ## Current work checkpoint
 
-Stage 05.7a is complete as of 2026-11-16 in the working tree based on `30b3083`. Follow `to do/CURRENT-WORK.md` and `to do/stages/handoffs/RESUME-05.7a.md`. Stage 05.7b awaits explicit assignment. Preserve current changes and frozen README.md. Store numbered-stage handoffs in `to do/stages/handoffs/RESUME-<stage>.md`.
+Stage 05.7b is complete as of 2026-11-19 in the working tree based on `e7b1fa8`. Follow `to do/CURRENT-WORK.md` and `to do/stages/handoffs/RESUME-05.7b.md`. Stage 06 awaits explicit assignment. Preserve current changes and frozen README.md. Store numbered-stage handoffs in `to do/stages/handoffs/RESUME-<stage>.md`.
 
 ## Maintenance and future handoffs
 

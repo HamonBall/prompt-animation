@@ -295,6 +295,16 @@
               "type": "null"
             }
           ]
+        },
+        "style_timing": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/StyleTimingV1"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
@@ -481,6 +491,34 @@
         "requirement_id",
         "target",
         "tolerance"
+      ],
+      "type": "object"
+    },
+    "StyleTimingV1": {
+      "additionalProperties": false,
+      "properties": {
+        "intensity": {
+          "maximum": 1,
+          "minimum": 0,
+          "type": "number"
+        },
+        "schema_version": {
+          "enum": [
+            1
+          ]
+        },
+        "style_id": {
+          "enum": [
+            "style.fluid",
+            "style.heavy",
+            "style.playful"
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "style_id",
+        "intensity"
       ],
       "type": "object"
     },
