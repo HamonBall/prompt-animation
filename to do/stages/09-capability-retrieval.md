@@ -28,6 +28,10 @@ Use [the API](contracts/01-library-api.md) and [coverage rules](movement-coverag
 - Test a deliberately unknown metaphor, missing optional anatomy, non-neutral starting state and an edit to a specific instance. Verify relevant helpers survive filtering.
 - Measure candidate count/context size against an expanded test catalog and confirm deterministic ordering.
 
+## Options supported by the customer rig
+
+Use the Stage 08 rig capability record to exercise a supported action, a missing palm reference and an unfamiliar request. Verify that retrieval keeps the original wording and correction context, offers applicable alternatives and represents a miss explicitly. Pass candidates and limitations to Stage 10.
+
 ## Validation / completion gate
 
 Retrieval exposes usable primitives and support helpers for each supported test intent within the configured size bound. A miss remains a miss with a widening path; it is never silently treated as a successful different action.

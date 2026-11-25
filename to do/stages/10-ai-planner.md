@@ -28,6 +28,12 @@ Generate schemas from [the implemented API](contracts/01-library-api.md). Save a
 - Assert that 'fly like the fish swims' includes airborne root motion, and 'wrists at chest height, elbows forward' includes distinct endpoint/bend-plane goals.
 - Test hallucinated IDs, missing clauses, malformed output, retrieval miss and missing optional anatomy. Record actual model input/output size, startup/inference times and retry count.
 
+## Customer wording and offline fallback
+
+Cover equivalent bounded counts (“walk two steps”, “walk 2 steps”, “wave twice”), side, negation and extra creative clauses. Compare requested clauses to the selected motion. Inject a jump for a left-hand greeting and check rejection or clarification. Check that “stay standing, do not lie down” permits standing. Verify equivalent behavior on paraphrases with the live model. Keep held-out acceptance prompts separate.
+
+Include the existing reference-loading callers in scope for a narrow fallback change. If an optional URL fails, disclose the omission and process the prompt locally in synchronous and modal flows. Prove a supported offline command still works. Stage 19 owns optional provider/cache improvements.
+
 ## Validation / completion gate
 
 Supported examples produce executable recipes with every explicit clause accounted for; visually inspect actual previews. Mock-model tests alone do not complete this stage. Unknown requests yield useful approximation/conflict handling without silently replacing intent.

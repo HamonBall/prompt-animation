@@ -2,8 +2,8 @@
 from dataclasses import replace
 import math
 from . import contracts as c
-from .joints import _number,_enum,_path,_fragment,_seconds
-from .spatial import rotate,multiply,normalize
+from .joints import _number,_enum,_path,_fragment,_seconds,_values
+from .spatial import multiply,normalize,rotate
 from .curves import axis_rotation,arc,line,tangent_rotation_axes
 
 IDS=('shoulder.shrug','shoulder.reach','shoulder.roll','arm.raise','arm.sweep','arm.swing',
@@ -36,6 +36,66 @@ def shoulder_position(values,profile,side):
     hand=values[side+'.hand.position']
     return tuple(hand[i]-sum(values[side+'.'+part+'.direction'][i]*lengths[side+'.'+part]
                  for part in ('upper_arm','forearm')) for i in range(3))
+
+
+def build_wave(instance, entry, profile, surfaces):
+    params = {item.name: item.value for item in instance.parameters}
+    if set(entry.active_contacts) != {'left.sole', 'right.sole'} or any(
+            anchor.surface_id != 'floor' for anchor in entry.contact_anchors
+            if anchor.anchor_id in entry.active_contacts):
+        c.fail('ENTRY_MISMATCH', 'A standing wave requires both measured floor soles')
+    side = params['side']
+    values = _values(entry)
+    upper = side + '.upper_arm.orientation'
+    forearm = side + '.forearm.direction'
+    wrist = side + '.wrist.flexion'
+    for control in (upper, forearm, wrist):
+        if control not in values:
+            c.fail('MISSING_CAPABILITY', 'The selected arm must be calibrated', control_id=control)
+    body = entry.root_transform.orientation
+    outward = -1 if side == 'left' else 1
+    lift_axis = rotate(body, (0, -outward, 0))
+    raised = multiply(axis_rotation(lift_axis, 57), values[upper])
+    lifted_forearm, waved_forearm = (
+        rotate(body, (outward * math.sin(angle), 0, -math.cos(angle)))
+        for angle in (math.radians(150), math.radians(175))
+    )
+    phases = 2 * params['waves']
+    times = tuple(_seconds((1.5 + .65 * index) * params['tempo']) for index in range(phases + 1))
+    end = _seconds((3. + .65 * phases) * params['tempo'])
+    paths = {upper: [(0, times[0], values[upper], raised, None),
+                     (times[0], times[-1], raised, raised, None),
+                     (times[-1], end, raised, values[upper], None)]}
+    wrist_swing = -15. if side == 'left' else 15.
+    for control, hold, points in ((forearm, lifted_forearm, (waved_forearm, lifted_forearm)),
+                                  (wrist, values[wrist], (values[wrist] + wrist_swing,
+                                                         values[wrist] - wrist_swing))):
+        segments = [(0, times[0], values[control], hold, None)]
+        for index, (start, finish) in enumerate(zip(times, times[1:])):
+            segments.append((start, finish, segments[-1][3], points[index % 2], None))
+        segments.append((times[-1], end, segments[-1][3], values[control], None))
+        paths[control] = segments
+    landmarks = (c.PhaseLandmark('raised', times[0]),
+                 *(c.PhaseLandmark(f'wave.{index + 1}', times[2 * (index + 1)])
+                   for index in range(params['waves'])),
+                 c.PhaseLandmark('end', end))
+    return _fragment(instance, entry, profile, paths, end, landmarks)
+
+
+def build_jump_swing(instance, entry, profile, surfaces):
+    values = _values(entry)
+    axis = rotate(entry.root_transform.orientation, (1, 0, 0))
+    paths = {}
+    for side in ('left', 'right'):
+        key = side + '.upper_arm.orientation'
+        initial = values[key]
+        windup = multiply(axis_rotation(axis, -10.), initial)
+        forward = multiply(axis_rotation(axis, 20.), initial)
+        paths[key] = [(0, .9, initial, windup, None), (.9, 1.3, windup, forward, None),
+                      (1.3, 1.6, forward, forward, None), (1.6, 2.6, forward, initial, None)]
+    return _fragment(instance, entry, profile, paths, 2.6, (
+        c.PhaseLandmark('windup', .9), c.PhaseLandmark('forward', 1.3), c.PhaseLandmark('end', 2.6),
+    ))
 
 
 def build(instance,entry,profile,surfaces):
@@ -109,6 +169,9 @@ def build(instance,entry,profile,surfaces):
                 distance=math.dist(point,shoulder)
                 if not abs(a-b)+1e-5<distance<a+b-1e-5:c.fail('INVALID_PARAMETER','Endpoint path exceeds measured arm reach',control_id=control)
             path(control,points)
+        elif id=='arm.orient':
+            key=side+'.upper_arm.orientation'
+            path(key,[p[side+'_orientation']])
         else:
             control=side+'.upper_arm.orientation';initial=values[control]
             axis=rotate(basis,(0,0,-sign) if id=='arm.sweep' else (1,0,0) if p.get('plane','forward')=='forward' else (0,sign,0))
@@ -141,11 +204,60 @@ def build(instance,entry,profile,surfaces):
     return replace(f,goals=tuple(replace(g,tolerance=.001) if g.target.unit=='metre' else g for g in f.goals))
 
 
-BUILDERS={'limbs.shoulder_arm.v1':build}
+def build_forearm_aim(instance, entry, profile, surfaces):
+    parameters = {item.name: item.value for item in instance.parameters}
+    angle = math.radians(parameters['angle'])
+    target = rotate(entry.root_transform.orientation, (0, math.sin(angle), -math.cos(angle)))
+    duration = _seconds(parameters['duration_s'])
+    values = _values(entry)
+    controls = ('left.forearm.direction', 'right.forearm.direction')
+    paths = {control: [(0, duration, values[control], target, None)] for control in controls}
+    return _fragment(instance, entry, profile, paths, duration, (c.PhaseLandmark('end', duration),))
+
+
+BUILDERS={'limbs.shoulder_arm.v1':build, 'limbs.wave.v1':build_wave, 'limbs.jump_swing.v1':build_jump_swing,
+          'limbs.forearm_aim.v1':build_forearm_aim}
 
 
 def register_arms(catalog,profile=None):
     from .registry import register_movement
+    if profile is None or profile.version in (5, 6, 7, 8):
+        register_movement(c.MovementDefinition(
+            'forearm.aim', 1, 'limb', 'Aim both forearms in the entry forward plane',
+            (_number('angle', 'degree', 70, 0, 130), _number('duration_s', 'second', 2., 1., 3.)),
+            ('measure.left.forearm.direction', 'measure.right.forearm.direction'), (),
+            ('left.forearm', 'right.forearm'), (), (), 'limbs.forearm_aim.v1',
+            ('shoulder_arm', 'finite_segment'), ('end',), 'preserve_end',
+        ), catalog)
+    register_movement(c.MovementDefinition(
+        'arm.jump_swing', 1, 'limb', 'Swing both arms through jump preparation and recovery',
+        (), ('measure.left.upper_arm.orientation', 'measure.right.upper_arm.orientation'), (),
+        ('left.upper_arm', 'right.upper_arm'), (), (), 'limbs.jump_swing.v1',
+        ('shoulder_arm', 'finite_segment'), ('windup', 'forward', 'end'), 'return_to_entry',
+    ), catalog)
+    register_movement(c.MovementDefinition(
+        'arm.wave_gesture', 1, 'limb', 'Raise the selected arm, wave finitely, and recover the measured entry',
+        (_enum('side', 'right', ('left', 'right')),
+         c.ParameterSpec('waves', 'integer', 'unitless', None, False, True, 3, 1, 4),
+         _number('tempo', 'unitless', 1., 1., 1.25)),
+        (), (), ('left.upper_arm', 'left.forearm', 'left.wrist',
+                 'right.upper_arm', 'right.forearm', 'right.wrist'), (), (),
+        'limbs.wave.v1', ('shoulder_arm', 'finite_segment'), ('raised', 'end'), 'return_to_entry',
+    ), catalog)
+    register_movement(c.MovementDefinition(
+        'arm.orient', 1, 'limb', 'Place both upper arms at explicit world orientations',
+        (_enum('side', 'both', ('both',)),
+         _enum('frame', 'world', ('world',)),
+         _number('duration_s', 'second', 1.2, 1., 3.),
+         _number('hold_s', 'second', 0., 0., 1.),
+         _enum('return_policy', 'preserve_end', ('preserve_end', 'return_to_entry')),
+         *(c.ParameterSpec(side+'_orientation', 'quaternion', 'unitless', 'world', True, False, None,
+                           dimensions=4) for side in ('left', 'right'))),
+        ('measure.left.upper_arm.orientation', 'measure.right.upper_arm.orientation'), (),
+        ('left.upper_arm', 'right.upper_arm'), (), (), 'limbs.shoulder_arm.v1',
+        ('shoulder_arm', 'preserve_elbow_bend', 'finite_segment'),
+        ('approach', 'arrival', 'recovery', 'end'), 'preserve_end',
+    ), catalog)
     for id in IDS:
         shoulder=id.startswith('shoulder.');endpoint=id in ('arm.fold','arm.reach','arm.stroke')
         bound=8 if id=='shoulder.roll' else 10 if shoulder else 20 if id=='arm.circle' else 150 if id=='arm.raise' else 110 if id=='arm.sweep' else 70

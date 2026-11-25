@@ -3,11 +3,11 @@ from dataclasses import replace
 import re
 from ..motion import ActionPlan, scale_timing
 from ..models import PlanError
-from .movements import lying_down_plan, sitting_plan, floor_sitting_plan
-from .presets import preset_plan
+from .movements import sitting_plan, floor_sitting_plan
+from .presets import FoundationSelection, preset_plan
 
 
-def common_route(text, current=None, surfaces=()):
+def select_common_foundation(text):
     lowered = text.lower().strip().rstrip('.!')
     # Entire-request matches avoid swallowing creative modifiers, named stages,
     # explicit unusual routes, stomach poses, or unrelated body-part changes.
@@ -18,26 +18,40 @@ def common_route(text, current=None, surfaces=()):
     gait = re.fullmatch(r'(walk|walking|run|running)(?: forward)?(?: (2|4) steps)?', simple)
     wave = re.fullmatch(r'(?:wave|waving)(?: hello|(?: with)? (?:your )?(left|right) (?:hand|arm))?', simple)
     if lying:
-        plan = lying_down_plan()
+        name, options = 'lie', ()
     elif simple in ('lie', 'lying', 'lying down'):
-        plan = preset_plan('lie')
+        name, options = 'lie', ()
     elif simple in ('jump', 'jumping', 'jump once', 'jump up'):
-        plan = preset_plan('jump')
+        name, options = 'jump', ()
     elif gait:
-        plan = preset_plan('run' if gait[1] in ('run', 'running') else 'walk', steps=int(gait[2] or 4))
+        name = 'run' if gait[1] in ('run', 'running') else 'walk'
+        options = (('steps', int(gait[2] or 4)),)
     elif wave:
-        plan = preset_plan('wave', side=wave[1] or 'right')
+        name, options = 'wave', (('side', wave[1] or 'right'),)
     elif floor_sitting:
-        plan = floor_sitting_plan()
+        name, options = 'sit_floor', ()
     elif sitting:
+        name, options = 'sit_seat', ()
+    else:
+        return None
+    return FoundationSelection(name, options, 1.25 if lowered.endswith(' slowly') else 1.)
+
+
+def common_route(text, current=None, surfaces=()):
+    selected = select_common_foundation(text)
+    if selected is None:
+        return None
+    if selected.name == 'sit_floor':
+        plan = floor_sitting_plan()
+    elif selected.name == 'sit_seat':
         seat = next((s for s in surfaces if s.name == 'seat'), None)
         if seat is None:
             raise PlanError('Enable the preview seat before asking to sit on a chair.')
         plan = sitting_plan(seat.height, seat)
     else:
-        return None
-    if lowered.endswith(' slowly'):
-        plan = scale_timing(plan, 1.25)
+        plan = preset_plan(selected.name, **dict(selected.options))
+    if selected.tempo != 1.:
+        plan = scale_timing(plan, selected.tempo)
     return replace(plan, revision=current.revision + 1 if current else 0)
 
 

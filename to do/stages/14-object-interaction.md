@@ -28,6 +28,10 @@ Require full-prop review from [13.1](13.1-object-collision.md) alongside support
 - Measure foot/hand/seat contact and geometry alignment throughout approach and hold. Test a seated gesture preserves support.
 - Inject object change, cancellation and solver failure to verify both scene and animation rollback.
 
+## Chair recovery through the visible UI
+
+Include a narrow Avatar panel/operator change if needed to expose the existing seat control. From the default scene request a chair sit, follow the visible recovery or explicit chair-creation path, and play the result. Repeat with an existing chair and cancel a candidate. Check resolved chair identity, contact, collision and preservation of the previous clip and props. Use the Stage 12, 13 and 13.1 outputs.
+
 ## Validation / completion gate
 
 Object-dependent actions use the resolved geometry and preserve it across subsequent gestures/corrections. No floating pelvis or passing candidate is justified by planned contact values alone. Scene/motion transaction checks pass.

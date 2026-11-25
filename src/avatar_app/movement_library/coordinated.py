@@ -3,6 +3,7 @@ from dataclasses import replace
 import math
 
 from . import contracts as c
+from .curves import axis_rotation
 from .joints import _enum, _fragment, _number, _path, _seconds, _values
 from .legs import hip_position, reachable
 from .root_motion import CONTROLS, ORIENTATION, POSITION, RELEASE_S
@@ -27,10 +28,12 @@ def build(instance, entry, profile, surfaces):
     move = instance.definition_id
     params = {item.name: item.value for item in instance.parameters}
     if move in ('body.floor_transfer', 'body.kneel_rise'):
-        if params.get('route') == 'standing_to_seated':
+        if params.get('route') in ('standing_to_seated', 'standing_to_chair'):
             return build_standing_to_seated(instance, entry, profile, surfaces, params)
         if params.get('route') == 'seated_to_back':
             return build_seated_to_back(instance, entry, profile, surfaces, params)
+        if params.get('route') == 'seated_extend':
+            return build_seated_extend(instance, entry, profile, surfaces, params)
         if params.get('route') == 'planted_to_knee':
             return build_planted_kneel(instance, entry, profile, surfaces, params)
         return build_body_contact(instance, entry, surfaces, params)
@@ -38,9 +41,11 @@ def build(instance, entry, profile, surfaces):
         return build_crawl(instance, entry, profile, surfaces, params)
 
     anchors = floor_soles(entry, surfaces, SOLE_ANCHORS)
-    if move == 'body.step':
+    if move in ('body.step', 'body.gait_step'):
         return build_step(instance, entry, profile, params, anchors)
-    if move == 'body.takeoff_land':
+    if move == 'body.run_burst':
+        return build_run_burst(instance, entry, profile, params, anchors)
+    if move in ('body.takeoff_land', 'body.jump_once'):
         return build_takeoff_land(instance, entry, profile, params)
     origin = _values(entry)['pelvis.position']
     lowered = (*origin[:2], origin[2] - params['depth_m'])
@@ -98,23 +103,44 @@ def build_body_contact(instance, entry, surfaces, params):
 
 def build_standing_to_seated(instance, entry, profile, surfaces, params):
     floor_soles(entry, surfaces, SOLE_ANCHORS)
-    if params['surface'] != 'floor':
-        c.fail('UNSUPPORTED_GOAL', 'Standing-to-seated uses the resolved floor')
+    chair = params['route'] == 'standing_to_chair'
+    expected_surface = 'seat' if chair else 'floor'
+    if params['surface'] != expected_surface:
+        c.fail('UNSUPPORTED_GOAL', 'Descent requires its declared floor or chair surface')
     values = _values(entry)
     pelvis = values['pelvis.position']
     heading = horizontal_heading(entry)
     if pelvis[2] < .35 * profile.height_m:
         c.fail('ENTRY_MISMATCH', 'Standing-to-seated needs a standing or shallow crouched entry')
-    lengths = {length.id: length.value_m for length in profile.lengths}
-    leg_reach = min(lengths[side + '.thigh'] + lengths[side + '.shin'] for side in ('left', 'right'))
-    setback = tuple(-.73 * leg_reach * component for component in heading)
-    approach = (*(pelvis[i] + setback[i] for i in range(2)), .15 * profile.height_m)
     skin_reference = values['pelvis.support.position']
     orientation = values['pelvis.orientation']
-    reclined = multiply(orientation, angle_rotation(pitch=-28))
-    offset = rotate(multiply(reclined, inverse(orientation)), tuple(a - b for a, b in zip(skin_reference, pelvis)))
-    target = c.ContactAnchor('pelvis.support', 'floor',
-                             (*(approach[i] + offset[i] for i in range(2)), 0), 'world', 'metre')
+    offset = tuple(a - b for a, b in zip(skin_reference, pelvis))
+    if chair:
+        surface = next((item for item in surfaces if item.name == expected_surface), None)
+        if surface is None or surface.center is None or surface.size is None:
+            c.fail('UNRESOLVED_SURFACE', 'Standing chair descent needs a resolved seat region')
+        if surface.height <= 0 or pelvis[2] <= surface.height + .12 * profile.height_m:
+            c.fail('ENTRY_MISMATCH', 'Standing chair descent needs a seat below the measured pelvis')
+        forward_room = min(surface.size[i] / (2 * abs(heading[i]))
+                           for i in range(2) if abs(heading[i]) > 1e-6)
+        pelvis_xy = tuple(surface.center[i] + .55 * forward_room * heading[i] for i in range(2))
+        # The seat placement names the pelvis center. Its calibrated skin
+        # anchor can be asymmetric, so carry that offset into the contact target.
+        target_xy = tuple(pelvis_xy[i] + offset[i] for i in range(2))
+        approach = (*pelvis_xy, surface.height + .12 * profile.height_m)
+        reclined = orientation
+        height = surface.height
+    else:
+        lengths = {length.id: length.value_m for length in profile.lengths}
+        leg_reach = min(lengths[side + '.thigh'] + lengths[side + '.shin'] for side in ('left', 'right'))
+        # Keep the planted ankles within their limits during pelvis contact acquisition.
+        setback = tuple(-.71 * leg_reach * component for component in heading)
+        approach = (*(pelvis[i] + setback[i] for i in range(2)), .15 * profile.height_m)
+        reclined = multiply(orientation, angle_rotation(pitch=-28))
+        offset = rotate(multiply(reclined, inverse(orientation)), offset)
+        target_xy = tuple(approach[i] + offset[i] for i in range(2))
+        height = 0.
+    target = c.ContactAnchor('pelvis.support', expected_surface, (*target_xy, height), 'world', 'metre')
     approach_frames = round(_seconds(params['approach_s']) * c.FPS)
     acquire_frames = round(_seconds(params['phase_s']) * c.FPS)
     hold_frames = round(_seconds(params['hold_s']) * c.FPS)
@@ -139,6 +165,42 @@ def fixed_event(instance, anchor, start, end, *, acquire=0, release=0, suffix=''
     return c.ContactEvent(instance.instance_id + '.' + anchor.anchor_id + suffix, (instance.instance_id,),
                           anchor.anchor_id, anchor.surface_id, c.TimeInterval(start, end), acquire, release, 0,
                           anchor.position)
+
+
+SEATED_EXTENSION_ANGLES = {'hip.flexion': 105., 'knee.flexion': 15., 'ankle.flexion': 0.}
+SEATED_EXTENSION_CONTROLS = frozenset(f'{side}.{angle}' for side in ('left', 'right')
+                                      for angle in SEATED_EXTENSION_ANGLES)
+
+
+def build_seated_extend(instance, entry, profile, surfaces, params):
+    anchors = floor_soles(entry, surfaces, (*SOLE_ANCHORS, 'pelvis.support'))
+    values = _values(entry)
+    if params['surface'] != 'floor' or values['pelvis.position'][2] > .20 * profile.height_m:
+        c.fail('ENTRY_MISMATCH', 'Leg extension requires a supported low floor seat')
+    if not SEATED_EXTENSION_CONTROLS <= values.keys():
+        c.fail('MISSING_CAPABILITY', 'Leg extension needs calibrated hips, knees and ankles')
+    forward = rotate(values['pelvis.orientation'], (0, 1, 0))
+    incline = math.degrees(math.atan2(forward[2], math.hypot(*forward[:2])))
+    if not 10 <= incline <= 45:
+        c.fail('ENTRY_MISMATCH', 'Leg extension requires a reclined floor-seated pelvis')
+    arrival = RELEASE_S + _seconds(params['phase_s'])
+    end = arrival + _seconds(params['hold_s'])
+    contacts = (fixed_event(instance, anchors['pelvis.support'], 0, end),
+                *(fixed_event(instance, anchors[sole], 0, RELEASE_S, release=RELEASE_S) for sole in SOLE_ANCHORS))
+    paths = {}
+    for side in ('left', 'right'):
+        for angle, target in SEATED_EXTENSION_ANGLES.items():
+            if angle == 'hip.flexion':
+                target -= incline
+            key = f'{side}.{angle}'
+            initial = values[key]
+            paths[key] = [(0, RELEASE_S, initial, initial, None), (RELEASE_S, arrival, initial, target, None),
+                          (arrival, end, target, target, None)]
+    fragment = _fragment(instance, entry, profile, paths, end, (
+        c.PhaseLandmark('feet_released', RELEASE_S), c.PhaseLandmark('extended', arrival),
+        c.PhaseLandmark('end', end),
+    ))
+    return replace(fragment, contact_events=contacts)
 
 
 def build_seated_to_back(instance, entry, profile, surfaces, params):
@@ -272,13 +334,16 @@ def build_step(instance, entry, profile, params, anchors):
     origin = values[position]
     heading = horizontal_heading(entry)
     distance = params['distance_m']
+    pelvis_advance = params.get('pelvis_advance_m', .5 * distance)
     target = (*(origin[i] + distance * heading[i] for i in range(2)), origin[2] - anchors[sole].position[2])
-    apex = (*((origin[i] + target[i]) / 2 for i in range(2)), target[2] + params['clearance_m'])
+    apex_progress = params.get('apex_progress', .5)
+    apex = (*(origin[i] + apex_progress * (target[i] - origin[i]) for i in range(2)),
+            target[2] + params['clearance_m'])
     pelvis = values['pelvis.position']
-    advance = (*(pelvis[i] + .5 * distance * heading[i] for i in range(2)), pelvis[2])
-    for point, fraction in ((apex, .25), (target, .5)):
+    advance = (*(pelvis[i] + pelvis_advance * heading[i] for i in range(2)), pelvis[2])
+    for point, fraction in ((apex, .5), (target, 1.)):
         shifted = dict(values)
-        shifted[position] = (*(origin[i] + fraction * distance * heading[i] for i in range(2)), origin[2])
+        shifted[position] = (*(origin[i] + fraction * pelvis_advance * heading[i] for i in range(2)), origin[2])
         reachable(shifted, profile, side, point)
     phase_frames = round(_seconds(params['phase_s']) * c.FPS)
     mid = (round(RELEASE_S * c.FPS) + phase_frames) / c.FPS
@@ -305,20 +370,151 @@ def build_step(instance, entry, profile, params, anchors):
         replace(landing(step_event, touchdown, end), target_world_v1=landing_point)))
 
 
+RUN_ARM_CONTROLS = frozenset(f'{side}.{control}' for side in ('left', 'right')
+                             for control in ('upper_arm.orientation', 'elbow.flexion'))
+
+
+def build_run_burst(instance, entry, profile, params, anchors):
+    """Author finite alternating floor landings and a final closing step."""
+    values = _values(entry)
+    height, count = params['height_m'], params['steps']
+    if count not in (2, 4):
+        c.fail('INVALID_PARAMETER', 'Running supports two or four strides')
+    stride = .17 * height
+    heading = horizontal_heading(entry)
+    pelvis = values['pelvis.position']
+    sides = ('left', 'right')
+    feet = {side: values[side + '.foot.position'] for side in sides}
+    start = {side: anchors[side + '.sole'].position for side in sides}
+    foot_height = {side: feet[side][2] - start[side][2] for side in sides}
+    end = (27 * count + 42) / c.FPS
+    paths = {'pelvis.position': [], **{f'{side}.foot.{field}': []
+                                      for side in sides for field in ('position', 'orientation')}}
+    arm_swing = params.get('arms') == 'counter_swing'
+    if arm_swing:
+        if not RUN_ARM_CONTROLS <= values.keys():
+            c.fail('MISSING_CAPABILITY', 'Run arm swing needs calibrated arms and elbows')
+        paths.update((key, []) for key in sorted(RUN_ARM_CONTROLS))
+    pitch_axis = rotate(entry.root_transform.orientation, (1, 0, 0))
+    toe_down = axis_rotation(pitch_axis, -15.)
+    events = [fixed_event(instance, anchor, 0, 3 / c.FPS, release=3 / c.FPS)
+              for anchor in anchors.values()]
+    phases = []
+
+    def place(origin, distance, z):
+        return (*(origin[i] + heading[i] * distance for i in range(2)), z)
+
+    def point(key, time, target):
+        prior = paths[key][-1] if paths[key] else None
+        paths[key].append((prior[1] if prior else 0., time, prior[3] if prior else values[key], target, None))
+
+    distances = dict.fromkeys(sides, 0.)
+    for index in range(count):
+        side, other = sides[index % 2], sides[(index + 1) % 2]
+        base = index * 27
+        apex, touchdown, settled = ((base + frame) / c.FPS for frame in (13, 24, 27))
+        if arm_swing:
+            arm_peak = (base + 15) / c.FPS
+            for arm, pitch, flexion in ((side, -20., 65.), (other, 25., 85.)):
+                upper = arm + '.upper_arm.orientation'
+                elbow = arm + '.elbow.flexion'
+                orientation = multiply(axis_rotation(pitch_axis, pitch), values[upper])
+                for key, target in ((upper, orientation), (elbow, flexion)):
+                    point(key, arm_peak, target)
+                    point(key, settled, target)
+        distances[side] = stride * (index + 1)
+        for foot in sides:
+            key = foot + '.foot.position'
+            point(key, apex, place(feet[foot], distances[foot],
+                                  foot_height[foot] + (.10 if foot == side else .08) * height))
+            landed = place(feet[foot], distances[foot],
+                           foot_height[foot] + (0. if foot == side else .04 * height))
+            point(key, touchdown, landed)
+            point(key, settled, landed)
+            key = foot + '.foot.orientation'
+            pitched = multiply(toe_down, values[key])
+            # Keep the previous sole orientation while the grounded release
+            # fades; begin toe pitch only after the support has been released.
+            orientation = paths[key][-1][3] if paths[key] else values[key]
+            point(key, (base + 3) / c.FPS, orientation)
+            point(key, apex, values[key] if foot == side else pitched)
+            point(key, touchdown, values[key] if foot == side else pitched)
+            point(key, settled, values[key] if foot == side else pitched)
+        point('pelvis.position', apex, place(pelvis, stride * (index + .5), pelvis[2] + .08 * height))
+        landing_pelvis = place(pelvis, distances[side], pelvis[2])
+        point('pelvis.position', touchdown, landing_pelvis)
+        point('pelvis.position', settled, landing_pelvis)
+        anchor = c.ContactAnchor(side + '.sole', 'floor', place(start[side], distances[side], 0.),
+                                 'world', 'metre')
+        final_stride = index == count - 1
+        events.append(fixed_event(instance, anchor, touchdown, end if final_stride else settled + 3 / c.FPS,
+                                  acquire=3 / c.FPS, release=0. if final_stride else 3 / c.FPS,
+                                  suffix=f'.stride.{index + 1}'))
+        phases.extend((c.PhaseLandmark(f'flight.{index + 1}', apex),
+                       c.PhaseLandmark(f'landing.{index + 1}', settled)))
+
+    trailing = other
+    close_apex, close_touch = ((27 * count + frame) / c.FPS for frame in (24, 39))
+    key = trailing + '.foot.position'
+    together = place(feet[trailing], stride * count, foot_height[trailing])
+    point(key, close_apex, (*together[:2], together[2] + .045 * height))
+    point(key, close_touch, together)
+    point(key, end, together)
+    for key in ('pelvis.position', side + '.foot.position'):
+        point(key, end, paths[key][-1][3])
+    for foot in sides:
+        key = foot + '.foot.orientation'
+        point(key, close_touch, values[key])
+        point(key, end, values[key])
+    if arm_swing:
+        for key in sorted(RUN_ARM_CONTROLS):
+            point(key, close_apex, values[key])
+            point(key, end, values[key])
+    closed = c.ContactAnchor(trailing + '.sole', 'floor', place(start[trailing], stride * count, 0.),
+                             'world', 'metre')
+    events.append(fixed_event(instance, closed, close_touch, end, acquire=3 / c.FPS, suffix='.close'))
+    fragment = _fragment(instance, entry, profile, paths, end, (*phases, c.PhaseLandmark('end', end)))
+    return replace(fragment, contact_events=tuple(events))
+
+
+def has_running_support(motion, controls):
+    soles = set(SOLE_ANCHORS)
+    foot_tracks = {f'{side}.foot.{field}' for side in ('left', 'right') for field in ('position', 'orientation')}
+    legs = {'pelvis.position', *foot_tracks}
+    if (controls not in (legs, legs | RUN_ARM_CONTROLS) or set(motion.entry_snapshot.active_contacts) != soles
+            or len(motion.contact_events) not in (5, 7)):
+        return False
+    events = sorted(motion.contact_events, key=lambda event: event.interval.start_s)
+    if any(event.anchor_id not in soles or event.surface_id != 'floor' or event.clearance_m
+           or event.target_world_v1 is None for event in events):
+        return False
+    entry, landings = events[:2], events[2:]
+    return ({event.anchor_id for event in entry} == soles
+            and all(event.interval.start_s == 0 and event.release_s and not event.acquire_s for event in entry)
+            and entry[0].interval.end_s == entry[1].interval.end_s
+            and all(prior.interval.end_s < following.interval.start_s
+                    for prior, following in zip((entry[-1], *landings[:-2]), landings[:-1]))
+            and all(event.acquire_s and event.interval.start_s > 0 for event in landings)
+            and all(event.release_s for event in landings[:-2])
+            and all(a.anchor_id != b.anchor_id for a, b in zip(landings, landings[1:]))
+            and all(event.interval.end_s == motion.duration_s and not event.release_s for event in landings[-2:]))
+
+
 def build_takeoff_land(instance, entry, profile, params):
     values = _values(entry)
     origin = values[POSITION]
     apex = (*origin[:2], origin[2] + params['height_m'])
-    rise_frames = round(_seconds(params['phase_s']) * c.FPS)
+    compact = instance.definition_id == 'body.jump_once'
+    rise_frames = 9 if compact else round(_seconds(params['phase_s']) * c.FPS)
     release_frames = round(RELEASE_S * c.FPS)
-    load_frames = 20
-    launch_frames = load_frames + 16
+    load_frames = 15 if compact else 20
+    launch_frames = 30 if compact else load_frames + 16
     loaded = load_frames / c.FPS
     launch = launch_frames / c.FPS
     peak = (launch_frames + rise_frames) / c.FPS
     touchdown = (launch_frames + 2 * rise_frames) / c.FPS
     planted = (launch_frames + release_frames + 2 * rise_frames) / c.FPS
-    recovery_frames = 20
+    recovery_frames = 12 if compact else 20
     compressed = (round(planted * c.FPS) + recovery_frames) / c.FPS
     end = (round(planted * c.FPS) + 2 * recovery_frames) / c.FPS
     pelvis = values['pelvis.position']
@@ -521,7 +717,7 @@ def grounded_root_windows(motion, controls):
 
 
 def has_seated_approach(motion, controls):
-    """Recognize a tracked pelvis descent followed by a floor seat acquisition."""
+    """Recognize a tracked pelvis descent followed by a seat acquisition."""
     if (controls != {'pelvis.position', 'pelvis.orientation', 'head.orientation'}
             or len(motion.tracks) != 3 or len(motion.contact_events) != 3
             or set(motion.entry_snapshot.active_contacts) != set(SOLE_ANCHORS)):
@@ -533,12 +729,13 @@ def has_seated_approach(motion, controls):
     contacts = {event.anchor_id: event for event in motion.contact_events}
     if set(contacts) != {*SOLE_ANCHORS, 'pelvis.support'}:
         return False
-    if any(event.surface_id != 'floor' or event.interval.end_s != motion.duration_s or event.release_s
+    if any(event.interval.end_s != motion.duration_s or event.release_s
            for event in contacts.values()):
         return False
     seat = contacts['pelvis.support']
-    return (seat.interval.start_s == arrival and seat.acquire_s > 0
-            and all(contacts[sole].interval.start_s == 0 and not contacts[sole].acquire_s for sole in SOLE_ANCHORS))
+    return (seat.surface_id in ('floor', 'seat') and seat.interval.start_s == arrival and seat.acquire_s > 0
+            and all(contacts[sole].surface_id == 'floor' and contacts[sole].interval.start_s == 0
+                    and not contacts[sole].acquire_s for sole in SOLE_ANCHORS))
 
 
 def has_floor_body_transition(motion, controls):
@@ -571,6 +768,22 @@ def has_floor_body_transition(motion, controls):
                 and landing_event.interval.end_s == motion.duration_s)
 
 
+def has_seated_extension(motion, controls):
+    events = {event.anchor_id: event for event in motion.contact_events}
+    required = {*SOLE_ANCHORS, 'pelvis.support'}
+    if (controls != SEATED_EXTENSION_CONTROLS or set(events) != required or len(motion.contact_events) != 3
+            or set(motion.entry_snapshot.active_contacts) != required
+            or any(event.surface_id != 'floor' or event.target_world_v1 is None or event.acquire_s
+                   for event in events.values())):
+        return False
+    pelvis = events['pelvis.support']
+    return (pelvis.interval == c.TimeInterval(0, motion.duration_s) and not pelvis.release_s
+            and all(events[sole].interval == c.TimeInterval(0, RELEASE_S) and events[sole].release_s == RELEASE_S
+                    for sole in SOLE_ANCHORS)
+            and all(track.curve.start_value == track.curve.end_value or track.interval.start_s >= RELEASE_S
+                    for track in motion.tracks))
+
+
 def register_coordinated(catalog, profile):
     from .registry import register_movement
 
@@ -597,9 +810,28 @@ def register_coordinated(catalog, profile):
           _number('clearance_m', 'metre', .06, .04, .09), _number('phase_s', 'second', .8, .7, 1.4)),
          tuple(f'{side}.foot.{part}' for side in ('left', 'right') for part in ('position', 'orientation')),
          ('pelvis', *LEG_CHAINS)),
+        ('body.gait_step', 'Place the swing foot with independent pelvis advance and one planted sole',
+         ('swing', 'touchdown', 'end'),
+         (_enum('side', 'left', ('left', 'right')), _number('distance_m', 'metre', .2, .06, .50),
+          _number('pelvis_advance_m', 'metre', .2, 0, .25),
+          _number('apex_progress', 'unitless', .5, .5, 1.),
+          _number('clearance_m', 'metre', .06, .04, .09), _number('phase_s', 'second', .4, .4, .6)),
+         tuple(f'{side}.foot.{part}' for side in ('left', 'right') for part in ('position', 'orientation')),
+         ('pelvis', *LEG_CHAINS)),
+        ('body.run_burst', 'Alternate finite airborne strides and close both feet',
+         ('end',), (_number('height_m', 'metre', 1.7, 1.2, 2.),
+                    _enum('arms', 'preserve', ('preserve', 'counter_swing')),
+                    c.ParameterSpec('steps', 'integer', 'unitless', None, False, True, 4, 2, 4)),
+         tuple(f'{side}.foot.{part}' for side in ('left', 'right') for part in ('position', 'orientation')),
+         ('pelvis', *LEG_CHAINS, *ARM_CHAINS)),
         ('body.takeoff_land', 'Load, extend, fly and recover through both planted legs',
          ('loaded', 'liftoff', 'apex', 'touchdown', 'compressed', 'end'),
          (_number('height_m', 'metre', .20, .12, .35), _number('phase_s', 'second', .8, .7, 1.4),
+          _number('push_off_depth_m', 'metre', .075, .04, .10), _number('recovery_depth_m', 'metre', .055, .03, .08)),
+         tuple(sorted(CONTROLS)), ('pelvis', *LEG_CHAINS)),
+        ('body.jump_once', 'Load, jump and recover in the compact preset timing',
+         ('loaded', 'liftoff', 'apex', 'touchdown', 'compressed', 'end'),
+         (_number('height_m', 'metre', .22, .12, .35),
           _number('push_off_depth_m', 'metre', .075, .04, .10), _number('recovery_depth_m', 'metre', .055, .03, .08)),
          tuple(sorted(CONTROLS)), ('pelvis', *LEG_CHAINS)),
     ):
@@ -618,7 +850,7 @@ def register_coordinated(catalog, profile):
         available = tuple(anchor for anchor in anchors if 'measure.' + anchor + '.position' in profile.capabilities)
         if available:
             sides = tuple(anchor.split('.')[0] for anchor in available) if move == 'body.kneel_rise' else ()
-            floor_routes = ('prepared_seat', 'standing_to_seated')
+            floor_routes = ('prepared_seat', 'standing_to_seated', 'standing_to_chair', 'seated_extend')
             if 'measure.back.support.position' in profile.capabilities:
                 floor_routes += ('seated_to_back',)
             parameters = ((_enum('side', sides[0], sides), _enum('route', 'prepared_knee', ('prepared_knee', 'planted_to_knee')))

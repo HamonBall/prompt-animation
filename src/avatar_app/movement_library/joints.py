@@ -193,9 +193,11 @@ def catalog_for_profile(profile):
     from .root_motion import BUILDER_ID, build as build_root, register_root
     from .support import BUILDER_ID as SUPPORT_BUILDER, build as build_support, register_support
     from .coordinated import BUILDER_ID as COORDINATED_BUILDER, build as build_coordinated, register_coordinated
+    from .patterns import STEP_PATTERN_BUILDER, build_step_pattern, register_step_pattern
     from .styles import BUILDER_ID as STYLE_BUILDER, style_builder, register_styles
-    catalog=register_head_neck(Catalog({**BUILDERS,**BODY_BUILDERS,**ARM_BUILDERS,**HAND_BUILDERS,**FINGER_BUILDERS,**LEG_BUILDERS,**FOOT_BUILDERS,BUILDER_ID:build_root,SUPPORT_BUILDER:build_support,COORDINATED_BUILDER:build_coordinated,STYLE_BUILDER:style_builder}),head_only='anatomy.neck' not in profile.capabilities)
+    catalog=register_head_neck(Catalog({**BUILDERS,**BODY_BUILDERS,**ARM_BUILDERS,**HAND_BUILDERS,**FINGER_BUILDERS,**LEG_BUILDERS,**FOOT_BUILDERS,BUILDER_ID:build_root,SUPPORT_BUILDER:build_support,COORDINATED_BUILDER:build_coordinated,STEP_PATTERN_BUILDER:build_step_pattern,STYLE_BUILDER:style_builder}),head_only='anatomy.neck' not in profile.capabilities)
     for register in (register_body,register_arms,register_hands,register_fingers,register_legs,register_feet,register_root,register_support,register_coordinated):
         register(catalog,profile)
     register_styles(catalog, profile)
+    register_step_pattern(catalog)
     return catalog

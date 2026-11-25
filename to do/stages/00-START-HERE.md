@@ -1,8 +1,9 @@
 # Numbered execution stages — start here
 
 Stages 01–07 are complete, including optional 05.3b.
-The latest checkpoint is the [Stage 07 handoff](handoffs/RESUME-07.md).
-Stage 08 awaits explicit assignment. Historical prerequisite receipts remain under `receipts/`.
+The active assignment is Stage 08. Follow the [Stage 08 handoff](handoffs/RESUME-08.md).
+Historical prerequisite receipts remain under `receipts/`.
+The [scan customer plan and stage map](../sol-prompt-to-preview-plan.md) explains how Stages 08–18 connect the studio delivery to first playback, correction and an observed customer trial. The numbered documents own the work.
 Prepared: 2026-10-14.
 
 Storage policy added 2026-10-26: every stage must read and follow [the project artifact-retention policy](../../docs/artifact-retention-policy.md). Complete [the storage-v2 maintenance assignment](../storage-reduction-and-retention-plan.md) before generating another large stage-05 evidence set. This maintenance requirement does not renumber movement stages or claim their implementation is complete.
@@ -45,7 +46,7 @@ Read top to bottom. Dependencies, not filename proximity, determine readiness. E
 | 05.7b | [Library 5.7 — bounded motion style](05.7b-style.md) | 05.7a | Complete, [receipt](receipts/05.7b.md) |
 | 06 | [Build action recipes and timeline stages](06-recipe-stage-builder.md) | 05.7b | [Complete](receipts/06.md) |
 | 07 | [Compile and execute composed animation](07-animation-compiler.md) | 06 | [Complete](receipts/07.md) |
-| 08 | [Migrate existing animations to library recipes](08-migrate-foundations.md) | 07 | Planned |
+| 08 | [Migrate existing animations to library recipes](08-migrate-foundations.md) | 07 | Active, [partial receipt](receipts/08.md) |
 | 09 | [Retrieve the right movement capabilities](09-capability-retrieval.md) | 08 | Planned |
 | 10 | [Interpret open-ended prompts into movement recipes](10-ai-planner.md) | 09 | Planned |
 | 11 | [Preserve intent through narrow follow-up edits](11-precise-corrections.md) | 10 | Planned |

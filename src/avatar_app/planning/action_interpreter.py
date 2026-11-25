@@ -6,7 +6,7 @@ from ..motion import (ActionPlan, ContactConstraint, MotionStage, affected_part,
 from ..pose import LIMITS, PosePlan, update_pose, serialize_pose
 from .pose_interpreter import canonical_controls, constrain_pose
 from .local_model import get_model
-from .presets import motion_foundations, motion_foundation
+from .presets import FoundationRequest, motion_foundations, preset_plan, select_motion_foundation
 
 
 CONTROL_PROPERTIES = {name: {'type': ['number', 'null']} for name in LIMITS}
@@ -142,7 +142,7 @@ def parse_contact(data):
     return ContactConstraint(**data)
 
 
-def decode_action(raw, current=None, surfaces=None):
+def decode_action(raw, current=None, surfaces=None, *, foundation_requests=False):
     def pairs(items):
         result = {}
         for k, v in items:
@@ -185,7 +185,8 @@ def decode_action(raw, current=None, surfaces=None):
             from dataclasses import replace
             if rows or contact is not None or 'duration' in changes:
                 raise ValueError('Adaptation needs extra body changes, not replacement stages')
-            base = motion_foundation(data.get('base'), current)
+            selected = select_motion_foundation(data.get('base'))
+            base = preset_plan(selected.name, current, **dict(selected.options))
             adjustments = canonical_controls(changes)
             plan = patch_stages(base, [{'id': stage.id, 'targets': adjustments}
                                       for stage in base.stages]) if adjustments else base
@@ -193,6 +194,9 @@ def decode_action(raw, current=None, surfaces=None):
                 plan = scale_timing(plan, factor)
             plan = replace(plan, revision=current.revision + 1 if current else 0,
                            description=message)
+            tempo = 1. if factor is None else factor
+            if foundation_requests and selected.name == 'wave' and not adjustments and tempo in (1., 1.25):
+                plan = FoundationRequest(replace(selected, tempo=tempo), plan)
         elif kind in ('action', 'edit'):
             if changes or contact is not None or factor is not None or not 1 <= len(rows) <= 12:
                 raise ValueError('Invalid stage response')
@@ -246,7 +250,8 @@ def lying_example():
                        'factor': None, 'message': 'Lower onto floor and lie on back.'})
 
 
-def interpret_action(text, current=None, model=None, surfaces=None, approximate=False, references=(), progress=None):
+def interpret_action(text, current=None, model=None, surfaces=None, approximate=False, references=(), progress=None,
+                     *, foundation_requests=False):
     if not isinstance(text, str) or not 1 <= len(text.strip()) <= 2000:
         raise PlanError('Enter a motion description of 1–2000 characters.')
     if text.strip().lower().rstrip('.!') in ('neutral', 'neutral pose', 'reset pose', 'stand normally'):
@@ -257,7 +262,7 @@ def interpret_action(text, current=None, model=None, surfaces=None, approximate=
             plan = replace(plan, revision=current.revision + 1)
         return plan, 'Neutral standing pose'
     surfaces = tuple(surfaces) if surfaces is not None else (current.surfaces if isinstance(current, ActionPlan) else ())
-    from .routes import common_route, check_route_destination
+    from .routes import common_route, check_route_destination, select_common_foundation
     try:
         route = common_route(text, current, surfaces)
     except PlanError:
@@ -267,6 +272,10 @@ def interpret_action(text, current=None, model=None, surfaces=None, approximate=
         # The AI must not invent a contact surface for this preview.
         route = None
     if route is not None and model is None:
+        if foundation_requests and not approximate:
+            selection = select_common_foundation(text)
+            if selection.name == 'wave' or (selection.name == 'sit_seat' and selection.tempo == 1.):
+                return FoundationRequest(selection, route), route.description
         return route, route.description
     payload = {'request': text,
                'current_action': serialize_action(current) if isinstance(current, ActionPlan) else None,
@@ -292,7 +301,11 @@ def interpret_action(text, current=None, model=None, surfaces=None, approximate=
         {'role': 'user', 'content': json.dumps(payload, ensure_ascii=False, separators=(',', ':'))}]
     engine = model or get_model()
     raw = engine.complete(messages, SCHEMA) if model is not None or progress is None else engine.complete(messages, SCHEMA, progress=progress)
-    plan, explanation = decode_action(raw, current, surfaces or None)
+    plan, explanation = decode_action(raw, current, surfaces or None,
+                                      foundation_requests=foundation_requests and not approximate)
+    request = plan if isinstance(plan, FoundationRequest) else None
+    if request is not None:
+        plan = request.plan
     if isinstance(plan, PosePlan):
         if not approximate:
             check_route_destination(plan, text)
@@ -308,4 +321,4 @@ def interpret_action(text, current=None, model=None, surfaces=None, approximate=
         plan = validate_action(replace(plan, surfaces=resolved or (Surface(),)))
         if not approximate:
             check_route_destination(plan, text)
-    return plan, explanation
+    return (replace(request, plan=plan) if request is not None else plan), explanation

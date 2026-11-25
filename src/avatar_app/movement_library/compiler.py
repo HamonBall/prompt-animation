@@ -6,7 +6,7 @@ from .curves import ease_weight
 from .registry import (get_movement, validate_instance, validate_fragment,
                        validate_snapshot, validate_control_value)
 from ..motion import Surface
-from .spatial import look_rotation
+from .spatial import look_rotation, normalize
 
 
 def supporting_chains(control_ids):
@@ -374,6 +374,61 @@ def interpolate(start,end,weight,shape):
     return start+(end-start)*weight
 
 
+def interpolate_direction(start, end, weight):
+    start, end = normalize(start), normalize(end)
+    dot = max(-1., min(1., sum(a * b for a, b in zip(start, end))))
+    if dot > .9995:
+        return normalize(interpolate(start, end, weight, 'vector'))
+    tangent = tuple(b - dot * a for a, b in zip(start, end))
+    if math.hypot(*tangent) < 1e-9:
+        # An exact half turn has no unique arc. Choose a stable perpendicular.
+        index = min(range(3), key=lambda axis: abs(start[axis]))
+        tangent = tuple(float(axis == index) - start[index] * component
+                        for axis, component in enumerate(start))
+    phase = math.acos(dot) * weight
+    cosine, sine = math.cos(phase), math.sin(phase)
+    return tuple(a * cosine + b * sine for a, b in zip(start, normalize(tangent)))
+
+
+def _direction_tangent(previous, vertex, following, incoming_duration, outgoing_duration):
+    """Carry angular velocity across successive arcs only when their directions agree."""
+    previous, vertex, following = (normalize(value) for value in (previous, vertex, following))
+    incoming = sum(a * b for a, b in zip(previous, vertex))
+    outgoing = sum(a * b for a, b in zip(following, vertex))
+    arrival = tuple(incoming * axis - point for axis, point in zip(vertex, previous))
+    departure = tuple(point - outgoing * axis for axis, point in zip(vertex, following))
+    if min(math.hypot(*arrival), math.hypot(*departure)) < 1e-6:
+        return 0.
+    if sum(a * b for a, b in zip(normalize(arrival), normalize(departure))) < .999:
+        return 0.
+    before = math.acos(max(-1., min(1., incoming))) / incoming_duration
+    after = math.acos(max(-1., min(1., outgoing))) / outgoing_duration
+    return 2 * before * after / (before + after)
+
+
+def _direction_weight(track, start, end, weight, eased, tracks, bindings):
+    if weight in (0., 1.) or track.curve.easing != 'smooth' or track.curve.style_timing is not None:
+        return eased
+    dot = sum(a * b for a, b in zip(normalize(start), normalize(end)))
+    arc = math.acos(max(-1., min(1., dot)))
+    if arc < 1e-6:
+        return eased
+    begin_speed, end_speed = 0., 0.
+    duration = track.curve.duration_s
+    for neighbor in tracks:
+        if neighbor.control_id != track.control_id or neighbor.track_id == track.track_id:
+            continue
+        if abs(neighbor.interval.end_s - track.interval.start_s) < 1e-8 and neighbor.curve.end_value == start:
+            previous = (neighbor.curve.start_value if neighbor.start_source == 'explicit'
+                        else bindings.get(neighbor.track_id))
+            if previous is not None:
+                begin_speed = _direction_tangent(previous, start, end, neighbor.curve.duration_s, duration)
+        if abs(neighbor.interval.start_s - track.interval.end_s) < 1e-8 and neighbor.curve.start_value == end:
+            end_speed = _direction_tangent(start, end, neighbor.curve.end_value, duration, neighbor.curve.duration_s)
+    complement = 1. - weight
+    return eased + duration * weight * complement * (complement * begin_speed - weight * end_speed) / arc
+
+
 @dataclass
 class LegacySamplingCursor:
     starting: dict
@@ -484,12 +539,18 @@ def sample_motion(executable, time_s, measured_state, execution_cursor):
         if time_s+1e-9<track.interval.start_s: continue
         start=track.curve.start_value if track.start_source=='explicit' else bindings[track.track_id]
         weight=min(1,max(0,(time_s-track.interval.start_s)/track.curve.duration_s))
-        weight=ease_weight(weight,track.curve.easing,track.curve.style_timing)
+        eased=ease_weight(weight,track.curve.easing,track.curve.style_timing)
         end=track.curve.end_value
         if track.curve.look_at_world_v1 is not None:
             position=_measured(measured_state,c.ControlValue('head.position','metre','world',0))
             end=look_rotation(position,track.curve.look_at_world_v1)
-        value=(end if track.curve.look_at_world_v1 is not None else start) if track.curve.kind=='hold' else interpolate(start,end,weight,track.value_shape)
+        if track.curve.kind == 'hold':
+            value = end if track.curve.look_at_world_v1 is not None else start
+        elif track.control_id.endswith('.forearm.direction'):
+            progress = _direction_weight(track, start, end, weight, eased, tracks, bindings)
+            value = interpolate_direction(start, end, progress)
+        else:
+            value = interpolate(start, end, eased, track.value_shape)
         selected[track.control_id]=(c.ControlValue(track.control_id,track.unit,track.frame,value),track.source_instance_ids)
     contacts=tuple(e for e in executable.contact_events if e.interval.start_s<=time_s<=e.interval.end_s)
     goals=tuple(replace(g, target=cursor.activation_goals[g.goal_id]) if g.goal_id in cursor.activation_goals else g

@@ -10,7 +10,8 @@ from ..movement_library.compiler import (
 )
 from ..movement_library.coordinated import (
     CRAWL_ANCHORS, CRAWL_ENDPOINTS, KNEE_CRAWL_ANCHORS, KNEE_CRAWL_ENDPOINTS, LEG_CHAINS,
-    grounded_root_windows, has_floor_body_transition, has_seated_approach, has_step_support,
+    grounded_root_windows, has_floor_body_transition, has_running_support, has_seated_approach, has_seated_extension,
+    has_step_support,
     validate_crawl_support,
 )
 from ..movement_library.registry import validate_fragment, validate_snapshot
@@ -57,6 +58,8 @@ class FragmentAdapter:
             (),motion.duration_s,motion.tracks,motion.contact_events,(),(),motion.goal_checks)
         validate_fragment(fragment,profile,resolved_surface_ids=tuple(surfaces))
         track_ids = {track.control_id for track in motion.tracks}
+        self.directed_elbows = {control.split('.')[0] for control in track_ids
+                                if control.endswith('.forearm.direction')}
         self.knee_crawl = (
             profile.version == 8 and set(motion.entry_snapshot.active_contacts) == set(KNEE_CRAWL_ANCHORS)
             and {event.anchor_id for event in motion.contact_events} == set(KNEE_CRAWL_ANCHORS)
@@ -64,7 +67,11 @@ class FragmentAdapter:
             and track_ids == {'pelvis.position', *KNEE_CRAWL_ENDPOINTS}
         )
         self.moves_root = bool(track_ids & ROOT_CONTROLS)
-        self.root_leg_windows = grounded_root_windows(motion, track_ids) if self.moves_root else ()
+        swing_controls = {'left.upper_arm.orientation', 'right.upper_arm.orientation'}
+        self.root_arm_swing = (motion.recipe_activation_v1 == ()
+                               and track_ids == ROOT_CONTROLS | {'pelvis.position'} | swing_controls)
+        root_tracks = track_ids - swing_controls if self.root_arm_swing else track_ids
+        self.root_leg_windows = grounded_root_windows(motion, root_tracks) if self.moves_root else ()
         if self.moves_root:
             if profile.version != 8 or (track_ids != ROOT_CONTROLS and not self.root_leg_windows):
                 c.fail('CONSTRAINT_CONFLICT', 'Root fragments require both object controls and compatible planted articulation')
@@ -109,6 +116,7 @@ class FragmentAdapter:
             if track.control_id.endswith('.upper_arm.orientation'):continue
             if profile.version in (6,7,8) and '.finger.' in track.control_id and control.value_shape=='scalar':continue
             if profile.version in (5,6,7,8) and '.hand.torso_' in track.control_id:continue
+            if profile.version in (5,6,7,8) and track.control_id.endswith('.forearm.direction'):continue
             if profile.version in (5,6,7,8) and track.control_id.endswith(('.elbow.flexion','.elbow.plane','.forearm.twist','.wrist.flexion','.wrist.deviation','.hand.orientation')):continue
             if control.chain in ANGULAR_CHAINS and control.value_shape=='scalar': continue
             if track.control_id.endswith('.hand.position'):
@@ -144,15 +152,17 @@ class FragmentAdapter:
                     support_motion = SimpleNamespace(entry_snapshot=motion.entry_snapshot, tracks=body_tracks,
                                                      contact_events=motion.contact_events, duration_s=motion.duration_s,
                                                      goal_checks=())
+        self.seated_extension = self.fixed_support and has_seated_extension(motion, track_ids)
         self.tracked_body_contact = self.fixed_support and (
-            has_seated_approach(support_motion, support_controls) or has_floor_body_transition(support_motion, support_controls))
+            has_seated_approach(support_motion, support_controls) or has_floor_body_transition(support_motion, support_controls)
+            or self.seated_extension)
         four_point_support = (set(motion.entry_snapshot.active_contacts) == set(CRAWL_ANCHORS)
                               and {event.anchor_id for event in motion.contact_events} == set(CRAWL_ANCHORS)
                               and track_ids == {'pelvis.position', *CRAWL_ENDPOINTS})
         from ..movement_library.patterns import has_alternating_step_support
         coordinated_support = self.fixed_support and (four_point_support or self.knee_crawl or self.tracked_body_contact or has_step_support(
             motion.entry_snapshot, motion.contact_events, support_controls, motion.duration_s)
-            or has_alternating_step_support(motion, track_ids))
+            or has_alternating_step_support(motion, track_ids) or has_running_support(motion, track_ids))
         if self.fixed_support and (profile.version != 8
                                    or any(event.target_world_v1 is None for event in motion.contact_events)
                                    or (track_ids - {'pelvis.position'} and not coordinated_support)):
@@ -517,10 +527,12 @@ class FragmentAdapter:
             from .leg_mechanics import apply as apply_legs
             leg_targets=requested
             if p.version==8 and not self.fixed_support:
-                from .foot_mechanics import apply_local, apply_pivots
+                from .foot_mechanics import apply_pivots
                 leg_targets=apply_pivots(self,requested,targets.active_contacts)
             apply_legs(self,leg_targets)
-            if p.version==8 and not self.fixed_support: apply_local(self,requested)
+            if p.version==8 and (not self.fixed_support or self.seated_extension):
+                from .foot_mechanics import apply_local
+                apply_local(self, requested)
         if p.version in (5,6,7,8) and not self.defer_recipe_hands:
             from .hand_mechanics import apply
             apply(self,requested)
@@ -665,7 +677,11 @@ class FragmentAdapter:
                 if not any(id.startswith(side+'.') for id in requested):continue
                 clearance=self._arm_clearance(side);arm_clearance[side]=clearance
                 if clearance<-.003:violations.append(('body_clearance',side,-clearance,.003))
-                pole=Vector(rp.measure_bend_plane(h,p,side+'.forearm'));arm_poles[side]=tuple(pole)
+                measured_pole = rp.measure_bend_plane(h, p, side + '.forearm', directed=side in self.directed_elbows)
+                if measured_pole is None:
+                    continue
+                pole = Vector(measured_pole)
+                arm_poles[side] = measured_pole
                 previous=self.previous_arm_poles.get(side)
                 if previous is not None and previous.dot(pole)<0:
                     violations.append(('elbow_pole_flip',side,math.degrees(previous.angle(pole)),90))
@@ -690,7 +706,9 @@ class FragmentAdapter:
         entry={v.control_id:v for v in self.motion.entry_snapshot.measured_controls}
         if self.arm_review:
             for side in ('left','right'):
-                if side+'.hand.position' in requested or side+'.hand.torso_position' in requested or side+'.elbow.flexion' in requested:continue  # Declared coordinated elbow motion.
+                if any(side + suffix in requested for suffix in
+                       ('.hand.position', '.hand.torso_position', '.elbow.flexion', '.forearm.direction')):
+                    continue  # Declared coordinated elbow motion.
                 if not any(id.startswith(side+'.') for id in requested):continue
                 id=side+'.elbow.flexion'
                 error=abs(measured[id].value-entry[id].value)
@@ -706,6 +724,9 @@ class FragmentAdapter:
             expected = entry[id].value
             if self.moves_root:
                 if id in ROOT_CONTROLS:
+                    continue
+                if self.root_arm_swing and (control.chain.endswith('.upper_arm') or any(
+                        parent.endswith('.upper_arm') for parent in self._parents(control.chain))):
                     continue
                 if grounded_articulation and (control.chain in LEG_CHAINS or any(parent in LEG_CHAINS for parent in self._parents(control.chain))):
                     continue

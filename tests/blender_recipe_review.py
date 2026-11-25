@@ -1,4 +1,4 @@
-"""Reopen a saved Stage 07 bake, verify playback, and render both views."""
+"""Reopen a saved recipe bake, verify playback, and render both views."""
 import json
 from pathlib import Path
 import sys
@@ -17,8 +17,11 @@ from tools.render_root_motion import render_view
 from tools.storage_policy import ARTIFACTS, confined
 
 
-def main(key):
-    out = confined(ARTIFACTS / 'stages/07' / key, ARTIFACTS / 'stages/07')
+def main(key, stage='07'):
+    if stage not in ('07', '08'):
+        raise ValueError('Unsupported recipe evidence stage')
+    stage_root = ARTIFACTS / 'stages' / stage
+    out = confined(stage_root / key, stage_root)
     with store.producer_lease(out):
         recover_evidence(out)
         manifest, _, baked = validate_manifest(out)
@@ -27,18 +30,18 @@ def main(key):
         result = json.loads((out / 'result.json').read_text(encoding='utf-8'))
         assert result['review']['passed'] and manifest['inputs'] == store.input_identity(out)
         profile = c.loads(c.AvatarProfile, (out / 'profile.json').read_text(encoding='utf-8'))
-        motion = c.loads(c.ExecutableMotion, (out / 'executable.json').read_text(encoding='utf-8'))
+        entry = c.loads(c.MotionStateSnapshot, (out / 'entry.json').read_text(encoding='utf-8'))
         handle = store.open_preview(out)
-        floor = handle.scene.objects.get('Preview floor')
-        if floor is not None and floor in handle.objects:
-            handle.objects.remove(floor)
-            handle.environment.append(floor)
+        environment = [obj for obj in handle.objects if obj.name == 'Preview floor' or obj.get('avatar_seat')]
+        for obj in environment:
+            handle.objects.remove(obj)
+            handle.environment.append(obj)
         assert handle.scene.frame_end == len(result['samples'])
         bounds, metric = [], {'angular': 0., 'position': 0.}
         controls = {control.id: control for control in profile.controls}
         for frame, row in enumerate(result['samples'], 1):
             handle.scene.frame_set(frame)
-            state = rp.capture_motion_state(handle, profile, revision=motion.entry_snapshot.revision)
+            state = rp.capture_motion_state(handle, profile, revision=entry.revision)
             for actual in state.measured_controls:
                 control = controls[actual.control_id]
                 expected = row['measured'][actual.control_id]
@@ -64,8 +67,8 @@ def main(key):
         store.atomic_json(out / 'playback.json', {'motion_sha256': identity, 'maxima': metric,
                           'frames': len(result['samples']), 'result_sha256': store.digest(out / 'result.json'),
                           'renderer_sha256': store.digest(Path(__file__))})
-    print('STAGE07_PLAYBACK_AND_RENDER_PASSED', key, metric, flush=True)
+    print(f'STAGE{stage}_PLAYBACK_AND_RENDER_PASSED', key, metric, flush=True)
 
 
 if __name__ == '__main__':
-    main(sys.argv[sys.argv.index('--') + 1])
+    main(*sys.argv[sys.argv.index('--') + 1:])

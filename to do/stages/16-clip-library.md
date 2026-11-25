@@ -28,6 +28,10 @@ Publish a clip-entry fixture with provenance, root handling, phases, contacts, l
 - Test missing file/provenance, incompatible source rig, unavailable edit channel and cancellation restoration.
 - Inspect a real locally available clip if suitable and record exactly which clip was reviewed; synthetic tests are not evidence of real-content quality.
 
+## Optional studio demonstration clip
+
+If assigned, inspect the existing Andrejs dance example as a candidate. Verify rig support, provenance, intended-use permission, visible likeness and playback on the delivery before selecting it. Record local demonstration and public-use permissions separately. A reviewed foundation remains sufficient for the customer pilot.
+
 ## Validation / completion gate
 
 Clip entries use the same contracts and review path as procedural movements. Adapter validation and real-content coverage are reported separately. Unavailable content does not block the already completed procedural pipeline.

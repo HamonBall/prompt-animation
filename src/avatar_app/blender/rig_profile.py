@@ -474,8 +474,8 @@ def measure_orientation(handle,profile,endpoint_id):
     return _tuple(Matrix((x,y,z)).transposed().to_quaternion().normalized())
 
 
-def measure_bend_plane(handle,profile,limb_id):
-    """World pole direction with a stable parent-relative fallback near straight."""
+def measure_bend_plane(handle,profile,limb_id,*,directed=False):
+    """Measure the actual bend or a sign-stable reference for seeding IK."""
     _binding(handle,profile)
     landmark_id = limb_id+'.pole'
     landmark = next((v for v in profile.landmarks if v.id==landmark_id),None)
@@ -489,6 +489,10 @@ def measure_bend_plane(handle,profile,limb_id):
     bend = elbow-origin-chain*(elbow-origin).dot(chain)
     side,segment = limb_id.split('.')
     angle = abs(measure_joint_angle(handle,profile,side+('.elbow.flexion' if segment=='forearm' else '.knee.flexion')))
+    if directed:
+        if angle < POLE_STRAIGHT_THRESHOLD_DEG or bend.length < 1e-7:
+            return None  # A nearly straight chain has no reliably measurable pole.
+        return _tuple(bend.normalized())
     reference = semantic_frame(handle,profile,landmark.joint_id).to_3x3() @ Vector(landmark.position)
     reference = _project(reference,chain)
     if angle < POLE_STRAIGHT_THRESHOLD_DEG or bend.length < 1e-7:
@@ -550,3 +554,16 @@ def capture_motion_state(handle,profile,*,revision,captured_time_s=None,contact_
     # Measurements outside an engineering envelope remain an explicit entry failure,
     # rather than being clamped to a requested or fabricated pose.
     return validate_snapshot(snapshot,profile)
+
+
+def capture_floor_entry(handle, profile, *, revision):
+    """Capture the current pose and soles measured within the floor tolerance."""
+    parts = ('sole', 'heel', 'forefoot') if profile.version == 8 else ('sole',)
+    anchors = tuple(
+        c.ContactAnchor(endpoint, 'floor', measure_endpoint(handle, profile, endpoint), 'world', 'metre')
+        for endpoint in (f'{side}.{part}' for side in ('left', 'right') for part in parts)
+    )
+    active = tuple(anchor.anchor_id for anchor in anchors
+                   if anchor.anchor_id.endswith('.sole') and abs(anchor.position[2]) <= .003)
+    return capture_motion_state(handle, profile, revision=revision, captured_time_s=0,
+                                contact_anchors=anchors, active_contacts=active)

@@ -4,8 +4,8 @@ import math
 import bpy
 from mathutils import Matrix, Quaternion, Vector
 from ..models import PlanError
-from ..movement_library.contracts import ExecutableMotion, to_dict
-from ..movement_library.compiler import LegacySamplingCursor, sample_motion, sample_legacy_frame as compose_frame
+from ..movement_library.contracts import ExecutableMotion, MAX_INSTANCES, MAX_SAMPLES, MotionContractError, fail, to_dict
+from ..movement_library.compiler import LegacySamplingCursor, sample_motion, sample_legacy_frame as compose_frame, value_error
 from .primitive import FragmentAdapter
 from ..motion import ActionPlan, validate_action, sample_controls, schedule, blend_control
 from ..pose import LIMITS, PosePlan, validate_pose, serialize_pose
@@ -307,14 +307,95 @@ def observed_rotations(handle):
 
 
 
-def bake_candidate_frames(handle, plan, repair_floor, progress, profile=None):
+def key_pose(rig, frame):
+    for bone in rig.pose.bones:
+        for channel in ('location', 'rotation_quaternion', 'scale'):
+            bone.keyframe_insert(channel, frame=frame, group=bone.name)
+
+
+def check_measured_seam(previous, current):
+    start, end = previous['snapshot'], current['snapshot']
+    if set(start.active_contacts) != set(end.active_contacts):
+        fail('ENTRY_MISMATCH', 'Continuation changed support at the shared frame')
+    contacts = set(start.active_contacts)
+    before = {anchor.anchor_id: anchor for anchor in start.contact_anchors if anchor.anchor_id in contacts}
+    after = {anchor.anchor_id: anchor for anchor in end.contact_anchors if anchor.anchor_id in contacts}
+    if any(before[key].surface_id != after[key].surface_id
+           or value_error(before[key].position, after[key].position) > .001 for key in contacts):
+        fail('ENTRY_MISMATCH', 'Continuation moved a planted anchor at the shared frame')
+    if (previous['root'] - current['root']).length > .002 or any(
+            value_error(tuple(rotation), tuple(current['rotations'][part]), 'quaternion') > .05
+            for part, rotation in previous['rotations'].items()):
+        fail('ENTRY_MISMATCH', 'Continuation changed the measured pose at the shared frame')
+
+
+def bake_measured_sequence(handle, action, first, continuations, profile, progress):
+    """Bake local compiled segments into an uncommitted action with shared seams."""
+    samples, adapters, source_map = [], [], []
+    offset = 0
+    for index, continuation in enumerate((None, *continuations)):
+        entry = samples[-1]['snapshot'] if index else first.entry_snapshot
+        motion = continuation(entry) if index else first
+        if not isinstance(motion, ExecutableMotion) or motion.entry_snapshot != entry:
+            fail('ENTRY_MISMATCH', 'Continuation must compile against the exact measured exit')
+        frames = round(motion.duration_s * first.fps)
+        if (motion.fps != first.fps or motion.loop is not None
+                or abs(motion.duration_s * first.fps - frames) > 1e-7):
+            fail('UNSUPPORTED_GOAL', 'Measured segments require equal sample rates, frame boundaries and no loops')
+        if offset + frames + 1 > MAX_SAMPLES:
+            fail('RESOURCE_LIMIT', 'Measured sequence exceeds the shared sample budget')
+        try:
+            adapter = FragmentAdapter(handle, motion, profile)
+        except MotionContractError as error:
+            error.details.setdefault('segment', index)
+            raise
+        if adapter.moves_root:
+            fail('UNSUPPORTED_GOAL', 'Measured sequences currently support pose articulation only')
+        adapters.append(adapter)
+        source_map.extend(motion.source_map)
+        for local in range(frames + 1):
+            frame = offset + local + 1
+            handle.scene.frame_set(frame)
+            handle._skin_cache_enabled = True
+            handle._skin_signature = None
+            try:
+                time_s = motion.duration_s if local == frames else local / motion.fps
+                sample = adapter.step(time_s, local + 1)
+            except MotionContractError as error:
+                error.details.update(segment=index, frame=frame)
+                raise
+            sample['frame'] = frame
+            details = sample['semantic_details']
+            details.update(frame=frame, time_s=(frame - 1) / first.fps, segment=index)
+            sample['snapshot'] = replace(sample['snapshot'], captured_time_s=details['time_s'])
+            if index and local == 0:
+                check_measured_seam(samples[-1], sample)
+            else:
+                key_pose(handle.rig, frame)
+                samples.append(sample)
+            handle._skin_cache_enabled = False
+            fraction = (index + (local + 1) / (frames + 1)) / (len(continuations) + 1)
+            progress(fraction)
+            yield fraction
+        offset += frames
+    linear_keys(action)
+    report = review_samples(samples, height=profile.height_m, fps=first.fps)
+    for adapter in adapters:
+        adapter.finish(report)
+    report.metrics['semantic_frames'] = len(samples)
+    return action, samples, report, tuple(source_map)
+
+
+def bake_candidate_frames(handle, plan, repair_floor, progress, profile=None, continuations=()):
     rig, scene = handle.rig, handle.scene
     typed = isinstance(plan, ExecutableMotion)
-    adapter = FragmentAdapter(handle, plan, profile) if typed else None
+    adapter = FragmentAdapter(handle, plan, profile) if typed and not continuations else None
     revision = plan.entry_snapshot.revision if typed else plan.revision
     action = bpy.data.actions.new(f'Avatar motion r{revision}')
     rig.animation_data.action = action
     try:
+        if continuations:
+            return (yield from bake_measured_sequence(handle, action, plan, continuations, profile, progress))
         if typed:
             samples = []
             count = math.ceil(plan.duration_s * plan.fps)
@@ -553,10 +634,7 @@ def bake_candidate_frames(handle, plan, repair_floor, progress, profile=None):
                 samples[-1]['desired_rotations'] = desired_rotations
                 samples[-1]['actual_rotations'] = observed_rotations(handle)
                 elbow_poles = {side: handle.bones[side+'ForeArm'].head.copy() for side in ('Left', 'Right')}
-            for bone in rig.pose.bones:
-                bone.keyframe_insert('location', frame=frame, group=bone.name)
-                bone.keyframe_insert('rotation_quaternion', frame=frame, group=bone.name)
-                bone.keyframe_insert('scale', frame=frame, group=bone.name)
+            key_pose(rig, frame)
             if typed and adapter.moves_root:
                 for channel in ('location', 'rotation_quaternion', 'scale'):
                     rig.keyframe_insert(channel, frame=frame, group='Object Root')
@@ -565,7 +643,9 @@ def bake_candidate_frames(handle, plan, repair_floor, progress, profile=None):
             yield (i + 1) / (count + 1)
         linear_keys(action)
         report = review_samples(samples, height=world_height, fps=plan.fps)
-        return action, samples, adapter.finish(report) if typed else check_completion(plan, samples, report)
+        if typed:
+            return action, samples, adapter.finish(report), plan.source_map
+        return action, samples, check_completion(plan, samples, report), ()
     except BaseException:
         handle._skin_cache_enabled = False
         rig.animation_data.action = None
@@ -573,9 +653,37 @@ def bake_candidate_frames(handle, plan, repair_floor, progress, profile=None):
         raise
 
 
-def build_action_frames(handle, plan, progress=lambda fraction: None, allow_experimental=False, *, profile=None):
+def _resolved_endpoint(plan, controls):
+    final = plan.final_pose
+    explicit = dict(final.values)
+    solved_chains = {contact.part.split('_')[0] + '_' + part
+                     for stage in plan.stages for contact in stage.contacts
+                     for part in (('arm', 'forearm') if contact.part.endswith('_hand') else
+                                  ('thigh', 'shin') if contact.part.endswith('_foot') else ())}
+    endpoint = {key: value for key, value in controls.items() if key in LIMITS
+                and ('_target_' not in key or key in explicit)
+                and (not any('_' + part + '_' in key for part in ('arm', 'forearm', 'thigh', 'shin'))
+                     or key in explicit or any(key.startswith(chain + '_') for chain in solved_chains))}
+    for key, value in endpoint.items():
+        low, high = LIMITS[key]
+        if low - 1e-4 <= value <= high + 1e-4:
+            endpoint[key] = min(high, max(low, value))
+    return serialize_pose(validate_pose(PosePlan(tuple(sorted(endpoint.items())), final.contact,
+                                                 plan.revision, plan.description)))
+
+
+def build_action_frames(handle, plan, progress=lambda fraction: None, allow_experimental=False, *,
+                        profile=None, continuations=(), endpoint_plan=None):
     """Commit only reviewed motion. One measured repair attempt; restore everything on failure."""
     typed = isinstance(plan, ExecutableMotion)
+    if endpoint_plan is not None and (not typed or not isinstance(endpoint_plan, ActionPlan)):
+        fail('INVALID_PARAMETER', 'A measured endpoint projection needs a compiled action and its preview plan')
+    endpoint_origin = handle.bones['Hips'].head.copy() if endpoint_plan is not None else None
+    if type(continuations) is not tuple or continuations and (
+            not typed or allow_experimental or not all(callable(continuation) for continuation in continuations)):
+        fail('INVALID_PARAMETER', 'Measured continuations require a strict compiled action and trusted builders')
+    if len(continuations) >= MAX_INSTANCES:
+        fail('RESOURCE_LIMIT', 'Measured sequence has too many segments')
     object_pose = {}
     if typed:
         adapter = FragmentAdapter(handle, plan, profile)  # read-only preflight
@@ -597,14 +705,16 @@ def build_action_frames(handle, plan, progress=lambda fraction: None, allow_expe
     camera = (scene.camera.matrix_world.copy() if scene.camera else None)
     action = None
     try:
-        action, samples, report = yield from bake_candidate_frames(handle, plan, False, lambda f: progress(f * .5), profile)
+        action, samples, report, source_map = yield from bake_candidate_frames(
+            handle, plan, False, lambda f: progress(f * .5), profile, continuations)
         before = report.to_dict()
         repaired = False
         if not typed and not report.passed and all(i.kind == 'floor_penetration' for i in report.issues):
             rig.animation_data.action = None
             bpy.data.actions.remove(action)
             action = None
-            action, samples, report = yield from bake_candidate_frames(handle, plan, True, lambda f: progress(.5 + f * .5))
+            action, samples, report, _ = yield from bake_candidate_frames(
+                handle, plan, True, lambda f: progress(.5 + f * .5))
             repaired = report.metrics['floor_penetration_m'] < before['metrics']['floor_penetration_m']
         if not report.passed and not allow_experimental:
             issue = report.issues[0]
@@ -631,13 +741,20 @@ def build_action_frames(handle, plan, progress=lambda fraction: None, allow_expe
                                                          cycle_duration_s=cycle_duration)
                     loop_seams.append(metrics)
             frame_transition(handle, PosePlan(), [1, len(samples)//2+1, len(samples)])
+            endpoint = None
+            if endpoint_plan is not None:
+                scene.frame_set(scene.frame_end)
+                values = measured_controls(handle, endpoint_plan.final_pose.values, endpoint_origin)
+                endpoint = _resolved_endpoint(endpoint_plan, values)
             scene.frame_set(1)
             progress(1)
             result = {'frames':len(samples), 'action':action.name, 'review':report.to_dict(),
                       'before_repair':before, 'repaired':False, 'experimental':not report.passed,
                       'ending_state':to_dict(samples[-1]['snapshot']),
                       'samples':[s['semantic_details'] for s in samples],
-                      'source_map':[to_dict(s) for s in plan.source_map]}
+                      'source_map':[to_dict(s) for s in source_map]}
+            if endpoint is not None:
+                result['ending_pose'] = endpoint
             if plan.loop is not None:
                 result.update(loop=to_dict(plan.loop), loop_seams=loop_seams)
             if report.passed and not allow_experimental and old_action and old_action.users == 0:
@@ -648,27 +765,12 @@ def build_action_frames(handle, plan, progress=lambda fraction: None, allow_expe
         frame_transition(handle, plan.final_pose, camera_frames)
         scene.frame_set(1)
         progress(1)
-        endpoint = dict(samples[-1]['controls'])
-        explicit = dict(plan.final_pose.values)
-        solved_chains = {c.part.split('_')[0]+'_'+part
-                         for stage in plan.stages for c in stage.contacts
-                         for part in (('arm', 'forearm') if c.part.endswith('_hand') else
-                                      ('thigh', 'shin') if c.part.endswith('_foot') else ())}
-        endpoint = {k: v for k, v in endpoint.items() if k in LIMITS
-                    and ('_target_' not in k or k in explicit)
-                    and (not any('_'+p+'_' in k for p in ('arm','forearm','thigh','shin'))
-                         or k in explicit or any(k.startswith(chain+'_') for chain in solved_chains))}
-        for key, value in endpoint.items():
-            low, high = LIMITS[key]
-            if low-1e-4 <= value <= high+1e-4:
-                endpoint[key] = min(high, max(low, value))
-        ending_pose = validate_pose(PosePlan(tuple(sorted(endpoint.items())), plan.final_pose.contact,
-                                            plan.revision, plan.description))
+        ending_pose = _resolved_endpoint(plan, dict(samples[-1]['controls']))
         if report.passed and not allow_experimental and old_action and old_action.users == 0:
             bpy.data.actions.remove(old_action)
         return {'frames': len(samples), 'action': action.name, 'review': report.to_dict(),
                 'before_repair': before, 'repaired': repaired, 'stages': len(plan.stages),
-                'experimental': not report.passed, 'ending_pose': serialize_pose(ending_pose)}
+                'experimental': not report.passed, 'ending_pose': ending_pose}
     except BaseException:
         rig.animation_data.action = old_action
         if old_slot is not None: rig.animation_data.action_slot = old_slot
@@ -688,8 +790,10 @@ def build_action_frames(handle, plan, progress=lambda fraction: None, allow_expe
         raise
 
 
-def build_action(handle, plan, progress=lambda fraction: None, allow_experimental=False, *, profile=None):
-    iterator = build_action_frames(handle, plan, progress, allow_experimental, profile=profile)
+def build_action(handle, plan, progress=lambda fraction: None, allow_experimental=False, *,
+                 profile=None, continuations=()):
+    iterator = build_action_frames(handle, plan, progress, allow_experimental,
+                                   profile=profile, continuations=continuations)
     try:
         while True:
             next(iterator)

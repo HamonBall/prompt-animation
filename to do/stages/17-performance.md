@@ -28,6 +28,10 @@ Report phase and worst-frame/UI timings with actual rig, recipe/profile/library 
 - Compare solved trajectories, contacts, semantic goals and visual results before/after each optimization. Test invalidation for avatar, state, surface and parameter changes.
 - Measure cancellation latency, allocation growth across repeated requests and actual playback responsiveness.
 
+## Time to first playback and cancel-to-retry
+
+Time studio-assisted startup and an independent take-home launch separately where available. Use the Stage 08 baseline and report setup steps, cold/warm preview time and time to the first successful correction. Include main.py worker and local_model.py request lifecycle in scope for cancellation. Cancel request A, submit B, deliver A late and check that only B commits. Discard obsolete queued work before it acquires inference capacity, interrupt or bound active inference as supported, and measure how soon B starts and finishes.
+
 ## Validation / completion gate
 
 Report measurable improvements or a justified retained baseline with remaining bottlenecks. Equivalent motions preserve tolerances and normal review. Aim for the user's 60–120-second ordinary-prompt window, but report real measured results and unresolved misses.

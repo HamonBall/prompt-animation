@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 import sys
+import time
 from types import SimpleNamespace
 from unittest.mock import patch
 import bpy
@@ -12,21 +13,76 @@ from avatar_app import main as app
 from avatar_app.motion import ActionPlan
 from avatar_app.pose import update_pose
 from avatar_app.blender.motion import build_action_frames, build_action
+from avatar_app.blender.requests import BoundFoundation
+from avatar_app.blender.rig_profile import measure_endpoint
 from avatar_app.blender.geometry import support_skin_height
+from avatar_app.models import PlanError
+from avatar_app.planning.action_interpreter import decode_action
 from avatar_app.planning.presets import preset_plan, foot_target, planted
 from avatar_app.planning.movements import movement
 
-with patch.object(app, '_default_avatar', return_value=ROOT/'absent.fbx'):
+args = sys.argv[sys.argv.index('--') + 1:] if '--' in sys.argv else ['demo']
+rig = args[0]
+assert rig in ('demo', 'mixamo')
+with patch.object(app, '_default_avatar', return_value=ROOT / ('Hip Hop Mixamo.fbx' if rig == 'mixamo' else 'absent.fbx')):
     app.main()
 scene = bpy.context.scene
+if args[1:2] == ['chair']:
+    height = float(args[2]) if len(args) > 2 else .45
+    original = app._state['plan']
+    handle = app._state['avatar']
+    prior_action = handle.rig.animation_data.action
+    try:
+        app.generate(bpy.context, 'sit on a chair')
+    except PlanError as error:
+        assert 'Enable the preview seat' in str(error)
+    else:
+        raise AssertionError('The request accepted a missing seat')
+    assert app._state['plan'] is original and handle.rig.animation_data.action == prior_action
+    scene.avatar_seat_height = height
+    scene.avatar_show_seat = True
+    scene.avatar_prompt = 'sit on a chair'
+    with patch.object(app, 'bake_request', wraps=app.bake_request) as bake:
+        assert bpy.ops.avatar.prompt() == {'FINISHED'}
+    bound = bake.call_args.args[1]
+    assert isinstance(bound, BoundFoundation)
+    assert scene.frame_end - scene.frame_start + 1 == 136
+    plan = app._state['plan']
+    assert plan.final_pose.get('pelvis_drop') > .1 and plan.final_pose.contact == 'both'
+    assert plan.final_pose.revision == plan.revision > original.revision
+    scene.frame_set(scene.frame_end)
+    seat = next(surface for surface in handle.surfaces if surface.name == 'seat')
+    assert abs(support_skin_height(handle, 'pelvis', seat) - seat.height) < .003
+    correction, _ = decode_action(json.dumps(dict(kind='timing', base=None, stages=[], changes={},
+                                                  contact=None, factor=1.1, message='Sit more slowly')), plan)
+    assert tuple(stage.id for stage in correction.stages) == tuple(stage.id for stage in plan.stages)
+    assert correction.duration > plan.duration
+    print('PUBLIC_CHAIR_PREVIEW_PASSED', rig, height, 136, plan.final_pose.get('pelvis_drop'), flush=True)
+    raise SystemExit(0)
+
 assert not hasattr(bpy.types.Scene, 'avatar_preset')
 assert not hasattr(bpy.types, 'AVATAR_OT_preset')
 assert 'preset' not in bpy.ops.avatar.prompt.get_rna_type().properties
 scene.avatar_use_reference = False
 scene.avatar_prompt = 'wave with your left hand'
+started = time.perf_counter()
 with patch('avatar_app.planning.action_interpreter.get_model', side_effect=AssertionError('Simple prompt called AI')), \
-     patch.object(app, 'load_reference', side_effect=AssertionError('Unexpected web context')):
+     patch.object(app, 'load_reference', side_effect=AssertionError('Unexpected web context')), \
+     patch.object(app, 'bake_request', wraps=app.bake_request) as bake:
     assert bpy.ops.avatar.prompt() == {'FINISHED'}
+preview_seconds = time.perf_counter() - started
+bound = bake.call_args.args[1]
+assert isinstance(bound, BoundFoundation), 'Expected the public prompt to use the recipe backend'
+assert scene.frame_end - scene.frame_start + 1 == 208
+handle = app._state['avatar']
+entry_hand = measure_endpoint(handle, bound.profile, 'left.hand')
+scene.frame_set(scene.frame_start + 60)
+assert sum((a - b) ** 2 for a, b in zip(measure_endpoint(handle, bound.profile, 'left.hand'), entry_hand)) > .01
+scene.frame_set(scene.frame_end)
+assert sum((a - b) ** 2 for a, b in zip(measure_endpoint(handle, bound.profile, 'left.hand'), entry_hand)) < 1e-6
+assert handle.rig.animation_data.action is not None
+print('FIRST_PUBLIC_PREVIEW', rig, 'avatar.prompt', type(bound.motion).__name__, scene.frame_end,
+      round(preview_seconds, 3), flush=True)
 assert scene.avatar_prompt == 'wave with your left hand'
 assert isinstance(app._state['plan'], ActionPlan)
 assert app._state['plan'].description == 'Wave left hand 3 times'

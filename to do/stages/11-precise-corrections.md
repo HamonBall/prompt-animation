@@ -28,6 +28,10 @@ Publish patch fixtures with base revision, edit/append operation, instance IDs, 
 - Assert exact preservation of unrelated recipe fields and measured trajectory preservation within shared numerical tolerances at matched times.
 - Test contradictory locks, translated endpoints, append versus edit, stale inference and cancel/failure restoration.
 
+## The customer's first intentional change
+
+Start from the committed personal-avatar preview or a supported comparable case. Through the foreground prompt UI, request a supported change to side, count or timing. Record what the user asked to preserve, the base revision, the changed phase and matched-time measurements of unrelated motion. Include a live-model correction and prove a stale or failed edit keeps the last reviewed clip.
+
 ## Validation / completion gate
 
 A wrist-only correction leaves arm paths, travel, timing and unrelated contacts intact unless an explicitly reported dependency requires adjustment. All scoped edits have source-ID evidence, revision checks and measured comparisons.

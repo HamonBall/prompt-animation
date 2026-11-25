@@ -1,5 +1,5 @@
 """Internal animation foundations for prompt planning; no user-facing catalog."""
-from dataclasses import replace
+from dataclasses import dataclass, replace
 from ..models import PlanError
 from ..motion import ActionPlan, ContactConstraint, validate_action
 from .movements import movement, lying_down_plan
@@ -18,19 +18,40 @@ BASE_PARAMETERS = {'jump': {}, 'walk': {'steps': [2, 4]}, 'lie': {},
                    'wave': {'side': ['left', 'right'], 'waves': [1, 2, 3, 4]}}
 
 
+@dataclass(frozen=True)
+class FoundationSelection:
+    name: str
+    options: tuple[tuple[str, str | int], ...] = ()
+    tempo: float = 1.
+
+
+@dataclass(frozen=True)
+class FoundationRequest:
+    selection: FoundationSelection
+    plan: ActionPlan
+
+
 def motion_foundations():
     """Compact mechanics for the local planner, without regenerating body targets."""
     return [{'name': name, 'purpose': purpose, 'parameters': BASE_PARAMETERS[name]}
             for name, _, purpose in PRESETS]
 
 
-def motion_foundation(selection, current=None):
+def select_motion_foundation(selection):
     if not isinstance(selection, dict) or not isinstance(selection.get('name'), str):
         raise PlanError('Invalid animation foundation.')
     name = selection['name']
     if name not in BASE_PARAMETERS or not set(selection) <= {'name', *BASE_PARAMETERS[name]}:
         raise PlanError('Invalid animation foundation parameters.')
-    return preset_plan(name, current, **{k: v for k, v in selection.items() if k != 'name'})
+    options = tuple(sorted((key, value) for key, value in selection.items() if key != 'name'))
+    if any(type(value) not in (int, str) or value not in BASE_PARAMETERS[name][key] for key, value in options):
+        raise PlanError('Invalid animation foundation parameters.')
+    return FoundationSelection(name, options)
+
+
+def motion_foundation(selection, current=None):
+    selected = select_motion_foundation(selection)
+    return preset_plan(selected.name, current, **dict(selected.options))
 
 
 def foot_target(side, forward=0, height=0):

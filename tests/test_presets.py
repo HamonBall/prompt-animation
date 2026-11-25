@@ -4,7 +4,7 @@ from unittest.mock import patch
 from avatar_app.models import PlanError
 from avatar_app.motion import sample_controls, validate_action, scale_timing
 from avatar_app.pose import update_pose
-from avatar_app.planning.presets import PRESETS, preset_plan, gait_plan, wave_plan
+from avatar_app.planning.presets import FoundationRequest, PRESETS, preset_plan, gait_plan, wave_plan
 from avatar_app.planning.routes import common_route
 from avatar_app.planning.action_interpreter import decode_action, interpret_action
 
@@ -16,6 +16,18 @@ def response(kind='adapt', base=None, stages=(), factor=None, changes=None):
 
 
 class PresetTests(unittest.TestCase):
+    def test_public_wave_selection_keeps_creative_edits_in_their_plan(self):
+        exact, _ = interpret_action('wave with your left hand slowly', foundation_requests=True)
+        base = {'name': 'wave', 'side': 'left'}
+        selected, _ = decode_action(response(base=base, factor=1.25), foundation_requests=True)
+        self.assertIsInstance(exact, FoundationRequest)
+        self.assertEqual(exact.selection, selected.selection)
+        edited, _ = decode_action(response(base=base, changes={'head': 'left:20'}), foundation_requests=True)
+        self.assertNotIsInstance(edited, FoundationRequest)
+        corrected, _ = decode_action(response(kind='timing', factor=1.1), exact.plan, foundation_requests=True)
+        self.assertNotIsInstance(corrected, FoundationRequest)
+        self.assertEqual(tuple(stage.id for stage in exact.plan.stages), tuple(stage.id for stage in corrected.stages))
+
     def test_all_presets_have_bounded_reviewable_timelines(self):
         for name, _, _ in PRESETS:
             with self.subTest(name=name):

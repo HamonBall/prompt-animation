@@ -13,12 +13,13 @@ from avatar_app.models import PlanError
 from avatar_app.pose import update_pose
 from avatar_app.planning.movements import lying_down_plan
 
-app.main()
+with patch.object(app, '_default_avatar', return_value=Path(__file__).with_name('absent.fbx')):
+    app.main()
 avatar = SimpleNamespace(scene=bpy.context.scene)
 original = update_pose(None, {'right_arm_elevation': 90})
 candidate = update_pose(original, {'head_yaw': 30})
 app._state.update(avatar=avatar, plan=original)
-with patch.object(app, 'build_transition', return_value={'frames': 61}) as build:
+with patch.object(app, 'bake_request', return_value={'frames': 61}) as build:
     app.apply_candidate(bpy.context, candidate, 'Test checked patch', time.perf_counter(), avatar, original)
     assert app._state['plan'] is candidate
     assert build.call_count == 1
@@ -29,7 +30,7 @@ with patch.object(app, 'build_transition', return_value={'frames': 61}) as build
         assert build.call_count == 1
 
 before_history = list(app._state['history'])
-with patch.object(app, 'build_transition', side_effect=RuntimeError('Injected backend failure')):
+with patch.object(app, 'bake_request', side_effect=RuntimeError('Injected backend failure')):
     try:
         app.apply_candidate(bpy.context, original, '', time.perf_counter(), avatar, candidate)
         raise AssertionError('Expected backend failure')
@@ -38,13 +39,13 @@ with patch.object(app, 'build_transition', side_effect=RuntimeError('Injected ba
         assert app._state['history'] == before_history
 
 motion = lying_down_plan()
-with patch.object(app, 'build_action', return_value={'frames': 172}) as build:
+with patch.object(app, 'bake_request', return_value={'frames': 172}) as build:
     app.apply_candidate(bpy.context, motion, 'Staged motion', time.perf_counter(), avatar, candidate)
     assert app._state['plan'] is motion
     assert build.call_count == 1
 
 bpy.context.scene.avatar_prompt = 'neutral pose'
-with patch.object(app, 'build_transition', return_value={'frames': 61}):
+with patch.object(app, 'bake_request', return_value={'frames': 61}):
     assert bpy.ops.avatar.prompt() == {'FINISHED'}
     assert app._state['plan'].values == ()
 assert bpy.types.AVATAR_OT_cancel is not None

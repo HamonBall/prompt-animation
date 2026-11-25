@@ -114,13 +114,13 @@ General composition is unavailable before 06: early preservation tests use an au
 | 05.7b | style.playful | Controlled light bounce/quick recovery where compatible | Reviewed in the scoped [05.7b envelope](receipts/05.7b.md); final storage passed |
 | 05.7b | style.exaggerated | Bounded amplitude change on selected channels | Reviewed in the scoped [05.7b envelope](receipts/05.7b.md); final storage passed |
 | 05.7b | style.tired | Scoped reduced amplitude/tempo or posture | Reviewed in the scoped [05.7b envelope](receipts/05.7b.md); final storage passed |
-| 08 | recipe.jump | Existing finite jump contract migrated | Planned |
-| 08 | recipe.walk | Existing two/four-step supported travel migrated | Planned |
-| 08 | recipe.lie_back | Existing supported lying route migrated | Planned |
-| 08 | recipe.run | Existing finite strides/flight migrated | Planned |
-| 08 | recipe.wave | Side/count/timing preserved | Planned |
-| 08 | recipe.sit_floor | Existing floor-seat route migrated | Planned |
-| 08 | recipe.sit_seat | Existing resolved-chair route migrated | Planned |
+| 08 | recipe.jump | Existing finite jump contract migrated | Neutral Demo and Mixamo passed preset comparisons, saved playback, full front/side review and storage; public routing open |
+| 08 | recipe.walk | Existing two/four-step supported travel migrated | Candidate travel and saved-motion review passed at recorded source; parity and routing open |
+| 08 | recipe.lie_back | Existing supported lying route migrated | Candidate passed a single action from neutral on both rigs; parity, review, and routing open |
+| 08 | recipe.run | Existing finite strides/flight migrated | Candidate passed two/four strides on both rigs. Opt-in elbow counter-swing and torso lean passed on neutral Demo and turned Mixamo; upper-arm parity, review, and routing open |
+| 08 | recipe.wave | Side/count/timing preserved | First public neutral-standing wave baked through the recipe on Demo and Mixamo; visual and storage evidence passed at its recorded source, and remaining route coverage is open |
+| 08 | recipe.sit_floor | Existing floor-seat route migrated | Neutral Demo and Mixamo passed 5.0 s descent and 15° leg extension with measured pelvis support; pelvis travel and contact timing parity, seated-to-back replant, review, and routing open |
+| 08 | recipe.sit_seat | Existing resolved-chair route migrated | Public neutral 35–55 cm routing passed on Demo and Mixamo; current-source 45 cm saved playback, front/side review, and storage passed |
 
 ## Stage 05.2 handoff
 

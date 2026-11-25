@@ -3,6 +3,7 @@ import math
 import bpy
 from mathutils import Matrix, Quaternion, Vector
 from . import rig_profile as rp
+from .kinematics import aim
 from .pose import position_hand, axes
 from ..movement_library import contracts as c
 from ..movement_library.hands import forearm_twist_sign
@@ -57,6 +58,17 @@ def apply(adapter,requested):
             requested[side+'.hand.orientation']=tuple(torso.to_quaternion() @ Quaternion(requested[side+'.hand.torso_orientation']))
     for side in ('left','right'):
         key=side+'.elbow.flexion'
+        direction = side + '.forearm.direction'
+        endpoint=side+'.hand.position';plane=side+'.elbow.plane'
+        if direction in requested:
+            if any(control in requested for control in (key, endpoint, plane)):
+                c.fail('CONSTRAINT_CONFLICT', 'An explicit forearm direction already owns the elbow',
+                       control_id=direction)
+            for part in ('ForeArm', 'Hand'):
+                bone = h.bones[side.title() + part]
+                bone.matrix_basis = adapter.arm_entry_basis[bone.name]
+            bpy.context.view_layer.update()
+            aim(h.bones[side.title() + 'ForeArm'], h.rig.matrix_world.to_3x3().inverted() @ Vector(requested[direction]))
         if key in requested:
             twist=rp.measure_joint_angle(h,p,side+'.forearm.twist')
             upper,lower=(h.bones[side.title()+part] for part in ('Arm','ForeArm'))
@@ -68,7 +80,6 @@ def apply(adapter,requested):
             error=requested[key]-rp.measure_joint_angle(h,p,key)
             rotate_bone(adapter,side+'.forearm',Quaternion(axis,math.radians(error)))
             set_twist(adapter,side,twist)
-        endpoint=side+'.hand.position';plane=side+'.elbow.plane'
         if endpoint in requested or plane in requested:
             if side+'.upper_arm.orientation' in requested:
                 c.fail('CONSTRAINT_CONFLICT','Endpoint IK and a hard upper-arm orientation require pre-resolved compatible ownership')

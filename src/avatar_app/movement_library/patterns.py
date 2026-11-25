@@ -7,8 +7,43 @@ import math
 from . import contracts as c
 from .compiler import build_fragment, instantiate_movement, prepare_fragment, supporting_chains, value_error
 from .joints import catalog_for_profile
-from .registry import validate_control_value, validate_snapshot
+from .registry import register_movement, validate_control_value, validate_snapshot
 from .spatial import inverse, multiply, rotate
+
+
+STEP_PATTERN_BUILDER = 'patterns.steps.v1'
+
+
+def register_step_pattern(catalog):
+    step = catalog.definitions.get('body.step')
+    if step is None:
+        return
+    parameters = tuple(replace(spec, name='lead') if spec.name == 'side' else spec
+                       for spec in step.parameter_specs)
+    count = c.ParameterSpec('count', 'integer', 'unitless', None, False, True, 2, 1, 4)
+    register_movement(replace(
+        step, id='pattern.steps', kind='pattern',
+        description='Alternate one to four planted steps from captured floor soles',
+        parameter_specs=(*parameters, count), builder_id=STEP_PATTERN_BUILDER,
+        phase_events=(),
+    ), catalog)
+
+
+def build_step_pattern(instance, entry, profile, surfaces):
+    parameters = {value.name: value.value for value in instance.parameters}
+    lead = parameters.pop('lead')
+    count = parameters.pop('count')
+    fragment = step_pattern(lead, parameters, count,
+                            fragment_id=instance.instance_id + '.fragment',
+                            entry=entry, profile=profile, surfaces=surfaces)
+    # The composed recipe sees one schedulable instance. Its generated child
+    # IDs still distinguish step tracks, contact events, goals and landmarks.
+    source = (instance.instance_id,)
+    return replace(fragment, source_instance_ids=source,
+                   tracks=tuple(replace(track, source_instance_ids=source) for track in fragment.tracks),
+                   contact_events=tuple(replace(event, source_instance_ids=source)
+                                        for event in fragment.contact_events),
+                   goals=tuple(replace(goal, clause_id=instance.instance_id) for goal in fragment.goals))
 
 
 def _duration(seconds):

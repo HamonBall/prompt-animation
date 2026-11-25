@@ -73,6 +73,11 @@ def build(instance,entry,profile,surfaces):
                 if hold:segments.append((end,end+hold,origin,origin,None));end+=hold
                 paths['pelvis.position']=segments
             else:path('pelvis.position',points)
+        torso_pitch = p.get('torso_pitch_deg', 0.)
+        if torso_pitch:
+            for joint in spine:
+                control = joint + '.pitch'
+                path(control, [values[control] + torso_pitch / len(spine)])
     # Head aim is independent; the arms retain their local pose and follow the torso.
     for control in ('head.orientation',):
         if control not in values: c.fail('MISSING_CAPABILITY','Body movement requires measured head orientation',control_id=control)
@@ -93,16 +98,20 @@ BUILDERS={'body.torso_pelvis.v1':build}
 def register_body(catalog,profile=None):
     from .registry import register_movement
     spine=tuple(j for j in ('torso','spine.mid','spine.upper') if profile is None or any(v.id==j+'.pitch' for v in profile.controls))
-    for id in IDS:
+    for id in (*IDS, 'pelvis.gait_load'):
         pelvis=id.startswith('pelvis.')
         params=(_number('duration_s','second',1,.8,3),_number('hold_s','second',.1,0,1),
                 _enum('return_policy','return_to_entry',('return_to_entry','preserve_end')))
         if pelvis and id!='pelvis.tilt_turn':
-            params+=(_number('distance_m','metre',-.02 if id=='pelvis.raise_lower' else .01,-.04,.04),
-                     _enum('plane','vertical' if id=='pelvis.raise_lower' else 'side',('vertical',) if id=='pelvis.raise_lower' else ('side',) if id=='pelvis.circle' else ('forward','side')))
+            vertical = id in ('pelvis.raise_lower', 'pelvis.gait_load')
+            limit = .16 if id == 'pelvis.gait_load' else .04
+            params+=(_number('distance_m','metre',-.02 if vertical else .01,-limit,limit),
+                     _enum('plane','vertical' if vertical else 'side',('vertical',) if vertical else ('side',) if id=='pelvis.circle' else ('forward','side')))
         else:
             params+=(_number('angle','degree',5 if pelvis else 10,-10 if pelvis else -20,10 if pelvis else 20),
                      _enum('plane','yaw' if id in ('torso.twist','pelvis.tilt_turn') else 'roll' if id=='torso.sway' else 'pitch',('yaw',) if id=='torso.twist' else ('pitch',) if id in ('torso.curl','torso.wave') else ('pitch','roll','yaw') if pelvis else ('pitch','roll')))
+        if id == 'pelvis.gait_load':
+            params += (_number('torso_pitch_deg', 'degree', 0., -10., 10.),)
         owned=spine+('head',)+(('pelvis','left.thigh','left.shin','left.ankle','right.thigh','right.shin','right.ankle') if pelvis else ())
         caps=('measure.head.orientation','measure.torso.pitch')+(('measure.pelvis.position','measure.pelvis.orientation') if pelvis else ())
         register_movement(c.MovementDefinition(id,1,'body','Measured '+id+' with fixed world head orientation and preserved floor support',params,caps,(),owned,(),(),'body.torso_pelvis.v1',('torso_pelvis','bounded_cycle'),('end',),'return_to_entry'),catalog)

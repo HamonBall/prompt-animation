@@ -8,24 +8,21 @@ import math
 import bpy
 from bpy.props import StringProperty, BoolProperty, FloatProperty
 from .planning.action_interpreter import interpret_action as interpret_request
-from .motion import ActionPlan, action_from_pose
+from .motion import ActionPlan
 from .models import PlanError
 from .pose import PosePlan
 from .blender.avatar import import_avatar, discard_avatar
-from .blender.motion import build_action, build_action_frames
+from .blender.requests import bake_request, prepare_preview_request, request_frames
 from .blender.scene import prepare_preview, resolve_seat
 from .blender.demo import create_demo_avatar
 from .planning.reference import load_reference
+from .planning.presets import FoundationRequest
 
 
 _state = {'avatar': None, 'plan': None, 'history': [], 'busy': False,
           'cancel_requested': False, 'last_error': None, 'reviewed_plan': None,
           'experimental': False, 'phase': '', 'started': 0}
 ROOT = Path(__file__).resolve().parents[2]
-
-
-def build_transition(handle, pose, progress=lambda f: None, allow_experimental=False):
-    return build_action(handle, action_from_pose(pose), progress, allow_experimental=allow_experimental)
 
 
 def apply_candidate(context, candidate, explanation, started, expected_avatar, expected_plan, approximate=False):
@@ -37,10 +34,10 @@ def apply_candidate(context, candidate, explanation, started, expected_avatar, e
     context.scene.avatar_status = 'Creating animation…'
     context.window_manager.progress_begin(0, 100)
     try:
-        builder = build_action if isinstance(candidate, ActionPlan) else build_transition
-        args = {'allow_experimental': True} if approximate else {}
-        result = builder(_state['avatar'], candidate,
-                         lambda fraction: context.window_manager.progress_update(fraction * 100), **args)
+        prepared, revision = prepare_preview_request(expected_avatar, candidate, expected_plan)
+        result = bake_request(expected_avatar, prepared,
+                              lambda fraction: context.window_manager.progress_update(fraction * 100),
+                              approximate=approximate, revision=revision)
     finally:
         context.window_manager.progress_end()
     if approximate:
@@ -49,6 +46,13 @@ def apply_candidate(context, candidate, explanation, started, expected_avatar, e
 
 
 def commit_result(context, candidate, result, explanation, started):
+    if isinstance(candidate, FoundationRequest):
+        candidate = candidate.plan
+        if result.get('ending_state') is not None and not result.get('ending_pose'):
+            # The measured wave returns to the same standing pose. Keep the
+            # stage description available to the existing follow-up editor.
+            endpoint = replace(_state['plan'], revision=candidate.revision, description=candidate.description)
+            candidate = replace(candidate, resolved_final=endpoint)
     if isinstance(candidate, ActionPlan) and result.get('ending_pose'):
         endpoint = result['ending_pose']
         candidate = replace(candidate, resolved_final=PosePlan(tuple(sorted(endpoint['controls'].items())),
@@ -78,7 +82,8 @@ def generate(context, text, approximate=False):
     avatar, current = _state['avatar'], _state['plan']
     references = [load_reference(context.scene.avatar_reference_url)] if context.scene.avatar_use_reference else []
     candidate, explanation = interpret_request(text, current, surfaces=getattr(avatar, 'surfaces', ()),
-                                              approximate=approximate, references=references)
+                                              approximate=approximate, references=references,
+                                              foundation_requests=True)
     apply_candidate(context, candidate, explanation, started, avatar, current, approximate)
 
 
@@ -173,7 +178,7 @@ class AVATAR_OT_prompt(bpy.types.Operator):
                 phases.put('Loading reference page' if reference_url else 'Understanding your request')
                 references = [load_reference(reference_url)] if reference_url else []
                 candidate, explanation = interpret_request(text, current, surfaces=surfaces,
-                    approximate=approximate, references=references, progress=phases.put)
+                    approximate=approximate, references=references, progress=phases.put, foundation_requests=True)
                 if references:
                     explanation += ' Reference: ' + reference_url
                 results.put((True, (candidate, explanation)))
@@ -245,12 +250,12 @@ class AVATAR_OT_prompt(bpy.types.Operator):
             if _state['plan'] is not self._plan:
                 raise PlanError('The result changed during interpretation. Submit again.')
             self._candidate, self._explanation = candidate, explanation
+            prepared, revision = prepare_preview_request(self._avatar, candidate, self._plan)
+            self._builder = request_frames(self._avatar, prepared,
+                lambda fraction: context.window_manager.progress_update(fraction*100),
+                approximate=self._approximate, revision=revision)
             context.window_manager.progress_begin(0, 100)
             _state['phase'] = 'Creating animation'
-            plan = candidate if isinstance(candidate, ActionPlan) else action_from_pose(candidate)
-            self._builder = build_action_frames(self._avatar, plan,
-                lambda fraction: context.window_manager.progress_update(fraction*100),
-                allow_experimental=self._approximate)
             return {'PASS_THROUGH'}
         except Exception as exc:
             context.scene.avatar_status = str(exc)

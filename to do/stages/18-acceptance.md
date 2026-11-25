@@ -28,6 +28,12 @@ Audit [all ledger rows](movement-coverage.md) against registry exports and recei
 - Record each prompt, rig, recipe/library versions, result, errors, latency and visual judgment. Use held-out inputs without adding phrase-specific branches to make them pass.
 - Verify file/asset preservation and that inactive/unsupported entries are excluded or clearly labeled in retrieval.
 
+## Customer and prospective-customer observations
+
+Retain the fixed 20 routine and 10 held-out suite and its existing gates. Alongside it, carry forward Stage 08 observations and try a second differently proportioned permitted delivery. Record individual recognition, assistance, time to intentional edit, voluntary repeat play and interest in keeping or showing the clip. Distinguish studio-assisted and independent use. Record unavailable assets or participants as unobserved.
+
+For the promotional trial use an existing operator-produced clip, a discreet studio credit and an owner-supplied contact destination. Customer sharing is their choice. Use a separately approved sample with a prospective customer and record whether they identify the scanning service and find the contact step. Report counts and concrete failures separately from mechanical pass rates. Use results to recommend the next investment. Product export, hosting and publication require separate assignment.
+
 ## Validation / completion gate
 
 Every advertised reviewed family passes its declared envelope. Require at least 18/20 usable routine first previews on each rig; report the actual count and scoring notes. All invalid-input, cancellation, stale-result and data-preservation cases must pass; the preview success allowance does not excuse safety or transactional regressions. All explicit clauses are fulfilled or specifically explained, narrow edits preserve unrelated work, and no new unresolved regression is concealed.
