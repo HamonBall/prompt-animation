@@ -1,7 +1,7 @@
 # Numbered execution stages — start here
 
 Stages 01–07 are complete, including optional 05.3b.
-The active assignment is Stage 08. Follow the [Stage 08 handoff](handoffs/RESUME-08.md).
+Stage 09 is complete for the assigned trial. Stage 10 awaits assignment. Follow the [Stage 09 handoff](handoffs/RESUME-09.md). Stage 08 remains partial.
 Historical prerequisite receipts remain under `receipts/`.
 The [scan customer plan and stage map](../sol-prompt-to-preview-plan.md) explains how Stages 08–18 connect the studio delivery to first playback, correction and an observed customer trial. The numbered documents own the work.
 Prepared: 2026-10-14.
@@ -46,8 +46,8 @@ Read top to bottom. Dependencies, not filename proximity, determine readiness. E
 | 05.7b | [Library 5.7 — bounded motion style](05.7b-style.md) | 05.7a | Complete, [receipt](receipts/05.7b.md) |
 | 06 | [Build action recipes and timeline stages](06-recipe-stage-builder.md) | 05.7b | [Complete](receipts/06.md) |
 | 07 | [Compile and execute composed animation](07-animation-compiler.md) | 06 | [Complete](receipts/07.md) |
-| 08 | [Migrate existing animations to library recipes](08-migrate-foundations.md) | 07 | Active, [partial receipt](receipts/08.md) |
-| 09 | [Retrieve the right movement capabilities](09-capability-retrieval.md) | 08 | Planned |
+| 08 | [Migrate existing animations to library recipes](08-migrate-foundations.md) | 07 | Paused, [partial receipt](receipts/08.md) |
+| 09 | [Retrieve the right movement capabilities](09-capability-retrieval.md) | 08 | [Complete for the assigned trial](receipts/09.md) |
 | 10 | [Interpret open-ended prompts into movement recipes](10-ai-planner.md) | 09 | Planned |
 | 11 | [Preserve intent through narrow follow-up edits](11-precise-corrections.md) | 10 | Planned |
 | 12 | [Define requested objects and semantic surfaces](12-object-contracts.md) | 11 | Planned |

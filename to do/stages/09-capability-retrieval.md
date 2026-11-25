@@ -1,6 +1,6 @@
 # Stage 09 — Retrieve the right movement capabilities
 
-Status: planned. Dependencies: [08](08-migrate-foundations.md).
+Status: complete for the assigned trial. See the [handoff](handoffs/RESUME-09.md). Dependencies: [08](08-migrate-foundations.md).
 
 Read [00-START-HERE.md](00-START-HERE.md) and completed prerequisite receipts before execution. Its budgets, numeric tolerances, regression rules and receipt format apply here. Implement only this document.
 

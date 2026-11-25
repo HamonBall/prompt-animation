@@ -51,7 +51,7 @@ Keep implementation contracts, project policies, stage documents and completion 
 
 ## Current work checkpoint
 
-Stage 08 is active. Follow `to do/CURRENT-WORK.md` and `to do/stages/handoffs/RESUME-08.md`. Stage 07 is the latest completed stage, committed as `2fd0eff`. Stage 09 awaits explicit assignment. Preserve current changes and frozen README.md. Store numbered-stage handoffs in `to do/stages/handoffs/RESUME-<stage>.md`.
+Stage 09 capability retrieval is complete for the assigned trial. Stage 08 is paused with a partial receipt. Follow `to do/CURRENT-WORK.md` and `to do/stages/handoffs/RESUME-09.md`. Stage 10 awaits explicit assignment. Preserve current changes and frozen README.md. Store numbered-stage handoffs in `to do/stages/handoffs/RESUME-<stage>.md`.
 
 ## Maintenance and future handoffs
 

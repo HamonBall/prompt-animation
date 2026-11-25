@@ -65,14 +65,25 @@ class Guard(importlib.abc.MetaPathFinder):
             raise AssertionError('Unexpected import: '+fullname)
 sys.meta_path.insert(0, Guard())
 from avatar_app.movement_library import contracts, registry
-assert set(registry.CATALOG.definitions)=={'head.look','head.nod','head.shake','head.tilt','neck.lead','torso.lean','torso.twist','torso.curl','torso.wave','torso.sway','pelvis.shift','pelvis.raise_lower','pelvis.tilt_turn','pelvis.circle','shoulder.shrug','shoulder.reach','shoulder.roll','arm.raise','arm.sweep','arm.swing','arm.circle','arm.fold','arm.reach','arm.stroke'}
+from avatar_app.planning.retrieval import MovementIndex
+expected = {
+    'head.look', 'head.nod', 'head.shake', 'head.tilt', 'neck.lead',
+    'torso.lean', 'torso.twist', 'torso.curl', 'torso.wave', 'torso.sway',
+    'pelvis.shift', 'pelvis.raise_lower', 'pelvis.tilt_turn', 'pelvis.circle', 'pelvis.gait_load',
+    'shoulder.shrug', 'shoulder.reach', 'shoulder.roll', 'forearm.aim',
+    'arm.raise', 'arm.sweep', 'arm.swing', 'arm.circle', 'arm.fold', 'arm.reach', 'arm.stroke',
+    'arm.jump_swing', 'arm.orient', 'arm.wave_gesture',
+}
+assert set(registry.CATALOG.definitions) == expected
+index = MovementIndex(registry.CATALOG)
+assert all(index.search(key).candidates[0].id == key for key in expected)
 assert not registry.CATALOG.reviews
 assert not any(n in sys.modules for n in blocked)
 print(json.dumps({'record_types':len(contracts.RECORD_TYPES), 'catalog_size':len(registry.CATALOG.definitions), 'blocked_imports':list(blocked)}))
 '''
         result = subprocess.run([sys.executable, '-c', script], capture_output=True, text=True, timeout=20)
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertIn('"catalog_size": 24', result.stdout)
+        self.assertEqual(json.loads(result.stdout)['catalog_size'], len(r.CATALOG.definitions))
         self.assertFalse(r.CATALOG.reviews)
 
     def test_defaults_preserve_explicit_zero_and_resolution_is_idempotent(self):
